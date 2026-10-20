@@ -1,0 +1,19 @@
+---
+// Ink call-to-action band: title, one line, one button.
+interface Props { title: string; text: string; href: string; cta: string; id?: string }
+const { title, text, href, cta, id = 'cta-band' } = Astro.props;
+---
+<section class="cta bg-ink" aria-labelledby={id}>
+  <div class="wrap inner">
+    <div>
+      <h2 id={id} class="h2">{title}</h2>
+      <p class="sub">{text}</p>
+    </div>
+    <a class="btn" href={href}>{cta}</a>
+  </div>
+</section>
+<style>
+  .cta { padding: 56px 0; }
+  .inner { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
+  .sub { color: var(--on-dark-mute); margin-top: 8px; font-size: 18px; }
+</style>

@@ -1,0 +1,127 @@
+---
+import Base from '../../layouts/Base.astro';
+import Photo from '../../components/Photo.astro';
+import InsightsTabs from '../../components/insights/InsightsTabs.astro';
+import { load, url } from '../../lib/content';
+
+const d = await load();
+const all = d.insights;
+const [featured, ...rest] = all;
+const years = [...new Set(all.map((i) => i.data.year))];
+const TOPICS: [string, string][] = [
+  ['Industrial policy', 'Industrial policy'], ['Minerals', 'Minerals'], ['Green hydrogen', 'Green hydrogen · 5 parts'],
+  ['Learning economy', 'Learning economy'], ['EVs', 'EVs'], ['Finance', 'Finance'], ['Ground-up industrialisation', 'Ground-up industrialisation'],
+];
+const PER_PAGE = 20;
+const seriesLabel = (s?: string, part?: number, of?: number) => (s ? `${s}${part ? ` · Part ${part}${of ? ` of ${of}` : ''}` : ''}` : '');
+---
+<Base dark title="Policy Insights" description="Short arguments on Africa’s green industrialisation. One idea per issue.">
+  <span hidden data-pagefind-filter="type">Pages</span>
+  <section class="hero-dark">
+    <div class="wrap"><div class="page-head">
+      <p class="label kicker">Series <span class="sep">·</span> {all.length} issues in {years.join('–')}</p>
+      <h1 class="display">Policy Insights</h1>
+      <p class="lead">Short arguments on Africa’s green industrialisation. One idea per issue.</p>
+      <a class="btn btn-light mt-32" href="/subscribe" data-open="newsletter" aria-haspopup="dialog">Subscribe</a>
+    </div></div>
+  </section>
+
+  <InsightsTabs current="insights" />
+
+  <div class="wrap chipbar">
+    <nav class="chips" aria-label="Filter by topic" data-topic-chips>
+      <a class="chip" href="/insights" data-topic="" aria-current="page">All</a>
+      {TOPICS.map(([key, label]) => <a class="chip" href={`/insights?topic=${encodeURIComponent(key)}`} data-topic={key}>{label}</a>)}
+    </nav>
+  </div>
+
+  <section class="split ruled" data-featured>
+    <Photo shot="Parliament / ministry" ratio="auto" class="split-photo" />
+    <div class="split-text">
+      <p class="label mute">Latest <span class="sep">·</span> No. {featured.data.number}</p>
+      <h2 class="h1 mt-16"><a href={url.insight(featured.id)}>{featured.data.title}</a></h2>
+      <p class="mute mt-16">Gideon Ndubuisi · {featured.data.year}</p>
+      <a class="btn btn-secondary mt-32" href={url.insight(featured.id)}>Read →</a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2 class="sr-only">All issues</h2>
+      <p class="mute small mb-16" aria-live="polite" data-count>{all.length} issues</p>
+      <ol class="list nolist" data-rows>
+        {[featured, ...rest].map((i, n) => (
+          <li data-topics={i.data.topics.join('|')} data-featured-row={n === 0 ? '' : undefined}>
+            <a class="lrow" href={url.insight(i.id)}>
+              <span class:list={['label', 'num', `c-${i.data.programme}`]}><span class="sq" aria-hidden="true"></span>No. {i.data.number}</span>
+              <span class="lrow-title">{i.data.title}</span>
+              <span class="lrow-meta">{seriesLabel(i.data.series, i.data.part, i.data.of)}</span>
+              <span class="lrow-year">{i.data.year}</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+      <p class="empty" hidden data-empty>No issues match this topic. <a href="/insights">Show all issues</a></p>
+      <nav class="pager mt-32" aria-label="Pages" data-pager hidden></nav>
+    </div>
+  </section>
+</Base>
+
+<script define:vars={{ PER_PAGE }}>
+  // Topic filter + pagination. State lives in the URL (?topic=…&page=…). Without JS every issue is listed.
+  const chips = document.querySelector('[data-topic-chips]');
+  const rows = [...document.querySelectorAll('[data-rows] > li')];
+  const pager = document.querySelector('[data-pager]');
+  const count = document.querySelector('[data-count]');
+  const empty = document.querySelector('[data-empty]');
+  const featuredBlock = document.querySelector('[data-featured]');
+
+  function render() {
+    const params = new URLSearchParams(location.search);
+    const topic = params.get('topic') || '';
+    const page = Math.max(1, Number(params.get('page')) || 1);
+    chips.querySelectorAll('a').forEach((a) => a.setAttribute('aria-current', a.dataset.topic === topic ? 'page' : 'false'));
+    // Unfiltered, the newest issue is shown as the featured block above the list, so it is left out of the rows.
+    featuredBlock.hidden = Boolean(topic);
+    const matches = rows.filter((r) => (!topic || r.dataset.topics.split('|').includes(topic)) && !(r.hasAttribute('data-featured-row') && !topic));
+    const pages = Math.max(1, Math.ceil(matches.length / PER_PAGE));
+    const p = Math.min(page, pages);
+    rows.forEach((r) => (r.hidden = true));
+    matches.slice((p - 1) * PER_PAGE, p * PER_PAGE).forEach((r) => (r.hidden = false));
+    const total = matches.length + (topic ? 0 : 1);
+    count.textContent = `${total} issue${total === 1 ? '' : 's'}${topic ? ` on ${topic}` : ''}`;
+    empty.hidden = matches.length > 0;
+    pager.hidden = pages < 2;
+    pager.innerHTML = Array.from({ length: pages }, (_, i) => {
+      const q = new URLSearchParams(); if (topic) q.set('topic', topic); if (i) q.set('page', String(i + 1));
+      return `<a class="chip" href="/insights${q.toString() ? '?' + q : ''}" data-page="${i + 1}"${i + 1 === p ? ' aria-current="page"' : ''}>${i + 1}</a>`;
+    }).join('');
+  }
+  function go(href) { history.pushState(null, '', href); render(); }
+  chips.addEventListener('click', (e) => { const a = e.target.closest('a'); if (!a) return; e.preventDefault(); go(a.href); });
+  pager.addEventListener('click', (e) => {
+    const a = e.target.closest('a'); if (!a) return; e.preventDefault(); go(a.href);
+    document.querySelector('[data-count]').scrollIntoView({ block: 'start' });
+  });
+  window.addEventListener('popstate', render);
+  render();
+</script>
+
+<style>
+  .kicker { color: var(--sun); }
+  .chipbar { padding-top: 20px; padding-bottom: 20px; }
+  .split { display: grid; grid-template-columns: 1fr 1fr; }
+  .split :global(.split-photo) { min-height: 420px; }
+  .split-text { padding: 64px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; }
+  .split-text h2 a { text-decoration: none; }
+  .num { color: var(--c); }
+  .num.c-EN { color: #8a6416; }
+  .num.c-INN { color: var(--ink); }
+  .empty { padding: 32px 0; }
+  .pager { display: flex; gap: 8px; flex-wrap: wrap; }
+  @media (max-width: 899px) {
+    .split { grid-template-columns: 1fr; }
+    .split :global(.split-photo) { min-height: 220px; }
+    .split-text { padding: 40px var(--pad); }
+  }
+</style>

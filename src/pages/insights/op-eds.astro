@@ -1,0 +1,53 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHead from '../../components/PageHead.astro';
+import InsightsTabs from '../../components/insights/InsightsTabs.astro';
+import { load, authorLine, monthYear, TYPE_LABEL } from '../../lib/content';
+
+const d = await load();
+// Op-eds, research blogs and the team's policy briefs for other outlets, newest first.
+const pieces = d.opeds;
+---
+<Base title="Op-eds" description="Commentary by RITA researchers in African and international media.">
+  <span hidden data-pagefind-filter="type">Pages</span>
+  <PageHead title="Op-eds" crumbs={[['Insights', '/insights'], ['Op-eds']]} lead="Commentary by RITA researchers in African and international media." />
+  <InsightsTabs current="op-eds" />
+
+  <section class="section">
+    <div class="wrap">
+      <h2 class="sr-only">All op-eds and blogs, newest first</h2>
+      <ol class="list nolist">
+        {pieces.map((o) => {
+          const inner = (
+            <>
+              <span class="label"><span class:list={['sq', o.data.programme ? `c-${o.data.programme}` : 'c-none']} aria-hidden="true"></span>{o.data.outlet}</span>
+              <span class="body-col">
+                <span class:list={['lrow-title', { ext: Boolean(o.data.outletUrl) }]}>{o.data.title}</span>
+                {o.data.summary && <span class="mute small summary">{o.data.summary}</span>}
+              </span>
+              <span class="lrow-meta">{TYPE_LABEL[o.data.kind]} · {authorLine(o.data.authors)}</span>
+              <span class="lrow-year">{monthYear(o.data.date)}</span>
+            </>
+          );
+          return (
+            <li>
+              {o.data.outletUrl
+                ? <a class="lrow op" href={o.data.outletUrl} target="_blank" rel="noopener" data-track="publisher-click" data-track-label={o.id}>{inner}<span class="sr-only"> (opens in a new tab)</span></a>
+                : <div class="lrow op">{inner}<span class="sr-only"> Link to be added.</span></div>}
+            </li>
+          );
+        })}
+      </ol>
+      <p class="mute small mt-24">Links open the original outlet. Republishing full texts on this site needs each outlet’s and author’s permission.</p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .op { grid-template-columns: 180px minmax(0, 1fr) 220px 90px; }
+  .body-col { display: grid; gap: 6px; }
+  .op .label { flex-wrap: nowrap; align-items: baseline; }
+  .op .label .sq { flex: none; }
+  .summary { line-height: 1.5; }
+  @media (max-width: 899px) { .op { grid-template-columns: minmax(0, 1fr); } }
+</style>

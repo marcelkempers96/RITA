@@ -1,0 +1,17 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHead from '../../components/PageHead.astro';
+import Tbc from '../../components/Tbc.astro';
+import InsightsTabs from '../../components/insights/InsightsTabs.astro';
+---
+<Base title="Newsletter archive" description="Past issues of the RITA newsletter.">
+  <span hidden data-pagefind-filter="type">Pages</span>
+  <PageHead title="Newsletter archive" crumbs={[['Insights', '/insights'], ['Newsletter archive']]} lead="Policy Insights every week, RITA news monthly." />
+  <InsightsTabs current="newsletter" />
+  <section class="section">
+    <div class="wrap stack" style="--stack:24px">
+      <Tbc block label="No issues sent yet">Past newsletters will be listed here once the first issue goes out. Archive links come from the email provider (Brevo / Mailchimp / Buttondown).</Tbc>
+      <p><a class="btn" href="/subscribe" data-open="newsletter" aria-haspopup="dialog">Subscribe</a></p>
+    </div>
+  </section>
+</Base>

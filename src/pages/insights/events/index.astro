@@ -1,0 +1,110 @@
+---
+import Base from '../../../layouts/Base.astro';
+import PageHead from '../../../components/PageHead.astro';
+import Photo from '../../../components/Photo.astro';
+import InsightsTabs from '../../../components/insights/InsightsTabs.astro';
+import { load, url } from '../../../lib/content';
+import { eventDay, eventDate, eventTime, isPast, FORMAT_LABEL } from '../../../components/insights/eventTime';
+
+const d = await load();
+// Upcoming/past is decided at build time: schedule a daily rebuild so finished events move to Past.
+const upcoming = d.events.filter((e) => !isPast(e.data)).sort((a, b) => (a.data.datetime ?? '9999').localeCompare(b.data.datetime ?? '9999'));
+const past = d.events.filter((e) => isPast(e.data)).sort((a, b) => b.data.datetime!.localeCompare(a.data.datetime!));
+const [featured, ...others] = upcoming;
+const formatLine = (e: (typeof d.events)[number]) =>
+  [FORMAT_LABEL[e.data.format], e.data.venue, eventTime(e.data)].filter(Boolean).join(' · ');
+---
+<Base title="Events" description="Launches, webinars and policy dialogues.">
+  <span hidden data-pagefind-filter="type">Pages</span>
+  <PageHead title="Events" crumbs={[['Insights', '/insights'], ['Events']]} lead="Launches, webinars and policy dialogues." />
+  <InsightsTabs current="events" />
+
+  <div class="wrap">
+    <div class="tabs subtabs" role="tablist" aria-label="Upcoming or past events">
+      <button type="button" role="tab" id="tab-upcoming" aria-controls="panel-upcoming" aria-selected="true">Upcoming</button>
+      <button type="button" role="tab" id="tab-past" aria-controls="panel-past" aria-selected="false" tabindex="-1">Past</button>
+    </div>
+  </div>
+  <noscript><style>#panel-past { display: block !important; } .subtabs { display: none; }</style></noscript>
+
+  <div id="panel-upcoming" role="tabpanel" aria-labelledby="tab-upcoming">
+    {featured ? (
+      <section class="split">
+        <Photo shot="Event" ratio="auto" class="split-photo" />
+        <div class="split-text">
+          <p class="label mute">{eventDay(featured.data) ? `${eventDate(featured.data)}` : <span class="tbc">Date TBC</span>} <span class="sep">·</span> {FORMAT_LABEL[featured.data.format]}</p>
+          <h2 class="h1 mt-16"><a href={url.event(featured.id)}>{featured.data.title}</a></h2>
+          <p class="lead mt-16">{featured.data.about}</p>
+          {featured.data.registrationOpen && <a class="btn btn-secondary mt-32" href={`${url.event(featured.id)}#register`}>Register →</a>}
+        </div>
+      </section>
+    ) : null}
+    <section class="section">
+      <div class="wrap">
+        <h2 class="sr-only">Upcoming events</h2>
+        {others.length ? (
+          <ul class="list nolist">
+            {others.map((e) => (
+              <li class="erow">
+                <span class="label date">{eventDay(e.data) ?? 'Date TBC'}</span>
+                <a class="lrow-title" href={url.event(e.id)}>{e.data.title}</a>
+                <span class="lrow-meta">{formatLine(e)}</span>
+                {e.data.registrationOpen && <a class="link-arrow" href={`${url.event(e.id)}#register`}>Register<span class="sr-only"> for {e.data.title}</span></a>}
+              </li>
+            ))}
+          </ul>
+        ) : !featured ? (
+          <p class="empty">No upcoming events right now. <a href="/subscribe" data-open="newsletter">Subscribe to hear about the next one</a>.</p>
+        ) : (
+          <p class="mute">More events will be announced here. <a href="/subscribe" data-open="newsletter">Subscribe to Events &amp; launches</a> to hear first.</p>
+        )}
+      </div>
+    </section>
+  </div>
+
+  <div id="panel-past" role="tabpanel" aria-labelledby="tab-past" hidden>
+    <section class="section">
+      <div class="wrap">
+        <h2 class="sr-only">Past events</h2>
+        {past.length ? (
+          <ul class="list nolist">
+            {past.map((e) => (
+              <li class="erow">
+                <span class="label date">{eventDay(e.data)}</span>
+                <a class="lrow-title" href={url.event(e.id)}>{e.data.title}</a>
+                <span class="lrow-meta">{formatLine(e)}</span>
+                <span class="row small">
+                  {e.data.recordingUrl && <a href={e.data.recordingUrl}>Recording</a>}
+                  {e.data.slidesUrl && <a href={e.data.slidesUrl}>Slides</a>}
+                </span>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p class="empty">No past events yet. Recordings and slides will appear here after each event.</p>
+        )}
+      </div>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .subtabs { margin-top: 8px; }
+  .split { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--line); }
+  .split :global(.split-photo) { min-height: 400px; }
+  .split-text { padding: 64px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; }
+  .split-text h2 a { text-decoration: none; }
+  .erow { display: grid; grid-template-columns: 150px minmax(0, 1fr) 260px 110px; gap: 24px; padding: 20px 0; border-top: 1px solid var(--line); align-items: baseline; }
+  .erow .lrow-title { text-decoration: none; }
+  .erow .lrow-title:hover { color: var(--laterite); }
+  .erow .link-arrow { text-align: right; }
+  .date { color: var(--laterite); }
+  .empty { padding: 24px 0; font-size: 18px; }
+  @media (max-width: 899px) {
+    .split, .erow { grid-template-columns: 1fr; }
+    .erow { gap: 6px; }
+    .erow .link-arrow { text-align: left; }
+    .split :global(.split-photo) { min-height: 220px; }
+    .split-text { padding: 40px var(--pad); }
+  }
+</style>
