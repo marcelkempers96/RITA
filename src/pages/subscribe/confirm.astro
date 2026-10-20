@@ -1,0 +1,22 @@
+---
+import Base from '../../layouts/Base.astro';
+import { load, url } from '../../lib/content';
+// Landing page for the double opt-in confirmation link (set it as the provider's redirect URL).
+const d = await load();
+const latest = d.insights[0];
+---
+<Base title="You’re subscribed" description="Your RITA newsletter subscription is confirmed." noNewsletter noindex>
+  <section class="section bg-paper">
+    <div class="wrap">
+      <div class="panel center" role="status">
+        <h1 class="h1 ok"><span aria-hidden="true">✓</span> You’re subscribed</h1>
+        <p class="lead mt-16">The next Policy Insight arrives on Monday.</p>
+        <a class="btn mt-32" href={url.insight(latest.id)}>Read the latest</a>
+      </div>
+    </div>
+  </section>
+</Base>
+<style>
+  .panel { max-width: 560px; margin: 0 auto; background: var(--white); padding: 48px; }
+  .ok { color: var(--malachite); }
+</style>

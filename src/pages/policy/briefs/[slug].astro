@@ -1,0 +1,122 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Base from '../../../layouts/Base.astro';
+import Crumbs from '../../../components/Crumbs.astro';
+import Tbc from '../../../components/Tbc.astro';
+import ShareBar from '../../../components/ShareBar.astro';
+import CiteModal from '../../../components/CiteModal.astro';
+import { load, resolveRef, PROGRAMMES, url, type Brief, type Code } from '../../../lib/content';
+
+export const getStaticPaths = (async () => {
+  const d = await load();
+  return d.briefs.map((b) => ({ params: { slug: b.id }, props: { brief: b } }));
+}) satisfies GetStaticPaths;
+
+const { brief } = Astro.props as { brief: Brief };
+const d = await load();
+const b = brief.data;
+const code = b.programme as Code;
+const prog = PROGRAMMES[code];
+const based = b.basedOn.map((r) => resolveRef(r, d)).filter((x) => x !== undefined);
+const firstResearch = based.find((x) => !x.external) ?? based[0];
+const no = String(b.number).padStart(2, '0');
+const year = b.date?.slice(0, 4);
+const authors = b.authors.length ? b.authors : ['RITA'];
+---
+<Base title={b.title} description={`RITA Policy Brief No. ${no}: ${b.title}.`} ogType="article"
+  jsonLd={{ '@context': 'https://schema.org', '@type': 'Report', name: b.title, reportNumber: `RITA Policy Brief ${no}`,
+    publisher: { '@type': 'ResearchOrganization', name: 'Research Institute for Transitions in Africa' }, ...(b.date ? { datePublished: b.date } : {}) }}>
+  <span hidden data-pagefind-filter="type">Insights</span>
+  <section class="wrap">
+    <Crumbs items={[['Policy', '/policy'], ['Briefs', '/policy/briefs'], [`No. ${no}`]]} />
+    <div class="page-head" data-pagefind-meta="type:Policy brief">
+      <p class="row tags">
+        <span class="tag tag-ink">Policy brief · No. {no}</span>
+        <a class:list={['tag', 'tag-prog', `c-${code}`]} href={url.programme(code)}>{prog.name}</a>
+        {!b.recommendations.length && <span class="tag">Forthcoming</span>}
+      </p>
+      <h1 class="h1 mt-16">{b.title}</h1>
+      <p class="lead mt-16">
+        {b.authors.length ? b.authors.join(' · ') : <Tbc label="Authors TBC" />} · RITA Policy Brief · {year ?? <Tbc label="Date TBC" />}
+      </p>
+      <div class="row mt-32">
+        {b.pdf
+          ? <a class="btn" href={b.pdf} data-track="pdf-download" data-track-label={brief.id}>Download PDF · 4 pages</a>
+          : <span class="btn" aria-disabled="true">Download PDF <span class="tbc">TBC</span></span>}
+        {firstResearch && (
+          <a class="btn btn-secondary" href={firstResearch.href} {...(firstResearch.external ? { target: '_blank', rel: 'noopener' } : {})}>Underlying research{firstResearch.external ? ' ↗' : ' →'}</a>
+        )}
+        <a class="btn btn-secondary" href="#cite" data-open="cite" aria-haspopup="dialog">Cite</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-sand">
+    <div class="wrap">
+      <h2 class="h2">Recommendations</h2>
+      {b.recommendations.length ? (
+        <ol class="grid g3 nolist recs mt-32">
+          {b.recommendations.map((r, i) => (
+            <li class="rec">
+              <span class="mono mute">{String(i + 1).padStart(2, '0')}</span>
+              <p class="h3 mt-8">{r.text}</p>
+              <p class="mute mt-8">{r.why}</p>
+            </li>
+          ))}
+        </ol>
+      ) : (
+        <ol class="grid g3 nolist recs mt-32">
+          {[1, 2, 3].map((i) => (
+            <li class="rec">
+              <span class="mono mute">0{i}</span>
+              <p class="h3 mt-8"><Tbc label="Recommendation TBC" /></p>
+              <p class="mute mt-8">One sentence why: authors to write.</p>
+            </li>
+          ))}
+        </ol>
+      )}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap with-aside">
+      <div class="prose">
+        <h2>The issue</h2>
+        {b.issue ? <p>{b.issue}</p> : <Tbc block label="Authors to add">This brief is being written by the authors, adapted from the research listed under “Based on”.</Tbc>}
+        <h2>What the evidence shows</h2>
+        {b.evidence ? <p>{b.evidence}</p> : <Tbc block label="Authors to add">Key evidence from the underlying research.</Tbc>}
+      </div>
+      <aside class="stack" style="--stack:24px" aria-label="About this brief">
+        <div class="box-paper">
+          <h2 class="label">Based on</h2>
+          <ul class="nolist based">
+            {based.map((x) => (
+              <li><a href={x.href} {...(x.external ? { target: '_blank', rel: 'noopener' } : {})}><span class:list={{ ext: x.external }}>{x.title}</span></a><span class="mute small">{x.meta}</span></li>
+            ))}
+          </ul>
+        </div>
+        <div class="box-paper">
+          <h2 class="label">Cite</h2>
+          <p class="mt-8"><a href="#cite" data-open="cite" aria-haspopup="dialog">APA · Harvard · BibTeX</a></p>
+        </div>
+        <div class="box-paper"><ShareBar title={b.title} /></div>
+      </aside>
+    </div>
+  </section>
+
+  <CiteModal item={{ id: brief.id, title: b.title, authors, year: year ? Number(year) : null, outlet: `RITA Policy Brief No. ${no}`, type: 'report',
+    url: new URL(url.brief(brief.id), Astro.site).toString() }} />
+</Base>
+
+<style>
+  .tag-ink { background: var(--ink); color: var(--white); border-color: var(--ink); }
+  .tag-prog { background: var(--c); color: var(--white); border-color: var(--c); }
+  .tag-prog.c-EN { color: var(--ink); }
+  .rec { border-top: 3px solid var(--ink); padding-top: 18px; }
+  .box-paper { background: var(--paper); padding: 24px; }
+  .based { display: grid; gap: 14px; margin-top: 12px; }
+  .based li { display: grid; gap: 2px; }
+  .based a { text-decoration: none; font-weight: 500; }
+  .based a:hover { text-decoration: underline; }
+  span.btn[aria-disabled] { cursor: default; }
+</style>

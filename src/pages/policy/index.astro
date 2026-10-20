@@ -1,0 +1,78 @@
+---
+import Base from '../../layouts/Base.astro';
+import Crumbs from '../../components/Crumbs.astro';
+import Photo from '../../components/Photo.astro';
+import ListRow from '../../components/ListRow.astro';
+import LogoWall from '../../components/LogoWall.astro';
+import CtaBand from '../../components/insights/CtaBand.astro';
+import { load, url } from '../../lib/content';
+
+const d = await load();
+const how = [
+  ['01', 'Commissioned research', 'Background papers and diagnostics for international organisations and governments.'],
+  ['02', 'Advisory & briefings', 'Short, confidential notes and expert input on strategies.'],
+  ['03', 'Policy dialogues', 'Closed-door sessions with officials, firms and researchers.'],
+];
+const trackNames = ['World Bank', 'UNCTAD', 'UNIDO', 'UNU-WIDER', 'ACET', 'APRI'];
+const track = trackNames.map((n) => d.partners.find((p) => p.data.name === n)).filter((p) => p !== undefined);
+const pad = (n: number) => String(n).padStart(2, '0');
+---
+<Base dark title="Policy" description="We work with ministries, regional bodies and development finance institutions through commissioned research, rapid briefings and policy dialogues.">
+  <span hidden data-pagefind-filter="type">Pages</span>
+  <section class="hero-dark">
+    <div class="wrap hero">
+      <div>
+        <Crumbs items={[['Policy']]} />
+        <h1 class="h1 title">Evidence for the people who decide</h1>
+        <p class="lead mt-24">We work with ministries, regional bodies and development finance institutions through commissioned research, rapid briefings and policy dialogues.</p>
+      </div>
+      <Photo shot="Policy dialogue" eager />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2 class="sr-only">How we work</h2>
+      <ul class="grid g3 nolist">
+        {how.map(([n, t, x]) => (
+          <li class="how">
+            <p class="label"><span class="sq c-MIN" aria-hidden="true"></span>{n}</p>
+            <h3 class="h3 mt-16">{t}</h3>
+            <p class="mute mt-16">{x}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section ruled">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 class="h2">Policy briefs</h2>
+        <a class="link-arrow" href="/policy/briefs">All briefs →</a>
+      </div>
+      <div class="list">
+        {d.briefs.slice(0, 4).map((b) => (
+          <ListRow href={url.brief(b.id)} type={`Brief ${pad(b.data.number)}`} code={b.data.programme} title={b.data.title}
+            meta={b.data.recommendations.length ? 'RITA' : 'RITA · Forthcoming'} year={b.data.date?.slice(0, 4)} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section ruled">
+    <div class="wrap">
+      <h2 class="label mute mb-24">Our team’s work has been commissioned by</h2>
+      <LogoWall partners={track} />
+    </div>
+  </section>
+
+  <CtaBand title="Work with us." text="Commission research or request a briefing." href="/contact?type=policy" cta="Get in touch →" />
+</Base>
+
+<style>
+  .hero { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; padding-top: 16px; padding-bottom: 56px; }
+  .title { margin-top: 40px; }
+  .how { background: var(--paper); padding: 28px; }
+  @media (max-width: 899px) { .hero { grid-template-columns: 1fr; gap: 32px; } .title { margin-top: 28px; } }
+</style>

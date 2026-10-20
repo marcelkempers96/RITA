@@ -1,0 +1,138 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Base from '../../layouts/Base.astro';
+import Crumbs from '../../components/Crumbs.astro';
+import Photo from '../../components/Photo.astro';
+import Tbc from '../../components/Tbc.astro';
+import ShareBar from '../../components/ShareBar.astro';
+import Card from '../../components/Card.astro';
+import { load, url, PROGRAMMES, type Insight, type Code } from '../../lib/content';
+
+export const getStaticPaths = (async () => {
+  const d = await load();
+  return d.insights.map((i) => ({ params: { slug: i.id }, props: { insight: i } }));
+}) satisfies GetStaticPaths;
+
+const { insight } = Astro.props as { insight: Insight };
+const d = await load();
+const i = insight.data;
+const code = i.programme as Code;
+const author = d.people.find((p) => p.id === i.authors[0]);
+// Body is plain text with blank lines between paragraphs until the LinkedIn texts are migrated.
+const paragraphs = (i.body ?? '').split(/\n\s*\n/).map((p) => p.trim()).filter(Boolean);
+const words = paragraphs.join(' ').split(/\s+/).filter(Boolean).length;
+const readTime = words ? Math.max(1, Math.round(words / 220)) : 0;
+const series = i.series ? d.insights.filter((x) => x.data.series === i.series).sort((a, b) => a.data.number - b.data.number) : [];
+const prev = d.insights.find((x) => x.data.number === i.number - 1);
+const next = d.insights.find((x) => x.data.number === i.number + 1);
+const related = d.insights
+  .filter((x) => x.id !== insight.id && x.data.programme === i.programme && x.data.series !== i.series)
+  .sort((a, b) => Math.abs(a.data.number - i.number) - Math.abs(b.data.number - i.number))
+  .slice(0, 3);
+const seriesTag = i.series ? `${i.series}${i.part ? ` · Part ${i.part}${i.of ? ` of ${i.of}` : ''}` : ''}` : '';
+const canonical = new URL(url.insight(insight.id), Astro.site).toString();
+---
+<Base progress title={`No. ${i.number}: ${i.title}`} description={`Policy Insights No. ${i.number} by ${author?.data.name ?? 'RITA'}: ${i.title}.`} ogType="article"
+  jsonLd={{ '@context': 'https://schema.org', '@type': 'Article', headline: i.title, url: canonical,
+    author: { '@type': 'Person', name: author?.data.name ?? 'Gideon Ndubuisi', url: author ? new URL(url.person(author.id), Astro.site).toString() : undefined },
+    publisher: { '@type': 'ResearchOrganization', name: 'Research Institute for Transitions in Africa' },
+    isPartOf: { '@type': 'CreativeWorkSeries', name: 'RITA Policy Insights' }, ...(i.date ? { datePublished: i.date } : {}), ...(readTime ? { wordCount: words } : {}) }}>
+  <span hidden data-pagefind-filter="type">Insights</span>
+  <article>
+    <header class="wrap">
+      <Crumbs items={[['Insights', '/insights'], ['Policy Insights', '/insights'], [`No. ${i.number}`]]} />
+      <div class="page-head" data-pagefind-meta="type:Policy Insight">
+        <p class="row tags">
+          <span class:list={['tag', 'tag-prog', `c-${code}`]}>No. {i.number}</span>
+          {seriesTag && <span class="tag">{seriesTag}</span>}
+          <a class="tag" href={url.programme(code)}>{PROGRAMMES[code].name}</a>
+        </p>
+        <h1 class="h1 mt-16 title">{i.title}</h1>
+        <p class="lead mt-16">
+          {author ? <a href={url.person(author.id)}>{author.data.name}</a> : 'Gideon Ndubuisi'} · {i.date ?? i.year} · {readTime ? `${readTime} min read` : <Tbc label="Read time TBC" />}
+        </p>
+      </div>
+    </header>
+
+    <div class="wrap"><Photo shot={i.heroImage ? '' : 'Topical image'} src={i.heroImage} alt="" ratio="16 / 6" /></div>
+
+    <div class="wrap with-aside body-wrap">
+      <div class="prose">
+        {paragraphs.length ? paragraphs.map((p) => <p>{p}</p>) : (
+          <Tbc block label="Full text to be migrated">
+            The full text of this issue is to be migrated from LinkedIn with Gideon’s approval.
+            {i.originalUrl && <> Until then, read it from the <a href={i.originalUrl} target="_blank" rel="noopener">Policy Insights index on Gideon Ndubuisi’s site<span class="sr-only"> (opens in a new tab)</span></a> ↗.</>}
+          </Tbc>
+        )}
+        {i.pullQuote && <blockquote>{i.pullQuote}</blockquote>}
+        <div class="end-cta">
+          <p class="h3">Get the next issue every week</p>
+          <a class="btn" href="/subscribe" data-open="newsletter" aria-haspopup="dialog">Subscribe</a>
+        </div>
+      </div>
+
+      <aside class="stack" style="--stack:24px" aria-label="About this issue">
+        {series.length > 1 && (
+          <nav class="box-sand" aria-label={`In this series: ${i.series}`}>
+            <h2 class="label">In this series</h2>
+            <ol class="nolist series">
+              {series.map((s) => (
+                <li>
+                  {s.id === insight.id
+                    ? <span aria-current="page"><span class="mono">No. {s.data.number}</span> {s.data.part ? `Part ${s.data.part}` : s.data.title} <span aria-hidden="true">●</span></span>
+                    : <a href={url.insight(s.id)}><span class="mono">No. {s.data.number}</span> {s.data.part ? `Part ${s.data.part}` : s.data.title}</a>}
+                </li>
+              ))}
+            </ol>
+          </nav>
+        )}
+        <div class="box-paper">
+          <h2 class="label">Author</h2>
+          <p class="mt-8"><strong>Gideon Ndubuisi</strong>, Programme lead, Green industrialisation &amp; transition minerals</p>
+          {author && <p class="mt-8"><a href={url.person(author.id)}>Profile →</a></p>}
+        </div>
+        <div class="box-paper"><ShareBar title={i.title} /></div>
+      </aside>
+    </div>
+
+    <nav class="wrap prevnext" aria-label="Previous and next issue">
+      {prev ? <a href={url.insight(prev.id)} class="pn"><span class="label mute">← Previous · No. {prev.data.number}</span><span class="pn-title">{prev.data.title}</span></a> : <span></span>}
+      {next ? <a href={url.insight(next.id)} class="pn pn-next"><span class="label mute">Next · No. {next.data.number} →</span><span class="pn-title">{next.data.title}</span></a> : <span></span>}
+    </nav>
+  </article>
+
+  {related.length > 0 && (
+    <section class="section ruled">
+      <div class="wrap">
+        <h2 class="h2 mb-32">Related</h2>
+        <ul class="grid g3 nolist">
+          {related.map((r) => (
+            <li><Card href={url.insight(r.id)} title={r.data.title} code={r.data.programme} label={['Policy Insight', `No. ${r.data.number}`]} meta={`Gideon Ndubuisi · ${r.data.year}`} /></li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+</Base>
+
+<style>
+  .title { max-width: 900px; }
+  .tag-prog { background: var(--c); color: var(--white); border-color: var(--c); }
+  .tag-prog.c-EN { color: var(--ink); }
+  .tags a.tag:hover { border-color: var(--ink); }
+  .body-wrap { padding-top: 56px; padding-bottom: 56px; }
+  .box-sand { background: var(--sand); padding: 24px; }
+  .box-paper { background: var(--paper); padding: 24px; }
+  .series { display: grid; gap: 10px; margin-top: 12px; }
+  .series a { text-decoration: none; }
+  .series a:hover { text-decoration: underline; }
+  .series .mono { font-size: 13px; color: var(--mute); margin-right: 4px; }
+  .series [aria-current] { font-weight: 600; }
+  .end-cta { margin-top: 48px; padding-top: 24px; border-top: 3px solid var(--ink); display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .prevnext { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding-bottom: 56px; }
+  .pn { display: grid; gap: 8px; align-content: start; text-decoration: none; border-top: 1px solid var(--line); padding-top: 20px; }
+  .pn-next { text-align: right; justify-items: end; }
+  .pn-title { font-size: 19px; font-weight: 500; line-height: 1.35; }
+  .pn:hover .pn-title { color: var(--laterite); }
+  @media (max-width: 599px) { .prevnext { grid-template-columns: 1fr; } .pn-next { text-align: left; justify-items: start; } }
+</style>

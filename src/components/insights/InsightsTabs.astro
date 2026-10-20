@@ -1,0 +1,16 @@
+---
+// Section tabs for /insights. They change the URL, so they render as links (BUILD-SPEC §3 Tabs).
+interface Props { current: 'insights' | 'op-eds' | 'events' | 'newsletter' }
+const { current } = Astro.props;
+const tabs = [
+  ['insights', '/insights', 'Policy Insights'],
+  ['op-eds', '/insights/op-eds', 'Op-eds'],
+  ['events', '/insights/events', 'Events'],
+  ['newsletter', '/insights/newsletter', 'Newsletter archive'],
+] as const;
+---
+<nav class="wrap" aria-label="Insights sections">
+  <div class="tabs">
+    {tabs.map(([k, href, label]) => <a href={href} aria-current={k === current ? 'page' : undefined}>{label}</a>)}
+  </div>
+</nav>
