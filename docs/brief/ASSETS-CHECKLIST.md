@@ -3,7 +3,7 @@
 Tick each item off as it arrives. Store everything in a shared folder `RITA-website-assets/` with the subfolders below.
 
 ## 1. Brand files: `/brand` (ready, in this project)
-- [x] `rita-logo-black.svg`, `rita-logo-white.svg` (full logo)
+- [x] `rita-logo-black.svg`, `rita-logo-white.svg` (full logo, with the Africa map in the R; traced to vector from the supplied artwork)
 - [x] `rita-symbol-black.svg`, `rita-symbol-white.svg` (R symbol)
 - [ ] Favicon set, made from the R symbol: `favicon.ico` (32), `icon.svg`, `apple-touch-icon.png` (180), `icon-192.png`, `icon-512.png`
 - [ ] Default social share image, 1200×630 PNG: ink background, white logo, motto
