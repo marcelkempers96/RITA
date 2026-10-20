@@ -1,0 +1,106 @@
+---
+// 03 Programme page ×4.
+import type { GetStaticPaths } from 'astro';
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Crumbs from '../../components/Crumbs.astro';
+import Photo from '../../components/Photo.astro';
+import Card from '../../components/Card.astro';
+import ListRow from '../../components/ListRow.astro';
+import PersonCard from '../../components/PersonCard.astro';
+import SearchMeta from '../../components/research/SearchMeta.astro';
+import { load, libraryItems, url, TYPE_LABEL, type Code } from '../../lib/content';
+
+export const getStaticPaths = (async () => {
+  const programmes = await getCollection('programmes');
+  return programmes.map((p) => ({ params: { programme: p.id }, props: { programme: p } }));
+}) satisfies GetStaticPaths;
+
+const { programme } = Astro.props;
+const p = programme.data;
+const code = p.code as Code;
+const d = await load();
+
+const featured = p.featured.map((id) => d.publications.find((x) => x.id === id)).filter((x) => x !== undefined);
+const featuredIds = new Set(featured.map((f) => f.id));
+const latest = libraryItems(d).filter((i) => i.programmes.includes(code) && !i.archive && !featuredIds.has(i.id)).slice(0, 6);
+const people = d.people.filter((x) => x.data.programmes.includes(code));
+const shortOutlet = (o: string) => o.replace(/^([A-Z][A-Z-]+),.*$/, '$1').replace(/\s+\d[\w().:\-/ ]*$/, '').replace(/\s+\(.*\)$/, '');
+---
+<Base title={p.title} description={p.intro}>
+  <SearchMeta type="Page" label="Programme" />
+  <section class:list={['hero-prog', `c-${code}`]}>
+    <div class="wrap hero">
+      <div class="hero-text">
+        <Crumbs items={[['Research', '/research'], [`Programme ${p.number}`]]} />
+        <h1 class="display mt-24">{p.title}</h1>
+        <p class="lead mt-24">{p.intro}</p>
+        {p.lead && <p class="label mt-24">Programme lead <span class="sep">·</span> <a href={url.person(p.lead.id)}>{d.people.find((x) => x.id === p.lead.id)?.data.name}</a></p>}
+      </div>
+      <Photo shot={p.photo} class="hero-photo" eager />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2 class="h2 mb-32">Key questions</h2>
+      <ol class="grid g3 nolist questions">
+        {p.keyQuestions.map((q, i) => (
+          <li class:list={['q', `c-${code}`]}>
+            <span class="label mute">0{i + 1}</span>
+            <span class="h3">{q}</span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section ruled" data-pagefind-ignore>
+    <div class="wrap">
+      <h2 class="h2 mb-32">Featured</h2>
+      <ul class="grid g3 nolist">
+        {featured.map((f) => (
+          <li><Card href={url.publication(f.id)} code={code} title={f.data.title} label={[TYPE_LABEL[f.data.type], shortOutlet(f.data.publisher)]}
+            meta={f.data.year ? String(f.data.year) : undefined} shot={f.data.type === 'report' ? 'Report cover' : 'Topical image'} /></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section ruled" data-pagefind-ignore>
+    <div class="wrap">
+      <div class="section-head">
+        <h2 class="h2">Latest outputs</h2>
+        <a class="link-arrow" href={`/research?programme=${code}`}>See all in library →</a>
+      </div>
+      <ul class="nolist list">
+        {latest.map((i) => (
+          <li><ListRow href={i.href} external={i.external} code={code} type={TYPE_LABEL[i.type]} title={i.title} meta={shortOutlet(i.outlet)} year={i.year} /></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section ruled" data-pagefind-ignore>
+    <div class="wrap">
+      <h2 class="h2 mb-32">People</h2>
+      <ul class="grid g4 nolist">
+        {people.map((x) => <li><PersonCard person={x} /></li>)}
+        {Array.from({ length: Math.max(0, 4 - people.length) }).map(() => <li><PersonCard placeholder="Fellow" /></li>)}
+      </ul>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero { display: grid; grid-template-columns: 1fr 525px; gap: 64px; align-items: center; padding-top: 16px; padding-bottom: 64px; }
+  .hero-text :global(.crumbs) { color: inherit; opacity: .85; padding-top: 32px; }
+  .hero-text :global(.crumbs a) { color: inherit; }
+  .hero-text a { color: inherit; }
+  .hero :global(.hero-photo) { margin-top: 48px; }
+  .q { border-top: 4px solid var(--c); padding-top: 24px; display: grid; gap: 12px; align-content: start; }
+  @media (max-width: 899px) {
+    .hero { grid-template-columns: 1fr; gap: 32px; padding-bottom: 40px; }
+    .hero :global(.hero-photo) { margin-top: 0; }
+  }
+</style>

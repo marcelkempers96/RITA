@@ -1,0 +1,270 @@
+---
+// 02 Research library. Every item is rendered server-side (works without JS); the page script filters,
+// sorts and paginates, keeping all state in the query string.
+import Base from '../../layouts/Base.astro';
+import PageHead from '../../components/PageHead.astro';
+import { load, libraryItems, TYPE_CHIPS, TYPE_LABEL, PROGRAMMES, CODES, authorLine } from '../../lib/content';
+
+const d = await load();
+const items = libraryItems(d);
+const chipFor = (type: string) => TYPE_CHIPS.find((c) => c.types.includes(type))?.key ?? 'other';
+const REGIONS = ['Southern Africa', 'West Africa', 'East Africa', 'North Africa', 'Africa-wide', 'Global'];
+const YEARS = [['2026', '2026'], ['2025', '2025'], ['2024', '2024'], ['earlier', 'Earlier']];
+const AUTHORS = [['Ndubuisi', 'G. Ndubuisi'], ['Avenyo', 'E. K. Avenyo']];
+const groups = [
+  { key: 'programme', label: 'Programme', options: CODES.map((c) => [c, PROGRAMMES[c].short]) },
+  { key: 'region', label: 'Region', options: REGIONS.map((r) => [r, r]) },
+  { key: 'year', label: 'Year', options: YEARS },
+  { key: 'author', label: 'Author', options: AUTHORS },
+];
+const yearKey = (y: number | null) => (y && y >= 2024 ? String(y) : 'earlier');
+const outletShort = (o: string) => o.replace(/^([A-Z][A-Z-]+),.*$/, '$1').replace(/\s+\d[\w().:\-/ ]*$/, '').replace(/\s+\(.*\)$/, '');
+---
+<Base title="Research" description="Publications from RITA and its team, 2018–2026: journal articles, reports, working papers, policy briefs and op-eds.">
+  <PageHead title="Research" lead="Publications from RITA and its team, 2018–2026." crumbs={[['Research']]}>
+    <form class="lib-search" role="search" action="/search" method="get" data-lib-search>
+      <label for="lib-q" class="sr-only">Search publications</label>
+      <input id="lib-q" name="q" type="search" class="input" placeholder="Search publications…" autocomplete="off" />
+    </form>
+  </PageHead>
+
+  <section class="chipbar ruled" data-js-only hidden>
+    <div class="wrap between">
+      <div class="chips" role="group" aria-label="Publication type">
+        <button type="button" class="chip" data-type-chip="" aria-pressed="true">All</button>
+        {TYPE_CHIPS.map((c) => <button type="button" class="chip" data-type-chip={c.key} aria-pressed="false">{c.label}</button>)}
+      </div>
+      <p class="label mute hide-mobile" aria-hidden="true"><span data-count>{items.length}</span> results</p>
+    </div>
+  </section>
+
+  <section class="ruled">
+    <div class="wrap with-sidebar lib">
+      <aside aria-label="Filters" data-js-only hidden>
+        <details class="filter-panel" data-filter-panel>
+        <summary class="btn btn-secondary btn-sm">Filters</summary>
+        <div class="filters">
+        {groups.map((g) => (
+          <fieldset>
+            <legend class="label mute">{g.label}</legend>
+            {g.options.map(([v, l]) => (
+              <label class="check"><input type="checkbox" name={g.key} value={v} /> {l}</label>
+            ))}
+          </fieldset>
+        ))}
+        <fieldset>
+          <legend class="label mute">Archive</legend>
+          <label class="check"><input type="checkbox" name="archive" value="1" /> Show archive (finance &amp; earlier work)</label>
+        </fieldset>
+        <button type="button" class="btn-link small" data-clear>Clear all filters</button>
+        </div>
+        </details>
+      </aside>
+
+      <div class="results">
+        <div class="between results-head">
+          <p class="label mute" role="status" aria-live="polite"><span data-count>{items.length}</span> results</p>
+          <div class="sort" data-js-only hidden>
+            <label for="lib-sort" class="label mute">Sort:</label>
+            <select id="lib-sort" class="sort-select" data-sort>
+              <option value="newest">Newest</option>
+              <option value="oldest">Oldest</option>
+              <option value="az">A–Z</option>
+            </select>
+          </div>
+        </div>
+        <ul class="nolist list" data-list>
+          {items.map((it) => (
+            <li
+              data-item
+              data-type={chipFor(it.type)}
+              data-programme={it.programmes.join(' ')}
+              data-region={it.regions.join('|')}
+              data-year={yearKey(it.year)}
+              data-author={it.authors.join(' ')}
+              data-archive={it.archive ? '1' : undefined}
+              data-date={it.date}
+              data-title={it.title}
+              data-text={`${it.title} ${it.outlet} ${it.authors.join(' ')}`.toLowerCase()}
+            >
+              <a class="lrow" href={it.href} {...(it.external ? { target: '_blank', rel: 'noopener', 'data-track': 'publisher-click' } : {})}>
+                <span class="label"><span class:list={['sq', it.programmes[0] ? `c-${it.programmes[0]}` : 'c-none']} aria-hidden="true"></span>{TYPE_LABEL[it.type]}</span>
+                <span class:list={['lrow-title', { ext: it.external }]}>{it.title}{it.external && <span class="sr-only"> (opens in a new tab)</span>}</span>
+                <span class="lrow-meta">{outletShort(it.outlet) || it.outlet}<span class="sr-only">, {authorLine(it.authors)}</span>{it.archive && <span class="arch"> · Archive</span>}</span>
+                <span class="lrow-year">{it.year ?? 'n.d.'}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+        <div class="empty" data-empty hidden>
+          <h2 class="h3">No publications match.</h2>
+          <p class="mute mt-8">Remove a filter or search instead.</p>
+          <button type="button" class="btn btn-secondary mt-24" data-clear>Clear all filters</button>
+        </div>
+        <nav class="pager" aria-label="Pagination" data-pager hidden></nav>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .lib-search { margin-top: 32px; max-width: 600px; }
+  .lib-search .input { border: 2px solid var(--ink); min-height: 54px; font-size: 17px; }
+  .chipbar { padding: 20px 0; }
+  .chipbar .between { align-items: center; }
+  .lib { padding-top: 40px; padding-bottom: var(--section-y); }
+  .filters { display: grid; gap: 28px; }
+  .filter-panel > summary { list-style: none; display: none; }
+  .filter-panel > summary::-webkit-details-marker { display: none; }
+  .filters fieldset { gap: 10px; }
+  .filters legend { margin-bottom: 10px; }
+  .filters .check { font-size: 16px; }
+  .results-head { align-items: center; margin-bottom: 16px; }
+  .sort { display: flex; align-items: center; gap: 8px; }
+  .sort-select { font: 500 13px var(--mono); letter-spacing: .08em; text-transform: uppercase; border: 0; background: none; padding: 8px 4px; cursor: pointer; }
+  .lrow { grid-template-columns: 150px minmax(0, 1fr) 180px 52px; }
+  .arch { color: var(--mute); }
+  .empty { padding: 56px 0; border-top: 1px solid var(--line); }
+  .pager { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 32px; }
+  .pager :global(button) { min-width: 44px; min-height: 44px; padding: 0 12px; border: 1px solid var(--line); background: var(--white); font: 500 15px var(--mono); cursor: pointer; }
+  .pager :global(button[aria-current='page']) { background: var(--ink); color: var(--white); border-color: var(--ink); }
+  .pager :global(button:disabled) { opacity: .4; cursor: default; }
+  @media (max-width: 899px) {
+    .lrow { grid-template-columns: minmax(0, 1fr); }
+    .filter-panel > summary { display: inline-flex; }
+    .filter-panel[open] > summary { margin-bottom: 24px; }
+    .filters { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+
+<script>
+  const PER_PAGE = 12;
+  const GROUPS = ['programme', 'region', 'year', 'author'] as const;
+  const list = document.querySelector<HTMLElement>('[data-list]')!;
+  const rows = [...list.querySelectorAll<HTMLElement>('[data-item]')];
+  const input = document.getElementById('lib-q') as HTMLInputElement;
+  const sortSel = document.querySelector<HTMLSelectElement>('[data-sort]')!;
+  const chips = [...document.querySelectorAll<HTMLButtonElement>('[data-type-chip]')];
+  const boxes = [...document.querySelectorAll<HTMLInputElement>('.filters input[type="checkbox"]')];
+  const counts = document.querySelectorAll('[data-count]');
+  const empty = document.querySelector<HTMLElement>('[data-empty]')!;
+  const pager = document.querySelector<HTMLElement>('[data-pager]')!;
+
+  document.querySelectorAll<HTMLElement>('[data-js-only]').forEach((el) => (el.hidden = false));
+  // Filters are always open on desktop; on mobile they collapse behind a "Filters" button.
+  const panel = document.querySelector<HTMLDetailsElement>('[data-filter-panel]')!;
+  const mq = window.matchMedia('(min-width: 900px)');
+  const syncPanel = () => { if (mq.matches) panel.open = true; };
+  syncPanel();
+  if (/[?&](programme|region|year|author|archive)=/.test(location.search)) panel.open = true;
+  mq.addEventListener('change', syncPanel);
+  // Keyword search filters in place instead of going to /search.
+  document.querySelector('[data-lib-search]')!.addEventListener('submit', (e) => { e.preventDefault(); apply(true); });
+
+  type State = { q: string; type: string; sort: string; page: number; archive: boolean } & Record<(typeof GROUPS)[number], string[]>;
+  function readUrl(): State {
+    const p = new URLSearchParams(location.search);
+    const list = (k: string) => (p.get(k) ?? '').split(',').filter(Boolean);
+    return {
+      q: p.get('q') ?? '', type: p.get('type') ?? '', sort: p.get('sort') ?? 'newest', page: Math.max(1, Number(p.get('page')) || 1),
+      archive: p.get('archive') === '1', programme: list('programme'), region: list('region'), year: list('year'), author: list('author'),
+    };
+  }
+  function toUi(s: State) {
+    input.value = s.q;
+    sortSel.value = s.sort;
+    chips.forEach((c) => c.setAttribute('aria-pressed', String(c.dataset.typeChip === s.type)));
+    boxes.forEach((b) => (b.checked = b.name === 'archive' ? s.archive : (s[b.name as (typeof GROUPS)[number]] ?? []).includes(b.value)));
+  }
+  function fromUi(page = 1): State {
+    const s: State = {
+      q: input.value.trim(), type: chips.find((c) => c.getAttribute('aria-pressed') === 'true')?.dataset.typeChip ?? '',
+      sort: sortSel.value, page, archive: boxes.some((b) => b.name === 'archive' && b.checked), programme: [], region: [], year: [], author: [],
+    };
+    boxes.forEach((b) => { if (b.checked && b.name !== 'archive') s[b.name as (typeof GROUPS)[number]].push(b.value); });
+    return s;
+  }
+  function writeUrl(s: State, push: boolean) {
+    const p = new URLSearchParams();
+    if (s.q) p.set('q', s.q);
+    if (s.type) p.set('type', s.type);
+    GROUPS.forEach((g) => s[g].length && p.set(g, s[g].join(',')));
+    if (s.archive) p.set('archive', '1');
+    if (s.sort !== 'newest') p.set('sort', s.sort);
+    if (s.page > 1) p.set('page', String(s.page));
+    const url = `${location.pathname}${p.toString() ? `?${p}` : ''}`;
+    history[push ? 'pushState' : 'replaceState'](null, '', url);
+  }
+  function matches(r: HTMLElement, s: State) {
+    const d = r.dataset;
+    if (d.archive && !s.archive) return false;
+    if (s.type && d.type !== s.type) return false;
+    if (s.q && !s.q.toLowerCase().split(/\s+/).every((w) => d.text!.includes(w))) return false;
+    if (s.programme.length && !s.programme.some((c) => d.programme!.split(' ').includes(c))) return false;
+    if (s.region.length && !s.region.some((c) => d.region!.split('|').includes(c))) return false;
+    if (s.year.length && !s.year.includes(d.year!)) return false;
+    if (s.author.length && !s.author.some((a) => d.author!.split(' ').includes(a))) return false;
+    return true;
+  }
+  function render(s: State) {
+    const hits = rows.filter((r) => matches(r, s));
+    hits.sort((a, b) => s.sort === 'az' ? a.dataset.title!.localeCompare(b.dataset.title!)
+      : s.sort === 'oldest' ? a.dataset.date!.localeCompare(b.dataset.date!) || a.dataset.title!.localeCompare(b.dataset.title!)
+      : b.dataset.date!.localeCompare(a.dataset.date!) || a.dataset.title!.localeCompare(b.dataset.title!));
+    const pages = Math.max(1, Math.ceil(hits.length / PER_PAGE));
+    const page = Math.min(s.page, pages);
+    const shown = new Set(hits.slice((page - 1) * PER_PAGE, page * PER_PAGE));
+    rows.forEach((r) => (r.hidden = !shown.has(r)));
+    hits.forEach((r) => list.appendChild(r)); // re-order DOM to the sort order
+    counts.forEach((c) => (c.textContent = String(hits.length)));
+    empty.hidden = hits.length > 0;
+    pager.hidden = pages <= 1;
+    pager.innerHTML = '';
+    if (pages > 1) {
+      const btn = (label: string, p: number, opts: { current?: boolean; disabled?: boolean; aria?: string } = {}) => {
+        const b = document.createElement('button');
+        b.type = 'button'; b.textContent = label; b.dataset.page = String(p);
+        if (opts.aria) b.setAttribute('aria-label', opts.aria);
+        if (opts.current) b.setAttribute('aria-current', 'page');
+        b.disabled = Boolean(opts.disabled);
+        pager.appendChild(b);
+      };
+      btn('←', page - 1, { disabled: page === 1, aria: 'Previous page' });
+      for (let i = 1; i <= pages; i++) btn(String(i), i, { current: i === page, aria: `Page ${i}` });
+      btn('→', page + 1, { disabled: page === pages, aria: 'Next page' });
+    }
+    return page;
+  }
+  function apply(push: boolean, page = 1) {
+    const s = fromUi(page);
+    s.page = render(s);
+    writeUrl(s, push);
+  }
+
+  let t: number | undefined;
+  input.addEventListener('input', () => { clearTimeout(t); t = window.setTimeout(() => apply(false), 300); });
+  sortSel.addEventListener('change', () => apply(true));
+  boxes.forEach((b) => b.addEventListener('change', () => apply(true)));
+  chips.forEach((c) => c.addEventListener('click', () => {
+    chips.forEach((x) => x.setAttribute('aria-pressed', String(x === c)));
+    apply(true);
+  }));
+  pager.addEventListener('click', (e) => {
+    const b = (e.target as HTMLElement).closest<HTMLButtonElement>('button[data-page]');
+    if (!b || b.disabled) return;
+    apply(true, Number(b.dataset.page));
+    document.querySelector('.results')?.scrollIntoView({ block: 'start' });
+  });
+  document.querySelectorAll('[data-clear]').forEach((b) => b.addEventListener('click', () => {
+    input.value = ''; sortSel.value = 'newest';
+    boxes.forEach((x) => (x.checked = false));
+    chips.forEach((x) => x.setAttribute('aria-pressed', String(x.dataset.typeChip === '')));
+    apply(true);
+    input.focus();
+  }));
+  window.addEventListener('popstate', () => { const s = readUrl(); toUi(s); render(s); });
+
+  const initial = readUrl();
+  toUi(initial);
+  render(initial);
+</script>

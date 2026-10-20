@@ -1,0 +1,27 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Page not found" noindex noNewsletter>
+  <section class="section" data-pagefind-ignore="all">
+    <div class="wrap err">
+      <p class="label mute">Error 404</p>
+      <h1 class="h1 mt-16">We can’t find that page.</h1>
+      <p class="lead mt-16">Try searching or start from one of these.</p>
+      <form action="/search" method="get" role="search" class="bar mt-32">
+        <label for="q404" class="sr-only">Search RITA</label>
+        <input id="q404" name="q" type="search" class="input" placeholder="Search RITA" />
+        <button class="btn" type="submit">Search</button>
+      </form>
+      <div class="row mt-32">
+        <a class="btn btn-secondary" href="/research">Research</a>
+        <a class="btn btn-secondary" href="/insights">Insights</a>
+        <a class="btn btn-secondary" href="/contact">Contact</a>
+      </div>
+    </div>
+  </section>
+</Base>
+<style>
+  .err { padding-top: 48px; padding-bottom: 48px; max-width: calc(760px + 2 * var(--pad)); margin-left: 0; }
+  .bar { display: flex; max-width: 600px; }
+  .bar .input { border: 2px solid var(--ink); border-right: 0; }
+</style>

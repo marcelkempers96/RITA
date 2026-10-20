@@ -1,0 +1,146 @@
+---
+// 04 Publication page.
+import type { GetStaticPaths } from 'astro';
+import { getCollection } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import Crumbs from '../../../components/Crumbs.astro';
+import Photo from '../../../components/Photo.astro';
+import Card from '../../../components/Card.astro';
+import Tbc from '../../../components/Tbc.astro';
+import ShareBar from '../../../components/ShareBar.astro';
+import CiteModal from '../../../components/CiteModal.astro';
+import SearchMeta from '../../../components/research/SearchMeta.astro';
+import { load, libraryItems, url, TYPE_LABEL, PROGRAMMES, PERSON_BY_SURNAME, fullName, type Code } from '../../../lib/content';
+
+export const getStaticPaths = (async () => {
+  const pubs = await getCollection('publications', (p) => p.data.status !== 'draft');
+  return pubs.map((p) => ({ params: { slug: p.id }, props: { pub: p } }));
+}) satisfies GetStaticPaths;
+
+const { pub } = Astro.props;
+const p = pub.data;
+const code = p.programmes[0] as Code | undefined;
+const d = await load();
+const project = p.project ? d.projects.find((x) => x.id === p.project) : undefined;
+
+// Related: same project first, then same programme; three items, newest first, no archive.
+const pool = libraryItems(d).filter((i) => i.id !== pub.id && !i.archive);
+const sameProject = d.publications.filter((x) => x.id !== pub.id && p.project && x.data.project === p.project).map((x) => x.id);
+const related = [
+  ...pool.filter((i) => sameProject.includes(i.id)),
+  ...pool.filter((i) => !sameProject.includes(i.id) && code && i.programmes.includes(code)),
+].slice(0, 3);
+
+const typeName = p.type === 'journal' ? 'Journal article' : TYPE_LABEL[p.type];
+const doiUrl = p.doi ? `https://doi.org/${p.doi}` : undefined;
+const publisherUrl = p.externalUrl ?? doiUrl;
+const jsonLd = {
+  '@context': 'https://schema.org', '@type': 'ScholarlyArticle', headline: p.title, name: p.title,
+  author: p.authors.filter((a) => a !== 'et al.').map((a) => ({ '@type': 'Person', name: fullName(a) })),
+  ...(p.year ? { datePublished: String(p.year) } : {}),
+  publisher: { '@type': 'Organization', name: p.publisher },
+  ...(p.doi ? { identifier: { '@type': 'PropertyValue', propertyID: 'DOI', value: p.doi } } : {}),
+  ...(publisherUrl ? { sameAs: publisherUrl } : {}),
+  ...(p.summary ? { abstract: p.summary } : {}),
+  ...(code ? { about: PROGRAMMES[code].name } : {}),
+  url: new URL(Astro.url.pathname, Astro.site).toString(),
+};
+const findings = p.keyFindings;
+const shortOutlet = (o: string) => o.replace(/^([A-Z][A-Z-]+),.*$/, '$1').replace(/\s+\d[\w().:\-/ ]*$/, '').replace(/\s+\(.*\)$/, '');
+---
+<Base title={p.seoTitle ?? p.title} description={p.seoDescription ?? p.summary ?? `${typeName}, ${p.publisher}${p.year ? `, ${p.year}` : ''}.`} jsonLd={jsonLd} ogType="article">
+  <SearchMeta type="Publication" label={typeName} date={p.year} />
+  <section>
+    <div class="wrap">
+      <Crumbs items={[['Research', '/research'], ['Publications']]} />
+      <div class="head">
+        <div class="row tags">
+          {code && <a class:list={['tag', 'prog-tag', `c-${code}`]} href={url.programme(code)}>{PROGRAMMES[code].name}</a>}
+          <span class="tag">{typeName}</span>
+          {p.archive && <span class="tag">Archive</span>}
+          {p.award && <span class="tag award">★ {p.award}</span>}
+        </div>
+        <h1 class="h1 mt-16">{p.title}</h1>
+        <p class="byline mt-16">
+          {p.authors.map((a, i) => (
+            <>{i > 0 && ' · '}{PERSON_BY_SURNAME[a] ? <a href={url.person(PERSON_BY_SURNAME[a])}>{fullName(a)}</a> : fullName(a)}</>
+          ))}
+          {' · '}{p.publisher}{p.year ? ` · ${p.year}` : ''}
+        </p>
+        <div class="row mt-24">
+          {p.pdf && <a class="btn" href={p.pdf} download data-track="pdf-download" data-track-label={pub.id}>Download PDF</a>}
+          {publisherUrl && <a class:list={['btn', { 'btn-secondary': Boolean(p.pdf) }]} href={publisherUrl} target="_blank" rel="noopener" data-track="publisher-click" data-track-label={pub.id}>Read at publisher ↗<span class="sr-only"> (opens in a new tab)</span></a>}
+          <a class="btn btn-secondary" href="#cite" data-open="cite" aria-haspopup="dialog">Cite</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {p.heroImage && (
+    <section class="wrap"><Photo src={p.heroImage} alt="" ratio="16 / 6" eager /></section>
+  )}
+
+  <section class="section ruled">
+    <div class="wrap with-aside">
+      <div class="prose body-col">
+        <h2>In brief</h2>
+        {p.summary ? <p>{p.summary}</p> : <Tbc block label="In brief · TBC">Authors to add a 2–3 sentence plain-language summary.</Tbc>}
+        <h2>Why it matters</h2>
+        <Tbc block label="Why it matters · TBC">Authors to add two short paragraphs for policymakers.</Tbc>
+        <h2>Data &amp; methods</h2>
+        <Tbc block label="Data & methods · TBC">Authors to add one paragraph.</Tbc>
+        {p.note && <p class="note mute">{p.note}</p>}
+        {project && (
+          <p class="mute">Part of the project <a href={url.project(project.id)}>{project.data.title}</a>.</p>
+        )}
+      </div>
+      <aside class="aside" aria-label="About this publication">
+        <div class="box-sand">
+          <h2 class="label">Key findings</h2>
+          {findings.length ? (
+            <ol class="findings">{findings.map((f) => <li>{f}</li>)}</ol>
+          ) : (
+            <ol class="findings">{[1, 2, 3].map(() => <li><Tbc /></li>)}</ol>
+          )}
+        </div>
+        <div class="box-paper" id="cite" data-pagefind-ignore>
+          <h2 class="label">Cite</h2>
+          <p class="mt-8"><a href="#cite" data-open="cite" aria-haspopup="dialog">APA · Harvard · BibTeX</a></p>
+          {p.doi && <p class="small mute mt-8">DOI: <a href={doiUrl} target="_blank" rel="noopener">{p.doi}</a></p>}
+        </div>
+        <div class="box-paper" data-pagefind-ignore><ShareBar title={p.title} /></div>
+      </aside>
+    </div>
+  </section>
+
+  {related.length > 0 && (
+    <section class="section ruled" data-pagefind-ignore>
+      <div class="wrap">
+        <h2 class="h2 mb-32">Related</h2>
+        <ul class="grid g3 nolist">
+          {related.map((r) => (
+            <li><Card href={r.href} external={r.external} code={r.programmes[0]} title={r.title}
+              label={[TYPE_LABEL[r.type], shortOutlet(r.outlet)]} meta={r.year ? String(r.year) : undefined} /></li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <CiteModal item={{ title: p.title, authors: p.authors, year: p.year, outlet: p.publisher, doi: p.doi, url: p.externalUrl, type: p.type, id: pub.id }} />
+</Base>
+
+<style>
+  .head { padding: 32px 0 56px; max-width: 980px; }
+  .prog-tag { background: var(--c); color: var(--white); border-color: var(--c); }
+  .prog-tag.c-EN { color: var(--ink); }
+  .prog-tag:hover { color: inherit; outline: 2px solid var(--ink); }
+  .award { background: var(--sand); border-color: var(--sand); }
+  .byline { font-size: 20px; color: var(--mute-2); }
+  .byline a { text-underline-offset: 3px; }
+  .body-col > h2:first-child { margin-top: 0; }
+  .note { font-size: 15px; }
+  .aside { display: grid; gap: 20px; }
+  .box-paper { background: var(--paper); padding: 24px 28px; }
+  .findings { margin: 14px 0 0; padding-left: 1.3em; display: grid; gap: 10px; font-size: 16px; }
+</style>

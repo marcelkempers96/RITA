@@ -1,0 +1,7 @@
+---
+// Pagefind metadata for /search type tabs. type ∈ Publication | Insight | Project | Person | Page.
+// `label` is the type shown on the result row (defaults to type); `date` is shown on the right.
+interface Props { type: 'Publication' | 'Insight' | 'Project' | 'Person' | 'Page'; label?: string; date?: string | number | null }
+const { type, label, date } = Astro.props;
+---
+<span class="sr-only" aria-hidden="true" data-pagefind-filter={`type:${type}`} data-pagefind-meta={`type:${label ?? type}`}>{date ? <span data-pagefind-meta={`date:${date}`} /> : null}</span>
