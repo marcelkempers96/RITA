@@ -1,11 +1,11 @@
 {
-  "title": "The employment impact of product innovations in sub-Saharan Africa",
-  "publisher": "Research Policy 48(9)",
+  "title": "The employment impact of product innovations in sub-Saharan Africa: firm-level evidence",
+  "publisher": "Research Policy 48(9), 103806",
   "year": 2019,
   "authors": [
     "Avenyo",
-    "Mohnen",
-    "Konte"
+    "Konte",
+    "Mohnen"
   ],
   "type": "journal",
   "programmes": [
@@ -14,5 +14,18 @@
   "externalUrl": "https://www.sciencedirect.com/science/article/abs/pii/S004873331930126X",
   "regions": [
     "Africa-wide"
+  ],
+  "authorOrderConfirmed": true,
+  "pdf": "https://merit.unu.edu/publications/working-papers/abstract/?id=8268",
+  "summary": "The paper investigates the impact of product innovations on job creation in sub-Saharan African firms. Product innovations raise total employment, but only at specific intervals of innovation intensity, and the gains are larger for temporary and unskilled jobs.",
+  "keyFindings": [
+    "Product innovations have a positive impact on total employment, but only at specific intervals of innovation intensity.",
+    "Product innovations create both temporary and permanent, and skilled and unskilled, jobs.",
+    "Larger gains for temporary and unskilled jobs raise questions about the security and quality of new jobs."
+  ],
+  "methods": "Dose-response model on recent waves of the World Bank Enterprise Survey merged with the Innovation Follow-Up Survey.",
+  "sources": [
+    "https://merit.unu.edu/publications/working-papers/abstract/?id=8268",
+    "https://cris.maastrichtuniversity.nl/en/publications/the-employment-impact-of-product-innovations-in-sub-saharan-afric"
   ]
 }

@@ -1,10 +1,10 @@
 {
   "title": "Remittance dependence, support for taxation and quality of public services in Africa",
-  "publisher": "Journal of Institutional Economics",
+  "publisher": "Journal of Institutional Economics 20, e7",
   "year": 2024,
   "authors": [
-    "Ndubuisi",
-    "Konte"
+    "Konte",
+    "Ndubuisi"
   ],
   "type": "journal",
   "programmes": [
@@ -12,5 +12,20 @@
   ],
   "regions": [
     "Africa-wide"
+  ],
+  "authorOrderConfirmed": true,
+  "doi": "10.1017/S1744137423000322",
+  "externalUrl": "https://doi.org/10.1017/S1744137423000322",
+  "pdf": "https://merit.unu.edu/publications/working-papers/abstract/?id=9310",
+  "summary": "The paper asks whether depending on remittances weakens citizens' support for taxation in Africa. For about two-thirds of citizens there is no significant effect, but for the remaining third remittance dependence significantly reduces support for taxation.",
+  "keyFindings": [
+    "For the majority of citizens, remittance dependence has no significant effect on support for taxation.",
+    "For about one-third of citizens, remittance dependence significantly reduces support for taxation.",
+    "Citizens who rate public services positively are less likely to be in that group, so efficient public services may offset the effect."
+  ],
+  "methods": "Afrobarometer round 7 data for about 45,000 respondents in 34 African countries, using a finite multilevel mixture of regressions.",
+  "sources": [
+    "https://merit.unu.edu/publications/working-papers/abstract/?id=9310",
+    "https://cris.maastrichtuniversity.nl/en/publications/remittance-dependence-support-for-taxation-and-quality-of-public--2/"
   ]
 }

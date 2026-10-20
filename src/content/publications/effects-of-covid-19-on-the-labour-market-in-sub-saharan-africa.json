@@ -1,11 +1,11 @@
 {
-  "title": "Effects of COVID-19 on the labour market in sub-Saharan Africa: informality in Burkina Faso, Mali and Senegal",
+  "title": "Labour market effects of COVID-19 in sub-Saharan Africa: an informality lens from Burkina Faso, Mali and Senegal",
   "publisher": "Revue d'économie du développement 29",
   "year": 2021,
   "authors": [
-    "Avenyo",
     "Balde",
-    "Boly"
+    "Boly",
+    "Avenyo"
   ],
   "type": "journal",
   "programmes": [
@@ -14,5 +14,18 @@
   "externalUrl": "https://www.cairn.info/revue-d-economie-du-developpement-2021-1-page-43.htm",
   "regions": [
     "West Africa"
+  ],
+  "authorOrderConfirmed": true,
+  "pdf": "https://merit.unu.edu/publications/working-papers/abstract/?id=8514",
+  "summary": "Using real-time survey evidence from Burkina Faso, Mali and Senegal, the paper shows that workers in the informal economy were hit harder by the COVID-19 pandemic. Informal workers were more likely to lose their jobs, see earnings fall and struggle to meet basic needs.",
+  "keyFindings": [
+    "Informal workers were more likely to lose their jobs and see their earnings fall.",
+    "Informal workers were more likely to struggle to meet basic needs during the pandemic.",
+    "Remittances from family members helped soften the adverse effects."
+  ],
+  "methods": "Survey of 900 individuals in Burkina Faso, Mali and Senegal, collected 20 April–1 May 2020 during lockdowns.",
+  "sources": [
+    "https://merit.unu.edu/publications/working-papers/abstract/?id=8514",
+    "https://ideas.repec.org/a/cai/edddbu/edd_351_0043.html"
   ]
 }

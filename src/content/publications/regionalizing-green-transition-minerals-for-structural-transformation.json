@@ -1,6 +1,6 @@
 {
   "title": "Regionalizing green transition minerals for structural transformation in Africa",
-  "publisher": "World Bank Group",
+  "publisher": "World Bank Group, Office of the Chief Economist for the Africa Region",
   "year": 2025,
   "authors": [
     "Ndubuisi",
@@ -19,5 +19,15 @@
   ],
   "project": "regionalizing-green-transition-minerals",
   "authorOrderConfirmed": true,
-  "summary": "A World Bank report on how African countries can coordinate across borders to turn transition-mineral deposits into regional value chains, processing and manufacturing."
+  "summary": "Africa is rich in transition minerals but still exports most of them raw, which limits how much value the continent keeps. The report argues that regional cooperation, shared infrastructure and coordinated policy are needed to turn mineral wealth into regional value chains and broad prosperity.",
+  "pdf": "https://documents1.worldbank.org/curated/en/099620011192519026/pdf/IDU-959b6025-1de2-4caf-98be-9c8aa42577da.pdf",
+  "keyFindings": [
+    "Most of Africa's transition minerals are exported raw, with weak local processing.",
+    "Exports rely heavily on Asian buyers, mainly China.",
+    "No single country holds every input; regional coordination is needed to build value chains."
+  ],
+  "sources": [
+    "https://documents1.worldbank.org/curated/en/099620011192519026/pdf/IDU-959b6025-1de2-4caf-98be-9c8aa42577da.pdf",
+    "https://www.downtoearth.org.in/africa/africas-mineral-strength-is-wasted-if-countries-dont-work-together-new-report"
+  ]
 }

@@ -1,10 +1,10 @@
 {
-  "title": "ICTs and employment in Ghana: the role of enterprise formality",
-  "publisher": "Scientific African 26",
+  "title": "Revisiting the effect of information and communication technologies on employment growth in Ghana: the role of enterprise formality",
+  "publisher": "Scientific African 26, e02394",
   "year": 2024,
   "authors": [
-    "Avenyo",
-    "Fu"
+    "Fu",
+    "Avenyo"
   ],
   "type": "journal",
   "programmes": [
@@ -13,5 +13,18 @@
   "externalUrl": "https://www.sciencedirect.com/science/article/pii/S2468227624003363",
   "regions": [
     "West Africa"
+  ],
+  "authorOrderConfirmed": true,
+  "pdf": "https://www.oxfordtmcd.org/sites/default/files/2023-11/TMCD%20Working%20Paper%20Series%20No.%20085_0.pdf",
+  "summary": "The paper revisits how ICTs affect employment growth in Ghanaian manufacturing enterprises, across formal and informal firms. Internet access is associated with more jobs, especially in more formal firms, while informal enterprises remain small even when they use the internet.",
+  "keyFindings": [
+    "Internet access is associated with higher employment, with larger gains in more formal enterprises.",
+    "Informal enterprises appear to remain small in employment terms when using internet technology.",
+    "Adopting mobile phone technologies reduces the number of workers in enterprises."
+  ],
+  "methods": "Feasible Generalised Least Squares regressions on repeated cross-sectional data for 483 Ghanaian manufacturing enterprises, 2013 and 2015.",
+  "sources": [
+    "https://doaj.org/article/55378e2fe0df4dfebd08ebcf968c8708",
+    "https://pure.uj.ac.za/en/publications/revisiting-the-effect-of-information-and-communication-technologi/"
   ]
 }

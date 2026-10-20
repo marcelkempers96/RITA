@@ -1,11 +1,11 @@
 {
-  "title": "Exporters and GVC participation: firm-level evidence from South Africa",
+  "title": "Exporters and global value chain participation: firm-level evidence from South Africa",
   "publisher": "WIDER Working Paper 2020/145",
   "year": 2020,
   "authors": [
-    "Avenyo",
     "Mazzi",
-    "Ndubuisi"
+    "Ndubuisi",
+    "Avenyo"
   ],
   "type": "working-paper",
   "programmes": [
@@ -14,5 +14,18 @@
   "regions": [
     "Southern Africa"
   ],
-  "project": "exporters-and-gvc-participation-in-south-africa"
+  "project": "exporters-and-gvc-participation-in-south-africa",
+  "authorOrderConfirmed": true,
+  "doi": "10.35188/UNU-WIDER/2020/902-0",
+  "externalUrl": "https://wider.unu.edu/publication/exporters-and-global-value-chain-participation",
+  "pdf": "https://sa-tied-archive.wider.unu.edu/sites/default/files/SA-TIED-WP-144.pdf",
+  "summary": "The study examines how global value chain (GVC) trade affects the performance of South African manufacturing exporters, comparing the productivity premium of traders across GVC-related and traditional product categories and testing for learning-by-exporting.",
+  "keyFindings": [
+    "GVC-related trade is associated with a higher productivity premium than traditional trade."
+  ],
+  "methods": "SARS–National Treasury firm-level panel data, 2009–2017; productivity premia compared across product categories, with effects estimated before and after export market entry.",
+  "sources": [
+    "https://ideas.repec.org/p/unu/wpaper/wp-2020-145.html",
+    "https://sa-tied-archive.wider.unu.edu/article/exporters-and-global-value-chain-participation-firm-level-evidence-south-africa"
+  ]
 }

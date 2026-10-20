@@ -1,10 +1,10 @@
 {
-  "title": "Financial and commodity market volatility and real activity",
-  "publisher": "Finance Research Letters",
+  "title": "How do financial and commodity markets volatility react to real economic activity?",
+  "publisher": "Finance Research Letters 47(B), 102733",
   "year": 2022,
   "authors": [
-    "Ndubuisi",
     "Urom",
+    "Ndubuisi",
     "Guesmi"
   ],
   "type": "journal",
@@ -14,5 +14,19 @@
   "archive": true,
   "regions": [
     "Global"
+  ],
+  "authorOrderConfirmed": true,
+  "doi": "10.1016/j.frl.2022.102733",
+  "externalUrl": "https://ideas.repec.org/a/eee/finlet/v47y2022ipbs1544612322000563.html",
+  "summary": "The paper tests lead-lag links and integration between real economic activity and financial and commodity market volatility. Real activity shocks co-move with these markets, but the markets led that co-movement during downturns such as the COVID-19 pandemic.",
+  "keyFindings": [
+    "Real economic activity shocks co-move with financial and commodity market volatility.",
+    "The markets led the co-movement during downturns such as COVID-19.",
+    "Connectedness is stronger during downturns and over the long run."
+  ],
+  "methods": "Discrete wavelet analysis of lead-lag links and a time-varying parameter VAR with stochastic volatility.",
+  "sources": [
+    "https://ideas.repec.org/a/eee/finlet/v47y2022ipbs1544612322000563.html",
+    "https://www.idos-research.de/en/others-publications/article/how-do-financial-and-commodity-markets-volatility-react-to-real-economic-activity/"
   ]
 }

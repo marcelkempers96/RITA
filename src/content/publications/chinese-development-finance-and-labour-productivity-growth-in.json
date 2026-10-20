@@ -1,10 +1,10 @@
 {
-  "title": "Chinese development finance and labour productivity growth in developing countries",
+  "title": "Chinese development finance and labor productivity growth in developing countries",
   "publisher": "SSRN Working Paper 4989817",
-  "year": null,
+  "year": 2024,
   "authors": [
-    "Ndubuisi",
-    "Konte"
+    "Konte",
+    "Ndubuisi"
   ],
   "type": "working-paper",
   "programmes": [
@@ -13,5 +13,18 @@
   "externalUrl": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4989817",
   "regions": [
     "Global"
+  ],
+  "authorOrderConfirmed": true,
+  "pdf": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4989817",
+  "summary": "Does Chinese development finance raise labour productivity growth in developing countries, and through which channel? Using concessional and commercial Chinese project finance, the paper finds that productivity gains work mainly within sectors rather than through labour moving between sectors.",
+  "keyFindings": [
+    "The productivity growth effect of Chinese finance works mainly through the within-sector component, not structural change between sectors.",
+    "Gains from concessional finance are larger where governance is weaker.",
+    "Gains from commercial loans are larger where governance is stronger."
+  ],
+  "methods": "Chinese concessional and commercial project data for 128 developing countries, 2000–2016, with labour productivity growth decomposed into within-sector and between-sector components.",
+  "sources": [
+    "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4989817",
+    "https://www.researchgate.net/publication/384991780_Chinese_Development_Finance_and_Labor_Productivity_Growth_in_Developing_Countries"
   ]
 }

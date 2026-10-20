@@ -1,6 +1,6 @@
 {
-  "title": "Learning-by-exporting in South Africa: GVC participation and technological capability",
-  "publisher": "African Journal of Science, Technology, Innovation and Development",
+  "title": "Learning-by-exporting in South Africa: the influence of global value chain (GVC) participation and technological capability",
+  "publisher": "African Journal of Science, Technology, Innovation and Development 16(4), 459–476",
   "year": 2024,
   "authors": [
     "Mazzi",
@@ -11,10 +11,23 @@
   "programmes": [
     "INN"
   ],
-  "externalUrl": "https://www.tandfonline.com/doi/full/10.1080/20421338.2023.2295631",
+  "externalUrl": "https://doi.org/10.1080/20421338.2023.2295631",
   "doi": "10.1080/20421338.2023.2295631",
   "regions": [
     "Southern Africa"
   ],
-  "project": "exporters-and-gvc-participation-in-south-africa"
+  "project": "exporters-and-gvc-participation-in-south-africa",
+  "authorOrderConfirmed": true,
+  "pdf": "https://sa-tied-archive.wider.unu.edu/sites/default/files/SA-TIED-WP-144.pdf",
+  "summary": "The paper examines how trade related to global value chains affects the performance of manufacturing firms in South Africa. GVC-related trade carries a higher productivity premium than traditional trade, but only firms that also invest in R&D appear to learn from exporting.",
+  "keyFindings": [
+    "GVC-related trade is associated with a higher productivity premium than traditional trade.",
+    "Only firms trading in GVC-related products that also engage in R&D after entry appear to learn from exporting.",
+    "GVC-integrated firms need to invest in building technological capacity."
+  ],
+  "methods": "Firm-level panel data from SARS and National Treasury, 2009–2017, comparing productivity premia across product classifications before and after export entry.",
+  "sources": [
+    "https://ideas.repec.org/a/taf/rajsxx/v16y2024i4p459-476.html",
+    "https://pure.uj.ac.za/en/publications/learning-by-exporting-in-south-africa-the-influence-of-global-val/"
+  ]
 }

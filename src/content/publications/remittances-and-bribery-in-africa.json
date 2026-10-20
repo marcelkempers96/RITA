@@ -1,10 +1,10 @@
 {
   "title": "Remittances and bribery in Africa",
-  "publisher": "Routledge (book chapter)",
+  "publisher": "In Konte and Mbaye (eds), Migration, Remittances, and Sustainable Development in Africa, Routledge, ch. 10, 179–198",
   "year": 2020,
   "authors": [
-    "Ndubuisi",
-    "Konte"
+    "Konte",
+    "Ndubuisi"
   ],
   "type": "book-chapter",
   "programmes": [
@@ -12,5 +12,19 @@
   ],
   "regions": [
     "Africa-wide"
+  ],
+  "authorOrderConfirmed": true,
+  "doi": "10.4324/9780429288814-13",
+  "externalUrl": "https://doi.org/10.4324/9780429288814-13",
+  "pdf": "https://cris.maastrichtuniversity.nl/files/91103428/Konte_2020_Remittances_and_bribery.pdf",
+  "summary": "Using Afrobarometer surveys, the chapter finds that remittance receivers are more prone to bribe payment than non-receivers. Individuals in countries with higher remittances as a share of GDP are also more likely to pay bribes, in line with an income channel.",
+  "keyFindings": [
+    "Remittance receivers are more prone to paying bribes than non-receivers.",
+    "People in countries with higher remittances as a share of GDP are more likely to pay bribes."
+  ],
+  "methods": "Afrobarometer survey data for African countries.",
+  "sources": [
+    "https://idos-research.de/en/others-publications/article/remittance-and-bribery-in-africa",
+    "https://merit.unu.edu/publications/working-papers/abstract/?id=8367"
   ]
 }

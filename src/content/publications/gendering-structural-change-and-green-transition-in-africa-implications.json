@@ -1,7 +1,7 @@
 {
   "title": "Gendering structural change and green transition in Africa: implications of transformative policies",
-  "publisher": "ACET Working Paper",
-  "year": null,
+  "publisher": "ACET background paper, African Transformation Report 4",
+  "year": 2024,
   "authors": [
     "Ndubuisi",
     "Avenyo",
@@ -11,9 +11,23 @@
   "programmes": [
     "IND"
   ],
-  "externalUrl": "https://ie.yale.edu/sites/default/files/2024-10/ACET_Gendering_Structural_Change_and_Green_Transition_in_Africa.pdf",
+  "externalUrl": "https://egc.yale.edu/sites/default/files/2024-10/ACET_Gendering_Structural_Change_and_Green_Transition_in_Africa.pdf",
   "regions": [
     "Africa-wide"
   ],
-  "project": "structural-change-gender-equality-acet"
+  "project": "structural-change-gender-equality-acet",
+  "pdf": "https://egc.yale.edu/sites/default/files/2024-10/ACET_Gendering_Structural_Change_and_Green_Transition_in_Africa.pdf",
+  "summary": "The paper examines how structural change and the green transition affect gender employment gaps in Africa. Shifts in sectoral composition have tended to widen gender employment gaps, while green energy systems and transition technologies create chances for more gender-balanced employment.",
+  "keyFindings": [
+    "Shifts in sectoral composition have tended to widen gender employment gaps.",
+    "Policies that expand women's economic opportunities and social standing offset that effect.",
+    "Green energy and transition technologies open room for gender-balanced jobs, but entrenched inequalities are a major obstacle."
+  ],
+  "methods": "Panel data for 48 African countries, 1992–2019, with case studies of Ghana and South Africa.",
+  "sources": [
+    "https://egc.yale.edu/sites/default/files/2024-10/ACET_Gendering_Structural_Change_and_Green_Transition_in_Africa.pdf",
+    "https://cris.maastrichtuniversity.nl/en/publications/gendering-green-transition-in-africa-implications-of-transformati/",
+    "https://www.wits.ac.za/events-archive/scis/gendering-structural-change-and-green-transition-in-africa-implications-of-transformative-policies.php"
+  ],
+  "note": "Author credit not verified: search results credit the ACET paper to Avenyo; Chisoro not confirmed. Findings taken from the related UNU-MERIT version (WP 2026-011)."
 }

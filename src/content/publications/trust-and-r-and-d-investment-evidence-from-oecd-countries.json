@@ -1,7 +1,7 @@
 {
-  "title": "Trust and R&D investment: evidence from OECD countries",
-  "publisher": "Journal of Institutional Economics 16(6)",
-  "year": null,
+  "title": "Trust and R&D investments: evidence from OECD countries",
+  "publisher": "Journal of Institutional Economics 16(6), 809–830",
+  "year": 2020,
   "authors": [
     "Ndubuisi"
   ],
@@ -11,5 +11,19 @@
   ],
   "regions": [
     "Global"
+  ],
+  "authorOrderConfirmed": true,
+  "externalUrl": "https://econpapers.repec.org/article/cupjinsec/v_3a16_3ay_3a2020_3ai_3a6_3ap_3a809-830_5f4.htm",
+  "pdf": "https://mpra.ub.uni-muenchen.de/97043/1/MPRA_paper_97043.pdf",
+  "summary": "Social trust can increase R&D investment by expanding firms' access to external finance and by reducing relational risks that expose firms to hold-ups or expropriation.",
+  "keyFindings": [
+    "Industries dependent on external finance have higher R&D intensity in trust-intensive countries.",
+    "Industries vulnerable to relational risks also have higher R&D intensity in trust-intensive countries.",
+    "Access to external finance and lower relational risk are causal pathways linking trust and R&D."
+  ],
+  "methods": "Industry-level data on R&D investment intensity in 20 OECD countries.",
+  "sources": [
+    "https://www.idos-research.de/en/others-publications/article/trust-and-rd-investments-evidence-from-oecd-countries",
+    "https://mpra.ub.uni-muenchen.de/97043/"
   ]
 }

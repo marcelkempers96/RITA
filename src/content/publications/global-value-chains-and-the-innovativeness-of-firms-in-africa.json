@@ -1,21 +1,34 @@
 {
   "title": "Global value chains and the innovativeness of firms in Africa",
-  "publisher": "Technovation 146",
+  "publisher": "Technovation 146, 103276",
   "year": 2025,
   "authors": [
     "Ndubuisi",
-    "Avenyo",
     "Mensah",
+    "Avenyo",
     "Sakyi"
   ],
   "type": "journal",
   "programmes": [
     "INN"
   ],
-  "externalUrl": "https://www.sciencedirect.com/science/article/pii/S0166497225001087",
+  "externalUrl": "https://doi.org/10.1016/j.technovation.2025.103276",
   "doi": "10.1016/j.technovation.2025.103276",
   "regions": [
     "Africa-wide"
   ],
-  "project": "gvc-participation-and-innovation-in-africa"
+  "project": "gvc-participation-and-innovation-in-africa",
+  "authorOrderConfirmed": true,
+  "pdf": "https://repository.tudelft.nl/file/File_edea85b5-61a5-4bb5-9b12-e86d1c5db1ab",
+  "summary": "The paper tests whether participation in global value chains is linked to firm innovation in Africa. African GVC firms are highly innovative: they are more likely to introduce new products and processes, to introduce both together, and to introduce radical innovations.",
+  "keyFindings": [
+    "GVC firms are more likely to introduce product, process and radical innovations.",
+    "Integrating small, medium and younger firms into GVCs helps them overcome resource constraints and innovate more.",
+    "Innovation gains spill over to non-GVC firms in the same industry and region."
+  ],
+  "methods": "Firm-level data from the World Bank Enterprise Surveys for African countries.",
+  "sources": [
+    "https://research.tudelft.nl/en/publications/global-value-chains-and-the-innovativeness-of-firms-in-africa/",
+    "https://ideas.repec.org/a/eee/techno/v146y2025ics0166497225001087.html"
+  ]
 }

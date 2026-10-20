@@ -1,12 +1,12 @@
 {
-  "title": "Renewable energy consumption, globalization and economic growth shocks: evidence from G7 countries",
-  "publisher": "Journal of International Trade & Economic Development 31(2)",
+  "title": "Renewable energy consumption, globalization, and economic growth shocks: evidence from G7 countries",
+  "publisher": "Journal of International Trade & Economic Development 31(2), 204–232",
   "year": 2022,
   "authors": [
-    "Ndubuisi",
     "Urom",
     "Abid",
-    "Guesmi"
+    "Guesmi",
+    "Ndubuisi"
   ],
   "type": "journal",
   "programmes": [
@@ -15,5 +15,18 @@
   "externalUrl": "https://www.tandfonline.com/doi/full/10.1080/09638199.2021.1961845",
   "regions": [
     "Global"
+  ],
+  "authorOrderConfirmed": true,
+  "doi": "10.1080/09638199.2021.1961845",
+  "summary": "The paper examines asymmetric responses of renewable energy consumption to globalisation and economic growth shocks across the G7. Responses differ by country, but renewable energy deployment in the G7 is mainly driven by positive shocks to income, globalisation and capital.",
+  "keyFindings": [
+    "Positive globalisation shocks raise renewable energy use in Canada, Germany, the UK and the US, and negative shocks lower it.",
+    "Responses to income shocks differ across countries.",
+    "Panel results suggest renewable energy deployment is mainly driven by positive shocks to income, globalisation and capital."
+  ],
+  "methods": "Nonlinear ARDL (NARDL) models by country, plus panel cointegration, FMOLS and panel DOLS estimates for the G7.",
+  "sources": [
+    "https://ideas.repec.org/a/taf/jitecd/v31y2022i2p204-232.html",
+    "https://cris.maastrichtuniversity.nl/en/publications/renewable-energy-consumption-globalization-and-economic-growth-sh/"
   ]
 }

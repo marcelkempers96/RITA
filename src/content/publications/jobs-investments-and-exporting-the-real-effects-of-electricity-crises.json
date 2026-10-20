@@ -1,6 +1,6 @@
 {
-  "title": "Jobs, investments and exporting: the real effects of electricity crises in South Africa",
-  "publisher": "Energy Economics 157",
+  "title": "Jobs, investments, and exporting: the real effects of electricity crisis in South Africa",
+  "publisher": "Energy Economics 157, 109234",
   "year": 2026,
   "authors": [
     "Ndubuisi",
@@ -17,5 +17,17 @@
   ],
   "project": "electricity-crises-in-south-africa",
   "note": "Earlier version: WIDER Working Paper 2024/89 (https://www.wider.unu.edu/publication/jobs-investments-and-exporting-real-effects-electricity-crises-south-africa).",
-  "summary": "How South Africa's electricity crises affected manufacturers' jobs, investment and exports, and what that means for an industrial strategy built on a greener grid."
+  "summary": "How South Africa's electricity crises affected manufacturers' jobs, investment and exports, and what that means for an industrial strategy built on a greener grid.",
+  "authorOrderConfirmed": true,
+  "pdf": "https://repository.tudelft.nl/file/File_2c5d23b2-81b6-465e-b966-0b0696134767",
+  "keyFindings": [
+    "The electricity crises destroyed jobs, lowered capital investment and disrupted exports of manufacturing firms.",
+    "The adverse effects are most severe for firms in sectors with higher energy vulnerability.",
+    "Ownership structure, firm age and financial status shape how much firms are affected."
+  ],
+  "methods": "Generalised difference-in-differences exploiting sectoral differences in exposure to the electricity crisis (earlier version: WIDER Working Paper 2024/89).",
+  "sources": [
+    "https://pure.uj.ac.za/en/publications/jobs-investments-and-exporting-the-real-effects-of-electricity-cr/",
+    "https://wider.unu.edu/publication/jobs-investments-and-exporting-real-effects-electricity-crises-south-africa"
+  ]
 }

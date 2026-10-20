@@ -1,10 +1,10 @@
 {
-  "title": "Global commodity and equity spillovers to Africa during COVID-19",
-  "publisher": "Emerging Markets Review",
-  "year": 2022,
+  "title": "Global commodity and equity markets spillovers to Africa during the COVID-19 pandemic",
+  "publisher": "Emerging Markets Review 55, 100948",
+  "year": 2023,
   "authors": [
-    "Ndubuisi",
     "Urom",
+    "Ndubuisi",
     "Del Lo",
     "Yuni"
   ],
@@ -14,6 +14,20 @@
   ],
   "archive": true,
   "regions": [
-    "Global"
+    "Africa-wide"
+  ],
+  "authorOrderConfirmed": true,
+  "doi": "10.1016/j.ememar.2022.100948",
+  "externalUrl": "https://ideas.repec.org/a/eee/ememar/v55y2023ics1566014122000656.html",
+  "pdf": "https://repository.tudelft.nl/file/File_0650cf60-2bde-46e2-a6cb-78678a5aeded",
+  "summary": "The study examines connectedness between 12 African equity markets and global commodity and developed equity markets, with a focus on the peak of the COVID-19 pandemic.",
+  "keyFindings": [
+    "African equity markets are weakly connected to global markets, but connectedness rose notably during the pandemic.",
+    "Energy markets dominate shock transmission within the commodity system.",
+    "France transmits the largest equity spillover over the full sample; South Africa does so during the pandemic peak."
+  ],
+  "sources": [
+    "https://research.tudelft.nl/en/publications/global-commodity-and-equity-markets-spillovers-to-africa-during-t",
+    "https://ideas.repec.org/a/eee/ememar/v55y2023ics1566014122000656.html"
   ]
 }

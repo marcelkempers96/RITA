@@ -1,5 +1,5 @@
 {
-  "title": "Critical minerals and routes to diversification in Africa: Mobile phone technologies: the case of the DRC",
+  "title": "Critical minerals and routes to diversification in Africa: Opportunities for diversification into mobile phone technologies – the case of Democratic Republic of Congo",
   "publisher": "UNCTAD, Economic Development in Africa Report 2023, background paper 4",
   "year": 2023,
   "authors": [
@@ -10,9 +10,15 @@
   "programmes": [
     "MIN"
   ],
-  "externalUrl": "https://unctad.org/system/files/non-official-document/edar2023_BP4_en.pdf",
+  "externalUrl": "https://unctad.org/node/42296",
   "regions": [
     "Africa-wide"
   ],
-  "project": "routes-to-diversification-in-africa"
+  "project": "routes-to-diversification-in-africa",
+  "authorOrderConfirmed": true,
+  "pdf": "https://unctad.org/system/files/non-official-document/edar2023_BP4_en.pdf",
+  "summary": "This background paper maps the global value chain for mobile phone technologies and examines how the Democratic Republic of Congo could use its mineral resources to localise and capture value in that chain. It also sets out the country's routes to diversification and technological deepening, including opportunities for regional coordination and industrial development.",
+  "sources": [
+    "https://unctad.org/node/42296"
+  ]
 }

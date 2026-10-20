@@ -1,5 +1,5 @@
 {
-  "title": "Chinese manufacturing import penetration and firm performance: Belt and Road countries",
+  "title": "Chinese manufacturing import penetration and firm performance: evidence from Belt and Road Initiative countries",
   "publisher": "SARChI Industrial Development Working Paper 2024-06",
   "year": 2024,
   "authors": [
@@ -11,8 +11,21 @@
   "programmes": [
     "IND"
   ],
-  "externalUrl": "https://www.uj.ac.za/wp-content/uploads/2021/10/wp2024-06-avenyo-spinola-tregenna-chinese-manufacturing-import-penetration.pdf",
+  "externalUrl": "https://ideas.repec.org/p/adz/wpaper/2024-06.html",
   "regions": [
     "Global"
+  ],
+  "authorOrderConfirmed": true,
+  "pdf": "https://www.uj.ac.za/wp-content/uploads/2021/10/wp2024-06-avenyo-spinola-tregenna-chinese-manufacturing-import-penetration.pdf",
+  "summary": "The paper examines how Chinese manufacturing import penetration affects the performance of manufacturing firms in Belt and Road Initiative countries. Chinese imports crowd out firms' productive capacity while acting as a catalyst for their internationalisation.",
+  "keyFindings": [
+    "Chinese imports reduce productivity growth and employment, while firms' export capabilities rise.",
+    "Innovation and foreign licensing significantly moderate the adverse effects.",
+    "The effects are significant in middle-income countries and among small and medium-sized enterprises."
+  ],
+  "methods": "World Bank Enterprise Survey firm data combined with UN Comtrade industry data for 59 BRI countries, 2011–2020, using a multi-level modelling approach.",
+  "sources": [
+    "https://ideas.repec.org/p/adz/wpaper/2024-06.html",
+    "https://ysi.ineteconomics.org/event/chinese-manufacturing-import-penetration-and-firm-performance-evidence-from-belt-and-road-initiative-countries/"
   ]
 }

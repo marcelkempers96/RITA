@@ -1,7 +1,7 @@
 {
   "title": "Global value chains, job creation and job destruction among firms in South Africa",
-  "publisher": "STEG-CEPR Working Paper 073",
-  "year": null,
+  "publisher": "STEG Working Paper WP073 (CEPR)",
+  "year": 2023,
   "authors": [
     "Ndubuisi",
     "Owusu"
@@ -10,8 +10,21 @@
   "programmes": [
     "INN"
   ],
-  "externalUrl": "https://steg.cepr.org/sites/default/files/2023-08/WP073%20NdubuisiOwusuGlobalValueChainsJobCreation.pdf",
+  "externalUrl": "https://cepr.org/publications/wp073",
   "regions": [
     "Southern Africa"
+  ],
+  "authorOrderConfirmed": true,
+  "pdf": "https://steg.cepr.org/sites/default/files/2023-08/WP073%20NdubuisiOwusuGlobalValueChainsJobCreation.pdf",
+  "summary": "Using data on all formal firms in South Africa, the paper finds that integration into global value chains is linked to a net gain in jobs at the firm level. The net gain is mostly driven by firms entering GVCs, while continuing GVC firms show an overall net job loss.",
+  "keyFindings": [
+    "GVC integration is associated with net job gains at the firm level.",
+    "The gain is driven by firms entering GVCs; continuing GVC firms show a net job loss.",
+    "Suggestive evidence points to a role for firm age and size."
+  ],
+  "methods": "Firm-level panel data from the South African Revenue Service and National Treasury, with job creation and destruction measured following Haltiwanger et al. (2014).",
+  "sources": [
+    "https://steg.cepr.org/publications/global-value-chains-job-creation-and-job-destruction-among-firms-south-africa",
+    "https://steg.cepr.org/projects/global-value-chains-job-creation-and-job-destruction-among-firms-south-africa"
   ]
 }

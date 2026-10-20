@@ -1,6 +1,6 @@
 {
-  "title": "Digital infrastructure and employment in services: evidence from sub-Saharan Africa",
-  "publisher": "Telecommunications Policy 45(8)",
+  "title": "Digital infrastructure and employment in services: evidence from sub-Saharan African countries",
+  "publisher": "Telecommunications Policy 45(8), 102153",
   "year": 2021,
   "authors": [
     "Ndubuisi",
@@ -14,5 +14,17 @@
   "externalUrl": "https://www.sciencedirect.com/science/article/pii/S0308596121000574",
   "regions": [
     "Africa-wide"
+  ],
+  "authorOrderConfirmed": true,
+  "summary": "The paper examines the link between digital infrastructure and employment in the services sector in sub-Saharan Africa, and the conditions under which the link is stronger or weaker.",
+  "keyFindings": [
+    "Digital infrastructure is positively associated with services-sector employment.",
+    "The positive effect grows as institutional quality improves.",
+    "Poor macroeconomic conditions weaken the effect, and the effect depends on education levels."
+  ],
+  "methods": "Panel data for 45 sub-Saharan African countries, 1996–2017.",
+  "sources": [
+    "https://idos-research.de/en/others-publications/article/digital-infrastructure-and-employment-in-services-evidence-from-sub-saharan-african-countries",
+    "https://cris.maastrichtuniversity.nl/en/publications/digital-infrastructure-and-employment-in-services-evidence-from-s"
   ]
 }

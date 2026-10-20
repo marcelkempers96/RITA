@@ -1,17 +1,27 @@
 {
-  "title": "Global, regional and national mortality among young people aged 10–24 years, 1950–2019 (GBD 2019)",
-  "publisher": "The Lancet 398",
+  "title": "Global, regional, and national mortality among young people aged 10–24 years, 1950–2019: a systematic analysis for the Global Burden of Disease Study 2019",
+  "publisher": "The Lancet 398(10311), 1593–1618",
   "year": 2021,
   "authors": [
-    "Ward",
-    "et al.",
-    "Avenyo"
+    "GBD 2019 Adolescent Mortality Collaborators"
   ],
   "type": "journal",
   "programmes": [],
-  "externalUrl": "https://www.sciencedirect.com/science/article/pii/S0140673621015464",
+  "externalUrl": "https://doi.org/10.1016/S0140-6736(21)01546-4",
   "archive": true,
   "regions": [
     "Global"
+  ],
+  "authorOrderConfirmed": true,
+  "doi": "10.1016/S0140-6736(21)01546-4",
+  "pdf": "https://doi.org/10.1016/S0140-6736(21)01546-4",
+  "summary": "Using GBD 2019 estimates, the study examines deaths and mortality rates among 10–24-year-olds in 204 countries and territories from 1950 to 2019. Variation in adolescent mortality between countries and by sex is widening.",
+  "keyFindings": [
+    "Differences in adolescent mortality between countries and by sex are widening.",
+    "This is driven by poor progress in reducing deaths among males and older adolescents."
+  ],
+  "methods": "Global Burden of Disease 2019 estimates for 204 countries and territories, 1950–2019 (causes from 1980).",
+  "sources": [
+    "https://researchers.westernsydney.edu.au/en/publications/global-regional-and-national-mortality-among-young-people-aged-10/"
   ]
 }

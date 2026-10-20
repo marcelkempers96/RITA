@@ -1,12 +1,12 @@
 {
-  "title": "Clean investments and economic policy uncertainty",
-  "publisher": "UNU-MERIT Working Paper",
-  "year": null,
+  "title": "Dynamic dependence between clean investments and economic policy uncertainty",
+  "publisher": "UNU-MERIT Working Paper 2022-027",
+  "year": 2022,
   "authors": [
-    "Ndubuisi",
     "Urom",
-    "Guesmi",
-    "Mzoughi"
+    "Mzoughi",
+    "Ndubuisi",
+    "Guesmi"
   ],
   "type": "working-paper",
   "programmes": [
@@ -15,5 +15,18 @@
   "archive": true,
   "regions": [
     "Global"
+  ],
+  "authorOrderConfirmed": true,
+  "externalUrl": "https://merit.unu.edu/publications/working-papers/abstract/?id=9378",
+  "pdf": "https://cris.maastrichtuniversity.nl/files/106567847/wp2022_027.pdf",
+  "summary": "The paper examines how clean investments across sectors respond to economic policy uncertainty, using the NASDAQ OMX Green Economy sectoral indexes. Dependence and predictability vary across market conditions and horizons, so the diversification benefits of clean energy stocks depend on sector, market conditions and horizon.",
+  "keyFindings": [
+    "Dependence and directional predictability of clean energy returns from policy uncertainty vary across market conditions and horizons.",
+    "Policy uncertainty and clean energy sectors are weakly connected in the short term and more strongly over medium and long horizons."
+  ],
+  "methods": "NASDAQ OMX Green Economy sectoral indexes analysed with wavelet and cross-quantilogram methods and a time-varying parameter VAR with stochastic volatility.",
+  "sources": [
+    "https://merit.unu.edu/publications/working-papers/abstract/?id=9378",
+    "https://ideas.repec.org/p/unm/unumer/2022027.html"
   ]
 }

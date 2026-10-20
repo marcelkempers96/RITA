@@ -1,18 +1,31 @@
 {
   "title": "Adaptive royalty formulations for critical minerals amid fiscal volatility and geopolitical uncertainty",
-  "publisher": "Resources Policy 116",
+  "publisher": "Resources Policy 116, 105900",
   "year": 2026,
   "authors": [
     "Nwaila",
-    "Avenyo",
     "et al."
   ],
   "type": "journal",
   "programmes": [
     "MIN"
   ],
-  "externalUrl": "https://www.sciencedirect.com/science/article/pii/S0301420726000723",
+  "externalUrl": "https://doi.org/10.1016/j.resourpol.2026.105900",
   "regions": [
-    "Africa-wide"
+    "Global"
+  ],
+  "authorOrderConfirmed": true,
+  "doi": "10.1016/j.resourpol.2026.105900",
+  "pdf": "https://zenodo.org/records/18195775",
+  "summary": "The paper proposes an Adaptive Royalty Architecture for critical minerals: a statutory ad valorem floor, a margin- or price-linked escalator, a downside price-variance buffer and a rules-based community dividend. It stress-tests the design on lithium, nickel and rare earth cases.",
+  "keyFindings": [
+    "The adaptive design improves downside cushioning relative to simple ad valorem royalties under baseline settings.",
+    "The authors report royalty-revenue volatility below 30%, royalties capped at 35% of operating cash flow and 25–30% of royalties earmarked for host regions.",
+    "The design is a hybrid of existing instruments rather than a wholly new one."
+  ],
+  "methods": "Monte Carlo stress tests of lithium, nickel and rare earth cases over a 15-year horizon, comparing royalty regimes (not forecasts of project outcomes).",
+  "sources": [
+    "https://www.sciencedirect.com/science/article/pii/S0301420726000723",
+    "https://zenodo.org/records/18195775"
   ]
 }

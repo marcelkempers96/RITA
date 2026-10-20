@@ -1,6 +1,6 @@
 {
-  "title": "Wage effects of GVC participation and position",
-  "publisher": "Journal of International Trade & Economic Development 31(7)",
+  "title": "Wage effects of global value chains participation and position: an industry-level analysis",
+  "publisher": "Journal of International Trade & Economic Development 31(7), 1086–1107",
   "year": 2022,
   "authors": [
     "Ndubuisi",
@@ -13,5 +13,19 @@
   "externalUrl": "https://www.tandfonline.com/doi/full/10.1080/09638199.2022.2058068",
   "regions": [
     "Global"
+  ],
+  "authorOrderConfirmed": true,
+  "doi": "10.1080/09638199.2022.2058068",
+  "pdf": "https://merit.unu.edu/publications/working-papers/abstract/?id=9097",
+  "summary": "The paper studies how participation and position in global value chains (GVCs) affect wages, comparing developed and developing countries and different labour market regulations.",
+  "keyFindings": [
+    "In developed countries, GVC participation and upstream specialisation are both associated with higher wages.",
+    "In developing countries, participation is linked to higher wages, but upstream specialisation puts downward pressure on them.",
+    "In developing countries, participation mainly benefits higher earners; the positive wage effect appears only under stringent labour market regulation."
+  ],
+  "methods": "Industry-level analysis across developed and developing countries (earlier version: UNU-MERIT Working Paper 2021-042).",
+  "sources": [
+    "https://merit.unu.edu/publications/working-papers/abstract/?id=9097",
+    "https://ideas.repec.org/a/taf/jitecd/v31y2022i7p1086-1107.html"
   ]
 }

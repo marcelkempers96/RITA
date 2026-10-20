@@ -1,10 +1,10 @@
 {
-  "title": "Technology capability and industrialization in Africa",
-  "publisher": "SARChI Industrial Development Working Paper 03-2024",
+  "title": "Technological capability and industrialization in Africa",
+  "publisher": "SARChI Industrial Development Working Paper 2024-03",
   "year": 2024,
   "authors": [
-    "Ndubuisi",
-    "Mensah"
+    "Mensah",
+    "Ndubuisi"
   ],
   "type": "working-paper",
   "programmes": [
@@ -13,5 +13,18 @@
   "externalUrl": "https://aec.afdb.org/en/papers/technological-capability-and-industrialization-africa-711",
   "regions": [
     "Africa-wide"
+  ],
+  "authorOrderConfirmed": true,
+  "pdf": "https://uj.ac.za/wp-content/uploads/2021/10/sarchi-wp2024-03-mensahlj-ndubuisi-technological-capability-17032024-correct-isbn.pdf",
+  "summary": "The paper examines the spatial dynamics of technological capability in Africa and its interdependence with industrial development, using a framework that measures capability along four dimensions: technology precondition, technology infrastructure, technology import and technology effort.",
+  "keyFindings": [
+    "Levels of technological capability differ strongly across African countries.",
+    "Technological capability and industrial development are interdependent across countries.",
+    "This interdependence is propagated through intra-African regional trade."
+  ],
+  "methods": "Composite technological capability index for African countries with spatial analysis.",
+  "sources": [
+    "https://aec.afdb.org/fr/papers/technological-capability-and-industrialization-africa-711",
+    "https://uj.ac.za/wp-content/uploads/2021/10/sarchi-wp2024-03-mensahlj-ndubuisi-technological-capability-17032024-correct-isbn.pdf"
   ]
 }

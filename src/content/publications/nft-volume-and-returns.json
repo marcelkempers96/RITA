@@ -1,10 +1,10 @@
 {
-  "title": "NFT volume and returns",
-  "publisher": "Finance Research Letters 50",
+  "title": "Dynamic dependence and predictability between volume and return of non-fungible tokens (NFTs): the roles of market factors and geopolitical risks",
+  "publisher": "Finance Research Letters 50, 103188",
   "year": 2022,
   "authors": [
-    "Ndubuisi",
     "Urom",
+    "Ndubuisi",
     "Guesmi"
   ],
   "type": "journal",
@@ -14,5 +14,21 @@
   "archive": true,
   "regions": [
     "Global"
-  ]
+  ],
+  "authorOrderConfirmed": true,
+  "doi": "10.1016/j.frl.2022.103188",
+  "externalUrl": "https://doi.org/10.1016/j.frl.2022.103188",
+  "pdf": "https://cris.maastrichtuniversity.nl/files/106571525/wp2022_017.pdf",
+  "summary": "The paper studies the volume–return relationship for the overall NFT market and three sub-markets (Cryptokitties, Cryptopunks and Decentraland). It finds significant dependence between NFT return and volume, weakest for Cryptopunks.",
+  "keyFindings": [
+    "NFT returns and trading volume show significant dependence, weakest for Cryptopunks.",
+    "Under extreme market conditions, uncertainty in equity, gold and oil markets, business conditions and geopolitical risks predict returns, varying by sub-market.",
+    "Increases in Bitcoin prices reduce NFT market returns in all cases."
+  ],
+  "methods": "Quantile cross-spectral coherency and quantile regression.",
+  "sources": [
+    "https://ideas.repec.org/a/eee/finlet/v50y2022ics1544612322003889.html",
+    "https://research.tudelft.nl/en/publications/dynamic-dependence-and-predictability-between-volume-and-return-o"
+  ],
+  "note": "Some sources list Guesmi second; author order to confirm. PDF is the UNU-MERIT WP 2022-017 version."
 }

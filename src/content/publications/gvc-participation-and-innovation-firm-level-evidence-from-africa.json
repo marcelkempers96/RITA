@@ -1,6 +1,6 @@
 {
-  "title": "GVC participation and innovation: firm-level evidence from Africa",
-  "publisher": "AERC Working Paper 2022/012",
+  "title": "Global value chain participation and innovation: firm-level evidence from Africa",
+  "publisher": "AERC Working Paper GVC-012",
   "year": 2022,
   "authors": [
     "Avenyo",
@@ -15,5 +15,18 @@
   "regions": [
     "Africa-wide"
   ],
-  "project": "gvc-participation-and-innovation-in-africa"
+  "project": "gvc-participation-and-innovation-in-africa",
+  "authorOrderConfirmed": true,
+  "externalUrl": "https://publication.aercafricalibrary.org/items/d47bb03f-a59d-4429-9b5e-d0a6c0ffb27f",
+  "pdf": "https://publication.aercafricalibrary.org/bitstreams/3b5b0cca-b1d6-42e9-85c0-8e61c74971b7/download",
+  "summary": "The paper asks whether engagement in global value chains (GVCs) is linked to the innovative capabilities of firms in Africa.",
+  "keyFindings": [
+    "Firms in Africa that engage in GVC activities are more likely to introduce innovative products onto markets.",
+    "The result holds after addressing reverse causality, and is robust to alternative definitions of GVC and innovation and to a different identification strategy."
+  ],
+  "methods": "World Bank Enterprise Survey firm-level data.",
+  "sources": [
+    "https://publication.aercafricalibrary.org/items/d47bb03f-a59d-4429-9b5e-d0a6c0ffb27f",
+    "https://www.idos-research.de/en/others-publications/article/global-value-chain-participation-and-innovation-firm-level-evidence-from-africa/"
+  ]
 }

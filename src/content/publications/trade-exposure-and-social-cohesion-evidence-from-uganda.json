@@ -1,10 +1,10 @@
 {
   "title": "Trade exposure and social cohesion: evidence from Uganda",
-  "publisher": "STEG Working Paper 2023-069",
+  "publisher": "STEG Working Paper 069",
   "year": 2023,
   "authors": [
-    "Ndubuisi",
-    "Vrolijk"
+    "Vrolijk",
+    "Ndubuisi"
   ],
   "type": "working-paper",
   "programmes": [
@@ -12,5 +12,18 @@
   ],
   "regions": [
     "East Africa"
+  ],
+  "authorOrderConfirmed": true,
+  "externalUrl": "https://cepr.org/publications/wp069",
+  "pdf": "https://steg.cepr.org/sites/default/files/2023-07/WP069%20VrolijkNdubuisiTradeExposureAndSocialCohesion.pdf",
+  "summary": "Does trade exposure change social cohesion? Using Uganda's exchange rate liberalisation as a natural experiment, the paper finds significant, though economically small, effects on trust, participation and identity.",
+  "keyFindings": [
+    "Exposure to exchange rate shocks reduces trust and enhances participation, with ambiguous effects on identity.",
+    "The effects run mainly through the expenditure channel (household exposure), and to a lesser extent through earnings (worker and firm exposure)."
+  ],
+  "methods": "Micro tax data and a natural experiment (Uganda's exchange rate liberalisation), with firm, worker and household exposure measures.",
+  "sources": [
+    "https://cepr.org/publications/wp069",
+    "https://steg.cepr.org/sites/default/files/2025-04/PB009%20SRG%20368%20Vrolijk%20and%20Ndubuisi.pdf"
   ]
 }

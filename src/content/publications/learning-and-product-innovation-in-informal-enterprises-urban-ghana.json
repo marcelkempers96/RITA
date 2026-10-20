@@ -1,6 +1,6 @@
 {
-  "title": "Learning and product innovation in informal enterprises: urban Ghana",
-  "publisher": "MPRA Working Paper 108839",
+  "title": "Learning and product innovation performance in informal enterprises: evidence from urban Ghana",
+  "publisher": "MPRA Paper 108839",
   "year": 2021,
   "authors": [
     "Avenyo"
@@ -11,5 +11,20 @@
   ],
   "regions": [
     "West Africa"
-  ]
+  ],
+  "authorOrderConfirmed": true,
+  "externalUrl": "https://mpra.ub.uni-muenchen.de/108839/",
+  "pdf": "https://mpra.ub.uni-muenchen.de/108839/7/MPRA_paper_108839.pdf",
+  "summary": "The paper examines how learning shapes product innovation in informal enterprises in urban Ghana. Apprenticeship enhances the technological capability of enterprises, leading to product innovativeness, and competitive interactions with formal firms provide market feedback that enhances innovation.",
+  "keyFindings": [
+    "Apprenticeship enhances technological capability and product innovativeness.",
+    "Competitive formal interactions provide market feedback that enhances innovativeness.",
+    "Financially constrained enterprises competing with formal firms performed poorly with their new products."
+  ],
+  "methods": "Survey data on 513 informal enterprises in urban Ghana, estimated with a Type II Tobit model.",
+  "sources": [
+    "https://mpra.ub.uni-muenchen.de/108839/",
+    "https://ideas.repec.org/p/pra/mprapa/108839.html"
+  ],
+  "note": "Later published in Scientific African 20 (2023), e01740."
 }

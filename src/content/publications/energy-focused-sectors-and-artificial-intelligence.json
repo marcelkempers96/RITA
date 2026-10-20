@@ -1,12 +1,12 @@
 {
-  "title": "Energy-focused sectors and artificial intelligence",
-  "publisher": "Technological Forecasting & Social Change 183",
+  "title": "Quantile co-movement and dependence between energy-focused sectors and artificial intelligence",
+  "publisher": "Technological Forecasting and Social Change 183, 121842",
   "year": 2022,
   "authors": [
-    "Ndubuisi",
     "Urom",
+    "Ndubuisi",
     "Guesmi",
-    "Benkraiem"
+    "Benkraien"
   ],
   "type": "journal",
   "programmes": [
@@ -15,5 +15,19 @@
   "archive": true,
   "regions": [
     "Global"
+  ],
+  "authorOrderConfirmed": true,
+  "doi": "10.1016/j.techfore.2022.121842",
+  "externalUrl": "https://doi.org/10.1016/j.techfore.2022.121842",
+  "pdf": "https://repository.tudelft.nl/file/File_702c84e6-ec13-4ea4-abe5-c3e8f4be0cb9",
+  "summary": "The paper studies links between artificial intelligence and eight energy-focused sectors. The performance of energy-focused corporations, especially in renewable energy, depends strongly on the performance of AI.",
+  "keyFindings": [
+    "Renewable energy firms in particular are strongly tied to AI performance.",
+    "Dependence varies across energy sectors, market conditions and investment horizons.",
+    "The dependence became stronger during the first wave of the COVID-19 pandemic."
+  ],
+  "methods": "Quantile regressions and quantile cross-spectral coherency models.",
+  "sources": [
+    "https://www.idos-research.de/en/others-publications/article/quantile-co-movement-and-dependence-between-energy-focused-sectors-and-artificial-intelligence/"
   ]
 }

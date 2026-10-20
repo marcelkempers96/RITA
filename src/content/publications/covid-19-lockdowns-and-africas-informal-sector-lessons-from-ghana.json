@@ -3,7 +3,9 @@
   "publisher": "UNU-MERIT Working Paper 2020-028",
   "year": 2020,
   "authors": [
-    "Avenyo"
+    "Avenyo",
+    "Francois",
+    "Zinyemba"
   ],
   "type": "working-paper",
   "programmes": [
@@ -11,5 +13,19 @@
   ],
   "regions": [
     "West Africa"
+  ],
+  "authorOrderConfirmed": true,
+  "externalUrl": "https://www.merit.unu.edu/publications/working-papers/abstract/?id=8534",
+  "pdf": "https://www.merit.unu.edu/publications/working-papers/abstract/?id=8534",
+  "summary": "Using survey data on informal enterprises in Accra and Tema, the paper estimates the likely effects of COVID-19 lockdowns on Ghana's informal sector. Because the lockdown affects business performance, COVID-19 may widen or create gender and spatial gaps in informal enterprise performance.",
+  "keyFindings": [
+    "There is an unexplained spatial gap in sales between informal owners in Accra and Tema.",
+    "There is no gender gap in sales or innovation, but there are gender gaps in how firm size affects current sales.",
+    "COVID-19 may widen or create gender and spatial gaps in informal enterprise performance."
+  ],
+  "methods": "Survey data on informal enterprises in Accra and Tema, Ghana, with regression analysis.",
+  "sources": [
+    "https://www.merit.unu.edu/publications/working-papers/abstract/?id=8534",
+    "https://cris.maastrichtuniversity.nl/en/publications/covid-19-lockdowns-and-africas-informal-sector-lessons-from-ghana/"
   ]
 }

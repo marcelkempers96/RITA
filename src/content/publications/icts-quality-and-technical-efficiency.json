@@ -1,6 +1,6 @@
 {
-  "title": "ICTs quality and technical efficiency",
-  "publisher": "Telecommunications Policy 46(10)",
+  "title": "ICTs quality and technical efficiency: an empirical analysis",
+  "publisher": "Telecommunications Policy 46(10), 102439",
   "year": 2022,
   "authors": [
     "Ndubuisi",
@@ -15,5 +15,17 @@
   "externalUrl": "https://www.sciencedirect.com/science/article/pii/S0308596122001410",
   "regions": [
     "Global"
+  ],
+  "authorOrderConfirmed": true,
+  "doi": "10.1016/j.telpol.2022.102439",
+  "summary": "Earlier work on ICTs and technical efficiency relied mainly on quantity-based ICT measures, which have come under severe criticism. This paper shifts the focus to quality-based measures, in this case Internet quality, and finds a positive effect on technical efficiency.",
+  "keyFindings": [
+    "Internet quality has a positive effect on technical efficiency.",
+    "The gains are larger in countries with more skilled labour, more cross-border trade, stronger contract enforcement and deeper financial markets.",
+    "The marginal effect of ICT quality rises as the number of Internet users grows."
+  ],
+  "sources": [
+    "https://research.tudelft.nl/en/publications/icts-quality-and-technical-efficiency-an-empirical-analysis/",
+    "https://ideas.repec.org/a/eee/telpol/v46y2022i10s0308596122001410.html"
   ]
 }

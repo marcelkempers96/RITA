@@ -1,10 +1,11 @@
 {
-  "title": "Global macroeconomic factors and connectedness among NFTs and (un)conventional assets",
-  "publisher": "Research in International Business & Finance 71",
+  "title": "Global macroeconomic factors and the connectedness among NFTs and (un)conventional assets",
+  "publisher": "Research in International Business and Finance 71, 102429",
   "year": 2024,
   "authors": [
+    "Urom",
     "Ndubuisi",
-    "Urom"
+    "Guesmi"
   ],
   "type": "journal",
   "programmes": [
@@ -13,5 +14,19 @@
   "archive": true,
   "regions": [
     "Global"
+  ],
+  "authorOrderConfirmed": true,
+  "externalUrl": "https://ideas.repec.org/a/eee/riibaf/v71y2024ics0275531924002228.html",
+  "pdf": "https://repository.tudelft.nl/file/File_60bd20ff-042f-4cde-bf07-9369b7cea6d9?preview=1",
+  "summary": "The paper measures how returns and volatility move between NFTs and conventional and unconventional assets under different market conditions, and tests whether global macroeconomic and geopolitical indicators predict that connectedness.",
+  "keyFindings": [
+    "Connectedness varies by market condition and is strongest during extreme events.",
+    "Return connectedness generally exceeds volatility connectedness, except in bullish periods.",
+    "NFTs are largely decoupled from other assets in normal markets and become a net return-shock transmitter in bullish markets."
+  ],
+  "methods": "Quantile-VAR connectedness approach with linear regression tests of macroeconomic and geopolitical predictors.",
+  "sources": [
+    "https://ideas.repec.org/a/eee/riibaf/v71y2024ics0275531924002228.html",
+    "https://cris.maastrichtuniversity.nl/en/publications/quantile-return-and-volatility-connectedness-among-non-fungible-t/"
   ]
 }

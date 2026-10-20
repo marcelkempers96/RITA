@@ -1,6 +1,6 @@
 {
   "title": "Do productive capabilities affect export performance? Evidence from African firms",
-  "publisher": "European Journal of Development Research 33",
+  "publisher": "European Journal of Development Research 33(2)",
   "year": 2021,
   "authors": [
     "Avenyo",
@@ -14,5 +14,16 @@
   "externalUrl": "https://link.springer.com/article/10.1057/s41287-021-00364-6",
   "regions": [
     "Africa-wide"
+  ],
+  "doi": "10.1057/s41287-021-00364-6",
+  "summary": "There is limited empirical evidence on productive capabilities and their effect on firm-level export performance in Africa. The paper builds indicators that treat productive capabilities as a mix of technological and production capabilities, and finds both significantly drive firms' direct export performance.",
+  "keyFindings": [
+    "Technological and production capabilities both significantly drive firms' direct export performance.",
+    "Stronger capabilities make firms more efficient and competitive, supporting policies that build them."
+  ],
+  "methods": "World Bank Enterprise Survey data for firms in 29 African countries, estimated with a censored regression model.",
+  "sources": [
+    "https://ideas.repec.org/a/pal/eurjdr/v33y2021i2d10.1057_s41287-021-00364-6.html",
+    "https://pure.uj.ac.za/en/publications/do-productive-capabilities-affect-export-performance-evidence-fro/"
   ]
 }

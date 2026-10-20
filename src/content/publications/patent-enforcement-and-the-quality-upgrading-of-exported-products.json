@@ -1,6 +1,6 @@
 {
-  "title": "Patent enforcement and the quality upgrading of exported products",
-  "publisher": "Journal of the Knowledge Economy",
+  "title": "Patent enforcement and quality upgrading of exported products",
+  "publisher": "Journal of the Knowledge Economy 15, 13979–14011",
   "year": 2024,
   "authors": [
     "Ndubuisi"
@@ -11,5 +11,19 @@
   ],
   "regions": [
     "Global"
+  ],
+  "authorOrderConfirmed": true,
+  "doi": "10.1007/s13132-023-01660-8",
+  "externalUrl": "https://ideas.repec.org/a/spr/jknowl/v15y2024i3d10.1007_s13132-023-01660-8.html",
+  "summary": "The paper evaluates how patent protection affects the quality of exported products across 43 advanced and emerging economies. R&D-intensive industries in countries with stronger patent protection produce and export higher-quality goods at a greater rate than similar industries in weaker-protection countries.",
+  "keyFindings": [
+    "R&D-intensive industries in countries with stronger patent enforcement upgrade export quality faster.",
+    "The effect is larger for differentiated products and in developed or more technologically capable countries.",
+    "Patent policy should account for country-specific conditions."
+  ],
+  "methods": "Cross-country differences in patent enforcement combined with cross-industry differences in R&D intensity, for 43 advanced and emerging economies.",
+  "sources": [
+    "https://ideas.repec.org/a/spr/jknowl/v15y2024i3d10.1007_s13132-023-01660-8.html",
+    "https://www.idos-research.de/en/others-publications/article/patent-enforcement-and-quality-upgrading-of-exported-products"
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "title": "Technology intensity in manufacturing and CO₂ emissions",
+  "title": "The effects of technology intensity in manufacturing on CO2 emissions: evidence from developing countries",
   "publisher": "ERSA Working Paper 846",
   "year": 2021,
   "authors": [
@@ -12,5 +12,19 @@
   ],
   "regions": [
     "Global"
-  ]
+  ],
+  "authorOrderConfirmed": true,
+  "externalUrl": "https://econrsa.org/publications/the-effects-of-technology-intensity-in-manufacturing-on-co2-emissions-evidence-from-developing-countries/",
+  "pdf": "https://econrsa.org/publications/the-effects-of-technology-intensity-in-manufacturing-on-co2-emissions-evidence-from-developing-countries/",
+  "summary": "The paper asks whether high-technology manufacturing emits less CO2 than medium- and low-technology manufacturing in developing economies. It concludes that a shift towards more technology-intensive manufacturing could be a more sustainable industrialisation path.",
+  "keyFindings": [
+    "In exports, high-technology manufacturing is linked to lower emissions than medium- and low-technology exports.",
+    "A shift towards more technology-intensive manufacturing could be a more sustainable industrialisation path."
+  ],
+  "methods": "Panel of 56 developing economies, 1991–2014, combining the environmental Kuznets curve and STIRPAT frameworks, estimated with GMM.",
+  "sources": [
+    "https://econpapers.repec.org/RePEc:rza:ersawp:846",
+    "https://econrsa.org/publications/the-effects-of-technology-intensity-in-manufacturing-on-co2-emissions-evidence-from-developing-countries/"
+  ],
+  "note": "Revised and published as 'Greening manufacturing', Applied Energy 324 (2022), with partly different results."
 }

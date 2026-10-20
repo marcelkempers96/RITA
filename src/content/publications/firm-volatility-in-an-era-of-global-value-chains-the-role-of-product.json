@@ -1,7 +1,7 @@
 {
-  "title": "Firm volatility in an era of global value chains: the role of product quality",
-  "publisher": "AERC Working Paper GVC-11-007",
-  "year": null,
+  "title": "Firm volatility in an era of global value chain: the role of product quality",
+  "publisher": "AERC Working Paper GVC-II-007",
+  "year": 2025,
   "authors": [
     "Ndubuisi",
     "Owusu"
@@ -12,6 +12,19 @@
   ],
   "externalUrl": "https://publication.aercafricalibrary.org/items/9705d6c4-3a3e-4eb9-b4d7-ed909f8ebd4c",
   "regions": [
-    "Africa-wide"
+    "Southern Africa"
+  ],
+  "authorOrderConfirmed": true,
+  "pdf": "https://publication.aercafricalibrary.org/bitstreams/90480477-a89e-424e-b88e-70ca9a6d4cd5/download",
+  "summary": "More than half of global trade now runs through global value chains (GVCs), yet the literature on trade and volatility has not considered them. This paper studies how GVC participation affects the volatility of firms' job growth, and whether product quality changes that relationship.",
+  "keyFindings": [
+    "Deeper GVC embeddedness lowers firm volatility.",
+    "The effect is strongest for firms that make and export higher-quality goods.",
+    "GVC participation offers firms a route to resilience, supporting production capacity and stable export earnings."
+  ],
+  "methods": "South African tax-authority transaction data on formal manufacturing firms, 2010–2017.",
+  "sources": [
+    "https://publication.aercafricalibrary.org/items/9705d6c4-3a3e-4eb9-b4d7-ed909f8ebd4c/full",
+    "https://ideas.repec.org/p/aer/wpaper/9705d6c4-3a3e-4eb9-b4d7-ed909f8ebd4c.html"
   ]
 }

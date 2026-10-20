@@ -1,11 +1,11 @@
 {
   "title": "On gender and spatial gaps in Africa’s informal sector: evidence from urban Ghana",
-  "publisher": "Economics Letters 199",
+  "publisher": "Economics Letters 199, 109732",
   "year": 2021,
   "authors": [
+    "Zinyemba",
     "Avenyo",
-    "Francois",
-    "Zinyemba"
+    "Francois"
   ],
   "type": "journal",
   "programmes": [
@@ -14,5 +14,17 @@
   "externalUrl": "https://www.sciencedirect.com/science/article/pii/S0165176521000094",
   "regions": [
     "West Africa"
+  ],
+  "authorOrderConfirmed": true,
+  "summary": "Using 2016 survey data from Accra and Tema, the paper finds an unexplained spatial gap in sales between informal enterprise owners in the two cities. There are no gender gaps in sales or innovation, but there are gender gaps in how past sales affect current sales.",
+  "keyFindings": [
+    "There is an unexplained spatial gap in sales between informal enterprises in Accra and Tema.",
+    "There are no gender gaps in sales or innovation.",
+    "Explained and unexplained gender gaps exist in the effect of past sales on current sales."
+  ],
+  "methods": "2016 survey data on informal enterprises in Accra and Tema, Ghana.",
+  "sources": [
+    "https://ideas.repec.org/a/eee/ecolet/v199y2021ics0165176521000094.html",
+    "https://cris.maastrichtuniversity.nl/en/publications/on-gender-and-spatial-gaps-in-africas-informal-sector-evidence-fr/"
   ]
 }

@@ -1,10 +1,10 @@
 {
   "title": "Digital platforms and development: a survey of the literature",
-  "publisher": "Innovation & Development 11",
+  "publisher": "Innovation and Development 11(2-3), 303–321",
   "year": 2021,
   "authors": [
-    "Avenyo",
     "Fu",
+    "Avenyo",
     "Ghauri"
   ],
   "type": "journal",
@@ -15,5 +15,19 @@
   "doi": "10.1080/2157930X.2021.1975361",
   "regions": [
     "Global"
+  ],
+  "authorOrderConfirmed": true,
+  "pdf": "https://research.birmingham.ac.uk/files/177587903/Digital_platforms_and_development_a_survey_of_the_literature.pdf",
+  "summary": "A systematic literature review of how digital technology and platforms affect development in the modern economy. The authors group the literature into three main themes and point to directions for future research.",
+  "keyFindings": [
+    "Research on platforms and development has not been brought together from a development standpoint.",
+    "The literature falls into three main themes.",
+    "The review identifies directions for future research."
+  ],
+  "methods": "Systematic literature review including quantitative, qualitative and mixed-methods studies worldwide.",
+  "sources": [
+    "https://ideas.repec.org/a/taf/riadxx/v11y2021i2-3p303-321.html",
+    "https://pure.uj.ac.za/en/publications/digital-platforms-and-development-a-survey-of-the-literature/",
+    "https://research.birmingham.ac.uk/files/177587903/Digital_platforms_and_development_a_survey_of_the_literature.pdf"
   ]
 }

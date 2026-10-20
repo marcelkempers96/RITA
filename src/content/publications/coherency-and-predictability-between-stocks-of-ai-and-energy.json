@@ -1,10 +1,10 @@
 {
-  "title": "Coherency and predictability between stocks of AI and energy corporations",
-  "publisher": "Financial Innovation 10:128",
+  "title": "Exploring the coherency and predictability between the stocks of artificial intelligence and energy corporations",
+  "publisher": "Financial Innovation 10(1), 128",
   "year": 2024,
   "authors": [
-    "Ndubuisi",
     "Urom",
+    "Ndubuisi",
     "Mzoughi",
     "Guesmi"
   ],
@@ -15,5 +15,20 @@
   "archive": true,
   "regions": [
     "Global"
+  ],
+  "authorOrderConfirmed": true,
+  "doi": "10.1186/s40854-024-00609-3",
+  "externalUrl": "https://doi.org/10.1186/s40854-024-00609-3",
+  "pdf": "https://repository.tudelft.nl/file/File_702c84e6-ec13-4ea4-abe5-c3e8f4be0cb9",
+  "summary": "The paper studies links between artificial intelligence investments and eight energy-focused sectors. It finds significant dependence and connectedness, especially over intermediate and long-term investment horizons, and a relationship that has grown stronger since the COVID-19 pandemic.",
+  "keyFindings": [
+    "AI and energy stocks show significant dependence and connectedness, especially over intermediate and long-term horizons.",
+    "The relationship has become stronger since the COVID-19 pandemic.",
+    "Directional predictability from AI to energy varies by sector, horizon and market conditions."
+  ],
+  "methods": "Wavelet coherence, Cross-Quantilogram and time-varying parameter VAR (TVP-VAR) estimation.",
+  "sources": [
+    "https://ujcontent.uj.ac.za/esploro/outputs/journalArticle/Exploring-the-coherency-and-predictability-between/9946809907691",
+    "https://jfin-swufe.springeropen.com/articles/10.1186/s40854-024-00609-3"
   ]
 }

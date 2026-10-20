@@ -1,11 +1,11 @@
 {
-  "title": "Clean energy sectors and oil price uncertainty",
-  "publisher": "Quarterly Review of Economics and Finance 85",
+  "title": "Directional predictability and time-frequency spillovers among clean energy sectors and oil price uncertainty",
+  "publisher": "Quarterly Review of Economics and Finance 85, 326–341",
   "year": 2022,
   "authors": [
-    "Ndubuisi",
     "Urom",
     "Mzoughi",
+    "Ndubuisi",
     "Guesmi"
   ],
   "type": "journal",
@@ -15,5 +15,16 @@
   "archive": true,
   "regions": [
     "Global"
+  ],
+  "authorOrderConfirmed": true,
+  "externalUrl": "https://ideas.repec.org/a/eee/quaeco/v85y2022icp326-341.html",
+  "summary": "The paper analyses the dependence between clean energy sectors and oil price uncertainty. Sector responses differ in direction and size depending on the sector, market conditions and investment horizon.",
+  "keyFindings": [
+    "Dependence and predictability from oil market uncertainty to clean energy sectors vary across market conditions and horizons.",
+    "Shock spillovers are weak in the short term and grow over intermediate and long horizons."
+  ],
+  "methods": "Wavelet, cross-quantilogram and TVP-VAR models with stochastic volatility on six NASDAQ OMX Green Economy sector indices.",
+  "sources": [
+    "https://www.idos-research.de/en/others-publications/article/directional-predictability-and-time-frequency-spillovers-among-clean-energy-sectors-and-oil-price-uncertainty/"
   ]
 }

@@ -1,6 +1,6 @@
 {
-  "title": "Greening manufacturing: technology intensity and CO₂ emissions in developing countries",
-  "publisher": "Applied Energy 324",
+  "title": "Greening manufacturing: technology intensity and carbon dioxide emissions in developing countries",
+  "publisher": "Applied Energy 324, 119726",
   "year": 2022,
   "authors": [
     "Avenyo",
@@ -10,8 +10,23 @@
   "programmes": [
     "IND"
   ],
-  "externalUrl": "https://www.sciencedirect.com/science/article/pii/S0306261922010169",
+  "externalUrl": "https://doi.org/10.1016/j.apenergy.2022.119726",
   "regions": [
     "Global"
-  ]
+  ],
+  "authorOrderConfirmed": true,
+  "doi": "10.1016/j.apenergy.2022.119726",
+  "summary": "The paper asks whether medium- and high-technology manufacturing industries are less emissions-intensive than low-technology ones in developing countries. It finds that medium- and high-technology industries are associated with lower CO₂ emissions, with differences that vary by countries' income levels.",
+  "keyFindings": [
+    "Medium- and high-technology manufacturing is associated with lower CO₂ emissions than low-technology manufacturing.",
+    "The differences vary with countries' income levels.",
+    "A shift towards more technology-intensive manufacturing could be one part of environmentally sustainable industrialisation."
+  ],
+  "methods": "Panel of 68 developing and emerging economies, 1990–2016, using two emissions measures and generalised method of moments (GMM) estimation.",
+  "sources": [
+    "https://www.sciencedirect.com/science/article/pii/S0306261922010169",
+    "https://pure.uj.ac.za/en/publications/greening-manufacturing-technology-intensity-and-carbon-dioxide-em/",
+    "https://www.uj.ac.za/wp-content/uploads/2021/10/sarchi-id-pb-2023-01-avenyo-e--tregenna-f--january-2023.pdf"
+  ],
+  "note": "Earlier ERSA WP 846 (56 countries, 1991–2014) reported different directions; findings above are from the published version."
 }

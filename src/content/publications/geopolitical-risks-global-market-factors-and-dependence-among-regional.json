@@ -1,10 +1,10 @@
 {
   "title": "Geopolitical risks, global market factors and dependence among regional sustainable investments and commodities",
-  "publisher": "Quarterly Review of Economics and Finance 91",
+  "publisher": "Quarterly Review of Economics and Finance 91, 94–111",
   "year": 2023,
   "authors": [
-    "Ndubuisi",
-    "Urom"
+    "Urom",
+    "Ndubuisi"
   ],
   "type": "journal",
   "programmes": [
@@ -13,5 +13,20 @@
   "archive": true,
   "regions": [
     "Global"
+  ],
+  "authorOrderConfirmed": true,
+  "doi": "10.1016/j.qref.2023.07.007",
+  "externalUrl": "https://doi.org/10.1016/j.qref.2023.07.007",
+  "pdf": "https://repository.tudelft.nl/file/File_5f30ab39-1255-4744-81ce-f22e3a11c2cd",
+  "summary": "The paper studies how sustainable investment indices for North America, Europe and Asia-Pacific connect with energy, precious metal and industrial metal commodities. It finds asymmetric connectedness, significantly stronger during extreme downside and upside market conditions.",
+  "keyFindings": [
+    "Total connectedness is significantly stronger during extreme market downturns and rallies.",
+    "Only the Asia-Pacific sustainable investment index receives more shocks than it transmits in normal conditions.",
+    "Geopolitical risks, business conditions, gold and fixed income markets and economic policy uncertainty predict return connectedness."
+  ],
+  "methods": "Quantile VAR connectedness approach, with regression analysis of macro and geopolitical predictors.",
+  "sources": [
+    "https://ideas.repec.org/a/eee/quaeco/v91y2023icp94-111.html",
+    "https://repository.tudelft.nl/file/File_5f30ab39-1255-4744-81ce-f22e3a11c2cd"
   ]
 }

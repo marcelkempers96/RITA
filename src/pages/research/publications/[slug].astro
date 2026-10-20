@@ -68,7 +68,7 @@ const shortOutlet = (o: string) => o.replace(/^([A-Z][A-Z-]+),.*$/, '$1').replac
         </p>
         <div class="row mt-24">
           {p.pdf && (/^https?:/.test(p.pdf)
-            ? <a class="btn" href={p.pdf} target="_blank" rel="noopener" data-track="pdf-download" data-track-label={pub.id}>Read the PDF ↗<span class="sr-only"> (opens in a new tab)</span></a>
+            ? <a class="btn" href={p.pdf} target="_blank" rel="noopener" data-track="pdf-download" data-track-label={pub.id}>Read full text ↗<span class="sr-only"> (opens in a new tab)</span></a>
             : <a class="btn" href={p.pdf} download data-track="pdf-download" data-track-label={pub.id}>Download PDF</a>)}
           {publisherUrl && <a class:list={['btn', { 'btn-secondary': Boolean(p.pdf) }]} href={publisherUrl} target="_blank" rel="noopener" data-track="publisher-click" data-track-label={pub.id}>Read at publisher ↗<span class="sr-only"> (opens in a new tab)</span></a>}
           <a class="btn btn-secondary" href="#cite" data-open="cite" aria-haspopup="dialog">Cite</a>

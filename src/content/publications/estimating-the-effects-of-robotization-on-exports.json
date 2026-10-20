@@ -3,8 +3,8 @@
   "publisher": "UNU-MERIT Working Paper 2018-046",
   "year": 2018,
   "authors": [
-    "Avenyo",
-    "Ndubuisi"
+    "Ndubuisi",
+    "Avenyo"
   ],
   "type": "working-paper",
   "programmes": [
@@ -13,5 +13,19 @@
   "regions": [
     "Global"
   ],
-  "note": "The founders' first joint paper."
+  "note": "The founders' first joint paper.",
+  "authorOrderConfirmed": true,
+  "externalUrl": "https://merit.unu.edu/publications/working-papers/abstract/?id=8031",
+  "pdf": "https://cris.maastrichtuniversity.nl/ws/files/309267438/fulltext",
+  "summary": "Digitalisation has drawn the attention of empirical trade economists, but robotisation largely has not. This paper examines the impact of robotisation on trade and finds that it raises total exports, on both the extensive and the intensive margin.",
+  "keyFindings": [
+    "Robotisation raises total exports through more product varieties (extensive margin) and higher average value per variety (intensive margin).",
+    "The intensive-margin effect comes from both higher quantities and higher unit prices.",
+    "Results hold when the margins are redefined as destination markets and product-destination pairs."
+  ],
+  "methods": "Export volume and price data, decomposed into extensive and intensive margins.",
+  "sources": [
+    "https://merit.unu.edu/publications/working-papers/abstract/?id=8031",
+    "https://ideas.repec.org/p/unm/unumer/2018046.html"
+  ]
 }

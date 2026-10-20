@@ -1,11 +1,11 @@
 {
-  "title": "Dependence of green energy markets on big data and other 4IR technologies",
-  "publisher": "Journal of International Financial Markets, Institutions & Money 96",
+  "title": "Dependence of green energy markets on big data and other fourth industrial revolution technologies",
+  "publisher": "Journal of International Financial Markets, Institutions & Money 96, 102061",
   "year": 2024,
   "authors": [
-    "Ndubuisi",
     "Benkraiem",
     "Guesmi",
+    "Ndubuisi",
     "Urom",
     "Vigne"
   ],
@@ -17,5 +17,12 @@
   "archive": true,
   "regions": [
     "Global"
+  ],
+  "authorOrderConfirmed": true,
+  "doi": "10.1016/j.intfin.2024.102061",
+  "summary": "The paper analyses dependence and connectedness between fourth industrial revolution technology markets (big data and artificial intelligence, blockchain, financial technology) and global and regional green energy markets, and the roles of market and macroeconomic factors in shock propagation.",
+  "methods": "Cross-spectral coherence and quantile-VAR connectedness on returns and volatility, across market conditions and investment horizons; US, Europe and Asia.",
+  "sources": [
+    "https://ideas.repec.org/a/eee/intfin/v96y2024ics1042443124001276.html"
   ]
 }

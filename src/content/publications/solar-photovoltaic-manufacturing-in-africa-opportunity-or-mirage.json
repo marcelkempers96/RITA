@@ -1,6 +1,6 @@
 {
   "title": "Solar photovoltaic manufacturing in Africa: opportunity or mirage?",
-  "publisher": "APRI, Green & Transition Minerals Collection",
+  "publisher": "Africa Policy Research Institute (APRI), Green & Transition Minerals Collection",
   "year": 2024,
   "authors": [
     "Ndubuisi",
@@ -14,5 +14,17 @@
   "regions": [
     "Africa-wide"
   ],
-  "project": "solar-pv-value-chain-in-africa"
+  "project": "solar-pv-value-chain-in-africa",
+  "authorOrderConfirmed": true,
+  "pdf": "https://afripoli.org/view-pdf/26/solar-photovoltaic-manufacturing-in-africa-opportunity-or-mirage",
+  "summary": "Africa holds key minerals for solar PV production, such as copper, tin and silicon, but most countries on their own lack the finance, technological capabilities and infrastructure to build a competitive PV manufacturing sector. The paper finds only scattered opportunities for local manufacturing and recommends a regionalised PV strategy to integrate into the global solar value chain.",
+  "keyFindings": [
+    "Opportunities for local solar PV manufacturing within African countries are scattered.",
+    "Entering the global value chain is hard given market concentration, high entry barriers and established players, with China dominant in nearly every segment.",
+    "Without a coordinated regional approach, individual countries are unlikely to integrate into the global market."
+  ],
+  "sources": [
+    "https://afripoli.org/solar-photovoltaic-manufacturing-in-africa-opportunity-or-mirage",
+    "https://www.pv-magazine.com/?p=38575"
+  ]
 }

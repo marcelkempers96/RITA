@@ -1,13 +1,13 @@
 {
-  "title": "PGP for portfolio optimization: ESG index family",
-  "publisher": "Annals of Operations Research",
-  "year": 2023,
+  "title": "PGP for portfolio optimization: application to ESG index family",
+  "publisher": "Annals of Operations Research 347(1), 405–417",
+  "year": 2025,
   "authors": [
-    "Ndubuisi",
     "Abid",
     "Urom",
     "Peillex",
-    "Karmani"
+    "Karmani",
+    "Ndubuisi"
   ],
   "type": "journal",
   "programmes": [
@@ -16,5 +16,17 @@
   "archive": true,
   "regions": [
     "Global"
+  ],
+  "authorOrderConfirmed": true,
+  "doi": "10.1007/s10479-023-05460-w",
+  "externalUrl": "https://ideas.repec.org/a/spr/annopr/v347y2025i1d10.1007_s10479-023-05460-w.html",
+  "summary": "Conventional portfolio design assumes Gaussian returns, but asymmetric and heavy-tailed returns call for higher-order moments. The paper proposes a mean-variance-skewness-kurtosis model, optimised with parametrised polynomial goal programming (PGP), to build diversified portfolios.",
+  "keyFindings": [
+    "PGP generates multiple portfolios that reflect investors' different preferences over the four moments.",
+    "Portfolios are compared through the empirical cumulative distribution of returns to help investors choose a weight set."
+  ],
+  "methods": "Mean-variance-skewness-kurtosis optimisation with polynomial goal programming, applied to the S&P ESG index family.",
+  "sources": [
+    "https://ideas.repec.org/a/spr/annopr/v347y2025i1d10.1007_s10479-023-05460-w.html"
   ]
 }

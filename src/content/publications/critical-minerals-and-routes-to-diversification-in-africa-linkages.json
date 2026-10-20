@@ -1,6 +1,6 @@
 {
   "title": "Critical minerals and routes to diversification in Africa: Linkages, pulling dynamics and medium-high-tech supply chains",
-  "publisher": "UNCTAD, Economic Development in Africa Report 2023, background paper 1",
+  "publisher": "Background paper commissioned by the UNCTAD secretariat for the Economic Development in Africa Report 2023",
   "year": 2023,
   "authors": [
     "Andreoni",
@@ -14,5 +14,10 @@
   "regions": [
     "Africa-wide"
   ],
-  "project": "routes-to-diversification-in-africa"
+  "project": "routes-to-diversification-in-africa",
+  "authorOrderConfirmed": true,
+  "pdf": "https://unctad.org/system/files/non-official-document/edar2023_BP1_en.pdf",
+  "sources": [
+    "https://thecommonwealth-ilibrary.org/index.php/comsec/catalog/download/1134/1231/9824?inline=1"
+  ]
 }

@@ -1,6 +1,6 @@
 {
   "title": "Structural change in Africa: the role of North-South and South-South trade",
-  "publisher": "The World Economy",
+  "publisher": "The World Economy 49(3), 539–569",
   "year": 2026,
   "authors": [
     "Ndubuisi",
@@ -11,8 +11,21 @@
   "programmes": [
     "IND"
   ],
-  "externalUrl": "https://onlinelibrary.wiley.com/doi/epdf/10.1111/twec.70049",
+  "externalUrl": "https://doi.org/10.1111/twec.70049",
   "regions": [
     "Africa-wide"
+  ],
+  "authorOrderConfirmed": true,
+  "doi": "10.1111/twec.70049",
+  "pdf": "https://repository.tudelft.nl/file/File_ace36a6a-4063-48a5-9563-a56b3dfd2b7e",
+  "summary": "The paper examines how imported capital and intermediate inputs from the Global North and the Global South affect structural change in African economies, and how domestic absorptive capacity moderates those effects.",
+  "keyFindings": [
+    "Inputs from the Global South have a positive effect on structural change, partly because they fit the technological realities of African economies.",
+    "Inputs from the Global North deliver benefits only where domestic absorptive capacity is high."
+  ],
+  "methods": "Two-stage least squares on a panel of 52 African countries, 2000–2022.",
+  "sources": [
+    "https://www.bu.edu/pardeeschool/?p=62972",
+    "https://econpapers.repec.org/paper/wbkwbrwps/10896.htm"
   ]
 }

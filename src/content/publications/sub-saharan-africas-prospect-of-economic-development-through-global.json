@@ -1,6 +1,6 @@
 {
   "title": "Sub-Saharan Africa’s prospect of economic development through global supply chains",
-  "publisher": "Sustainable Global Supply Chains Report 2022 (IDOS)",
+  "publisher": "Sustainable Global Supply Chains Report 2022, German Development Institute (DIE/IDOS), special section, p. 126",
   "year": 2022,
   "authors": [
     "Ndubuisi",
@@ -10,8 +10,18 @@
   "programmes": [
     "IND"
   ],
-  "externalUrl": "https://www.die-gdi.de/fileadmin/user_upload/pdfs/projekt/20220407_SustainableGlobalSupplyChains-Report2022_lowres.pdf",
+  "externalUrl": "https://www.oxfordmartin.ox.ac.uk/publications/sub-saharan-africas-prospect-of-economic-development-through-global-supply-chains",
   "regions": [
     "Africa-wide"
+  ],
+  "authorOrderConfirmed": true,
+  "pdf": "https://www.die-gdi.de/fileadmin/user_upload/pdfs/projekt/20220407_SustainableGlobalSupplyChains-Report2022_lowres.pdf",
+  "summary": "The chapter discusses the prospects of a global supply chain-led development strategy for Africa amid four megatrends, to identify research gaps. Global supply chains remain an important vehicle for Africa's development, but the megatrends have profound implications for that prospect.",
+  "keyFindings": [
+    "Four megatrends shape Africa's supply-chain prospects: China's rise and shift to knowledge-intensive sectors, digital transformation, African regional integration, and environmental sustainability.",
+    "Global supply chains remain important as a vehicle for economic development in Africa."
+  ],
+  "sources": [
+    "https://www.oxfordmartin.ox.ac.uk/publications/sub-saharan-africas-prospect-of-economic-development-through-global-supply-chains"
   ]
 }

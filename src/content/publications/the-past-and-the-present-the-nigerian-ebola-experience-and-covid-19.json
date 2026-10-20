@@ -1,14 +1,26 @@
 {
-  "title": "The past and the present: the Nigerian Ebola experience and COVID-19",
+  "title": "The past and the present: the Nigerian Ebola experience and the Covid-19 pandemic",
   "publisher": "INCLUDE Platform",
   "year": null,
   "authors": [
-    "Ndubuisi"
+    "Konte",
+    "Ndubuisi",
+    "Okafor"
   ],
   "type": "report",
   "programmes": [],
   "archive": true,
   "regions": [
     "West Africa"
+  ],
+  "authorOrderConfirmed": true,
+  "externalUrl": "https://includeplatform.net/publications/the-past-and-the-present-the-nigerian-ebola-experience-and-the-covid-19-pandemic-2/",
+  "pdf": "https://includeplatform.net/wp-content/uploads/2023/04/The-Past-and-the-Present-The-Nigerian-Ebola-experience-and-the-Covid-19-Pandemic.pdf",
+  "summary": "The paper compares Nigeria's success against Ebola with its country-wide response to COVID-19, and assesses which factors may have prevented the country from repeating that success.",
+  "keyFindings": [
+    "Available statistics show neither a Nigerian win over COVID-19 nor a clear path to one."
+  ],
+  "sources": [
+    "https://includeplatform.net/publications/the-past-and-the-present-the-nigerian-ebola-experience-and-the-covid-19-pandemic-2/"
   ]
 }

@@ -1,13 +1,13 @@
 {
   "title": "Taking stock of Africa’s economic transformation: rethinking sources of productivity growth",
-  "publisher": "World Bank Research Observer (forthcoming)",
-  "year": null,
+  "publisher": "The World Bank Research Observer (advance article)",
+  "year": 2026,
   "authors": [
-    "Ndubuisi",
-    "McMillan",
     "Gollin",
-    "Owusu",
-    "Mensah"
+    "McMillan",
+    "Mensah",
+    "Ndubuisi",
+    "Owusu"
   ],
   "type": "journal",
   "programmes": [
@@ -15,5 +15,20 @@
   ],
   "regions": [
     "Africa-wide"
-  ]
+  ],
+  "authorOrderConfirmed": true,
+  "doi": "10.1093/wbro/lkag001",
+  "externalUrl": "https://doi.org/10.1093/wbro/lkag001",
+  "pdf": "https://thedocs.worldbank.org/en/doc/eac0289cfc530efb6dcc781f69fecd28-0050012026/original/Takingstock-EBMensah-13.pdf",
+  "summary": "Recent structural change in Africa has boosted growth, but overall labour productivity growth remains modest. Manufacturing has played a limited role since the 1990s, while services, especially wholesale and retail trade, have driven the gains.",
+  "keyFindings": [
+    "Structural change has contributed to growth, but productivity growth remains modest.",
+    "Since the 1990s, services, especially wholesale and retail trade, have driven productivity gains more than manufacturing.",
+    "Weak productivity growth reflects constraints such as limited infrastructure, extreme poverty, poor health and inadequate education."
+  ],
+  "sources": [
+    "https://academic.oup.com/wbro/advance-article-abstract/doi/10.1093/wbro/lkag001/8586411",
+    "https://www.bu.edu/pardeeschool/tag/african-economics/"
+  ],
+  "note": "Published online April 2026; author order as listed on the journal page (alphabetical)."
 }

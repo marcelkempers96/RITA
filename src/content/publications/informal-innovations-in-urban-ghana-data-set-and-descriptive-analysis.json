@@ -1,7 +1,7 @@
 {
-  "title": "Informal innovations in urban Ghana: data set and descriptive analysis",
-  "publisher": "UNU-MERIT Working Paper",
-  "year": null,
+  "title": "Informal sector innovation in Ghana: data set and descriptive analysis",
+  "publisher": "UNU-MERIT Working Paper 2018-030",
+  "year": 2018,
   "authors": [
     "Avenyo"
   ],
@@ -11,5 +11,19 @@
   ],
   "regions": [
     "West Africa"
+  ],
+  "authorOrderConfirmed": true,
+  "externalUrl": "https://merit.unu.edu/publications/working-papers/abstract/?id=7864",
+  "pdf": "https://unu-merit.nl/publications/wppdf/2018/wp2018-030.pdf",
+  "summary": "The paper presents descriptive statistics from a 2016 survey of the innovations informal firms adopt or adapt in Accra and Tema. It finds that informal enterprises do innovate: their innovations are incremental rather than radical, occur over several years, and matter for their survival.",
+  "keyFindings": [
+    "Informal enterprises do innovate.",
+    "Their innovations are incremental, not radical, and occur over several years.",
+    "Incremental innovations are important to the survival of the sampled informal enterprises."
+  ],
+  "methods": "2016 survey of 513 informal enterprises in 17 randomly selected zones of Accra and Tema, using the World Bank Ghana Informal Enterprise Survey zones as the area frame.",
+  "sources": [
+    "https://merit.unu.edu/publications/working-papers/abstract/?id=7864",
+    "https://ideas.repec.org/p/unm/unumer/2018030.html"
   ]
 }

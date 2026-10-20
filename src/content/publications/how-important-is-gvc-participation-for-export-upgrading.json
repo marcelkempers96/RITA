@@ -1,6 +1,6 @@
 {
   "title": "How important is GVC participation for export upgrading?",
-  "publisher": "The World Economy 44(10)",
+  "publisher": "The World Economy 44(10), 2886–2907",
   "year": 2021,
   "authors": [
     "Ndubuisi",
@@ -13,5 +13,19 @@
   "externalUrl": "https://onlinelibrary.wiley.com/doi/full/10.1111/twec.13102",
   "regions": [
     "Global"
+  ],
+  "authorOrderConfirmed": true,
+  "doi": "10.1111/twec.13102",
+  "pdf": "https://merit.unu.edu/publications/working-papers/abstract/?id=8528",
+  "summary": "High-quality exports need knowledge-intensive production, quality inputs and advanced technology, and global value chains are one route to them. Using product-level export data, the paper finds that participation in backward and forward GVCs raises the quality of exported products.",
+  "keyFindings": [
+    "GVC participation raises the quality of exported products.",
+    "The benefit differs by income group.",
+    "Developing countries benefit only from backward GVC participation."
+  ],
+  "methods": "Highly disaggregated product-level export data for 122 countries.",
+  "sources": [
+    "https://research.tudelft.nl/en/publications/how-important-is-gvc-participation-to-export-upgrading/",
+    "https://merit.unu.edu/publications/working-papers/abstract/?id=8528"
   ]
 }

@@ -1,7 +1,7 @@
 {
-  "title": "Domestic IPR protection and the margins of bilateral exports",
-  "publisher": "UNU-MERIT Working Paper",
-  "year": null,
+  "title": "Domestic intellectual property rights protection and the margins of bilateral exports",
+  "publisher": "UNU-MERIT Working Paper 2018-035",
+  "year": 2018,
   "authors": [
     "Ndubuisi",
     "Foster-McGregor"
@@ -12,5 +12,17 @@
   ],
   "regions": [
     "Global"
+  ],
+  "authorOrderConfirmed": true,
+  "externalUrl": "https://merit.unu.edu/publications/working-papers/abstract/?id=7899",
+  "summary": "Earlier research on domestic intellectual property rights (IPR) protection and trade has looked mostly at imports. This paper turns to exports and finds that IPRs are trade-related and can help boost exports in both developed and developing countries.",
+  "keyFindings": [
+    "Stronger IPR protection can boost exports in both developed and developing countries.",
+    "IPR strength in the exporting country matters more than in the importing country.",
+    "The effect works mainly through the extensive margin; effects on the intensive margin are mostly insignificant."
+  ],
+  "sources": [
+    "https://merit.unu.edu/publications/working-papers/abstract/?id=7899",
+    "https://www.idos-research.de/en/others-publications/article/domestic-intellectual-property-rights-protection-and-the-margins-of-bilateral-exports/"
   ]
 }

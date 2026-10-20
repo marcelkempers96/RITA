@@ -1,6 +1,6 @@
 {
-  "title": "‘Learning to export’ and ‘learning by exporting’: innovation and exports in African firms",
-  "publisher": "African Development Review 37",
+  "title": "‘Learning to export’ and ‘learning by exporting’: revisiting the relationship between innovation and exports in African firms",
+  "publisher": "African Development Review 37(1)",
   "year": 2025,
   "authors": [
     "Avenyo",
@@ -14,5 +14,17 @@
   "doi": "10.1111/1467-8268.70001",
   "regions": [
     "Africa-wide"
+  ],
+  "authorOrderConfirmed": true,
+  "summary": "The paper revisits the relationship between innovation and exports in African firms and finds a positive link running both ways. Innovation affects both whether a firm exports and how much it exports, and exporting makes innovation more likely.",
+  "keyFindings": [
+    "Innovation raises both the likelihood and the intensity of exporting.",
+    "Exporting raises the likelihood of innovating; effects are mostly driven by direct exports and hold for product and process innovation.",
+    "Foreign ownership and international quality certification strengthen these effects."
+  ],
+  "methods": "Cross-sectional World Bank Enterprise Survey data for 28 African economies, estimated with a censored Tobit IV simultaneous model with selection.",
+  "sources": [
+    "https://ideas.repec.org/a/bla/afrdev/v37y2025i1ne70001.html",
+    "https://pure.uj.ac.za/en/publications/learning-to-export-and-learning-by-exporting-revisiting-the-relat/"
   ]
 }

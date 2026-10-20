@@ -1,6 +1,6 @@
 {
   "title": "Determinants of digital technologies’ adoption in South African manufacturing",
-  "publisher": "South African Journal of Economics",
+  "publisher": "South African Journal of Economics 92(2), 235–259",
   "year": 2024,
   "authors": [
     "Avenyo",
@@ -16,5 +16,18 @@
   "award": "2025 Middleton Award",
   "regions": [
     "Southern Africa"
+  ],
+  "authorOrderConfirmed": true,
+  "pdf": "https://www.uj.ac.za/wp-content/uploads/2021/10/sarchi-wp-2022-13-avenyo-e-k--bell-j-f--nyamwena-j-october-2022.pdf",
+  "summary": "Adopting advanced digital technologies can raise firm productivity and competitiveness, but what drives adoption in developing-country manufacturing remains largely anecdotal. Using unique survey data on 516 South African manufacturing firms, the paper finds that innovation, foreign ownership, export exposure and skilled human capital propel adoption, while a lack of capital holds it back.",
+  "keyFindings": [
+    "Innovation, foreign ownership, exposure to export markets and higher-skilled human capital propel the adoption of digital technologies.",
+    "Lack of capital inhibits adoption.",
+    "The factors explaining adoption differ across business functions."
+  ],
+  "methods": "Unique survey data on 516 South African manufacturing firms, analysed with a multivariate probit model.",
+  "sources": [
+    "https://ideas.repec.org/a/bla/sajeco/v92y2024i2p235-259.html",
+    "https://pure.uj.ac.za/en/publications/determinants-of-digital-technologies-adoption-in-south-african-ma/"
   ]
 }

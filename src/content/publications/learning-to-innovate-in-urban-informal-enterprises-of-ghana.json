@@ -1,6 +1,6 @@
 {
-  "title": "Learning to innovate in urban informal enterprises of Ghana",
-  "publisher": "Scientific African 20",
+  "title": "Learning to innovate in urban informal enterprises of Ghana: role of apprenticeship and formal interaction",
+  "publisher": "Scientific African 20, e01740",
   "year": 2023,
   "authors": [
     "Avenyo"
@@ -12,5 +12,19 @@
   "externalUrl": "https://www.sciencedirect.com/science/article/pii/S2468227623001965",
   "regions": [
     "West Africa"
-  ]
+  ],
+  "authorOrderConfirmed": true,
+  "pdf": "https://mpra.ub.uni-muenchen.de/108839/7/MPRA_paper_108839.pdf",
+  "summary": "The study looks at how two learning routes, apprenticeship and formal interactions, affect the product innovativeness of informal firms in Ghana. Apprenticeship builds technological capability that leads to product innovativeness, while competitive formal interactions supply market feedback that improves it.",
+  "keyFindings": [
+    "Apprenticeship builds technological capability that leads to product innovativeness.",
+    "Competitive interactions with formal firms provide market feedback that improves innovativeness.",
+    "Financially constrained informal enterprises competing with formal firms in product markets performed poorly with new products."
+  ],
+  "methods": "Survey data on 513 urban informal enterprises in Ghana, estimated with a Type II Tobit model.",
+  "sources": [
+    "https://doaj.org/article/cc4c67737e484e9bbc1d6bd423f3471f",
+    "https://pure.uj.ac.za/en/publications/learning-to-innovate-in-urban-informal-enterprises-of-ghana-role-/"
+  ],
+  "note": "PDF link is the earlier MPRA 108839 working-paper version; the journal is open access (DOAJ)."
 }

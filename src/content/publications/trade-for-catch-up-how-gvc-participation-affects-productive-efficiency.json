@@ -1,6 +1,6 @@
 {
-  "title": "Trade for catch-up: how GVC participation affects productive efficiency",
-  "publisher": "Journal of Productivity Analysis 59",
+  "title": "Trade for catch-up: examining how global value chains participation affects productive efficiency",
+  "publisher": "Journal of Productivity Analysis 59(2), 195–215",
   "year": 2023,
   "authors": [
     "Ndubuisi",
@@ -13,5 +13,19 @@
   "externalUrl": "https://link.springer.com/article/10.1007/s11123-023-00663-6",
   "regions": [
     "Global"
+  ],
+  "authorOrderConfirmed": true,
+  "doi": "10.1007/s11123-023-00663-6",
+  "pdf": "https://link.springer.com/article/10.1007/s11123-023-00663-6",
+  "summary": "Earlier studies of trade-driven catch-up overlooked global value chain participation as a way to speed up efficiency gains. The paper finds that GVC participation helps technology-lagging countries become more efficient and close the gap to the frontier.",
+  "keyFindings": [
+    "GVC participation helps technology-lagging countries close the efficiency gap to the global frontier.",
+    "Gains are larger with more human capital, deeper financial markets and stable macroeconomic conditions.",
+    "Gains are larger for countries specialised in downstream activities."
+  ],
+  "methods": "Data envelopment analysis of efficiency relative to the global frontier, regressed on GVC participation with panel fixed effects, difference-GMM, Tobit and fractional response models.",
+  "sources": [
+    "https://link.springer.com/article/10.1007/s11123-023-00663-6",
+    "https://research.tudelft.nl/en/publications/trade-for-catch-up-examining-how-global-value-chains-participatio"
   ]
 }

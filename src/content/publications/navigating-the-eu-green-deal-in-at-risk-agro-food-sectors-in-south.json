@@ -3,11 +3,11 @@
   "publisher": "CCRED Working Paper 2023/02",
   "year": 2023,
   "authors": [
-    "Avenyo",
     "Bell",
     "Goga",
     "Muzyamba",
-    "Nyamwena"
+    "Nyamwena",
+    "Avenyo"
   ],
   "type": "working-paper",
   "programmes": [
@@ -16,5 +16,10 @@
   "externalUrl": "https://www.competition.org.za/s/TIPS-EGD-WP-August-2023.pdf",
   "regions": [
     "Southern Africa"
+  ],
+  "authorOrderConfirmed": true,
+  "pdf": "https://www.competition.org.za/s/TIPS-EGD-WP-August-2023.pdf",
+  "sources": [
+    "https://www.competition.org.za/s/TIPS-EGD-WP-August-2023.pdf"
   ]
 }

@@ -1,10 +1,10 @@
 {
-  "title": "Financial constraints, trust and export performance: firm-level evidence from Africa",
-  "publisher": "Journal of Institutional Economics 17(4)",
+  "title": "Financial constraint, trust, and export performances: firm-level evidence from Africa",
+  "publisher": "Journal of Institutional Economics 17(4), 583–605",
   "year": 2021,
   "authors": [
-    "Ndubuisi",
-    "Konte"
+    "Konte",
+    "Ndubuisi"
   ],
   "type": "journal",
   "programmes": [
@@ -12,5 +12,18 @@
   ],
   "regions": [
     "Africa-wide"
+  ],
+  "authorOrderConfirmed": true,
+  "externalUrl": "https://ideas.repec.org/a/cup/jinsec/v17y2021i4p583-605_4.html",
+  "summary": "The paper examines the effect of financial constraints on exports in Africa and how the level of trust in the countries where firms are located shapes this relationship. Financial constraints reduce export activity, but the negative effect is weaker where trust is higher.",
+  "keyFindings": [
+    "Financial constraints reduce firms' export activity.",
+    "The negative effect is weaker in countries with higher trust.",
+    "Small and medium-sized firms are more exposed to financial constraints but gain more from higher trust; for larger firms only interpersonal trust matters."
+  ],
+  "methods": "World Bank Enterprise Surveys combined with country-level measures of personal and interpersonal trust from Afrobarometer surveys in 19 African countries.",
+  "sources": [
+    "https://ideas.repec.org/a/cup/jinsec/v17y2021i4p583-605_4.html",
+    "https://www.idos-research.de/en/others-publications/article/financial-constraints-trust-and-export-performances-firm-level-evidence-from-africa/"
   ]
 }

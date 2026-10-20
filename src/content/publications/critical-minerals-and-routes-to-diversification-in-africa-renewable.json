@@ -1,6 +1,6 @@
 {
-  "title": "Critical minerals and routes to diversification in Africa: Renewable energy technologies: the case of Morocco",
-  "publisher": "UNCTAD, Economic Development in Africa Report 2023, background paper 2",
+  "title": "Critical minerals and routes to diversification in Africa: opportunities for diversification into renewable energy technologies – the case of Morocco",
+  "publisher": "UNCTAD, background paper for the Economic Development in Africa Report 2023",
   "year": 2023,
   "authors": [
     "Andreoni",
@@ -14,5 +14,16 @@
   "regions": [
     "North Africa"
   ],
-  "project": "routes-to-diversification-in-africa"
+  "project": "routes-to-diversification-in-africa",
+  "authorOrderConfirmed": true,
+  "pdf": "https://unctad.org/system/files/non-official-document/edar2023_BP2_en.pdf",
+  "summary": "The paper maps the opportunities and challenges for Morocco to diversify into renewable energy technology value chains, and sets out a framework for how the country could localise and capture value in those supply networks.",
+  "keyFindings": [
+    "It identifies two routes to diversification: moving from adopter to producer of solar and solar battery technologies, and electric vehicle batteries and the circular economy.",
+    "Regional coordination and industrial development are treated as part of the routes to diversification."
+  ],
+  "methods": "In-depth country case study of Morocco.",
+  "sources": [
+    "https://unctad.org/node/42294"
+  ]
 }

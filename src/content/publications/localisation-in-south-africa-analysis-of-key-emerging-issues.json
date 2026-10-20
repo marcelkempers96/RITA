@@ -1,6 +1,6 @@
 {
   "title": "Localisation in South Africa: analysis of key emerging issues",
-  "publisher": "CCRED-IDTT Working Paper 2023/01",
+  "publisher": "CCRED Working Paper Series 2023/01",
   "year": 2023,
   "authors": [
     "Avenyo",
@@ -13,5 +13,11 @@
   ],
   "regions": [
     "Southern Africa"
+  ],
+  "authorOrderConfirmed": true,
+  "externalUrl": "https://competition.org.za/working-papers",
+  "sources": [
+    "https://competition.org.za/working-papers",
+    "https://www.competition.org.za/idtt-year-6"
   ]
 }

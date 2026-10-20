@@ -1,10 +1,10 @@
 {
-  "title": "Implied volatility indexes",
-  "publisher": "International Economics 165",
+  "title": "Economic activity, and financial and commodity markets’ shocks: an analysis of implied volatility indexes",
+  "publisher": "International Economics 165, 51–66",
   "year": 2021,
   "authors": [
-    "Ndubuisi",
     "Urom",
+    "Ndubuisi",
     "Ozor"
   ],
   "type": "journal",
@@ -14,5 +14,19 @@
   "archive": true,
   "regions": [
     "Global"
+  ],
+  "authorOrderConfirmed": true,
+  "doi": "10.1016/j.inteco.2020.11.005",
+  "externalUrl": "https://ideas.repec.org/a/eee/inteco/v165y2021icp51-66.html",
+  "summary": "The paper examines short- and long-run asymmetric interactions and causality between real economic activity and volatility shocks in stock, energy and gold markets. The relationships are asymmetric at both horizons.",
+  "keyFindings": [
+    "Positive and negative energy-market shocks both raise stock-market volatility in the long run.",
+    "The energy market is the main net transmitter of shocks; gold is a net receiver.",
+    "There is feedback between economic activity and the volatility indexes, except for gold, which causes economic activity in one direction only."
+  ],
+  "methods": "Nonlinear ARDL cointegration and Granger causality tests, with Diebold–Yilmaz spillover indexes on partial-sum decompositions.",
+  "sources": [
+    "https://ideas.repec.org/a/eee/inteco/v165y2021icp51-66.html",
+    "https://cepii.fr/CEPII/fr/publications/journal_articles.asp?offset=170"
   ]
 }

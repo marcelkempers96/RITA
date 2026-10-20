@@ -1,6 +1,6 @@
 {
   "title": "Dependence of transition minerals on global clean energy and technology stocks",
-  "publisher": "Finance Research Letters 85(A)",
+  "publisher": "Finance Research Letters 85(A), 107809",
   "year": 2025,
   "authors": [
     "Ndubuisi",
@@ -13,5 +13,17 @@
   "externalUrl": "https://www.sciencedirect.com/science/article/pii/S1544612325010670",
   "regions": [
     "Global"
+  ],
+  "authorOrderConfirmed": true,
+  "pdf": "https://repository.tudelft.nl/file/File_e52f5dd6-49da-4f65-8f16-c36b354c30dd",
+  "summary": "The paper investigates the dynamic dependence of transition minerals on global clean energy and technology markets. Minerals respond asymmetrically, and their link to the technology market is stronger and more consistent.",
+  "keyFindings": [
+    "Aluminium, cobalt, copper and zinc tend to track technology market returns.",
+    "Granger causality runs more strongly from the clean energy market to transition minerals than from the technology market.",
+    "Clean energy market signals can serve as an early warning for policymakers in mineral-rich economies."
+  ],
+  "methods": "Cross-quantilograms and Granger-causality in-mean and in-quantiles tests on market data from December 2018 to October 2024.",
+  "sources": [
+    "https://research.tudelft.nl/en/publications/dependence-of-transition-minerals-on-global-clean-energy-and-tech/"
   ]
 }

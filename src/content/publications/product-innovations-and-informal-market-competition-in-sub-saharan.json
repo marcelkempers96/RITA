@@ -1,6 +1,6 @@
 {
-  "title": "Product innovations and informal market competition in sub-Saharan Africa",
-  "publisher": "Journal of Evolutionary Economics 31",
+  "title": "Product innovation and informal market competition in sub-Saharan Africa",
+  "publisher": "Journal of Evolutionary Economics 31, 605–637",
   "year": 2021,
   "authors": [
     "Avenyo",
@@ -11,8 +11,22 @@
   "programmes": [
     "INN"
   ],
-  "externalUrl": "https://link.springer.com/article/10.1007/s00191-020-00688-2",
+  "externalUrl": "https://doi.org/10.1007/s00191-020-00688-2",
   "regions": [
     "Africa-wide"
+  ],
+  "authorOrderConfirmed": true,
+  "doi": "10.1007/s00191-020-00688-2",
+  "summary": "Competition from informal enterprises is one of the top three obstacles formal businesses face in sub-Saharan Africa. The paper finds that local informal competition harms the performance of product innovation, but only for formal firms that lack strategic collaborative footholds in the informal economy.",
+  "keyFindings": [
+    "Local informal competition has a robust negative effect on the product innovation intensity of formal firms.",
+    "Informal competition within an industry enhances innovative sales.",
+    "Larger firms are less affected by local informal competition and gain innovative sales from it."
+  ],
+  "methods": "World Bank Enterprise Surveys combined with the Innovation Follow-up Survey for five sub-Saharan African countries, with regional and industry-specific indicators of informal competition.",
+  "sources": [
+    "https://ideas.repec.org/a/spr/joevec/v31y2021i2d10.1007_s00191-020-00688-2.html",
+    "https://pure.uj.ac.za/en/publications/product-innovation-and-informal-market-competition-in-sub-saharan/",
+    "https://gov.uk/research-for-development-outputs/product-innovation-and-informal-market-competition-in-sub-saharan-africa-firm-level-evidence"
   ]
 }

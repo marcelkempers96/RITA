@@ -1,6 +1,6 @@
 {
   "title": "Trust, efficient contracting and export upgrading",
-  "publisher": "European Journal of Development Research 34",
+  "publisher": "European Journal of Development Research 34(6), 2708–2729",
   "year": 2022,
   "authors": [
     "Ndubuisi",
@@ -12,5 +12,19 @@
   ],
   "regions": [
     "Global"
+  ],
+  "authorOrderConfirmed": true,
+  "doi": "10.1057/s41287-021-00486-x",
+  "externalUrl": "https://ideas.repec.org/a/pal/eurjdr/v34y2022i6d10.1057_s41287-021-00486-x.html",
+  "summary": "Research on contracting institutions and export quality has largely overlooked informal institutions. The paper tests whether trust drives product-quality upgrading by easing contractual frictions, and finds that contract-intensive industries in high-trust countries upgrade more.",
+  "keyFindings": [
+    "Contract-intensive industries in high-trust societies see a disproportionately larger rise in producing and exporting higher-quality products.",
+    "The result holds after controlling for conventional sources of comparative advantage and formal institutions.",
+    "Strong informal institutions can support market performance even where formal institutions are weak."
+  ],
+  "methods": "Industry-level data for 1995–2014, estimated with a generalised difference-in-differences design.",
+  "sources": [
+    "https://ideas.repec.org/a/pal/eurjdr/v34y2022i6d10.1057_s41287-021-00486-x.html",
+    "https://cris.maastrichtuniversity.nl/en/publications/trust-efficient-contracting-and-export-upgrading/"
   ]
 }

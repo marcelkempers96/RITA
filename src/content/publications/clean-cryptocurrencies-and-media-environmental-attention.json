@@ -1,6 +1,6 @@
 {
-  "title": "Clean cryptocurrencies and media environmental attention",
-  "publisher": "Research in International Business & Finance 65",
+  "title": "Dependence and risk spillovers among clean cryptocurrencies prices and media environmental attention",
+  "publisher": "Research in International Business and Finance 65, 101953",
   "year": 2023,
   "authors": [
     "Ndubuisi",
@@ -13,5 +13,18 @@
   "archive": true,
   "regions": [
     "Global"
+  ],
+  "authorOrderConfirmed": true,
+  "doi": "10.1016/j.ribaf.2023.101953",
+  "externalUrl": "https://doi.org/10.1016/j.ribaf.2023.101953",
+  "pdf": "https://repository.tudelft.nl/file/File_a640495c-c03c-4f51-88b7-273c9a260837",
+  "summary": "The study examines the link between media attention to cryptocurrencies' environmental impact and the prices of clean cryptocurrencies. It finds strong connectedness, implying that clean cryptocurrency prices are influenced by attention on cryptocurrency sustainability.",
+  "keyFindings": [
+    "Clean cryptocurrency prices and cryptocurrency environmental attention are strongly connected.",
+    "Clean cryptocurrency prices are influenced by attention on cryptocurrency sustainability."
+  ],
+  "methods": "TVP-VAR connectedness and wavelet methods.",
+  "sources": [
+    "https://repository.tudelft.nl/file/File_a640495c-c03c-4f51-88b7-273c9a260837"
   ]
 }

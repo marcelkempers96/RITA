@@ -1,11 +1,11 @@
 {
-  "title": "Dancing on the grid: electricity crises, manufacturing energy vulnerability and jobs in South Africa",
-  "publisher": "Energy Policy 202",
+  "title": "Dancing on the grid: Electricity crises, energy vulnerability, and manufacturing jobs in South Africa",
+  "publisher": "Energy Policy 202, 114534",
   "year": 2025,
   "authors": [
     "Ndubuisi",
-    "Asiama",
-    "Avenyo"
+    "Avenyo",
+    "Asiama"
   ],
   "type": "journal",
   "programmes": [
@@ -16,5 +16,20 @@
   "regions": [
     "Southern Africa"
   ],
-  "project": "electricity-crises-in-south-africa"
+  "project": "electricity-crises-in-south-africa",
+  "authorOrderConfirmed": true,
+  "pdf": "https://wider.unu.edu/publication/dancing-grid-electricity-crises-manufacturing-energy-vulnerability-and-jobs-south",
+  "summary": "The paper builds an index of manufacturing sub-sector energy vulnerability from South Africa's input–output matrices and uses it to estimate how electricity crises affect manufacturing jobs. Electricity crises are linked to significant job losses, and the damage is greater in more energy-vulnerable sectors.",
+  "keyFindings": [
+    "Energy vulnerability varies significantly across manufacturing sub-sectors.",
+    "Electricity crises are associated with significant manufacturing job losses.",
+    "Job losses are larger in more energy-vulnerable sectors and affect both formal and informal jobs."
+  ],
+  "methods": "Sub-sector energy vulnerability index built from South Africa's input–output matrices (1993–2021), used in an empirical model of manufacturing employment.",
+  "sources": [
+    "https://pure.uj.ac.za/en/publications/dancing-on-the-grid-electricity-crises-energy-vulnerability-and-m/",
+    "https://ideas.repec.org/a/eee/enepol/v202y2025ics0301421525000412.html",
+    "https://ideas.repec.org/p/unu/wpaper/wp-2024-41.html",
+    "https://wider.unu.edu/publication/dancing-grid-electricity-crises-manufacturing-energy-vulnerability-and-jobs-south"
+  ]
 }

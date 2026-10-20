@@ -1,11 +1,11 @@
 {
   "title": "Escaping corruption in the demand for public services in Africa: the dual nature of civic networks",
-  "publisher": "World Development 177",
+  "publisher": "World Development 177, 106541",
   "year": 2024,
   "authors": [
-    "Avenyo",
     "Osei",
-    "Konte"
+    "Konte",
+    "Avenyo"
   ],
   "type": "journal",
   "programmes": [
@@ -13,5 +13,19 @@
   ],
   "regions": [
     "Africa-wide"
+  ],
+  "authorOrderConfirmed": true,
+  "doi": "10.1016/j.worlddev.2024.106541",
+  "externalUrl": "https://doi.org/10.1016/j.worlddev.2024.106541",
+  "summary": "Not everyone is a victim of bribery-seeking officials: social networks serve as substitutes for, or exit options out of, corruption. But people facing multiple deprivations cannot use their networks to ease access, while those who already have access use networks to complement corrupt acts and get ahead.",
+  "keyFindings": [
+    "Social networks can act as a way out of corruption when demanding public services.",
+    "Individuals facing multiple deprivations lack access to public services because they cannot use their networks to ease access.",
+    "Those with access use social networks as complements to corrupt acts to get ahead."
+  ],
+  "methods": "Bivariate ordered probit on the sixth wave of the Afrobarometer survey, 36 African countries, 2014–2015.",
+  "sources": [
+    "https://pure.uj.ac.za/en/publications/escaping-corruption-in-the-demand-for-public-services-in-africa-t/",
+    "https://ideas.repec.org/a/eee/wdevel/v177y2024ics0305750x24000111.html"
   ]
 }

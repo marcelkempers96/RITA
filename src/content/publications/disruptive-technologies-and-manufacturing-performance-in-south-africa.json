@@ -1,5 +1,5 @@
 {
-  "title": "Disruptive technologies and manufacturing performance in South Africa",
+  "title": "Disruptive technologies and manufacturing performance in South Africa: firm-level evidence",
   "publisher": "AERC Working Paper 2022/004",
   "year": 2022,
   "authors": [
@@ -10,9 +10,19 @@
   "programmes": [
     "INN"
   ],
-  "externalUrl": "http://publication.aercafricalibrary.org/handle/123456789/3444",
+  "externalUrl": "https://publication.aercafricalibrary.org/handle/123456789/3444",
   "regions": [
     "Southern Africa"
   ],
-  "project": "digital-technologies-and-manufacturing-performance"
+  "project": "digital-technologies-and-manufacturing-performance",
+  "authorOrderConfirmed": true,
+  "pdf": "https://publication.aercafricalibrary.org/handle/123456789/3444",
+  "summary": "The paper tests whether adopting disruptive digital technologies improves the performance of South African manufacturing firms. It addresses a thin evidence base on technology adoption and digital skills in developing countries and discusses implications for national Fourth Industrial Revolution policy.",
+  "keyFindings": [
+    "Adoption of disruptive digital technologies matters for manufacturing firm performance."
+  ],
+  "methods": "Econometric analysis of firm-level South African digital skills survey data.",
+  "sources": [
+    "https://publication.aercafricalibrary.org/handle/123456789/3444"
+  ]
 }

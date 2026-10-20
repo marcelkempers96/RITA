@@ -1,7 +1,7 @@
 {
   "title": "Export variety and imported intermediate inputs: industry-level evidence from Africa",
-  "publisher": "MPRA Working Paper 106008",
-  "year": null,
+  "publisher": "MPRA Paper No. 106008",
+  "year": 2021,
   "authors": [
     "Ndubuisi",
     "Mensah",
@@ -14,5 +14,19 @@
   "externalUrl": "https://mpra.ub.uni-muenchen.de/106008/",
   "regions": [
     "Africa-wide"
-  ]
+  ],
+  "authorOrderConfirmed": true,
+  "pdf": "https://mpra.ub.uni-muenchen.de/106008/1/MPRA_paper_106008.pdf",
+  "summary": "Using manufacturing industry-level data for 26 African countries, the paper finds strong evidence of a positive relationship between imported intermediate inputs and the variety of exported products. Imported inputs help because they are lower-priced and embody higher quality and technology.",
+  "keyFindings": [
+    "Imported intermediate inputs are positively related to the variety of products a country exports.",
+    "The effect works through lower prices and higher-quality, technology-embodied inputs.",
+    "The effect depends on an industry's absorptive capacity, especially when inputs come from advanced countries."
+  ],
+  "methods": "Manufacturing industry-level panel data across 26 African countries, 1995–2016.",
+  "sources": [
+    "https://ideas.repec.org/p/pra/mprapa/106008.html",
+    "https://mpra.ub.uni-muenchen.de/106008"
+  ],
+  "note": "First posted July 2020, revised February 2021."
 }

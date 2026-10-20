@@ -16,5 +16,16 @@
   "regions": [
     "Global"
   ],
-  "project": "services-sector-acceleration"
+  "project": "services-sector-acceleration",
+  "authorOrderConfirmed": true,
+  "pdf": "https://www.wider.unu.edu/sites/default/files/Publications/Working-paper/PDF/wp2023-87-drivers-services-sector-growth-acceleration-developing-countries.pdf",
+  "summary": "The services sector is dominant and still growing fast in many developing economies, yet in-depth evidence on what drives services growth accelerations is limited. This paper identifies the underlying factors, separately for market and non-market services.",
+  "keyFindings": [
+    "Several macro and institutional factors are important drivers of market services growth acceleration.",
+    "A different, heterogeneous set of drivers matters for non-market services."
+  ],
+  "methods": "Economic Transformation Database for 50 developing countries, 1990–2018, estimated with probit models.",
+  "sources": [
+    "https://wider.unu.edu/publication/drivers-services-sector-growth-acceleration-developing-countries"
+  ]
 }

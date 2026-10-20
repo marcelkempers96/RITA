@@ -3,16 +3,28 @@
   "publisher": "UNU-MERIT Working Paper 2022-007",
   "year": 2022,
   "authors": [
+    "Owusu",
     "Ndubuisi",
-    "Mensah",
-    "Owusu"
+    "Mensah"
   ],
   "type": "working-paper",
   "programmes": [
     "INN"
   ],
-  "externalUrl": "https://unu-merit.nl/publications/wppdf/2022/wp2022-007.pdf",
+  "externalUrl": "https://merit.unu.edu/publications/working-papers/abstract/?id=9242",
   "regions": [
     "Africa-wide"
+  ],
+  "authorOrderConfirmed": true,
+  "pdf": "https://unu-merit.nl/publications/wppdf/2022/wp2022-007.pdf",
+  "summary": "Cross-country evidence on the labour market effects of import penetration in Africa is scarce. This paper studies how imports of intermediate and final goods affect manufacturing employment across African countries.",
+  "keyFindings": [
+    "Intermediate-good import penetration raises manufacturing employment, while final-good import penetration has a negative or, at best, insignificant effect.",
+    "Intermediate imports from developed countries increase employment, while those from developing countries reduce it."
+  ],
+  "methods": "Manufacturing industry and establishment-level data from 20 African countries.",
+  "sources": [
+    "https://merit.unu.edu/publications/working-papers/abstract/?id=9242",
+    "https://ideas.repec.org/p/unm/unumer/2022007.html"
   ]
 }

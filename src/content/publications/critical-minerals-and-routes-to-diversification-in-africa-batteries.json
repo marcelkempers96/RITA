@@ -1,6 +1,6 @@
 {
-  "title": "Critical minerals and routes to diversification in Africa: Batteries, fuel cells and mining equipment: the case of South Africa",
-  "publisher": "UNCTAD, Economic Development in Africa Report 2023, background paper 3",
+  "title": "Critical minerals and routes to diversification in Africa: opportunities for diversification into batteries and fuel cells and mining equipment technologies. The case of South Africa",
+  "publisher": "UNCTAD, Economic Development in Africa Report 2023, background paper",
   "year": 2023,
   "authors": [
     "Andreoni",
@@ -10,9 +10,16 @@
   "programmes": [
     "MIN"
   ],
-  "externalUrl": "https://unctad.org/system/files/non-official-document/edar2023_BP3_en.pdf",
+  "externalUrl": "https://unctad.org/node/42295",
   "regions": [
     "Southern Africa"
   ],
-  "project": "routes-to-diversification-in-africa"
+  "project": "routes-to-diversification-in-africa",
+  "authorOrderConfirmed": true,
+  "pdf": "https://unctad.org/system/files/non-official-document/edar2023_BP3_en.pdf",
+  "summary": "The paper maps the global battery and fuel cells value chain and analyses how South Africa can leverage its mineral resources to localise and capture value in mining equipment technologies. It draws industrial policy lessons for productive transformation across Africa.",
+  "methods": "Value chain mapping and an in-depth country case study of South Africa.",
+  "sources": [
+    "https://unctad.org/node/42295"
+  ]
 }

@@ -1,11 +1,11 @@
 {
-  "title": "Chinese economic ties and low-carbon industrialization in Africa",
-  "publisher": "Energy Economics 144",
+  "title": "Chinese ties and low-carbon industrialization in Africa",
+  "publisher": "Energy Economics 144, 108352",
   "year": 2025,
   "authors": [
-    "Ndubuisi",
     "Owusu",
-    "Tang"
+    "Tang",
+    "Ndubuisi"
   ],
   "type": "journal",
   "programmes": [
@@ -14,5 +14,19 @@
   "externalUrl": "https://www.sciencedirect.com/science/article/pii/S0140988325001768",
   "regions": [
     "Africa-wide"
+  ],
+  "authorOrderConfirmed": true,
+  "pdf": "https://repository.tudelft.nl/file/File_b862d598-038c-4825-85e8-f0fe5409ed56",
+  "summary": "The paper examines how Chinese greenfield investment in African manufacturing affects industrial carbon emissions. It finds that Chinese FDI inflows increased industrial emissions, especially when they targeted labour- and resource-intensive sectors.",
+  "keyFindings": [
+    "Chinese FDI inflows increased industrial carbon emissions in Africa.",
+    "The effect is strongest when Chinese FDI targets labour- and resource-intensive manufacturing.",
+    "Host-country environmental regulation moderates the effect, but not significantly, pointing to weak enforcement."
+  ],
+  "methods": "Panel of Chinese greenfield FDI into manufacturing in 34 African countries, 2003–2014, estimated with a Lewbel instrumental variable approach.",
+  "sources": [
+    "https://www.bu.edu/gdp/2024/07/28/chinese-economic-ties-and-low-carbon-industrialization-in-africa/",
+    "https://merit.url.edu/en/publications/chinese-ties-and-low-carbon-industrialization-in-africa/",
+    "https://repository.tudelft.nl/file/File_b862d598-038c-4825-85e8-f0fe5409ed56"
   ]
 }
