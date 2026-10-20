@@ -1,0 +1,128 @@
+---
+import Base from '../../layouts/Base.astro';
+import Crumbs from '../../components/Crumbs.astro';
+import Photo from '../../components/Photo.astro';
+import PersonCard from '../../components/PersonCard.astro';
+import Tbc from '../../components/Tbc.astro';
+import InterestForm from '../../components/about/InterestForm.astro';
+import { load } from '../../lib/content';
+
+const d = await load();
+const fellows = d.people.filter((p) => p.data.group === 'fellow');
+const steps = ['Register interest', 'Apply when the call opens', 'Interview', 'Start'];
+---
+<Base title="RITA Fellowship" description="Two years with RITA for early- and mid-career African researchers working on industrial transformation.">
+  <span hidden data-pagefind-filter="type">Pages</span>
+  <section class="hero">
+    <div class="hero-text">
+      <div class="hero-inner">
+        <Crumbs items={[['Fellows', '/fellows'], ['Fellowship']]} />
+        <h1 class="display mt-24">RITA Fellowship</h1>
+        <p class="lead mt-24">Two years with RITA for early- and mid-career African researchers working on industrial transformation.</p>
+        <div class="row mt-32">
+          <a class="btn" href="#register">Register interest</a>
+          <a class="btn btn-secondary" href="#faq">Read the FAQ</a>
+        </div>
+      </div>
+    </div>
+    <Photo shot="Researchers at work" ratio="auto" class="hero-photo" top eager />
+  </section>
+
+  <section class="section ruled">
+    <div class="wrap">
+      <h2 class="sr-only">Who, what and when</h2>
+      <ul class="grid g3 nolist">
+        <li class="wbox">
+          <p class="label"><span class="sq c-IND" aria-hidden="true"></span>Who</p>
+          <h3 class="h3 mt-16">African researchers within 10 years of their PhD</h3>
+          <p class="mt-16"><Tbc label="Eligibility TBC" /></p>
+        </li>
+        <li class="wbox">
+          <p class="label"><span class="sq c-IND" aria-hidden="true"></span>What</p>
+          <h3 class="h3 mt-16">Stipend, mentoring by programme leads, publication support</h3>
+          <p class="mt-16"><Tbc label="Package TBC" /></p>
+        </li>
+        <li class="wbox">
+          <p class="label"><span class="sq c-IND" aria-hidden="true"></span>When</p>
+          <h3 class="h3 mt-16">Call opens <Tbc /></h3>
+          <p class="mt-16 mute">Register interest now and we’ll tell you when it opens.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section ruled">
+    <div class="wrap">
+      <h2 class="h2 mb-32">How it works</h2>
+      <ol class="grid g4 nolist steps">
+        {steps.map((s, i) => (
+          <li><span class="mono mute">0{i + 1}</span><span class="h3 step-title">{s}</span></li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section ruled">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 class="h2">Current fellows</h2>
+        <a class="link-arrow" href="/fellows?group=fellows">All fellows →</a>
+      </div>
+      {fellows.length ? (
+        <ul class="grid g4 nolist">{fellows.map((p) => <li><PersonCard person={p} /></li>)}</ul>
+      ) : (
+        <>
+          <p class="mute mb-32">No fellows listed yet. <Tbc label="First cohort TBC" /></p>
+          <ul class="grid g4 nolist" aria-hidden="true">{Array.from({ length: 4 }).map(() => <li><PersonCard placeholder="Fellow" /></li>)}</ul>
+        </>
+      )}
+    </div>
+  </section>
+
+  <section class="section ruled" id="faq" aria-labelledby="faq-title">
+    <div class="wrap">
+      <h2 id="faq-title" class="h2 mb-32">FAQ</h2>
+      <div class="acc">
+        <details>
+          <summary>Can I apply from outside Africa?</summary>
+          <div class="acc-body"><Tbc label="Answer TBC" /></div>
+        </details>
+        <details>
+          <summary>Is the fellowship remote?</summary>
+          <div class="acc-body"><Tbc label="Answer TBC" /></div>
+        </details>
+        <details>
+          <summary>What languages can I work in?</summary>
+          <div class="acc-body"><p>English and French. <Tbc label="Confirm" /></p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-paper" id="register" aria-labelledby="register-title">
+    <div class="wrap">
+      <div class="form-wrap">
+        <h2 id="register-title" class="h2">Register interest</h2>
+        <p class="mute mt-8 mb-32">Tell us about yourself and we’ll contact you when the call opens.</p>
+        <InterestForm name="fellowship" prefix="fs" />
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 520px; }
+  .hero-text { display: flex; align-items: center; justify-content: flex-end; padding: 40px 64px 72px; }
+  .hero-inner { max-width: 512px; width: 100%; }
+  .hero-inner :global(.crumbs) { padding-top: 0; }
+  .hero :global(.hero-photo) { min-height: 320px; height: 100%; }
+  .wbox { background: var(--paper); padding: 28px; }
+  .steps li { border-top: 4px solid var(--malachite); padding-top: 24px; display: flex; flex-direction: column; gap: 10px; }
+  .step-title { display: block; }
+  .form-wrap { max-width: 880px; }
+  @media (max-width: 899px) {
+    .hero { grid-template-columns: 1fr; min-height: 0; }
+    .hero-text { padding: 24px var(--pad) 40px; justify-content: flex-start; }
+    .hero :global(.hero-photo) { min-height: 220px; }
+  }
+</style>

@@ -1,0 +1,54 @@
+---
+import Base from '../../../layouts/Base.astro';
+import PageHead from '../../../components/PageHead.astro';
+import ListRow from '../../../components/ListRow.astro';
+import SubNav from '../../../components/about/SubNav.astro';
+import InterestForm from '../../../components/about/InterestForm.astro';
+import { load, url } from '../../../lib/content';
+
+const d = await load();
+---
+<Base title="Opportunities" description="Positions, fellowships and calls for contributions.">
+  <span hidden data-pagefind-filter="type">Pages</span>
+  <PageHead title="Opportunities" lead="Positions, fellowships and calls for contributions." crumbs={[['About', '/about'], ['Opportunities']]} />
+  <SubNav />
+
+  <section class="section">
+    <div class="wrap">
+      <h2 class="h2 mb-32">Open positions</h2>
+      {d.jobs.length ? (
+        <div class="list">
+          {d.jobs.map((j) => (
+            <ListRow href={url.job(j.id)} type={j.data.jobType} code={j.data.programme} title={j.data.title} meta={j.data.location} year={j.data.deadline} />
+          ))}
+        </div>
+      ) : <p class="mute">No open positions right now. Register interest below.</p>}
+    </div>
+  </section>
+
+  <section class="section ruled">
+    <div class="wrap fellowship">
+      <div>
+        <p class="label mute">Fellowship</p>
+        <h2 class="h2 mt-16">RITA Fellowship</h2>
+        <p class="body mt-16">Two years with RITA for early- and mid-career African researchers working on industrial transformation.</p>
+      </div>
+      <a class="btn btn-secondary" href="/fellows/fellowship">Learn more →</a>
+    </div>
+  </section>
+
+  <section class="section bg-paper" id="register" aria-labelledby="register-title">
+    <div class="wrap">
+      <div class="form-wrap">
+        <h2 id="register-title" class="h2 mb-32">Register interest</h2>
+        <InterestForm name="interest" prefix="ri" />
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .fellowship { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; flex-wrap: wrap; }
+  .fellowship > div { max-width: 640px; }
+  .form-wrap { max-width: 880px; }
+</style>

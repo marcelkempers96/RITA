@@ -1,0 +1,163 @@
+---
+import Base from '../../layouts/Base.astro';
+import Crumbs from '../../components/Crumbs.astro';
+import Photo from '../../components/Photo.astro';
+import ListRow from '../../components/ListRow.astro';
+import Tbc from '../../components/Tbc.astro';
+import { getCollection } from 'astro:content';
+import { load, url, TYPE_LABEL, PROGRAMMES, monthYear, type Code, type Person } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const people = await getCollection('people', (p) => p.data.consentToList);
+  return people.map((person) => ({ params: { slug: person.id }, props: { person } }));
+}
+const { person } = Astro.props as { person: Person };
+const p = person.data;
+const d = await load();
+
+// Work tabs, auto-collected by author.
+const pubs = d.publications.filter((x) => !x.data.archive && x.data.authors.includes(p.authorKey));
+const archived = d.publications.filter((x) => x.data.archive && x.data.authors.includes(p.authorKey)).length;
+const insights = d.insights.filter((x) => x.data.authors.includes(person.id));
+const projects = d.projects.filter((x) => x.data.team.includes(person.id));
+const media = d.opeds.filter((x) => x.data.authors.includes(p.authorKey));
+const tabs = [
+  { key: 'publications', label: 'Publications', count: pubs.length },
+  { key: 'insights', label: 'Insights', count: insights.length },
+  { key: 'projects', label: 'Projects', count: projects.length },
+  { key: 'media', label: 'Media', count: media.length },
+];
+const code = (p.programmes[0] ?? 'INN') as Code;
+const links = [
+  ['Email', p.links.email && `mailto:${p.links.email}`],
+  ['LinkedIn', p.links.linkedin],
+  ['Google Scholar', p.links.scholar],
+  ['ORCID', p.links.orcid],
+  ['Personal site', p.links.site],
+] as const;
+const missing = links.filter(([, href]) => !href).map(([l]) => l);
+const groupLabel: Record<string, string> = { lead: 'Programme lead', fellow: 'Fellow', associate: 'Associate', alumni: 'Alumni', staff: 'Staff' };
+const ld = {
+  '@context': 'https://schema.org', '@type': 'Person', name: p.name, jobTitle: p.role, description: p.bio,
+  workLocation: p.base, knowsAbout: p.focusTags, award: p.awards,
+  worksFor: { '@type': 'ResearchOrganization', name: 'Research Institute for Transitions in Africa' },
+  sameAs: links.map(([, h]) => h).filter((h) => h && !h.startsWith('mailto:')),
+  url: new URL(url.person(person.id), Astro.site).toString(),
+};
+---
+<Base title={p.name} description={`${p.name}, ${p.role} at RITA. ${p.focus}.`} jsonLd={ld} ogType="profile">
+  <span hidden data-pagefind-filter="type">People</span>
+  <span hidden data-pagefind-meta="type">People</span>
+  <div class="wrap"><Crumbs items={[['Fellows', '/fellows'], [p.name]]} /></div>
+
+  <section class="profile">
+    <div class:list={['portrait', `c-${code}`]}>
+      <Photo shot="Natural light" kind="Portrait" ratio="4 / 5" src={p.portrait} alt={`Portrait of ${p.name}`} eager />
+    </div>
+    <div class="intro">
+      <p class="label mute">{groupLabel[p.group] ?? p.role}<span class="sep">·</span>{p.base}</p>
+      <h1 class="h1 mt-16">{p.name}</h1>
+      <p class="body bio mt-24">{p.bio} {p.bioTbc && <Tbc label="Bio to confirm" />}</p>
+      <ul class="nolist chips mt-24" aria-label="Focus">
+        {p.focusTags.map((t) => <li class="chip static">{t}</li>)}
+      </ul>
+      <ul class="nolist links mt-24" aria-label="Links">
+        {links.filter(([, h]) => h).map(([label, href]) => (
+          <li><a href={href} {...(href!.startsWith('http') ? { target: '_blank', rel: 'noopener me' } : {})} class:list={{ ext: href!.startsWith('http') }}>{label}</a></li>
+        ))}
+        {missing.length > 0 && <li><Tbc label={`${missing.join(' · ')} TBC`} /></li>}
+      </ul>
+    </div>
+  </section>
+
+  <section class="ruled">
+    <div class="wrap">
+      <div class="tabs" role="tablist" aria-label={`Work by ${p.name}`}>
+        {tabs.map((t, i) => (
+          <button type="button" role="tab" id={`tab-${t.key}`} aria-controls={`panel-${t.key}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>
+            {t.label} <span class="count">{t.count}</span>
+          </button>
+        ))}
+      </div>
+
+      <div role="tabpanel" id="panel-publications" aria-labelledby="tab-publications" class="panel" tabindex="0">
+        {pubs.length ? (
+          <div class="list">
+            {pubs.map((x) => <ListRow href={url.publication(x.id)} type={TYPE_LABEL[x.data.type]} code={x.data.programmes[0]} title={x.data.title} meta={x.data.publisher} year={x.data.year} />)}
+          </div>
+        ) : <p class="mute">No publications listed yet.</p>}
+        <p class="mt-24"><a class="link-arrow" href={`/research?author=${encodeURIComponent(p.authorKey)}`}>All in the research library →</a>
+          {archived > 0 && <span class="mute small"> · {archived} archive items (finance and other earlier work) are in the library under “Show archive”.</span>}</p>
+      </div>
+
+      <div role="tabpanel" id="panel-insights" aria-labelledby="tab-insights" class="panel" tabindex="0" hidden>
+        {insights.length ? (
+          <div class="list">
+            {insights.map((x) => <ListRow href={url.insight(x.id)} type={`No. ${x.data.number}`} code={x.data.programme} title={x.data.title} meta={x.data.series ?? PROGRAMMES[x.data.programme as Code].name} year={x.data.year} />)}
+          </div>
+        ) : <p class="mute">No Policy Insights yet.</p>}
+      </div>
+
+      <div role="tabpanel" id="panel-projects" aria-labelledby="tab-projects" class="panel" tabindex="0" hidden>
+        {projects.length ? (
+          <div class="list">
+            {projects.map((x) => <ListRow href={url.project(x.id)} type={x.data.projectStatus === 'ongoing' ? 'Ongoing' : 'Completed'} code={x.data.programme} title={x.data.title} meta={x.data.funder} year={x.data.period ?? ''} />)}
+          </div>
+        ) : <p class="mute">No projects listed yet.</p>}
+      </div>
+
+      <div role="tabpanel" id="panel-media" aria-labelledby="tab-media" class="panel" tabindex="0" hidden>
+        {media.length ? (
+          <div class="list">
+            {media.map((x) => <ListRow href={x.data.outletUrl ?? '/insights/op-eds'} external={Boolean(x.data.outletUrl)} type={TYPE_LABEL[x.data.kind]} code={x.data.programme} title={x.data.title} meta={x.data.outlet} year={monthYear(x.data.date)} />)}
+          </div>
+        ) : <p class="mute">No media pieces yet.</p>}
+      </div>
+    </div>
+  </section>
+
+  {(p.awards.length > 0 || p.expertise.length > 0) && (
+    <section class="section ruled">
+      <div class="wrap grid g2">
+        {p.awards.length > 0 && (
+          <div>
+            <h2 class="h3 mb-24">Awards</h2>
+            <ul class="nolist facts-list">
+              {p.awards.map((a) => <li class="fact"><span class="label mute">Award</span><span>{a}</span></li>)}
+            </ul>
+          </div>
+        )}
+        {p.expertise.length > 0 && (
+          <div>
+            <h2 class="h3 mb-24">Expert for comment on</h2>
+            <ul class="nolist chips">{p.expertise.map((e) => <li class="chip static">{e}</li>)}</ul>
+            <p class="mt-24 small">Media enquiries: <a href="/contact?type=media">contact the press team</a>.</p>
+          </div>
+        )}
+      </div>
+    </section>
+  )}
+</Base>
+
+<style>
+  .profile { display: grid; grid-template-columns: 1fr 2fr; border-top: 1px solid var(--line); margin-top: 24px; }
+  .portrait { border-right: 8px solid var(--c); }
+  .portrait :global(.ph) { height: 100%; }
+  .intro { padding: 56px 64px; max-width: 820px; }
+  .bio { color: var(--mute-2); }
+  .chip.static { cursor: default; }
+  .chip.static:hover { border-color: var(--line); }
+  .links { display: flex; flex-wrap: wrap; gap: 8px 24px; font: 500 13px/1.6 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+  .links a { text-decoration: none; }
+  .links a:hover { text-decoration: underline; }
+  .panel { padding: 40px 0 72px; }
+  .panel:focus-visible { outline-offset: 8px; }
+  .count { font: 500 12px var(--mono); color: var(--mute); margin-left: 4px; }
+  .facts-list { display: grid; gap: 16px; }
+  .facts-list .fact span:last-child { font-weight: 500; }
+  @media (max-width: 899px) {
+    .profile { grid-template-columns: 1fr; }
+    .portrait { border-right: 0; border-bottom: 8px solid var(--c); max-width: 420px; }
+    .intro { padding: 32px var(--pad); }
+  }
+</style>
