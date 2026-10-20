@@ -105,9 +105,9 @@ button, input, select, textarea { font: inherit; color: inherit; border-radius: 
 .btn:hover { background: var(--laterite); border-color: var(--laterite); color: var(--white); }
 .btn-secondary { background: transparent; color: var(--ink); }
 .btn-secondary:hover { background: var(--laterite); border-color: var(--laterite); color: var(--white); }
-.bg-ink .btn, .btn-light { background: var(--white); color: var(--ink); border-color: var(--white); }
-.bg-ink .btn:hover, .btn-light:hover { background: var(--laterite); border-color: var(--laterite); color: var(--white); }
-.bg-ink .btn-secondary { background: transparent; color: var(--white); border-color: var(--white); }
+.bg-ink .btn, .hero-dark .btn, .btn-light { background: var(--white); color: var(--ink); border-color: var(--white); }
+.bg-ink .btn:hover, .hero-dark .btn:hover, .btn-light:hover { background: var(--laterite); border-color: var(--laterite); color: var(--white); }
+.bg-ink .btn-secondary, .hero-dark .btn-secondary { background: transparent; color: var(--white); border-color: var(--white); }
 .btn-sm { padding: 9px 15px; min-height: 40px; font-size: 15px; }
 .btn[disabled], .btn[aria-disabled='true'] { opacity: .55; cursor: not-allowed; }
 .btn-link { background: none; border: 0; padding: 0; text-decoration: underline; cursor: pointer; color: inherit; }
