@@ -36,7 +36,7 @@ const keyOf = (f: string) => FUNDER_CHIPS.find((c) => f.startsWith(c)) ?? '';
         {ongoing.map((p) => (
           <li data-project data-status="ongoing" data-funder={keyOf(p.data.funder)}>
             <a class="card" href={url.project(p.id)}>
-              <div class:list={['card-bar', p.data.programme ? `c-${p.data.programme}` : 'c-none']}><Photo shot={p.data.photo ?? 'Project'} /></div>
+              <div class:list={['card-bar', p.data.programme ? `c-${p.data.programme}` : 'c-none']}><Photo shot={p.data.photo ?? 'Project'} code={p.data.programme} /></div>
               <ProgLabel code={p.data.programme} parts={['Ongoing', p.data.period, p.data.funder.split(',')[0]]} />
               <h3 class="card-title big">{p.data.title}</h3>
               {p.data.partners.length > 0 && <p class="mute">With {p.data.partners.join(', ')}.</p>}

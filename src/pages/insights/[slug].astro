@@ -54,7 +54,7 @@ const canonical = new URL(url.insight(insight.id), Astro.site).toString();
       </div>
     </header>
 
-    <div class="wrap"><Photo shot={i.heroImage ? '' : 'Topical image'} src={i.heroImage} alt="" ratio="16 / 6" /></div>
+    <div class="wrap"><Photo shot={i.heroImage ? '' : 'Topical image'} src={i.heroImage} alt="" ratio="16 / 6" code={i.programme} sizes="100vw" /></div>
 
     <div class="wrap with-aside body-wrap">
       <div class="prose">

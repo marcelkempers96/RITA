@@ -1,0 +1,191 @@
+{
+  "_comment": "Photo sources for the site. `npm run photos` downloads each `url` into src/assets/photos/<file>. Only use images with a licence that allows reuse; record credit + licence. Portraits are never sourced here.",
+  "photos": [
+    {
+      "key": "minerals-processing",
+      "file": "minerals-processing.jpg",
+      "url": "",
+      "alt": "",
+      "credit": "",
+      "licence": "",
+      "source": "",
+      "subject": "Copper/cobalt processing, refinery or smelter in Zambia, DRC or South Africa",
+      "shots": [
+        "Mineral processing plant",
+        "Copper / cobalt / lithium processing"
+      ]
+    },
+    {
+      "key": "factory-floor",
+      "file": "factory-floor.jpg",
+      "url": "",
+      "alt": "",
+      "credit": "",
+      "licence": "",
+      "source": "",
+      "subject": "Manufacturing floor in an African factory (South Africa, Ethiopia, Kenya)",
+      "shots": [
+        "Factory floor"
+      ]
+    },
+    {
+      "key": "policymakers",
+      "file": "policymakers.jpg",
+      "url": "",
+      "alt": "",
+      "credit": "",
+      "licence": "",
+      "source": "",
+      "subject": "Officials or policymakers in discussion at an African institution",
+      "shots": [
+        "Policymakers",
+        "Policy dialogue"
+      ]
+    },
+    {
+      "key": "solar-assembly",
+      "file": "solar-assembly.jpg",
+      "url": "",
+      "alt": "",
+      "credit": "",
+      "licence": "",
+      "source": "",
+      "subject": "Solar panels being assembled or installed in Africa",
+      "shots": [
+        "Solar assembly"
+      ]
+    },
+    {
+      "key": "port",
+      "file": "port.jpg",
+      "url": "",
+      "alt": "",
+      "credit": "",
+      "licence": "",
+      "source": "",
+      "subject": "Container terminal at an African port (Durban, Mombasa, Lagos, Tema)",
+      "shots": [
+        "Port / logistics"
+      ]
+    },
+    {
+      "key": "industrial-park",
+      "file": "industrial-park.jpg",
+      "url": "",
+      "alt": "",
+      "credit": "",
+      "licence": "",
+      "source": "",
+      "subject": "African industrial park or special economic zone",
+      "shots": [
+        "Industrial park"
+      ]
+    },
+    {
+      "key": "solar-farm",
+      "file": "solar-farm.jpg",
+      "url": "",
+      "alt": "",
+      "credit": "",
+      "licence": "",
+      "source": "",
+      "subject": "Large solar farm or power plant in Africa (e.g. Noor Ouarzazate, De Aar)",
+      "shots": [
+        "Power station, grid or solar farm"
+      ]
+    },
+    {
+      "key": "workshop",
+      "file": "workshop.jpg",
+      "url": "",
+      "alt": "",
+      "credit": "",
+      "licence": "",
+      "source": "",
+      "subject": "Artisans or informal metalworkers at work (e.g. Suame Magazine, Kumasi; jua kali, Nairobi)",
+      "shots": [
+        "Workshop, maker space or informal enterprise"
+      ]
+    },
+    {
+      "key": "mine-site",
+      "file": "mine-site.jpg",
+      "url": "",
+      "alt": "",
+      "credit": "",
+      "licence": "",
+      "source": "",
+      "subject": "Open-pit mine in Africa",
+      "shots": [
+        "Mine site"
+      ]
+    },
+    {
+      "key": "business-society",
+      "file": "business-society.jpg",
+      "url": "",
+      "alt": "",
+      "credit": "",
+      "licence": "",
+      "source": "",
+      "subject": "African market or business district",
+      "shots": [
+        "Business & society"
+      ]
+    },
+    {
+      "key": "parliament",
+      "file": "parliament.jpg",
+      "url": "",
+      "alt": "",
+      "credit": "",
+      "licence": "",
+      "source": "",
+      "subject": "An African parliament or ministry building",
+      "shots": [
+        "Parliament / ministry"
+      ]
+    },
+    {
+      "key": "event",
+      "file": "event.jpg",
+      "url": "",
+      "alt": "",
+      "credit": "",
+      "licence": "",
+      "source": "",
+      "subject": "Audience at a conference or seminar in Africa",
+      "shots": [
+        "Event",
+        "Event or audience"
+      ]
+    },
+    {
+      "key": "researchers",
+      "file": "researchers.jpg",
+      "url": "",
+      "alt": "",
+      "credit": "",
+      "licence": "",
+      "source": "",
+      "subject": "Researchers or students working, African university",
+      "shots": [
+        "Researchers at work",
+        "Team / fieldwork"
+      ]
+    },
+    {
+      "key": "writing",
+      "file": "writing.jpg",
+      "url": "",
+      "alt": "",
+      "credit": "",
+      "licence": "",
+      "source": "",
+      "subject": "Person writing or a writing workshop",
+      "shots": [
+        "Writing / workshop"
+      ]
+    }
+  ]
+}

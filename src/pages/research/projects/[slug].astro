@@ -46,7 +46,7 @@ const facts: [string, string | undefined][] = [
         <p class="lead mt-16">{p.summary}</p>
         {p.preRita && <p class="small mute mt-16">Work by RITA’s team members before RITA was established.</p>}
       </div>
-      <Photo shot={p.photo ?? 'Project'} class="hero-photo" eager />
+      <Photo shot={p.photo ?? 'Project'} code={p.programme} class="hero-photo" eager />
     </div>
   </section>
 
