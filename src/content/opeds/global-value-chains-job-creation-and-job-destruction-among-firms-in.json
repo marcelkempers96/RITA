@@ -1,6 +1,6 @@
 {
   "title": "Global value chains, job creation and job destruction among firms in South Africa",
-  "outlet": "Growth Research Platform (STEG)",
+  "outlet": "STEG Policy Brief, Growth Research Platform (CEPR)",
   "date": "2026-03",
   "authors": [
     "Ndubuisi",
@@ -9,5 +9,14 @@
   "kind": "policy-brief",
   "programme": "INN",
   "outletUrl": "https://grp.cepr.org/publications/steg-policy-brief/global-value-chains-job-creation-and-job-destruction-among-firms",
-  "summary": "Net job gains overall; continuous participants shed jobs."
+  "summary": "Using data on the universe of formal manufacturing firms in South Africa, the brief finds that joining global value chains brings a net job gain. The gain is driven by firms entering GVCs, largely younger and smaller ones; firms that stay in GVCs shed jobs overall.",
+  "keyPoints": [
+    "GVC integration is linked to net job gains at the firm level.",
+    "Continuous GVC participants show an overall net job loss.",
+    "Gains are driven mainly by younger and smaller firms."
+  ],
+  "sources": [
+    "https://grp.cepr.org/publications/steg-policy-brief/global-value-chains-job-creation-and-job-destruction-among-firms",
+    "https://steg.cepr.org/sites/default/files/2023-08/WP073%20NdubuisiOwusuGlobalValueChainsJobCreation.pdf"
+  ]
 }

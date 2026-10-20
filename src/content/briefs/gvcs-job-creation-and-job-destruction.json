@@ -2,9 +2,36 @@
   "title": "GVCs, job creation and job destruction",
   "number": 6,
   "programme": "INN",
-  "authors": [],
+  "authors": [
+    "Gideon Ndubuisi",
+    "Solomon Owusu"
+  ],
   "basedOn": [
     "opeds:global-value-chains-job-creation-and-job-destruction-among-firms-in",
     "global-value-chains-job-creation-and-job-destruction-among-firms-in"
-  ]
+  ],
+  "date": "2026-03",
+  "recommendations": [
+    {
+      "text": "Help new, small and young firms enter global value chains.",
+      "why": "Net job gains from GVC integration are driven by firms entering GVCs, largely younger and smaller ones."
+    },
+    {
+      "text": "Pair GVC promotion with support for workers in firms that already trade in GVCs.",
+      "why": "Continuing GVC firms show an overall net job loss, so the job effects are uneven."
+    },
+    {
+      "text": "Judge GVC policy on jobs as well as productivity.",
+      "why": "The full welfare effect of GVC trade depends on both productivity gains and net job reallocation."
+    }
+  ],
+  "issue": "Global value chains can raise productivity, but the technologies they bring may save labour. For South Africa, with very high unemployment, the question is whether GVC integration creates jobs or leads to jobless growth.",
+  "evidence": "Using administrative data on the universe of formal manufacturing firms from the South African Revenue Service and National Treasury, the study finds that GVC integration is linked to net job gains at the firm level, through job reallocation. The gains are driven by firms entering GVCs, largely younger and smaller firms. Firms that continuously participate in GVCs show an overall net job loss.",
+  "pdf": "https://steg.cepr.org/sites/default/files/2023-08/WP073%20NdubuisiOwusuGlobalValueChainsJobCreation.pdf",
+  "sources": [
+    "https://grp.cepr.org/publications/steg-policy-brief/global-value-chains-job-creation-and-job-destruction-among-firms",
+    "https://cepr.org/publications/wp073",
+    "https://grp.cepr.org/steg/projects/global-value-chains-job-creation-and-job-destruction-among-firms-south-africa"
+  ],
+  "notes": "Recommendations drafted from findings (to review): 1, 2, 3. The STEG brief's own recommendations were not retrievable; all three are drafted from its findings."
 }

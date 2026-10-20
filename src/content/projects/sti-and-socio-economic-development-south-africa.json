@@ -10,6 +10,11 @@
   ],
   "programme": "INN",
   "summary": "Research grant on STI and socio-economic development (Elvis Korku Avenyo, Co-PI).",
-  "ritaRole": "Co-PI",
-  "preRita": true
+  "preRita": true,
+  "partners": [
+    "Department of Science and Innovation, South Africa"
+  ],
+  "sources": [
+    "docs/brief/CONTENT-SOURCES.md §9"
+  ]
 }

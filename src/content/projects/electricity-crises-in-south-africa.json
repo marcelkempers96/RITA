@@ -11,5 +11,17 @@
   ],
   "programme": "EN",
   "summary": "Firm-level evidence on what South Africa’s electricity crises cost manufacturers.",
-  "preRita": true
+  "preRita": true,
+  "description": "Research within UNU-WIDER's Southern Africa—Towards Inclusive Economic Development (SA-TIED) programme on what South Africa's electricity crises cost manufacturing. It builds an index of sub-sector energy vulnerability from input–output tables and uses firm-level tax data to trace effects on jobs, capital investment and exports.",
+  "endYear": 2024,
+  "period": "2024",
+  "partners": [
+    "UNU-WIDER",
+    "SA-TIED"
+  ],
+  "sources": [
+    "https://sa-tied.wider.unu.edu/article/jobs-investments-and-exporting-the-real-effects-of-electricity-crises-in-south-africa",
+    "https://ideas.repec.org/p/unu/wpaper/wp-2024-41.html",
+    "https://wider.unu.edu/opportunity/south-africas-electricity-crisis-macroeconomic-macro-sectoral-and-fiscal-consequences"
+  ]
 }

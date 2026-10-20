@@ -12,5 +12,16 @@
   ],
   "programme": "INN",
   "summary": "Firm-level evidence on global value chains and innovation in African firms.",
-  "preRita": true
+  "preRita": true,
+  "description": "Part of AERC's collaborative project on value chain development, trade and economic transformation in Africa. Using World Bank Enterprise Survey data, it asks whether firms in global value chains innovate more, and how gains spread to other firms.",
+  "endYear": 2022,
+  "period": "2022",
+  "partners": [
+    "African Economic Research Consortium (AERC)"
+  ],
+  "sources": [
+    "https://publication.aercafricalibrary.org/handle/123456789/3407",
+    "https://aercafrica.org/?p=18411",
+    "https://sites.google.com/view/elvis-korku-avenyo/awardsprojects"
+  ]
 }

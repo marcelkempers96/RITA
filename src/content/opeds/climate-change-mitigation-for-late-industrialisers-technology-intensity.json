@@ -1,11 +1,17 @@
 {
   "title": "Climate change mitigation for late industrialisers: technology intensity in manufacturing",
-  "outlet": "CBDS, Copenhagen Business School",
+  "outlet": "SARChI Industrial Development Policy Brief 2023-01 (with CBDS, Copenhagen Business School)",
   "date": "2023-02",
   "authors": [
-    "Avenyo"
+    "Avenyo",
+    "Tregenna"
   ],
   "kind": "policy-brief",
   "programme": "IND",
-  "outletUrl": "https://research.cbs.dk/files/89602649/elvis_korku_avenyo_et_al_climate_change_mitigation_for_late_industrialisers_publishersversion.pdf"
+  "outletUrl": "https://www.uj.ac.za/wp-content/uploads/2021/10/sarchi-id-pb-2023-01-avenyo-e--tregenna-f--january-2023.pdf",
+  "summary": "Late industrialisers need manufacturing to grow, but heavy industrialisation can raise emissions. Drawing on evidence from 56 developing economies, the brief asks whether greener industrial policy, shifting towards higher-technology manufacturing, lets countries industrialise while limiting emissions.",
+  "sources": [
+    "https://www.uj.ac.za/wp-content/uploads/2021/10/sarchi-id-pb-2023-01-avenyo-e--tregenna-f--january-2023.pdf",
+    "https://research-api.cbs.dk/ws/portalfiles/portal/89602649/elvis_korku_avenyo_et_al_climate_change_mitigation_for_late_industrialisers_publishersversion.pdf"
+  ]
 }

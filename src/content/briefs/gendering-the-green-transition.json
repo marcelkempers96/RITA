@@ -2,9 +2,38 @@
   "title": "Gendering the green transition",
   "number": 4,
   "programme": "IND",
-  "authors": [],
+  "authors": [
+    "Gideon Ndubuisi",
+    "Elvis Korku Avenyo",
+    "Shingie Chisoro"
+  ],
   "basedOn": [
     "gendering-structural-change-and-green-transition-in-africa-implications",
     "gendering-green-transition-in-africa-implications-of-transformative"
-  ]
+  ],
+  "date": "2024-10",
+  "recommendations": [
+    {
+      "text": "Put gender at the centre of industrial policy with a gender-transformative industrial policy framework (G-TRIP).",
+      "why": "Structural change in Africa has tended to widen gender employment gaps."
+    },
+    {
+      "text": "Expand women’s economic opportunities and social standing alongside industrial and green policy.",
+      "why": "Countries with such policies offset the negative effect of structural change on gender balance."
+    },
+    {
+      "text": "Open green energy and transition-technology jobs to women by tackling the inequalities that keep them out.",
+      "why": "These sectors offer gender-balanced employment, but entrenched inequalities stand in the way."
+    }
+  ],
+  "issue": "Africa’s structural transformation and green transition are reshaping who works where. Without deliberate policy, the shift risks leaving women behind.",
+  "evidence": "Panel data for 48 African countries from 1992 to 2019 show that shifts in sectoral composition have tended to worsen gender employment balance. Policies that expand women’s economic opportunities offset this effect.\n\nCase studies of Ghana and South Africa show that green energy systems and transition technologies create room for more gender-balanced employment, but entrenched gender inequalities are a major obstacle.",
+  "pdf": "https://egc.yale.edu/sites/default/files/2024-10/ACET_Gendering_Structural_Change_and_Green_Transition_in_Africa.pdf",
+  "sources": [
+    "https://egc.yale.edu/sites/default/files/2024-10/ACET_Gendering_Structural_Change_and_Green_Transition_in_Africa.pdf",
+    "https://cris.maastrichtuniversity.nl/en/publications/gendering-green-transition-in-africa-implications-of-transformati/",
+    "https://econpapers.repec.org/RePEc:unm:unumer:2026011",
+    "https://www.wits.ac.za/events-archive/scis/gendering-structural-change-and-green-transition-in-africa-implications-of-transformative-policies.php"
+  ],
+  "notes": "Recommendations drafted from findings (to review): 2, 3. Chisoro is listed as co-author of the ACET paper in CONTENT-SOURCES but was not confirmed in search results; the 2026 UNU-MERIT version lists Ndubuisi and Avenyo."
 }

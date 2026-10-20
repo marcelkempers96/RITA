@@ -1,6 +1,6 @@
 {
-  "title": "More about the melody, less about the volume: financing industrial transformation",
-  "outlet": "OPEC Fund Quarterly",
+  "title": "More melody, less volume: financing industrial transformation across Africa",
+  "outlet": "OPEC Fund Quarterly, 2026 Q2",
   "date": "2026-05",
   "authors": [
     "Ndubuisi",
@@ -9,5 +9,8 @@
   "kind": "op-ed",
   "programme": "IND",
   "outletUrl": "https://publications.opecfund.org/OFQ-2026-2/8/",
-  "summary": "The structure of finance matters: temporal, currency and structural alignment."
+  "summary": "The debate on financing Africa’s green industrial shift focuses too much on the size of the funding gap. The authors argue the deeper constraint is the structure, quality and purpose of finance, and how well it is aligned with industrial development.",
+  "sources": [
+    "https://publications.opecfund.org/OFQ-2026-2"
+  ]
 }

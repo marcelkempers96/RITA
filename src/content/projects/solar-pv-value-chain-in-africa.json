@@ -8,5 +8,15 @@
   ],
   "programme": "EN",
   "summary": "Whether Africa can manufacture solar photovoltaic components competitively.",
-  "preRita": true
+  "preRita": true,
+  "description": "Part of APRI's Green and Transition Minerals collection. The study analyses critical minerals, trade and investment flows to ask whether African countries can manufacture solar PV, and makes the case for a regionalised PV strategy.",
+  "endYear": 2024,
+  "period": "2024",
+  "partners": [
+    "Africa Policy Research Institute (APRI)"
+  ],
+  "sources": [
+    "https://afripoli.org/solar-photovoltaic-manufacturing-in-africa-opportunity-or-mirage",
+    "https://www.pv-magazine.com/2024/10/10/africa-needs-regional-strategy-for-pv-manufacturing/"
+  ]
 }

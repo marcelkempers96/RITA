@@ -1,11 +1,17 @@
 {
   "title": "Digital industrialisation of freshness",
   "outlet": "CCRED-IDTT Policy Brief 2022/09",
-  "date": "2022-01",
+  "date": "2022-09",
   "authors": [
+    "Chisoro-Dube",
     "Avenyo"
   ],
   "kind": "policy-brief",
   "programme": "INN",
-  "note": "Month to confirm; source gives the year only."
+  "outletUrl": "https://www.competition.org.za/s/IDTT5-PB9-Digital-Industrilisation-of-freshness_Final_06072022.pdf",
+  "summary": "A policy brief on how digital technologies are changing fresh-produce value chains in South Africa, part of the Industrial Development Think Tank’s series on climate change and green industrialisation.",
+  "sources": [
+    "https://www.competition.org.za/s/IDTT5-PB9-Digital-Industrilisation-of-freshness_Final_06072022.pdf",
+    "https://www.competition.org.za/idtt-year-5"
+  ]
 }

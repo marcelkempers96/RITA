@@ -3,8 +3,17 @@
   "outlet": "CCRED-IDTT Policy Brief",
   "date": "2021-07",
   "authors": [
-    "Avenyo"
+    "Avenyo",
+    "Bell",
+    "Nyamwena",
+    "Robb"
   ],
   "kind": "policy-brief",
-  "programme": "IND"
+  "programme": "IND",
+  "outletUrl": "https://www.competition.org.za/s/IDTT4_PB_Awakening_industrial_economic_recovery_in_South_Africa_202107.pdf",
+  "summary": "A policy brief from the Industrial Development Think Tank on reviving South Africa’s industrial economy after the COVID-19 shock.",
+  "sources": [
+    "https://www.competition.org.za/s/IDTT4_PB_Awakening_industrial_economic_recovery_in_South_Africa_202107.pdf",
+    "https://www.competition.org.za/idtt-year-4"
+  ]
 }

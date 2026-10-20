@@ -2,9 +2,39 @@
   "title": "Regional mineral value chains: why Africa must coordinate",
   "number": 1,
   "programme": "MIN",
-  "authors": [],
+  "authors": [
+    "Gideon Ndubuisi",
+    "Elvis Korku Avenyo",
+    "Solomon Owusu",
+    "Woubet Kassa"
+  ],
   "basedOn": [
     "regionalizing-green-transition-minerals-for-structural-transformation",
     "opeds:africas-mineral-strength-is-wasted-if-countries-dont-work-together"
-  ]
+  ],
+  "date": "2025-10",
+  "recommendations": [
+    {
+      "text": "Pool mineral supplies, infrastructure and skills across borders.",
+      "why": "Small national volumes make it hard for any one country to influence buyers or attract large processing plants; pooling lowers costs and strengthens negotiating power."
+    },
+    {
+      "text": "Make processing, technology transfer and worker training part of every mineral partnership.",
+      "why": "Partnerships with foreign governments and companies should go beyond extracting and exporting minerals."
+    },
+    {
+      "text": "Use the AfCFTA to build intra-African mineral value chains, backed by shared infrastructure and harmonised standards.",
+      "why": "No single country holds every input; regional coordination turns geology into value chains."
+    }
+  ],
+  "issue": "Africa has deposits, reserves or production of at least one transition mineral in 48 countries, yet it exports most of them raw. Limited local processing, weak industrialisation and heavy dependence on Asian buyers, especially China, mean the continent captures little of the value its minerals create.",
+  "evidence": "The World Bank–commissioned study maps 41 minerals used in bioenergy, electricity networks, batteries, energy storage, electric vehicles and carbon capture. South Africa alone holds 24 of them. Local refining raises value sharply: Congolese cobalt sells for about US$5.80 per kilogram at extraction and US$16.20 after local refining.\n\nThe study reviews national and regional mineral and industrial policies and finds them fragmented. It concludes that only deeper regional cooperation, shared infrastructure and coordinated policy can turn mineral wealth into broad-based prosperity.",
+  "pdf": "https://documents1.worldbank.org/curated/en/099620011192519026/pdf/IDU-959b6025-1de2-4caf-98be-9c8aa42577da.pdf",
+  "sources": [
+    "https://documents1.worldbank.org/curated/en/099620011192519026/pdf/IDU-959b6025-1de2-4caf-98be-9c8aa42577da.pdf",
+    "https://theconversation.com/africas-mineral-strength-is-wasted-if-countries-dont-work-together-new-report-290306",
+    "https://www.downtoearth.org.in/africa/africas-mineral-strength-is-wasted-if-countries-dont-work-together-new-report",
+    "https://www.moneyweb.co.za/news/africa/africas-mineral-strength-is-wasted-if-countries-dont-work-together-new-report/"
+  ],
+  "notes": "Recommendations drafted from findings (to review): 3. Date of the World Bank report is given by year only in sources (2025); month approximate. The Conversation piece: Sep 2026."
 }

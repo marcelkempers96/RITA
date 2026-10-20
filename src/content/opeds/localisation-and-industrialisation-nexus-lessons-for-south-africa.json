@@ -1,12 +1,17 @@
 {
   "title": "Localisation and industrialisation nexus: lessons for South Africa",
-  "outlet": "CCRED-IDTT Policy Brief 2023/01",
-  "date": "2023-01",
+  "outlet": "CCRED-IDTT Policy Brief 2023/1",
+  "date": "2023-03",
   "authors": [
-    "Avenyo"
+    "Nyamwena",
+    "Avenyo",
+    "Bosiu"
   ],
   "kind": "policy-brief",
   "programme": "IND",
   "outletUrl": "https://www.competition.org.za/s/IDTT-2022-2023-PB1_Localisation-and-Industrialisation-Nexus.pdf",
-  "note": "Month to confirm; source gives the year only."
+  "summary": "A policy brief on how localisation policy connects to industrialisation, and what South Africa can learn from it.",
+  "sources": [
+    "https://www.competition.org.za/s/IDTT-2022-2023-PB1_Localisation-and-Industrialisation-Nexus.pdf"
+  ]
 }

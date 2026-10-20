@@ -1,12 +1,16 @@
 {
-  "title": "Digital technology adoption and performance in South African manufacturing: early evidence",
-  "outlet": "AERC Policy Brief 2022/004",
-  "date": "2022-01",
+  "title": "Digital technology adoption and performance in South African manufacturing firms: early evidence for policy",
+  "outlet": "AERC Policy Brief",
+  "date": "2022-03",
   "authors": [
-    "Avenyo"
+    "Avenyo",
+    "Bell"
   ],
   "kind": "policy-brief",
   "programme": "INN",
-  "outletUrl": "http://publication.aercafricalibrary.org/handle/123456789/3404",
-  "note": "Month to confirm; source gives the year only."
+  "outletUrl": "https://publication.aercafricalibrary.org/handle/123456789/3404",
+  "summary": "South Africa is a technological follower, and the recovery of its manufacturing may depend on faster digital adoption. The brief shows that the effects of new technologies differ across firms and industries, so digital industrial policy must weigh firm-level factors.",
+  "sources": [
+    "https://publication.aercafricalibrary.org/handle/123456789/3404"
+  ]
 }

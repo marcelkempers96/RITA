@@ -11,5 +11,15 @@
   ],
   "programme": "IND",
   "summary": "Gender papers for the African Transformation Report 4.",
-  "preRita": true
+  "preRita": true,
+  "description": "Background research for ACET's fourth African Transformation Report, on gender equality and economic transformation. The paper uses panel data for 48 African countries from 1992 to 2019, with case studies of Ghana and South Africa, to show how structural change and the green transition affect gender employment gaps.",
+  "endYear": 2024,
+  "period": "2024",
+  "partners": [
+    "African Center for Economic Transformation (ACET)"
+  ],
+  "sources": [
+    "https://egc.yale.edu/sites/default/files/2024-10/ACET_Gendering_Structural_Change_and_Green_Transition_in_Africa.pdf",
+    "https://acetforafrica.org/research-and-analysis/insights-ideas/articles/call-for-authors-african-transformation-report-on-gender-equality-and-economic-transformation/"
+  ]
 }

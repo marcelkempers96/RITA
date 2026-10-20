@@ -3,12 +3,20 @@
   "outlet": "BU Global Development Policy Center",
   "date": "2024-07",
   "authors": [
-    "Ndubuisi",
+    "Owusu",
     "Tang",
-    "Owusu"
+    "Ndubuisi"
   ],
   "kind": "research-blog",
   "programme": "IND",
   "outletUrl": "https://www.bu.edu/gdp/2024/07/28/chinese-investment-in-africa-a-double-edged-sword-for-low-carbon-industrialization/",
-  "summary": "Chinese FDI raises emissions in resource-intensive sectors; reshape it, don't discourage it."
+  "summary": "Chinese greenfield manufacturing investment raised industrial carbon emissions in Africa, especially when it went into labour- and resource-intensive manufacturing; the same effect does not appear for OECD investment. The authors argue for reshaping Chinese FDI, not discouraging it.",
+  "keyPoints": [
+    "Chinese FDI raised industrial emissions in 34 African countries (2003–2014).",
+    "The effect is strongest in labour- and resource-intensive manufacturing.",
+    "No such increase is found for FDI from OECD countries."
+  ],
+  "sources": [
+    "https://www.bu.edu/gdp/2024/07/28/chinese-investment-in-africa-a-double-edged-sword-for-low-carbon-industrialization/"
+  ]
 }

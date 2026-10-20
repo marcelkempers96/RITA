@@ -1,6 +1,6 @@
 {
   "title": "Technological capability and industrialisation in Africa",
-  "outlet": "SARChI Industrial Development Policy Brief",
+  "outlet": "SARChI Industrial Development Policy Brief 2024-03",
   "date": "2024-03",
   "authors": [
     "Mensah",
@@ -9,5 +9,8 @@
   "kind": "policy-brief",
   "programme": "INN",
   "outletUrl": "https://www.uj.ac.za/wp-content/uploads/2021/10/sarchi-pb2024-03-mensah-ndubuisi-technological-capability.pdf",
-  "summary": "Capabilities spill over borders through intra-African trade."
+  "summary": "Little is known about how technological capability shapes industrialisation in Africa. The brief measures capability along four dimensions (preconditions, infrastructure, technology imports and technological effort) and shows that capabilities spill over borders through intra-African trade.",
+  "sources": [
+    "https://uj.ac.za/wp-content/uploads/2021/10/sarchi-pb2024-03-mensah-ndubuisi-technological-capability.pdf"
+  ]
 }

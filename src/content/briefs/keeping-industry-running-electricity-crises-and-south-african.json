@@ -2,9 +2,39 @@
   "title": "Keeping industry running: electricity crises and South African manufacturing",
   "number": 2,
   "programme": "EN",
-  "authors": [],
+  "authors": [
+    "Gideon Ndubuisi",
+    "Elvis Korku Avenyo",
+    "Rex Asiama"
+  ],
   "basedOn": [
     "jobs-investments-and-exporting-the-real-effects-of-electricity-crises",
     "dancing-on-the-grid-electricity-crises-manufacturing-energy"
-  ]
+  ],
+  "date": "2026",
+  "recommendations": [
+    {
+      "text": "Treat reliable electricity as productive infrastructure for industry, not only as a utility service.",
+      "why": "Outages destroyed jobs, lowered capital investment and disrupted exports of manufacturing firms."
+    },
+    {
+      "text": "Target support at the most energy-vulnerable manufacturing sub-sectors.",
+      "why": "Job losses were largest in sectors with higher energy vulnerability, in both formal and informal work."
+    },
+    {
+      "text": "Rebuild lost capabilities, not just lost power, in South Africa’s green transition.",
+      "why": "Restoring supply does not restore the skills, investment and export links that firms lost during the crises."
+    }
+  ],
+  "issue": "Since 2007, South Africa’s electricity crises have disrupted production across manufacturing. Repeated outages make it costlier to keep workers, delay investment and push firms into expensive backup power. Power has now returned, but the damage to industry remains.",
+  "evidence": "Using South Africa’s input–output matrices, the authors build an index of manufacturing sub-sector energy vulnerability. It shows large differences across sub-sectors. Electricity crises are linked to significant job losses, and the damage is greatest in the most energy-vulnerable sectors, for formal and informal jobs alike.\n\nFirm-level evidence shows the crises also lowered capital investment and upended export activity. Ownership structure, firm age, size and financial status shape how hard firms are hit.",
+  "pdf": "https://repository.tudelft.nl/file/File_2c5d23b2-81b6-465e-b966-0b0696134767",
+  "sources": [
+    "https://doi.org/10.1016/j.eneco.2026.109234",
+    "https://doi.org/10.1016/j.enpol.2025.114534",
+    "https://ideas.repec.org/p/unu/wpaper/wp-2024-41.html",
+    "https://sa-tied.wider.unu.edu/article/jobs-investments-and-exporting-the-real-effects-of-electricity-crises-in-south-africa",
+    "https://africanarguments.org/?p=48463"
+  ],
+  "notes": "Recommendations drafted from findings (to review): 1, 2, 3. The source papers state findings but no explicit recommendations; all three recommendations are drafted from the findings and the African Arguments commentary."
 }

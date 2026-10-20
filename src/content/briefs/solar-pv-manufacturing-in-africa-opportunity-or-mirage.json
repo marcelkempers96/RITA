@@ -2,8 +2,35 @@
   "title": "Solar PV manufacturing in Africa: opportunity or mirage?",
   "number": 3,
   "programme": "EN",
-  "authors": [],
+  "authors": [
+    "Gideon Ndubuisi",
+    "Elvis Korku Avenyo"
+  ],
   "basedOn": [
     "solar-photovoltaic-manufacturing-in-africa-opportunity-or-mirage"
-  ]
+  ],
+  "date": "2024-07",
+  "recommendations": [
+    {
+      "text": "Adopt a regionalised solar PV strategy for Africa.",
+      "why": "Without a coordinated approach, individual countries are unlikely to integrate into the global solar market."
+    },
+    {
+      "text": "Consolidate the continent’s minerals, technological capacities and investment into one integrated PV value chain across countries.",
+      "why": "Most countries lack the finance, technology and infrastructure to build a competitive sector alone."
+    },
+    {
+      "text": "Divide the chain by strength: mineral-rich countries such as the DRC and Zambia focus on extraction and processing, others on later stages.",
+      "why": "Each African country exports at least one key solar raw material, mostly unprocessed."
+    }
+  ],
+  "issue": "Africa holds key minerals for solar PV, such as copper, tin and silicon, but most countries on their own lack the finance, technological capabilities and infrastructure to build a competitive PV manufacturing sector. China dominates nearly every segment of the global chain.",
+  "evidence": "Analysing critical minerals, trade and investment flows, the paper finds only limited and scattered opportunities for local solar PV manufacturing within individual African countries. Diversifying into the global chain is hard given market concentration, high entry barriers and established players. The paper concludes that a regional strategy is the realistic route in.",
+  "pdf": "https://afripoli.org/view-pdf/26/solar-photovoltaic-manufacturing-in-africa-opportunity-or-mirage",
+  "sources": [
+    "https://afripoli.org/solar-photovoltaic-manufacturing-in-africa-opportunity-or-mirage",
+    "https://www.pv-magazine.com/2024/10/10/africa-needs-regional-strategy-for-pv-manufacturing/",
+    "https://www.greenbuildingafrica.co.za/regionalised-solar-pv-manufacturing-strategy-required-to-integrate-into-the-global-solar-value-chain/"
+  ],
+  "notes": ""
 }

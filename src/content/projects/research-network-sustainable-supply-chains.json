@@ -7,5 +7,20 @@
   ],
   "programme": "IND",
   "summary": "Co-founding the IDOS research network on sustainable global supply chains.",
-  "preRita": true
+  "preRita": true,
+  "description": "A research network on sustainable global supply chains, led by four German institutes with the network office at DIE (now IDOS) and funded by Germany's development ministry (BMZ). Gideon Ndubuisi helped set up the network and served in its secretariat. It was publicly launched in March 2021.",
+  "startYear": 2020,
+  "endYear": 2025,
+  "period": "2020–2025",
+  "partners": [
+    "German Development Institute (DIE/IDOS)",
+    "German Institute for International and Security Affairs (SWP)",
+    "GIGA",
+    "Kiel Institute for the World Economy (IfW)"
+  ],
+  "sources": [
+    "https://www.idos-research.de/en/research/description/details/research-network-sustainable-global-supply-chains/",
+    "https://www.giga-hamburg.de/en/events/23883088-launch-event-research-network-sustainable-global-supply-chains",
+    "https://idw-online.de/de/news764056"
+  ]
 }

@@ -12,5 +12,12 @@
   ],
   "programme": "MIN",
   "summary": "Four background papers on critical minerals for UNCTAD’s Economic Development in Africa Report 2023.",
-  "preRita": true
+  "preRita": true,
+  "description": "Four background papers for UNCTAD's Economic Development in Africa Report 2023 on critical minerals and routes to diversification: linkages and medium-high-tech supply chains, and case studies of renewable energy technologies in Morocco, batteries and mining equipment in South Africa, and mobile phone technologies in the DRC.",
+  "partners": [
+    "UNCTAD"
+  ],
+  "sources": [
+    "https://unctad.org/system/files/non-official-document/edar2023_BP1_en.pdf"
+  ]
 }

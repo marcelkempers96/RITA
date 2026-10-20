@@ -14,5 +14,14 @@
   ],
   "programme": "MIN",
   "summary": "World Bank report on regional value chains for Africa’s transition minerals.",
-  "preRita": true
+  "preRita": true,
+  "description": "A World Bank–commissioned study of Africa's green transition minerals. It maps deposits, reserves and production of 41 minerals across 48 countries, reviews national and regional mineral and industrial policies, and asks how countries can coordinate to build regional value chains instead of exporting raw.",
+  "partners": [
+    "World Bank, Office of the Chief Economist for the Africa Region"
+  ],
+  "sources": [
+    "https://documents.worldbank.org/en/publication/documents-reports/documentdetail/099620011192519026",
+    "https://documents1.worldbank.org/curated/en/099620011192519026/pdf/IDU-959b6025-1de2-4caf-98be-9c8aa42577da.pdf",
+    "https://theconversation.com/africas-mineral-strength-is-wasted-if-countries-dont-work-together-new-report-290306"
+  ]
 }

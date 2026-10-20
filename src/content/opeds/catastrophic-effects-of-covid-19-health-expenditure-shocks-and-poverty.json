@@ -1,10 +1,21 @@
 {
-  "title": "Catastrophic effects of COVID-19 health expenditure shocks and poverty in Ghana",
-  "outlet": "AERC Policy Brief",
+  "title": "Catastrophic effects of COVID-19 health expenditure shocks and multidimensional poverty in Ghana: what financing mechanisms mattered?",
+  "outlet": "AERC Policy Brief AHCV-PB-007",
   "date": "2023-11",
   "authors": [
-    "Avenyo"
+    "Ayanore",
+    "Avenyo",
+    "Osei"
   ],
   "kind": "policy-brief",
-  "outletUrl": "https://publication.aercafricalibrary.org/handle/123456789/3696"
+  "outletUrl": "https://publication.aercafricalibrary.org/handle/123456789/3696",
+  "summary": "More than half of Ghanaian households in the sample spent over 5% of their total expenditure on COVID-19-related health costs. Multidimensional poverty made these catastrophic payments worse, while insurance, remittances and government assistance softened the shock.",
+  "keyPoints": [
+    "52.2% of households spent more than 5% of total expenditure on COVID-19-related health costs.",
+    "Multidimensional poverty exacerbated catastrophic payments during the pandemic.",
+    "Insurance, remittances and government assistance mitigated the effects."
+  ],
+  "sources": [
+    "https://publication.aercafricalibrary.org/handle/123456789/3696"
+  ]
 }

@@ -3,10 +3,10 @@
   "projectStatus": "ongoing",
   "funder": "SCIS, Wits School of Geosciences, Wits Mining Institute, SARChI Industrial Development",
   "partners": [
+    "Southern Centre for Inequality Studies (SCIS), Wits",
     "Wits School of Geosciences",
     "Wits Mining Institute",
-    "SCIS",
-    "SARChI Industrial Development"
+    "SARChI Industrial Development, University of Johannesburg"
   ],
   "team": [
     "elvis-korku-avenyo"
@@ -14,5 +14,8 @@
   "programme": "MIN",
   "preRita": false,
   "summary": "Research on how Africa’s critical minerals can drive structural transformation.",
-  "photo": "Mine site"
+  "photo": "Mine site",
+  "sources": [
+    "docs/brief/CONTENT-SOURCES.md §9"
+  ]
 }

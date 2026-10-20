@@ -2,8 +2,35 @@
   "title": "No chips, no power: Africa and the semiconductor value chain",
   "number": 5,
   "programme": "INN",
-  "authors": [],
+  "authors": [
+    "Gideon Ndubuisi"
+  ],
   "basedOn": [
     "opeds:no-chips-no-power-why-africa-must-enter-the-global-semiconductor-value"
-  ]
+  ],
+  "date": "2026-02",
+  "recommendations": [
+    {
+      "text": "Enter the semiconductor value chain through feasible segments: chip design, assembly, testing and packaging, and power electronics.",
+      "why": "Fabrication needs capital, infrastructure and reliable energy that Africa lacks today; these segments need far less."
+    },
+    {
+      "text": "Enter collectively, using the AfCFTA.",
+      "why": "No single African market is large enough on its own."
+    },
+    {
+      "text": "Link Africa’s critical minerals to chip-related production rather than exporting them raw.",
+      "why": "Africa holds a large share of the minerals used in chips but contributes less than 1% of global semiconductor output."
+    }
+  ],
+  "issue": "Chips run everything from cars to clinics to the power grid. Africa supplies many of the critical minerals used to make them, but accounts for less than 1% of global semiconductor output.",
+  "evidence": "Fabrication is highly capital-intensive and needs advanced infrastructure, industrial water and reliable power. Chip design does not require a fabrication plant, and assembly, testing and packaging need much lower investment. Countries such as Morocco, Nigeria, Kenya and Rwanda are already moving into these segments.",
+  "pdf": "https://www.gdadvisory.org/_files/ugd/aeda26_794d17f3e3c44834ae6d49940b25e8c4.pdf",
+  "sources": [
+    "https://www.gdadvisory.org/_files/ugd/aeda26_794d17f3e3c44834ae6d49940b25e8c4.pdf",
+    "https://aasciences.africa/news/africa-semiconductor-forum-sets-path-from-minerals-to-microchips",
+    "https://www.weforum.org/stories/supply-chains-and-transportation/african-nations-hubs-global-semiconductor-supply-chain/",
+    "https://www.ecofinagency.com/news-industry/0609-58657-semiconductors-mapping-africa-s-capabilities-across-the-value-chain"
+  ],
+  "notes": "Recommendations drafted from findings (to review): 3. The GDA brief's full text was not retrievable; recommendations 1–2 follow the brief's summary on Gideon's site (CONTENT-SOURCES); recommendation 3 and the issue/evidence use context from other sources and should be checked against the brief."
 }

@@ -123,6 +123,8 @@ const opeds = defineCollection({
     summary: z.string().optional(),
     image: z.string().optional(),
     note: z.string().optional(),
+    keyPoints: z.array(z.string()).default([]),
+    sources: z.array(z.string()).default([]),
   }),
 });
 
@@ -139,6 +141,8 @@ const briefs = defineCollection({
     evidence: z.string().optional(),
     pdf: z.string().optional(),
     basedOn: z.array(z.string()).default([]), // publication / op-ed ids
+    sources: z.array(z.string()).default([]),
+    notes: z.string().optional(), // internal: what still needs author review
   }),
 });
 
@@ -160,6 +164,7 @@ const projects = defineCollection({
     ritaRole: z.string().optional(),
     outputs: z.array(z.string()).default([]),
     preRita: z.boolean().default(true),
+    sources: z.array(z.string()).default([]),
     budget: z.string().optional(),
     photo: z.string().optional(),
   }),

@@ -10,5 +10,15 @@
   ],
   "programme": "INN",
   "summary": "How digital technology adoption affects South African manufacturers.",
-  "preRita": true
+  "preRita": true,
+  "description": "An AERC-funded study of how disruptive digital technologies affect the performance of South African manufacturing firms, using firm-level survey data.",
+  "endYear": 2022,
+  "period": "2022",
+  "partners": [
+    "African Economic Research Consortium (AERC)"
+  ],
+  "sources": [
+    "http://publication.aercafricalibrary.org/handle/123456789/3444",
+    "https://ideas.repec.org/e/pav90.html"
+  ]
 }

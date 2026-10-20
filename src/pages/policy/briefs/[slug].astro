@@ -41,8 +41,10 @@ const authors = b.authors.length ? b.authors : ['RITA'];
       </p>
       <div class="row mt-32">
         {b.pdf
-          ? <a class="btn" href={b.pdf} data-track="pdf-download" data-track-label={brief.id}>Download PDF · 4 pages</a>
-          : <span class="btn" aria-disabled="true">Download PDF <span class="tbc">TBC</span></span>}
+          ? (/^https?:/.test(b.pdf)
+            ? <a class="btn" href={b.pdf} target="_blank" rel="noopener" data-track="pdf-download" data-track-label={brief.id}>Read the full research ↗<span class="sr-only"> (opens in a new tab)</span></a>
+            : <a class="btn" href={b.pdf} download data-track="pdf-download" data-track-label={brief.id}>Download PDF · 4 pages</a>)
+          : null}
         {firstResearch && (
           <a class="btn btn-secondary" href={firstResearch.href} {...(firstResearch.external ? { target: '_blank', rel: 'noopener' } : {})}>Underlying research{firstResearch.external ? ' ↗' : ' →'}</a>
         )}

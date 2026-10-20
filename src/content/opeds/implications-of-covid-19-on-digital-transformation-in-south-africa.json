@@ -1,11 +1,18 @@
 {
   "title": "Implications of COVID-19 on digital transformation in South Africa",
-  "outlet": "CCRED-IDTT Policy Brief 2022/07",
-  "date": "2022-01",
+  "outlet": "CCRED-IDTT Policy Brief 2022/08",
+  "date": "2022-07",
   "authors": [
-    "Avenyo"
+    "Avenyo",
+    "Bell",
+    "Nyamwena"
   ],
   "kind": "policy-brief",
   "programme": "INN",
-  "note": "Month to confirm; source gives the year only."
+  "outletUrl": "https://www.competition.org.za/s/IDTT5-PB8-Implications-of-COVID-19-on-digital-transformation-in-South-Africa.pdf",
+  "summary": "Drawing on a survey of 516 South African manufacturing firms, the brief shows how COVID-19 interacted with the shift to digital technologies. Uneven digital uptake weakens the resilience of the firms and industries most exposed to shocks.",
+  "sources": [
+    "https://www.competition.org.za/s/IDTT5-PB8-Implications-of-COVID-19-on-digital-transformation-in-South-Africa.pdf",
+    "https://www.uj.ac.za/wp-content/uploads/2021/10/sarchi-id-pb-2023-04-avenyo-e-k--bell-j-f--nyamwena-j--march-2023.pdf"
+  ]
 }

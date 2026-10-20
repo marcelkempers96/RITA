@@ -12,5 +12,18 @@
   ],
   "programme": "IND",
   "summary": "What drives growth accelerations in the services sector of developing countries.",
-  "preRita": true
+  "preRita": true,
+  "description": "Research within the UNU-WIDER Economic Transformation Database (ETD) project. Using ETD data for 50 developing countries from 1990 to 2018, it asks what drives growth accelerations in market and non-market services, and how this differs across regions.",
+  "startYear": 2023,
+  "endYear": 2023,
+  "period": "2023",
+  "partners": [
+    "UNU-WIDER",
+    "Groningen Growth and Development Centre (GGDC)"
+  ],
+  "sources": [
+    "https://wider.unu.edu/publication/drivers-services-sector-growth-acceleration-developing-countries",
+    "https://www.wider.unu.edu/sites/default/files/Publications/Working-paper/PDF/wp2023-87-drivers-services-sector-growth-acceleration-developing-countries.pdf",
+    "https://unu.edu/projects/economic-transformation-database-etd.html"
+  ]
 }

@@ -14,5 +14,13 @@
   ],
   "programme": "IND",
   "summary": "Background report for chapter 5 of UNIDO’s Industrial Development Report 2026.",
-  "preRita": true
+  "preRita": true,
+  "description": "A background report for chapter 5 of UNIDO's Industrial Development Report 2026, on the future of industrialisation in sub-Saharan Africa: its bottlenecks and sectoral opportunities.",
+  "partners": [
+    "UNIDO"
+  ],
+  "sources": [
+    "https://www.unido.org/idr/idr2026",
+    "docs/brief/CONTENT-SOURCES.md §6"
+  ]
 }

@@ -11,5 +11,17 @@
   ],
   "programme": "INN",
   "summary": "Firm-level evidence from South African tax data on exporters and value chains.",
-  "preRita": true
+  "preRita": true,
+  "description": "Research within UNU-WIDER's SA-TIED programme using firm-level tax data from the South African Revenue Service and National Treasury to study exporters and their participation in global value chains.",
+  "endYear": 2020,
+  "period": "2020",
+  "partners": [
+    "UNU-WIDER",
+    "SA-TIED",
+    "National Treasury",
+    "South African Revenue Service"
+  ],
+  "sources": [
+    "docs/brief/CONTENT-SOURCES.md §7, §9 (WIDER WP 2020/145)"
+  ]
 }
