@@ -109,10 +109,13 @@ export function validateForm(form: HTMLFormElement, scope: ParentNode = form): b
   return errors.length === 0;
 }
 
+let uid = 0;
 function enhance(form: HTMLFormElement) {
   if (form.dataset.enhanced) return;
   form.dataset.enhanced = '1';
   const name = form.dataset.form!;
+  // Every field needs a unique id for error messages and summary links (several forms can share a page).
+  for (const f of fieldsOf(form)) if (!f.id) f.id = `f${++uid}-${f.name}`;
 
   // Prefill from the query string (?email=… from the no-JS newsletter band, ?type=… on Contact).
   const params = new URLSearchParams(location.search);
@@ -141,6 +144,11 @@ function enhance(form: HTMLFormElement) {
     if (!f.name || f.type === 'submit') return;
     // Only validate on blur once the user has typed something, or after a failed submit.
     if (f.value || form.dataset.submitted || f.getAttribute('aria-invalid')) showFieldError(f, validateField(f));
+  });
+  // Clear an error as soon as the input becomes valid, so the layout doesn't shift on blur mid-click.
+  form.addEventListener('input', (e) => {
+    const f = e.target as Field;
+    if (f.getAttribute('aria-invalid') && !validateField(f)) showFieldError(f, null);
   });
   form.addEventListener('change', (e) => {
     const f = e.target as Field;

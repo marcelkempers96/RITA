@@ -32,7 +32,9 @@ export function openOverlay(name: string, trigger?: HTMLElement | null) {
   openEl = el;
   document.body.style.overflow = 'hidden';
   document.querySelectorAll(`[aria-controls="${el.id}"]`).forEach((b) => b.setAttribute('aria-expanded', 'true'));
-  const first = el.querySelector<HTMLElement>('[autofocus], input:not([type="hidden"]):not([tabindex="-1"]), ' + FOCUSABLE);
+  const first = el.querySelector<HTMLElement>('[autofocus]')
+    ?? el.querySelector<HTMLElement>('input:not([type="hidden"]):not([tabindex="-1"]):not([disabled])')
+    ?? el.querySelector<HTMLElement>(FOCUSABLE);
   first?.focus();
   return true;
 }
