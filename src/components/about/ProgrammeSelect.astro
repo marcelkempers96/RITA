@@ -1,0 +1,10 @@
+---
+import { PROGRAMMES, CODES } from '../../lib/content';
+interface Props { id: string; name?: string; required?: boolean }
+const { id, name = 'programme', required = false } = Astro.props;
+---
+<select id={id} name={name} class="select" required={required} data-label="programme of interest">
+  <option value="">Choose a programme</option>
+  {CODES.map((c) => <option value={c}>{PROGRAMMES[c].number} {PROGRAMMES[c].name}</option>)}
+  <option value="not-sure">Not sure yet</option>
+</select>

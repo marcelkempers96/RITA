@@ -1,0 +1,25 @@
+---
+// Press kit / document tile. Without a file it renders as unavailable with a TBC marker.
+interface Props { format: string; title: string; desc: string; href?: string; onPaper?: boolean }
+const { format, title, desc, href, onPaper = false } = Astro.props;
+---
+{href ? (
+  <a class:list={['dl', { white: onPaper }]} href={href} download data-track="download" data-track-label={title}>
+    <span class="label"><span class="sq" aria-hidden="true"></span>{format}</span>
+    <span class="dl-title">{title}</span>
+    <span class="mute small">{desc}</span>
+  </a>
+) : (
+  <div class:list={['dl', { white: onPaper }]}>
+    <span class="label"><span class="sq" aria-hidden="true"></span>{format}</span>
+    <span class="dl-title">{title}</span>
+    <span class="mute small">{desc}</span>
+    <span><span class="tbc">Coming soon · TBC</span></span>
+  </div>
+)}
+<style>
+  .dl { display: flex; flex-direction: column; gap: 10px; padding: 24px; background: var(--paper); text-decoration: none; color: inherit; height: 100%; }
+  .white { background: var(--white); border: 1px solid var(--line); }
+  a.dl:hover .dl-title { color: var(--laterite); }
+  .dl-title { font-size: 20px; font-weight: 600; }
+</style>

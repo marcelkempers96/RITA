@@ -1,0 +1,88 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import Tbc from '../components/Tbc.astro';
+import { INBOX, SITE } from '../lib/site';
+
+// Enquiry type routes to the matching inbox on the back-end (CONTACT_ROUTES in src/lib/api/forms.ts).
+// ?type= preselects the option (forms.ts prefills fields by name).
+const types = [
+  ['general', 'General'], ['media', 'Media'], ['policy', 'Policy & advisory'],
+  ['partnerships', 'Partnerships & funding'], ['fellowship', 'Fellowship'], ['website', 'Website'],
+];
+const endpoint = import.meta.env.PUBLIC_FORMS_ENDPOINT;
+const action = endpoint ? `${endpoint}/contact` : '#';
+const social = [['LinkedIn', SITE.social.linkedin], ['X', SITE.social.x], ['YouTube', SITE.social.youtube]] as const;
+---
+<Base title="Contact" description="Contact RITA. We reply within 3 working days.">
+  <span hidden data-pagefind-filter="type">Pages</span>
+  <PageHead title="Contact" lead="We reply within 3 working days." crumbs={[['Contact']]} />
+
+  <section class="section ruled">
+    <div class="wrap with-aside">
+      <form class="form" action={action} method="post" novalidate data-form="contact"
+        data-success-title="Message sent."
+        data-success-text="We reply within 3 working days. A copy is in your inbox.">
+        <div data-error-summary hidden></div>
+        <div class="grid g2">
+          <div class="field">
+            <label for="c-name">Full name<span class="req">*</span></label>
+            <input id="c-name" name="name" class="input" type="text" autocomplete="name" required data-label="full name" />
+          </div>
+          <div class="field">
+            <label for="c-email">Email<span class="req">*</span></label>
+            <input id="c-email" name="email" class="input" type="email" inputmode="email" autocomplete="email" placeholder="name@organisation.org" required data-label="email address" />
+          </div>
+          <div class="field">
+            <label for="c-org">Organisation</label>
+            <input id="c-org" name="organisation" class="input" type="text" autocomplete="organization" placeholder="Optional" />
+          </div>
+          <div class="field">
+            <label for="c-type">Enquiry type<span class="req">*</span></label>
+            <select id="c-type" name="type" class="select" required data-label="enquiry type" data-message="Select an enquiry type">
+              <option value="">Choose one</option>
+              {types.map(([v, l]) => <option value={v}>{l}</option>)}
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="c-subject">Subject<span class="req">*</span></label>
+          <input id="c-subject" name="subject" class="input" type="text" required data-label="subject" />
+        </div>
+        <div class="field">
+          <label for="c-message">Message<span class="req">*</span></label>
+          <p class="hint" id="c-message-hint">Between 20 and 2,000 characters.</p>
+          <textarea id="c-message" name="message" class="textarea" required minlength="20" data-maxlength="2000" placeholder="How can we help?" aria-describedby="c-message-hint" data-label="message"></textarea>
+        </div>
+        <div class="hp" aria-hidden="true"><label>Leave this empty <input type="text" name="website" tabindex="-1" autocomplete="off" /></label></div>
+        <div class="field">
+          <label class="check"><input id="c-consent" type="checkbox" name="consent" required data-message="Tick the box to continue" /> <span>I agree to RITA processing my data to respond. <a href="/privacy">Privacy policy</a>.<span class="req">*</span></span></label>
+        </div>
+        <div><button class="btn" type="submit">Send message</button></div>
+      </form>
+
+      <aside class="direct" aria-labelledby="direct-title">
+        <h2 id="direct-title" class="sr-only">Direct contacts</h2>
+        <dl>
+          <div><dt class="label mute">General</dt><dd><a href={`mailto:${INBOX.general}`}>{INBOX.general}</a></dd></div>
+          <div><dt class="label mute">Media</dt><dd><a href={`mailto:${INBOX.media}`}>{INBOX.media}</a></dd></div>
+          <div><dt class="label mute">Policy &amp; advisory</dt><dd><a href={`mailto:${INBOX.policy}`}>{INBOX.policy}</a></dd></div>
+          <div><dt class="label mute">Bases</dt><dd>{SITE.bases.join(' · ')}</dd></div>
+          <div><dt class="label mute">Follow</dt><dd>
+            {social.map(([l, h], i) => <>{i > 0 && ' · '}{h ? <a href={h} rel="me noopener">{l}</a> : <span>{l}</span>}</>)}
+            {social.every(([, h]) => !h) && <> <Tbc label="Handles TBC" /></>}
+          </dd></div>
+        </dl>
+        <p class="mt-24"><Tbc label="Domain TBC" /></p>
+      </aside>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .direct { background: var(--paper); padding: 32px; }
+  .direct dl { margin: 0; display: grid; gap: 22px; }
+  .direct dd { margin: 6px 0 0; font-size: 17px; }
+  .direct a { text-decoration: none; }
+  .direct a:hover { text-decoration: underline; }
+</style>

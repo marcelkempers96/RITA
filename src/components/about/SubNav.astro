@@ -1,0 +1,10 @@
+---
+// About sub-navigation (About, Partners, Opportunities, Media, Contact). Links, not in-page tabs.
+const items = [['/about', 'About'], ['/about/partners', 'Partners & funders'], ['/about/opportunities', 'Opportunities'], ['/about/media', 'Media'], ['/contact', 'Contact']];
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+<nav class="wrap" aria-label="About RITA">
+  <div class="tabs">
+    {items.map(([href, label]) => <a href={href} aria-current={path === href ? 'page' : undefined}>{label}</a>)}
+  </div>
+</nav>

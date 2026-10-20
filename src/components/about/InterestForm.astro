@@ -1,0 +1,59 @@
+---
+// Register-interest form (README Forms table): used on /about/opportunities (interest) and /fellows/fellowship (fellowship).
+// CV files are stored privately by the back-end and deleted after 12 months.
+import CountrySelect from './CountrySelect.astro';
+import ProgrammeSelect from './ProgrammeSelect.astro';
+interface Props { name: 'interest' | 'fellowship'; prefix: string; submitLabel?: string }
+const { name, prefix: p, submitLabel = 'Register interest' } = Astro.props;
+const endpoint = import.meta.env.PUBLIC_FORMS_ENDPOINT;
+const action = endpoint ? `${endpoint}/${name}` : '#';
+---
+<form class="form" action={action} method="post" enctype="multipart/form-data" novalidate data-form={name}
+  data-success-title="Thanks, we have your details."
+  data-success-text="We’ll contact you when the next call opens. A copy is in your inbox.">
+  <div data-error-summary hidden></div>
+  <div class="grid g2">
+    <div class="field">
+      <label for={`${p}-name`}>Full name<span class="req">*</span></label>
+      <input id={`${p}-name`} name="name" class="input" type="text" autocomplete="name" required data-label="full name" />
+    </div>
+    <div class="field">
+      <label for={`${p}-email`}>Email<span class="req">*</span></label>
+      <input id={`${p}-email`} name="email" class="input" type="email" inputmode="email" autocomplete="email" required data-label="email address" />
+    </div>
+    <div class="field">
+      <label for={`${p}-country`}>Country<span class="req">*</span></label>
+      <CountrySelect id={`${p}-country`} required />
+    </div>
+    <div class="field">
+      <label for={`${p}-programme`}>Programme of interest<span class="req">*</span></label>
+      <ProgrammeSelect id={`${p}-programme`} required />
+    </div>
+    <div class="field">
+      <label for={`${p}-stage`}>Career stage</label>
+      <select id={`${p}-stage`} name="careerStage" class="select">
+        <option value="">Choose one</option>
+        <option>PhD candidate</option>
+        <option>Within 5 years of PhD</option>
+        <option>5–10 years after PhD</option>
+        <option>More than 10 years after PhD</option>
+        <option>Policy practitioner</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for={`${p}-cv`}>CV (PDF, max 5MB)</label>
+      <input id={`${p}-cv`} name="cv" class="input" type="file" accept="application/pdf,.pdf" data-pdf data-max-mb="5" data-label="CV" />
+    </div>
+  </div>
+  <div class="field">
+    <label for={`${p}-note`}>Short note</label>
+    <p class="hint" id={`${p}-note-hint`}>Up to 500 characters.</p>
+    <textarea id={`${p}-note`} name="note" class="textarea" data-maxlength="500" aria-describedby={`${p}-note-hint`} data-label="short note"></textarea>
+  </div>
+  <div class="hp" aria-hidden="true"><label>Leave this empty <input type="text" name="website" tabindex="-1" autocomplete="off" /></label></div>
+  <div class="field">
+    <label class="check"><input id={`${p}-consent`} type="checkbox" name="consent" required data-message="Tick the box to continue" /> <span>I agree to RITA storing my details and CV to contact me about opportunities. Files are deleted after 12 months. <a href="/privacy">Privacy policy</a>.<span class="req">*</span></span></label>
+  </div>
+  <div><button class="btn" type="submit">{submitLabel}</button></div>
+</form>

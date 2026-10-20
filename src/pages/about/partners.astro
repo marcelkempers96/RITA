@@ -1,0 +1,52 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHead from '../../components/PageHead.astro';
+import LogoWall from '../../components/LogoWall.astro';
+import Tbc from '../../components/Tbc.astro';
+import SubNav from '../../components/about/SubNav.astro';
+import DownloadTile from '../../components/about/DownloadTile.astro';
+import { load } from '../../lib/content';
+
+const d = await load();
+const funders = d.partners.filter((p) => p.data.kind === 'funder' || p.data.kind === 'commissioner');
+const academic = d.partners.filter((p) => p.data.kind === 'academic');
+---
+<Base title="Partners & funders" description="Who supports RITA’s work, and how we protect our independence.">
+  <span hidden data-pagefind-filter="type">Pages</span>
+  <PageHead title="Partners & funders" lead="Who supports RITA’s work, and how we protect our independence." crumbs={[['About', '/about'], ['Partners & funders']]} />
+  <SubNav />
+
+  <section class="section">
+    <div class="wrap">
+      <h2 class="label mute mb-24">Our team’s work has been commissioned or funded by</h2>
+      <LogoWall partners={funders} showRelationship />
+      <p class="small mute mt-24">Includes work by RITA’s team before RITA was established. Logos appear only with each organisation’s written permission.</p>
+    </div>
+  </section>
+
+  <section class="section ruled">
+    <div class="wrap">
+      <h2 class="label mute mb-24">Academic partners</h2>
+      <LogoWall partners={academic} showRelationship />
+    </div>
+  </section>
+
+  <section class="section bg-paper">
+    <div class="wrap with-aside">
+      <div>
+        <h2 class="h2">Our independence</h2>
+        <p class="body mt-24">RITA decides its research questions, methods and conclusions. Funders do not review findings before publication. We disclose every funder of every project, and authors declare conflicts of interest.</p>
+        <p class="mt-16"><Tbc label="Legal review" /></p>
+        <h2 class="h3 mt-48">How we are funded</h2>
+        <div class="mt-16"><Tbc block label="Annual breakdown TBC">Not yet published.</Tbc></div>
+      </div>
+      <aside aria-labelledby="dl-title">
+        <h2 id="dl-title" class="label mute mb-16">Downloads</h2>
+        <ul class="nolist grid">
+          <li><DownloadTile format="PDF" title="Funding policy" desc="Policy document" onPaper /></li>
+          <li><DownloadTile format="PDF" title="Annual report" desc="Yearly report" onPaper /></li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+</Base>

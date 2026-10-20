@@ -1,0 +1,74 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHead from '../../components/PageHead.astro';
+import ListRow from '../../components/ListRow.astro';
+import SubNav from '../../components/about/SubNav.astro';
+import DownloadTile from '../../components/about/DownloadTile.astro';
+import { load, url, TYPE_LABEL, monthYear } from '../../lib/content';
+import { INBOX } from '../../lib/site';
+
+const d = await load();
+// "In the news": the op-eds and research blogs (WEBSITE-CONTENT §31 → §09).
+const news = d.opeds.filter((o) => o.data.kind !== 'policy-brief');
+const experts = d.people.filter((p) => p.data.expertise.length);
+---
+<Base title="Media" description="Press enquiries, RITA in the news, press kit and experts for comment.">
+  <span hidden data-pagefind-filter="type">Pages</span>
+  <PageHead title="Media" crumbs={[['About', '/about'], ['Media']]}>
+    <p class="lead">Press enquiries: <a href={`mailto:${INBOX.media}`}>{INBOX.media}</a></p>
+  </PageHead>
+  <SubNav />
+
+  <section class="section">
+    <div class="wrap">
+      <h2 class="h2 mb-32">In the news</h2>
+      <div class="list">
+        {news.map((o) => (
+          <ListRow href={o.data.outletUrl ?? '/insights/op-eds'} external={Boolean(o.data.outletUrl)} type={TYPE_LABEL[o.data.kind]}
+            code={o.data.programme} title={o.data.title} meta={o.data.outlet} year={monthYear(o.data.date)} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section ruled">
+    <div class="wrap">
+      <h2 class="h2 mb-32">Press kit</h2>
+      <ul class="grid g4 nolist">
+        <li><DownloadTile format="ZIP" title="Logo pack" desc="SVG + PNG" /></li>
+        <li><DownloadTile format="PDF" title="Brand guide" desc="Logo, colours, type" /></li>
+        <li><DownloadTile format="ZIP" title="Bios & portraits" desc="High-res" /></li>
+        <li><DownloadTile format="PDF" title="Fact sheet" desc="One page" /></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section ruled">
+    <div class="wrap">
+      <h2 class="h2 mb-32">Experts for comment</h2>
+      <ul class="nolist experts">
+        {experts.map((p) => (
+          <li class="expert">
+            <div>
+              <a class="person-name" href={url.person(p.id)}>{p.data.name}</a>
+              <p class="label mute mt-8">{p.data.role}<span class="sep">·</span>{p.data.base}</p>
+            </div>
+            <ul class="nolist chips">{p.data.expertise.map((e) => <li class="chip static">{e}</li>)}</ul>
+            <a class="link-arrow" href="/contact?type=media">Request comment →</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .lead a { color: inherit; }
+  .experts { border-bottom: 1px solid var(--line); }
+  .expert { display: grid; grid-template-columns: 280px 1fr auto; gap: 24px; align-items: center; padding: 24px 0; border-top: 1px solid var(--line); }
+  .expert .person-name { text-decoration: none; }
+  .expert .person-name:hover { color: var(--laterite); }
+  .chip.static { cursor: default; }
+  .chip.static:hover { border-color: var(--line); }
+  @media (max-width: 899px) { .expert { grid-template-columns: 1fr; gap: 12px; } }
+</style>

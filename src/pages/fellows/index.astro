@@ -1,0 +1,104 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHead from '../../components/PageHead.astro';
+import PersonCard from '../../components/PersonCard.astro';
+import Photo from '../../components/Photo.astro';
+import Tbc from '../../components/Tbc.astro';
+import { load } from '../../lib/content';
+
+const d = await load();
+// Only people who have given consent are listed (load() filters on consentToList).
+const groups = [
+  { key: 'leads', group: 'lead', title: 'Programme leads' },
+  { key: 'fellows', group: 'fellow', title: 'Fellows' },
+  { key: 'associates', group: 'associate', title: 'Associates' },
+  { key: 'alumni', group: 'alumni', title: 'Alumni' },
+].map((g) => ({ ...g, people: d.people.filter((p) => p.data.group === g.group) }));
+const leads = groups[0].people;
+---
+<Base title="Fellows & people" description="Researchers working with RITA across the continent and beyond.">
+  <span hidden data-pagefind-filter="type">Pages</span>
+  <PageHead title="Fellows & people" lead="Researchers working with RITA across the continent and beyond." crumbs={[['Fellows']]} />
+
+  <nav class="ruled" aria-label="Filter people by group">
+    <div class="wrap">
+      <div class="tabs" data-group-tabs>
+        <a href="/fellows" aria-current="page" data-group="all">All</a>
+        {groups.map((g) => <a href={`/fellows?group=${g.key}`} data-group={g.key}>{g.title}</a>)}
+      </div>
+    </div>
+  </nav>
+
+  <section class="section" data-group-section="leads" aria-labelledby="g-leads">
+    <div class="wrap">
+      <h2 id="g-leads" class="h2 mb-32">Programme leads</h2>
+      <ul class="grid g2 nolist">
+        {leads.map((p) => (
+          <li>
+            <a class:list={['person lead', `c-${p.data.programmes[0] ?? 'INN'}`]} href={`/fellows/${p.id}`}>
+              <Photo shot={p.data.name} kind="Portrait" ratio="4 / 5" src={p.data.portrait} alt={`Portrait of ${p.data.name}`} />
+              <span class="label mute">{p.data.role}<span class="sep">·</span>{p.data.base}</span>
+              <h3 class="person-name">{p.data.name}</h3>
+              <span class="mute small">{p.data.focus}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  {groups.slice(1).map((g) => (
+    <section class="section ruled" data-group-section={g.key} aria-labelledby={`g-${g.key}`}>
+      <div class="wrap">
+        <h2 id={`g-${g.key}`} class="h2 mb-32">{g.title}</h2>
+        {g.people.length ? (
+          <ul class="grid g4 nolist">{g.people.map((p) => <li><PersonCard person={p} /></li>)}</ul>
+        ) : (
+          <>
+            <p class="mute">No one listed yet. <Tbc label={`${g.title} TBC`} /></p>
+            {g.key === 'fellows' && (
+              <ul class="grid g4 nolist mt-32" aria-hidden="true">
+                {Array.from({ length: 4 }).map(() => <li><PersonCard placeholder="Fellow" /></li>)}
+              </ul>
+            )}
+          </>
+        )}
+      </div>
+    </section>
+  ))}
+
+  <section class="section bg-ink">
+    <div class="wrap between">
+      <div>
+        <h2 class="h2">RITA Fellowship.</h2>
+        <p class="sub">Register interest for the first cohort.</p>
+      </div>
+      <a class="btn" href="/fellows/fellowship">Learn more →</a>
+    </div>
+  </section>
+</Base>
+
+<script>
+  // Progressive enhancement: ?group= shows one group. Without JS every group is listed.
+  const tabs = document.querySelectorAll<HTMLAnchorElement>('[data-group-tabs] a');
+  const sections = document.querySelectorAll<HTMLElement>('[data-group-section]');
+  function apply(group: string) {
+    tabs.forEach((t) => (t.dataset.group === group ? t.setAttribute('aria-current', 'page') : t.removeAttribute('aria-current')));
+    sections.forEach((s) => (s.hidden = group !== 'all' && s.dataset.groupSection !== group));
+  }
+  const valid = ['leads', 'fellows', 'associates', 'alumni'];
+  const initial = new URLSearchParams(location.search).get('group') ?? 'all';
+  apply(valid.includes(initial) ? initial : 'all');
+  tabs.forEach((t) => t.addEventListener('click', (e) => {
+    e.preventDefault();
+    const g = t.dataset.group!;
+    history.replaceState(null, '', g === 'all' ? '/fellows' : `/fellows?group=${g}`);
+    apply(g);
+  }));
+</script>
+
+<style>
+  .lead .person-name { font-size: 24px; }
+  .sub { color: var(--on-dark-mute); font-size: 18px; margin-top: 8px; }
+  .bg-ink .between { align-items: center; }
+</style>

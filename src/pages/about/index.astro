@@ -1,0 +1,122 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHead from '../../components/PageHead.astro';
+import Photo from '../../components/Photo.astro';
+import PersonCard from '../../components/PersonCard.astro';
+import LogoWall from '../../components/LogoWall.astro';
+import Tbc from '../../components/Tbc.astro';
+import SubNav from '../../components/about/SubNav.astro';
+import { load } from '../../lib/content';
+
+const d = await load();
+const leads = d.people.filter((p) => p.data.group === 'lead');
+const fellows = d.people.filter((p) => p.data.group === 'fellow').slice(0, 2);
+const academic = d.partners.filter((p) => p.data.kind === 'academic').slice(0, 4);
+const funders = d.partners.filter((p) => p.data.trackRecord).slice(0, 2);
+const approach = [
+  ['Research.', 'Firm-level evidence and rigorous methods.', 'IND'],
+  ['Policy.', 'Weekly insights and commissioned advice.', 'MIN'],
+  ['Transformation.', 'Jobs, capabilities and structural change.', 'EN'],
+];
+const values = ['Evidence first', 'Africa-led', 'Independent', 'Open (publish openly wherever rights allow)', 'Useful'];
+---
+<Base title="About" description="Africa-led research on how the continent can industrialise through the green transition.">
+  <span hidden data-pagefind-filter="type">Pages</span>
+  <PageHead
+    title="Africa-led research on how the continent can industrialise through the green transition"
+    lead="RITA brings rigorous economics to the decisions shaping Africa’s minerals, energy and industry."
+    crumbs={[['About']]}
+  />
+  <SubNav />
+
+  <section class="section">
+    <div class="wrap">
+      <Photo shot="Team / fieldwork" ratio="12 / 5" />
+    </div>
+  </section>
+
+  <section class="section ruled">
+    <div class="wrap">
+      <h2 class="sr-only">Our approach</h2>
+      <ul class="grid g3 nolist">
+        {approach.map(([k, v, c]) => (
+          <li>
+            <p class="label"><span class:list={['sq', `c-${c}`]} aria-hidden="true"></span>{k}</p>
+            <p class="h3 mt-16">{v}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section bg-sand">
+    <div class="wrap">
+      <p class="label mb-24">Mission</p>
+      <p class="quote">To produce rigorous, independent evidence on how African economies can industrialise through the green transition, and to put it in the hands of those who decide.</p>
+    </div>
+  </section>
+
+  <section class="split">
+    <div class="split-text">
+      <p class="label mute">Our story</p>
+      <h2 class="h2 mt-16">A collaboration since 2018</h2>
+      <p class="body mute-2 mt-24">RITA grew out of a long collaboration between Gideon Ndubuisi and Elvis Korku Avenyo, who met at UNU-MERIT and have worked together since 2018: on robotisation and exports, value chains and innovation, South Africa’s electricity crises, gender and the green transition, and a 2025 World Bank report on regional mineral value chains. RITA makes that collaboration an institution that is Africa-led, open to fellows from across the continent, and focused on evidence that policymakers can use.</p>
+      <p class="mt-16"><Tbc label="Founders to edit" /></p>
+      <dl class="facts mt-32">
+        <div class="fact"><dt>Founded</dt><dd><Tbc /></dd></div>
+        <div class="fact"><dt>Bases</dt><dd>Johannesburg · Delft</dd></div>
+        <div class="fact"><dt>Legal status</dt><dd><Tbc /></dd></div>
+      </dl>
+    </div>
+    <Photo shot="Founders together" ratio="auto" class="split-photo" />
+  </section>
+
+  <section class="section ruled">
+    <div class="wrap">
+      <h2 class="h2 mb-32">Values</h2>
+      <ol class="grid g5 nolist values">
+        {values.map((v, i) => <li><span class="mono mute">0{i + 1}</span><span class="value">{v}</span></li>)}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section ruled">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 class="h2">People</h2>
+        <a class="link-arrow" href="/fellows">All →</a>
+      </div>
+      <ul class="grid g4 nolist">
+        {leads.map((p) => <li><PersonCard person={p} /></li>)}
+        {fellows.map((p) => <li><PersonCard person={p} /></li>)}
+        {Array.from({ length: Math.max(0, 4 - leads.length - fellows.length) }).map(() => <li><PersonCard placeholder="Fellow" /></li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section ruled">
+    <div class="wrap">
+      <h2 class="label mute mb-24"><a href="/about/partners">Partners &amp; funders → See all</a></h2>
+      <LogoWall partners={[...academic, ...funders]} />
+    </div>
+  </section>
+</Base>
+
+<style>
+  .mute-2 { color: var(--mute-2); }
+  .split { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line); }
+  .split-text { padding: 72px 64px; max-width: 640px; justify-self: end; }
+  .split :global(.split-photo) { min-height: 480px; height: 100%; }
+  .facts { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .g5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .values li { border-top: 3px solid var(--ink); padding-top: 16px; display: flex; flex-direction: column; gap: 8px; }
+  .value { font-size: 19px; font-weight: 600; line-height: 1.3; }
+  h2.label a { text-decoration: none; }
+  @media (max-width: 899px) {
+    .split { grid-template-columns: 1fr; }
+    .split-text { padding: 48px var(--pad); justify-self: start; }
+    .split :global(.split-photo) { min-height: 240px; }
+    .g5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .facts { grid-template-columns: 1fr; }
+  }
+</style>

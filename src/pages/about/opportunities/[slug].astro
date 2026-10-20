@@ -1,0 +1,80 @@
+---
+import Base from '../../../layouts/Base.astro';
+import Crumbs from '../../../components/Crumbs.astro';
+import Tbc from '../../../components/Tbc.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+import { PROGRAMMES, type Code } from '../../../lib/content';
+import { INBOX } from '../../../lib/site';
+
+export async function getStaticPaths() {
+  const jobs = await getCollection('jobs', (j) => j.data.status !== 'draft');
+  return jobs.map((job) => ({ params: { slug: job.id }, props: { job } }));
+}
+const { job } = Astro.props as { job: CollectionEntry<'jobs'> };
+const j = job.data;
+const prog = j.programme ? PROGRAMMES[j.programme as Code].name : undefined;
+const applyHref = j.applyUrl ?? (j.applyEmail ? `mailto:${j.applyEmail}` : `mailto:${INBOX.jobs}`);
+const internal = applyHref.startsWith('/');
+const applyLabel = applyHref === '/submit' ? 'Start a submission' : 'Apply';
+const ld = j.jobType === 'Call for contributions' ? undefined : {
+  '@context': 'https://schema.org', '@type': 'JobPosting', title: j.title, description: j.summary,
+  hiringOrganization: { '@type': 'ResearchOrganization', name: 'Research Institute for Transitions in Africa' },
+  jobLocationType: j.location === 'Remote' ? 'TELECOMMUTE' : undefined,
+};
+---
+<Base title={j.title} description={j.summary} jsonLd={ld}>
+  <span hidden data-pagefind-filter="type">Pages</span>
+  <section>
+    <div class="wrap">
+      <Crumbs items={[['About', '/about'], ['Opportunities', '/about/opportunities'], [j.title]]} />
+      <div class="page-head">
+        <p class="row tags">
+          <span class="tag open">Open</span>
+          <span class="tag">{j.jobType}</span>
+          {prog && <span class="tag">{prog}</span>}
+        </p>
+        <h1 class="h1 mt-16">{j.title}</h1>
+        <p class="lead">{j.summary}</p>
+        <a class="btn mt-32" href={applyHref}>{applyLabel}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="ruled factsband">
+    <div class="wrap">
+      <dl class="facts">
+        <div class="fact"><dt>Type</dt><dd>{j.jobType}</dd></div>
+        <div class="fact"><dt>Location</dt><dd>{j.location}</dd></div>
+        <div class="fact"><dt>Deadline</dt><dd>{j.deadline}</dd></div>
+        <div class="fact"><dt>Reports to</dt><dd>{j.reportsTo ?? <Tbc />}</dd></div>
+        <div class="fact"><dt>Programme</dt><dd>{prog ?? 'All programmes'}</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section ruled">
+    <div class="wrap with-aside">
+      <div class="prose">
+        <h2>The role</h2>
+        {j.body ? <div set:html={j.body} /> : <p>{j.summary}</p>}
+        <h2>How to apply</h2>
+        {internal
+          ? <p>Read the <a href="/submit">submission guidelines</a>, then <a href={applyHref}>start a submission</a>. Questions: <a href={`mailto:${INBOX.editor}`}>{INBOX.editor}</a>.</p>
+          : <p>Apply via <a href={applyHref}>{applyHref.replace('mailto:', '')}</a>.</p>}
+      </div>
+      <aside class="box-sand sticky">
+        <p class="label">Apply</p>
+        {internal
+          ? <p class="mt-16">Submit through the contributor area, or email <a href={`mailto:${INBOX.editor}`}>{INBOX.editor}</a>.</p>
+          : <p class="mt-16">Apply via the link or email <a href={`mailto:${INBOX.jobs}`}>{INBOX.jobs}</a>.</p>}
+        <a class="btn mt-24" href={applyHref}>{applyLabel}</a>
+      </aside>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .tag.open { background: var(--malachite); border-color: var(--malachite); color: var(--white); }
+  .factsband { padding: 32px 0; }
+  .page-head .lead { margin-top: 16px; }
+</style>
