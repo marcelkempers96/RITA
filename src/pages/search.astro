@@ -1,0 +1,178 @@
+---
+// 27 Search, powered by the static Pagefind index (built by `npm run build`).
+// Type tabs use the Pagefind `type` filter (Publication · Insight · Project · Person); anything without it counts as Pages.
+import Base from '../layouts/Base.astro';
+import { PROGRAMMES, CODES, url } from '../lib/content';
+const TABS = [['', 'All'], ['Publication', 'Publications'], ['Insight', 'Insights'], ['Project', 'Projects'], ['Person', 'People'], ['Page', 'Pages']];
+---
+<Base title="Search" description="Search RITA's research, Policy Insights, projects and people." noindex>
+  <div data-pagefind-ignore="all">
+    <section class="head">
+      <div class="wrap">
+        <h1 class="sr-only">Search</h1>
+        <form action="/search" method="get" role="search" class="bar" data-search-form>
+          <label for="q" class="sr-only">Search RITA</label>
+          <input id="q" name="q" type="search" class="q" placeholder="Search RITA" autocomplete="off" />
+          <button type="submit" class="go"><span aria-hidden="true">⌕</span> Search</button>
+        </form>
+        <div class="tabs mt-24" role="group" aria-label="Result type" data-tabs hidden>
+          {TABS.map(([k, label], i) => (
+            <button type="button" aria-pressed={i === 0 ? 'true' : 'false'} aria-controls="search-results" data-tab={k}>
+              {label} <span data-tab-count={k}></span>
+            </button>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="ruled">
+      <div class="wrap">
+        <p class="label mute res-status" role="status" aria-live="polite" data-status></p>
+        <ul id="search-results" class="nolist list" data-results></ul>
+        <nav class="pager" aria-label="Pagination" data-pager hidden></nav>
+        <noscript>
+          <div class="nojs">
+            <p>Search needs JavaScript. You can browse instead:</p>
+            <p class="mt-8"><a href="/research">Research library</a> · <a href="/insights">Policy Insights</a> · <a href="/research/projects">Projects</a> · <a href="/fellows">People</a> · <a href="/sitemap">Sitemap</a></p>
+          </div>
+        </noscript>
+      </div>
+    </section>
+
+    <section class="none bg-paper" data-none hidden>
+      <div class="wrap center">
+        <h2 class="h2">No results for “<span data-none-q></span>”.</h2>
+        <p class="lead mt-16">Check the spelling, or browse:
+          {CODES.map((c, i) => <>{i > 0 && ' · '}<a href={url.programme(c)}>{PROGRAMMES[c].short === 'Industrialisation' ? 'Industrialisation' : PROGRAMMES[c].short}</a></>)}
+        </p>
+      </div>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .head { padding: 56px 0 0; }
+  .bar { display: flex; border: 2px solid var(--ink); }
+  .q { flex: 1; min-width: 0; border: 0; padding: 18px 20px; font-size: 26px; background: var(--white); }
+  .q:focus-visible { outline: 3px solid var(--sun); outline-offset: 2px; }
+  .go { border: 0; background: none; padding: 0 22px; font: 500 13px var(--mono); letter-spacing: .08em; text-transform: uppercase; cursor: pointer; }
+  .go:hover { color: var(--laterite); }
+  .tabs { border-bottom: 0; }
+  .tabs [aria-pressed='true'] { border-bottom-color: var(--ink); color: var(--ink); }
+  .tabs [data-tab-count]:not(:empty)::before { content: '('; }
+  .tabs [data-tab-count]:not(:empty)::after { content: ')'; }
+  .res-status { padding: 32px 0 16px; }
+  .list { margin-bottom: 48px; }
+  .list :global(.r) { display: grid; grid-template-columns: 150px minmax(0, 1fr) 300px 80px; gap: 24px; padding: 20px 0; border-top: 1px solid var(--line); text-decoration: none; align-items: baseline; }
+  .list :global(.r:hover .lrow-title) { color: var(--laterite); }
+  .list :global(.r-type) { color: var(--laterite); }
+  .list :global(.r-ex) { color: var(--mute); font-size: 14px; line-height: 1.45; }
+  .list :global(mark) { background: var(--sand); color: var(--ink); padding: 0 2px; }
+  .pager { display: flex; gap: 8px; flex-wrap: wrap; margin: -16px 0 56px; }
+  .pager :global(button) { min-width: 44px; min-height: 44px; padding: 0 12px; border: 1px solid var(--line); background: var(--white); font: 500 15px var(--mono); cursor: pointer; }
+  .pager :global(button[aria-current='page']) { background: var(--ink); color: var(--white); border-color: var(--ink); }
+  .none { padding: 72px 0; }
+  .none .lead { max-width: 640px; margin-left: auto; margin-right: auto; }
+  .nojs { padding: 24px 0 64px; }
+  @media (max-width: 899px) {
+    .q { font-size: 20px; }
+    .list :global(.r) { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+  }
+</style>
+
+<script>
+  import { getPagefind, escapeHtml } from '../scripts/site';
+  const PER_PAGE = 10;
+  const input = document.getElementById('q') as HTMLInputElement;
+  const tabsEl = document.querySelector<HTMLElement>('[data-tabs]')!;
+  const tabs = [...tabsEl.querySelectorAll<HTMLButtonElement>('[data-tab]')];
+  const list = document.querySelector<HTMLElement>('[data-results]')!;
+  const status = document.querySelector<HTMLElement>('[data-status]')!;
+  const pager = document.querySelector<HTMLElement>('[data-pager]')!;
+  const none = document.querySelector<HTMLElement>('[data-none]')!;
+  const KNOWN = ['Publication', 'Insight', 'Project', 'Person'];
+
+  type Res = { id: string; data: () => Promise<any>; filters?: Record<string, string[]> };
+  let all: Res[] = [];
+  let typed: Record<string, Res[]> = {};
+  let state = { q: '', type: '', page: 1 };
+
+  function readUrl() {
+    const p = new URLSearchParams(location.search);
+    state = { q: p.get('q') ?? '', type: p.get('type') ?? '', page: Math.max(1, Number(p.get('page')) || 1) };
+  }
+  function writeUrl(push: boolean) {
+    const p = new URLSearchParams();
+    if (state.q) p.set('q', state.q);
+    if (state.type) p.set('type', state.type);
+    if (state.page > 1) p.set('page', String(state.page));
+    history[push ? 'pushState' : 'replaceState'](null, '', `/search${p.toString() ? `?${p}` : ''}`);
+  }
+
+  async function search() {
+    input.value = state.q;
+    none.hidden = true;
+    if (!state.q) { list.innerHTML = ''; status.textContent = 'Type a word or phrase to search.'; tabsEl.hidden = true; pager.hidden = true; return; }
+    const pf = await getPagefind();
+    if (!pf) { status.textContent = 'Search is available on the built site (npm run build).'; return; }
+    status.textContent = 'Searching…';
+    const res = await pf.search(state.q);
+    all = res.results;
+    typed = { '': all, Page: [] };
+    for (const k of KNOWN) {
+      const r = await pf.search(state.q, { filters: { type: k } });
+      typed[k] = r.results;
+    }
+    const knownIds = new Set(KNOWN.flatMap((k) => typed[k].map((r) => r.id)));
+    typed.Page = all.filter((r) => !knownIds.has(r.id));
+    tabsEl.hidden = false;
+    tabs.forEach((t) => {
+      const k = t.dataset.tab!;
+      t.querySelector('[data-tab-count]')!.textContent = String(typed[k]?.length ?? 0);
+    });
+    await render();
+  }
+
+  async function render() {
+    tabs.forEach((t) => t.setAttribute('aria-pressed', String(t.dataset.tab === state.type)));
+    const hits = typed[state.type] ?? [];
+    const pages = Math.max(1, Math.ceil(hits.length / PER_PAGE));
+    state.page = Math.min(state.page, pages);
+    const slice = await Promise.all(hits.slice((state.page - 1) * PER_PAGE, state.page * PER_PAGE).map((r) => r.data()));
+    if (!all.length) {
+      list.innerHTML = '';
+      status.textContent = '0 results';
+      none.hidden = false;
+      none.querySelector('[data-none-q]')!.textContent = state.q;
+      pager.hidden = true;
+      return;
+    }
+    status.textContent = `${hits.length} ${hits.length === 1 ? 'result' : 'results'} for “${state.q}”`;
+    list.innerHTML = slice.map((d: any) => `<li><a class="r" href="${d.url}">
+      <span class="label r-type">${escapeHtml(d.meta?.type ?? 'Page')}</span>
+      <span class="lrow-title">${escapeHtml(d.meta?.title ?? d.url)}</span>
+      <span class="r-ex">${d.excerpt ?? ''}</span>
+      <span class="lrow-year">${escapeHtml(d.meta?.date ?? '')}</span></a></li>`).join('');
+    pager.hidden = pages <= 1;
+    pager.innerHTML = pages <= 1 ? '' : Array.from({ length: pages }, (_, i) =>
+      `<button type="button" data-page="${i + 1}" aria-label="Page ${i + 1}"${i + 1 === state.page ? ' aria-current="page"' : ''}>${i + 1}</button>`).join('');
+  }
+
+  document.querySelector('[data-search-form]')!.addEventListener('submit', (e) => {
+    e.preventDefault();
+    state = { q: input.value.trim(), type: '', page: 1 };
+    writeUrl(true);
+    search();
+  });
+  tabs.forEach((t) => t.addEventListener('click', () => { state.type = t.dataset.tab!; state.page = 1; writeUrl(true); render(); }));
+  pager.addEventListener('click', (e) => {
+    const b = (e.target as HTMLElement).closest<HTMLButtonElement>('[data-page]');
+    if (!b) return;
+    state.page = Number(b.dataset.page); writeUrl(true); render();
+    list.scrollIntoView({ block: 'start' });
+  });
+  window.addEventListener('popstate', () => { readUrl(); search(); });
+  readUrl();
+  search();
+  if (!state.q) input.focus();
+</script>

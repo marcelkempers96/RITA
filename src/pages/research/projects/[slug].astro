@@ -1,0 +1,111 @@
+---
+// 11 Project page.
+import type { GetStaticPaths } from 'astro';
+import { getCollection } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import Crumbs from '../../../components/Crumbs.astro';
+import Photo from '../../../components/Photo.astro';
+import Tbc from '../../../components/Tbc.astro';
+import PersonCard from '../../../components/PersonCard.astro';
+import SearchMeta from '../../../components/research/SearchMeta.astro';
+import { load, url, PROGRAMMES, TYPE_LABEL, fullName, type Code } from '../../../lib/content';
+
+export const getStaticPaths = (async () => {
+  const projects = await getCollection('projects', (p) => p.data.status !== 'draft');
+  return projects.map((p) => ({ params: { slug: p.id }, props: { project: p } }));
+}) satisfies GetStaticPaths;
+
+const { project } = Astro.props;
+const p = project.data;
+const code = p.programme as Code | undefined;
+const d = await load();
+const outputs = d.publications.filter((x) => x.data.project === project.id);
+const team = p.team.map((id) => d.people.find((x) => x.id === id)).filter((x) => x !== undefined);
+const status = p.projectStatus === 'ongoing' ? 'Ongoing' : 'Completed';
+const period = p.period ?? (p.startYear ? `${p.startYear}–${p.endYear ?? ''}` : undefined);
+const facts: [string, string | undefined][] = [
+  ['Status', status],
+  ['Period', period],
+  ['Funder', p.funder],
+  ['Partners', p.partners.length ? p.partners.join(' · ') : undefined],
+  ['Programme', code ? PROGRAMMES[code].name : undefined],
+  ...(p.budget ? [['Budget', p.budget] as [string, string]] : []),
+];
+---
+<Base title={p.title} description={p.summary}>
+  <SearchMeta type="Project" date={status} />
+  <section>
+    <div class="wrap hero">
+      <div>
+        <Crumbs items={[['Research', '/research'], ['Projects', '/research/projects']]} />
+        <div class="row tags mt-24">
+          <span class:list={['tag', { ongoing: p.projectStatus === 'ongoing' }]}>{status}</span>
+          {code && <a class="tag" href={url.programme(code)}>{PROGRAMMES[code].name}</a>}
+        </div>
+        <h1 class="h1 mt-16">{p.title}</h1>
+        <p class="lead mt-16">{p.summary}</p>
+        {p.preRita && <p class="small mute mt-16">Work by RITA’s team members before RITA was established.</p>}
+      </div>
+      <Photo shot={p.photo ?? 'Project'} class="hero-photo" eager />
+    </div>
+  </section>
+
+  <section class="ruled facts-band">
+    <div class="wrap">
+      <dl class="facts">
+        {facts.map(([k, v]) => <div class:list={['fact', { wide: k === 'Partners' }]}><dt>{k}</dt><dd>{v ?? <Tbc />}</dd></div>)}
+      </dl>
+    </div>
+  </section>
+
+  <section class="section ruled">
+    <div class="wrap with-aside">
+      <div class="prose">
+        <h2>About the project</h2>
+        {p.description ? <p>{p.description}</p> : <Tbc block label="About the project · TBC">Description from the project team.</Tbc>}
+        <h2>RITA’s role</h2>
+        {p.ritaRole ? <p>{p.ritaRole}</p> : <Tbc block label="RITA’s role · TBC">To be confirmed by the project team.</Tbc>}
+      </div>
+      <aside class="box-sand" aria-labelledby="outputs-title">
+        <h2 id="outputs-title" class="label">Outputs</h2>
+        {outputs.length ? (
+          <ul class="nolist outs">
+            {outputs.map((o) => (
+              <li>
+                <a href={url.publication(o.id)}>{o.data.title}</a>
+                <span class="small mute">{TYPE_LABEL[o.data.type]} · {o.data.publisher}{o.data.year ? ` · ${o.data.year}` : ''}</span>
+              </li>
+            ))}
+          </ul>
+        ) : <p class="mt-8 mute">Listed here as publications are tagged to this project.</p>}
+      </aside>
+    </div>
+  </section>
+
+  <section class="section ruled" data-pagefind-ignore>
+    <div class="wrap">
+      <h2 class="h2 mb-32">Team</h2>
+      <ul class="grid g4 nolist">
+        {team.map((x) => <li><PersonCard person={x} /></li>)}
+      </ul>
+      {p.externalTeam.length > 0 && (
+        <p class="mute mt-24">With {p.externalTeam.map((n) => fullName(n.replace(/\s*\(.*\)$/, '')) + (n.match(/\s*\(.*\)$/)?.[0] ?? '')).join(', ')}.</p>
+      )}
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero { display: grid; grid-template-columns: 1fr 525px; gap: 64px; align-items: center; padding-bottom: 56px; }
+  .hero :global(.hero-photo) { margin-top: 40px; }
+  .ongoing { background: var(--malachite); color: var(--white); border-color: var(--malachite); }
+  .facts-band { padding: 32px 0; }
+  .facts-band .facts { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+  .wide { grid-column: span 2; }
+  @media (max-width: 599px) { .wide { grid-column: auto; } }
+  .outs { margin-top: 14px; display: grid; gap: 16px; }
+  .outs li { display: grid; gap: 4px; }
+  .outs a { font-weight: 500; text-decoration: none; }
+  .outs a:hover { text-decoration: underline; }
+  @media (max-width: 899px) { .hero { grid-template-columns: 1fr; gap: 32px; } .hero :global(.hero-photo) { margin-top: 0; } }
+</style>

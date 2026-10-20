@@ -1,0 +1,14 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Something went wrong" noindex noNewsletter>
+  <section class="section" data-pagefind-ignore="all">
+    <div class="wrap err">
+      <p class="label mute">Error 500</p>
+      <h1 class="h1 mt-16">Something went wrong on our side.</h1>
+      <p class="lead mt-16">Please try again shortly.</p>
+      <a class="btn mt-32" href="/">Go to home</a>
+    </div>
+  </section>
+</Base>
+<style>.err { padding-top: 48px; padding-bottom: 48px; }</style>

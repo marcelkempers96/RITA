@@ -1,0 +1,109 @@
+---
+// 10 Projects. Ongoing as large cards, completed as rows. Filter chips enhance with JS; without JS everything shows.
+import Base from '../../../layouts/Base.astro';
+import PageHead from '../../../components/PageHead.astro';
+import Photo from '../../../components/Photo.astro';
+import ProgLabel from '../../../components/ProgLabel.astro';
+import SearchMeta from '../../../components/research/SearchMeta.astro';
+import { load, url, TYPE_LABEL } from '../../../lib/content';
+
+const d = await load();
+const ongoing = d.projects.filter((p) => p.data.projectStatus === 'ongoing')
+  .sort((a, b) => Number(a.data.preRita) - Number(b.data.preRita) || a.data.title.localeCompare(b.data.title));
+const completed = d.projects.filter((p) => p.data.projectStatus === 'completed')
+  .sort((a, b) => (b.data.endYear ?? 0) - (a.data.endYear ?? 0) || a.data.title.localeCompare(b.data.title));
+const outputsOf = (id: string) => d.publications.filter((p) => p.data.project === id);
+const FUNDER_CHIPS = ['World Bank', 'UNU-WIDER', 'UNCTAD', 'ACET', 'APRI', 'AERC'];
+const keyOf = (f: string) => FUNDER_CHIPS.find((c) => f.startsWith(c)) ?? '';
+---
+<Base title="Projects" description="Research led or co-led by RITA's team, including work before RITA was established.">
+  <SearchMeta type="Page" label="Projects" />
+  <PageHead title="Projects" lead="Research led or co-led by RITA’s team, including work before RITA was established." crumbs={[['Research', '/research'], ['Projects']]} />
+
+  <section class="ruled chipbar" data-js-only hidden>
+    <div class="wrap chips" role="group" aria-label="Filter projects">
+      <button type="button" class="chip" data-chip="" aria-pressed="true">All</button>
+      <button type="button" class="chip" data-chip="status:ongoing" aria-pressed="false">Ongoing</button>
+      <button type="button" class="chip" data-chip="status:completed" aria-pressed="false">Completed</button>
+      {FUNDER_CHIPS.map((f) => <button type="button" class="chip" data-chip={`funder:${f}`} aria-pressed="false">{f}</button>)}
+    </div>
+  </section>
+
+  <section class="section ruled" data-group="ongoing">
+    <div class="wrap">
+      <h2 class="h2 mb-32">Ongoing</h2>
+      <ul class="grid g2 nolist">
+        {ongoing.map((p) => (
+          <li data-project data-status="ongoing" data-funder={keyOf(p.data.funder)}>
+            <a class="card" href={url.project(p.id)}>
+              <div class:list={['card-bar', p.data.programme ? `c-${p.data.programme}` : 'c-none']}><Photo shot={p.data.photo ?? 'Project'} /></div>
+              <ProgLabel code={p.data.programme} parts={['Ongoing', p.data.period, p.data.funder.split(',')[0]]} />
+              <h3 class="card-title big">{p.data.title}</h3>
+              {p.data.partners.length > 0 && <p class="mute">With {p.data.partners.join(', ')}.</p>}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section ruled" data-group="completed">
+    <div class="wrap">
+      <h2 class="h2 mb-32">Completed</h2>
+      <div class="crow chead label mute" aria-hidden="true"><span>Commissioner / funder</span><span>Project</span><span>Output</span><span>Year</span></div>
+      <ul class="nolist list">
+        {completed.map((p) => {
+          const outs = outputsOf(p.id);
+          return (
+            <li data-project data-status="completed" data-funder={keyOf(p.data.funder)}>
+              <a class="crow" href={url.project(p.id)}>
+                <span class="label funder"><span class:list={['sq', p.data.programme ? `c-${p.data.programme}` : 'c-none']} aria-hidden="true"></span><span>{p.data.funder.replace(/\s*\(.*\)$/, '')}</span></span>
+                <span class="lrow-title">{p.data.title}</span>
+                <span class="lrow-meta">{outs.length ? `${outs.length} ${outs.length === 1 ? TYPE_LABEL[outs[0].data.type].toLowerCase() : 'outputs'}` : '—'}</span>
+                <span class="lrow-year">{p.data.period ?? p.data.endYear ?? '—'}</span>
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  </section>
+  <p class="wrap empty" data-empty hidden>No projects match. <button type="button" class="btn-link" data-chip-reset>Show all projects</button></p>
+</Base>
+
+<style>
+  .chipbar { padding: 20px 0; }
+  .big { font-size: 26px; }
+  .funder { flex-wrap: nowrap; align-items: baseline; }
+  .funder .sq { position: relative; top: 1px; }
+  .crow {
+    display: grid; grid-template-columns: 220px minmax(0, 1fr) 160px 80px; gap: 24px; padding: 20px 0;
+    border-top: 1px solid var(--line); text-decoration: none; color: inherit; align-items: baseline;
+  }
+  .chead { border-top: 0; padding-top: 0; }
+  a.crow:hover .lrow-title { color: var(--laterite); }
+  .empty { padding-bottom: 48px; }
+  @media (max-width: 899px) { .crow { grid-template-columns: minmax(0, 1fr); gap: 6px; } .chead { display: none; } .crow .lrow-year { text-align: left; } }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-js-only]').forEach((el) => (el.hidden = false));
+  const chips = [...document.querySelectorAll<HTMLButtonElement>('[data-chip]')];
+  const items = [...document.querySelectorAll<HTMLElement>('[data-project]')];
+  const groups = [...document.querySelectorAll<HTMLElement>('[data-group]')];
+  const empty = document.querySelector<HTMLElement>('[data-empty]')!;
+  function apply(value: string) {
+    chips.forEach((c) => c.setAttribute('aria-pressed', String(c.dataset.chip === value)));
+    const [k, v] = value.split(':');
+    items.forEach((i) => (i.hidden = Boolean(value) && i.dataset[k] !== v));
+    groups.forEach((g) => (g.hidden = !g.querySelector('[data-project]:not([hidden])')));
+    empty.hidden = items.some((i) => !i.hidden);
+    const p = new URLSearchParams(location.search);
+    value ? p.set('filter', value) : p.delete('filter');
+    history.replaceState(null, '', `${location.pathname}${p.toString() ? `?${p}` : ''}`);
+  }
+  chips.forEach((c) => c.addEventListener('click', () => apply(c.dataset.chip!)));
+  document.querySelector('[data-chip-reset]')?.addEventListener('click', () => apply(''));
+  const initial = new URLSearchParams(location.search).get('filter') ?? '';
+  if (chips.some((c) => c.dataset.chip === initial)) apply(initial);
+</script>
