@@ -1,7 +1,7 @@
 // Content model (BUILD-SPEC §5). Every entry is one JSON file under src/content/<collection>/,
 // editable through Decap CMS (/admin) or by hand. Seed with `npm run seed`.
 import { defineCollection, z, reference } from 'astro:content';
-import { glob } from 'astro/loaders';
+import { glob, type Loader } from 'astro/loaders';
 
 const programmeCode = z.enum(['IND', 'MIN', 'EN', 'INN']);
 const status = z.enum(['draft', 'published']).default('published');
@@ -16,7 +16,47 @@ const base = {
   status,
 };
 
-const json = (dir: string) => glob({ pattern: '**/*.json', base: `./src/content/${dir}` });
+// Content source. When PUBLIC_SUPABASE_URL and PUBLIC_SUPABASE_PUBLISHABLE_KEY are set at build time, published
+// rows of public.content are the source of truth (edited in /studio). Otherwise, or if Supabase has no rows for a
+// collection, the JSON files in src/content/<collection>/ are used, so the site always builds.
+const SB_URL = (process.env.PUBLIC_SUPABASE_URL ?? import.meta.env.PUBLIC_SUPABASE_URL ?? '').replace(/\/$/, '');
+const SB_KEY = process.env.PUBLIC_SUPABASE_PUBLISHABLE_KEY ?? import.meta.env.PUBLIC_SUPABASE_PUBLISHABLE_KEY ?? '';
+
+const json = (dir: string): Loader => {
+  const files = glob({ pattern: '**/*.json', base: `./src/content/${dir}` });
+  return {
+    name: `rita-${dir}`,
+    load: async (context) => {
+      if (SB_URL && SB_KEY) {
+        try {
+          const res = await fetch(`${SB_URL}/rest/v1/content?select=slug,data&status=eq.published&collection=eq.${dir}&limit=5000`, {
+            headers: { apikey: SB_KEY, Authorization: `Bearer ${SB_KEY}` },
+          });
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          const rows = (await res.json()) as { slug: string; data: Record<string, unknown> }[];
+          if (rows.length) {
+            context.store.clear();
+            for (const row of rows) {
+              try {
+                const data = await context.parseData({ id: row.slug, data: row.data });
+                context.store.set({ id: row.slug, data });
+              } catch (err) {
+                // One invalid edit must not take the site down: skip it and report it in the build log.
+                context.logger.error(`${dir}/${row.slug} skipped: ${String(err).slice(0, 300)}`);
+              }
+            }
+            context.logger.info(`${dir}: ${rows.length} entries from Supabase`);
+            return;
+          }
+          context.logger.warn(`${dir}: no rows in Supabase, using JSON files`);
+        } catch (err) {
+          context.logger.warn(`${dir}: Supabase unavailable (${String(err)}), using JSON files`);
+        }
+      }
+      return files.load(context);
+    },
+  };
+};
 
 const programmes = defineCollection({
   loader: json('programmes'),
@@ -107,6 +147,7 @@ const insights = defineCollection({
     originalUrl: z.string().optional(),
     heroImage: z.string().optional(),
     pullQuote: z.string().optional(),
+    byline: z.string().optional(), // author names when they are not people on the site
   }),
 });
 
@@ -123,6 +164,7 @@ const opeds = defineCollection({
     summary: z.string().optional(),
     image: z.string().optional(),
     note: z.string().optional(),
+    body: z.string().optional(), // on-site text (RITA blogs); external pieces use outletUrl
     keyPoints: z.array(z.string()).default([]),
     sources: z.array(z.string()).default([]),
   }),

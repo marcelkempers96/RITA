@@ -1,0 +1,51 @@
+---
+// On-site blogs and op-eds (pieces with a `body`, e.g. published from a submission in /studio).
+// Pieces published elsewhere link to their outlet from /insights/op-eds instead.
+import Base from '../../../layouts/Base.astro';
+import Crumbs from '../../../components/Crumbs.astro';
+import Photo from '../../../components/Photo.astro';
+import ShareBar from '../../../components/ShareBar.astro';
+import { getCollection } from 'astro:content';
+import { PROGRAMMES, TYPE_LABEL, authorLine, monthYear, type Code } from '../../../lib/content';
+
+export async function getStaticPaths() {
+  const opeds = await getCollection('opeds', (o) => Boolean(o.data.body) && o.data.status !== 'draft');
+  return opeds.map((o) => ({ params: { slug: o.id }, props: { oped: o } }));
+}
+const { oped } = Astro.props;
+const o = oped.data;
+const code = o.programme as Code | undefined;
+const paragraphs = (o.body ?? '').split(/\n\s*\n/).map((p) => p.trim()).filter(Boolean);
+const words = (o.body ?? '').trim().split(/\s+/).length;
+---
+<Base title={o.title} description={o.summary ?? o.title} progress ogType="article"
+  jsonLd={{ '@context': 'https://schema.org', '@type': 'Article', headline: o.title, author: o.authors.map((name) => ({ '@type': 'Person', name })), datePublished: o.date, publisher: { '@type': 'Organization', name: 'RITA' } }}>
+  <span hidden data-pagefind-filter="type">Insight</span>
+  <article>
+    <header class="wrap">
+      <Crumbs items={[['Insights', '/insights'], ['Op-eds', '/insights/op-eds'], [o.title]]} />
+      <div class="head">
+        <p class="row tags">
+          <span class="tag">{TYPE_LABEL[o.kind]}</span>
+          {code && <a class:list={['tag', `c-${code}`]} href={`/research/${PROGRAMMES[code].slug}`}>{PROGRAMMES[code].name}</a>}
+        </p>
+        <h1 class="h1 mt-16">{o.title}</h1>
+        {o.summary && <p class="lead mt-16">{o.summary}</p>}
+        <p class="mute mt-16">{authorLine(o.authors)} · {monthYear(o.date)} · {Math.max(1, Math.round(words / 230))} min read</p>
+      </div>
+    </header>
+    <div class="wrap"><Photo shot="Topical image" code={code} ratio="16 / 6" sizes="100vw" /></div>
+    <div class="wrap with-aside body-wrap">
+      <div class="prose">
+        {paragraphs.map((p) => (p.startsWith('## ') ? <h2>{p.slice(3)}</h2> : <p>{p}</p>))}
+      </div>
+      <aside class="box-paper" data-pagefind-ignore><ShareBar title={o.title} /></aside>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .head { padding: 32px 0 40px; max-width: 900px; }
+  .body-wrap { padding-top: 56px; padding-bottom: 56px; }
+  .box-paper { background: var(--paper); padding: 24px; }
+</style>

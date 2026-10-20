@@ -2,7 +2,6 @@
 // 24 My submissions. Statuses come from the back-end; in demo mode they come from this browser's localStorage.
 import Base from '../../layouts/Base.astro';
 import Crumbs from '../../components/Crumbs.astro';
-import Tbc from '../../components/Tbc.astro';
 import { STATUS_LABEL } from '../../lib/api/submissions';
 
 const filters = [['all', 'All'], ...Object.entries(STATUS_LABEL)] as [string, string][];
@@ -13,7 +12,8 @@ const filters = [['all', 'All'], ...Object.entries(STATUS_LABEL)] as [string, st
       <Crumbs items={[['Contribute', '/submit'], ['My submissions']]} />
       <div class="page-head">
         <h1 class="h1">My submissions</h1>
-        <p class="lead" data-signed-in>Signed in as <Tbc label="Name TBC" />.</p>
+        <p class="lead" data-signed-in hidden>Signed in as <strong data-user-name></strong>. <a href="/studio/" class="small">Open the studio →</a></p>
+        <div class="box-sand mt-16" data-signin-gate hidden><strong>Sign in to see your submissions.</strong> <a href="/studio/?next=/submit/dashboard">Sign in or create an account →</a></div>
         <p class="mute small mt-8" data-demo-note>Demo mode: sign-in and storage are a separate back-end build, so this list shows submissions saved in this browser only.</p>
         <a class="btn mt-24" href="/submit/new">New submission +</a>
       </div>
@@ -61,6 +61,7 @@ const filters = [['all', 'All'], ...Object.entries(STATUS_LABEL)] as [string, st
   import { listSubmissions, STATUS_LABEL, FORMAT_LABEL, DEMO_MODE, type Submission } from '../../lib/api/submissions';
   import { escapeHtml } from '../../scripts/site';
   import { BASE } from '../../lib/base';
+  import { SUPABASE_ENABLED, currentProfile } from '../../lib/supabase';
 
   const q = <T extends HTMLElement>(s: string) => document.querySelector<T>(s)!;
   const table = q<HTMLTableElement>('[data-table]');
@@ -70,6 +71,12 @@ const filters = [['all', 'All'], ...Object.entries(STATUS_LABEL)] as [string, st
   let active = 'all';
 
   if (!DEMO_MODE) q('[data-demo-note]').hidden = true;
+  if (SUPABASE_ENABLED) {
+    currentProfile().then((p) => {
+      if (p) { q('[data-signed-in]').hidden = false; q('[data-user-name]').textContent = p.full_name || p.email || 'you'; }
+      else q('[data-signin-gate]').hidden = false;
+    });
+  }
 
   function updated(iso: string) {
     const d = new Date(iso);
@@ -81,7 +88,7 @@ const filters = [['all', 'All'], ...Object.entries(STATUS_LABEL)] as [string, st
   function action(s: Submission) {
     if (s.status === 'draft') return ['Continue', `${BASE}/submit/new`];
     if (s.status === 'changes_requested') return ['Edit', `${BASE}/submit/new`];
-    return ['View', null];
+    return ['View', SUPABASE_ENABLED ? `${BASE}/studio/#/submission/${s.id}` : null];
   }
 
   function render() {

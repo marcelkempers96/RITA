@@ -1,0 +1,41 @@
+---
+// RITA Studio: sign-in, submissions review, content editing, users and publishing (Supabase).
+import Base from '../../layouts/Base.astro';
+---
+<Base title="Studio" description="RITA Studio" noindex noNewsletter>
+  <div class="wrap studio" data-pagefind-ignore>
+    <p class="label mute studio-kicker">RITA Studio</p>
+    <div data-studio aria-live="polite"><p class="mute">Loading…</p></div>
+  </div>
+</Base>
+
+<script>
+  import '../../scripts/studio/app';
+</script>
+
+<style>
+  .studio { padding: 40px var(--pad) 96px; min-height: 70vh; }
+  .studio-kicker { margin-bottom: 16px; }
+  .studio :global(.studio-bar) { border-bottom: 1px solid var(--line); padding-bottom: 0; margin-bottom: 32px; }
+  .studio :global(.studio-main) { display: grid; gap: 0; }
+  .studio :global(.login) { max-width: 440px; margin: 24px 0; }
+  .studio :global(.login .links) { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+  .studio :global(.tile) { display: flex; flex-direction: column; gap: 12px; padding: 24px; background: var(--paper); text-decoration: none; min-height: 140px; }
+  .studio :global(.tile:hover) { outline: 2px solid var(--ink); }
+  .studio :global(.tile .big) { font-size: 48px; font-weight: 600; line-height: 1; }
+  .studio :global(.flash) { margin: 0 0 24px; }
+  .studio :global(.search) { max-width: 420px; }
+  .studio :global(.edit) { max-width: 860px; }
+  .studio :global(.narrow) { max-width: 480px; }
+  .studio :global(.md) { font-family: var(--mono); font-size: 15px; line-height: 1.6; }
+  .studio :global(.adv summary) { cursor: pointer; font-weight: 500; }
+  .studio :global(.thumb) { max-height: 120px; margin-top: 8px; border: 1px solid var(--line); }
+  .studio :global(.upload) { cursor: pointer; }
+  .studio :global(.sub-img img) { max-width: 100%; }
+  .studio :global(.sub-body) { white-space: pre-line; }
+  .studio :global(.comments li) { border-top: 1px solid var(--line); padding: 14px 0; }
+  .studio :global(.users td) { vertical-align: middle; }
+  .studio :global(.users .select), .studio :global(.users .input) { min-width: 150px; }
+  .studio :global(.plain li) { padding: 8px 0; border-top: 1px solid var(--line); }
+  .studio :global(.stack > * + *) { margin-top: 16px; }
+</style>

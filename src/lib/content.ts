@@ -127,7 +127,7 @@ export function libraryItems(d: Awaited<ReturnType<typeof load>>): Item[] {
       programmes: p.data.programmes as Code[], regions: p.data.regions, archive: p.data.archive,
     })),
     ...d.opeds.map((o): Item => ({
-      id: `opeds:${o.id}`, kind: 'oped', type: o.data.kind, title: o.data.title, href: o.data.outletUrl ?? '/insights/op-eds',
+      id: `opeds:${o.id}`, kind: 'oped', type: o.data.kind, title: o.data.title, href: o.data.outletUrl ?? (o.data.body ? `/insights/op-eds/${o.id}` : '/insights/op-eds'),
       external: Boolean(o.data.outletUrl), outlet: o.data.outlet, year: Number(o.data.date.slice(0, 4)), date: o.data.date,
       authors: o.data.authors, programmes: o.data.programme ? [o.data.programme as Code] : [], regions: [], archive: !o.data.programme,
     })),

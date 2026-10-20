@@ -32,6 +32,7 @@ const formats = [
       </ol>
     </div>
 
+    <div class="wrap"><div class="box-sand mb-24" data-signin-gate hidden role="note"><strong>You need an account to submit.</strong> Your draft is kept in this browser. <a href="/studio/?next=/submit/new">Sign in or create an account →</a></div></div>
     <form id="submission" class="wrap sform" method="post" enctype="multipart/form-data"
       action={api ? `${api.replace(/\/$/, '')}/api/submissions` : '#'} novalidate data-submission-form>
       <noscript>
@@ -203,6 +204,8 @@ const formats = [
 
 <script>
   import '../../components/submit/submit-form';
+  import { needsSignIn } from '../../lib/api/submissions';
+  needsSignIn().then((gate) => { const el = document.querySelector<HTMLElement>('[data-signin-gate]'); if (el) el.hidden = !gate; });
 </script>
 
 <style>

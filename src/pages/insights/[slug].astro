@@ -49,7 +49,7 @@ const canonical = new URL(url.insight(insight.id), Astro.site).toString();
         </p>
         <h1 class="h1 mt-16 title">{i.title}</h1>
         <p class="lead mt-16">
-          {author ? <a href={url.person(author.id)}>{author.data.name}</a> : 'Gideon Ndubuisi'} · {i.date ?? i.year} · {readTime ? `${readTime} min read` : <Tbc label="Read time TBC" />}
+          {i.byline ? i.byline : author ? <a href={url.person(author.id)}>{author.data.name}</a> : 'Gideon Ndubuisi'} · {i.date ?? i.year}{readTime ? ` · ${readTime} min read` : ''}
         </p>
       </div>
     </header>

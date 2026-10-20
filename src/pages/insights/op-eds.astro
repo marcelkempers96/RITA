@@ -33,7 +33,9 @@ const pieces = d.opeds;
             <li>
               {o.data.outletUrl
                 ? <a class="lrow op" href={o.data.outletUrl} target="_blank" rel="noopener" data-track="publisher-click" data-track-label={o.id}>{inner}<span class="sr-only"> (opens in a new tab)</span></a>
-                : <div class="lrow op">{inner}<span class="sr-only"> Link to be added.</span></div>}
+                : o.data.body
+                  ? <a class="lrow op" href={`/insights/op-eds/${o.id}`}>{inner}</a>
+                  : <div class="lrow op">{inner}</div>}
             </li>
           );
         })}

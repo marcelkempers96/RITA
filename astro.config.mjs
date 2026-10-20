@@ -12,7 +12,7 @@ export default defineConfig({
   base,
   trailingSlash: 'ignore',
   build: { format: 'directory' },
-  integrations: [sitemap({ filter: (page) => !/\/(500|submit\/(new|dashboard))\/?$/.test(page) })],
+  integrations: [sitemap({ filter: (page) => !/\/(500|admin|studio|submit\/(new|dashboard))\/?$/.test(page) })],
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'fr'],
