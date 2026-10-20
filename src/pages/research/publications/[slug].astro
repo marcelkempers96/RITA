@@ -6,7 +6,6 @@ import Base from '../../../layouts/Base.astro';
 import Crumbs from '../../../components/Crumbs.astro';
 import Photo from '../../../components/Photo.astro';
 import Card from '../../../components/Card.astro';
-import Tbc from '../../../components/Tbc.astro';
 import ShareBar from '../../../components/ShareBar.astro';
 import CiteModal from '../../../components/CiteModal.astro';
 import SearchMeta from '../../../components/research/SearchMeta.astro';
@@ -68,7 +67,9 @@ const shortOutlet = (o: string) => o.replace(/^([A-Z][A-Z-]+),.*$/, '$1').replac
           {' · '}{p.publisher}{p.year ? ` · ${p.year}` : ''}
         </p>
         <div class="row mt-24">
-          {p.pdf && <a class="btn" href={p.pdf} download data-track="pdf-download" data-track-label={pub.id}>Download PDF</a>}
+          {p.pdf && (/^https?:/.test(p.pdf)
+            ? <a class="btn" href={p.pdf} target="_blank" rel="noopener" data-track="pdf-download" data-track-label={pub.id}>Read the PDF ↗<span class="sr-only"> (opens in a new tab)</span></a>
+            : <a class="btn" href={p.pdf} download data-track="pdf-download" data-track-label={pub.id}>Download PDF</a>)}
           {publisherUrl && <a class:list={['btn', { 'btn-secondary': Boolean(p.pdf) }]} href={publisherUrl} target="_blank" rel="noopener" data-track="publisher-click" data-track-label={pub.id}>Read at publisher ↗<span class="sr-only"> (opens in a new tab)</span></a>}
           <a class="btn btn-secondary" href="#cite" data-open="cite" aria-haspopup="dialog">Cite</a>
         </div>
@@ -84,25 +85,21 @@ const shortOutlet = (o: string) => o.replace(/^([A-Z][A-Z-]+),.*$/, '$1').replac
     <div class="wrap with-aside">
       <div class="prose body-col">
         <h2>In brief</h2>
-        {p.summary ? <p>{p.summary}</p> : <Tbc block label="In brief · TBC">Authors to add a 2–3 sentence plain-language summary.</Tbc>}
-        <h2>Why it matters</h2>
-        <Tbc block label="Why it matters · TBC">Authors to add two short paragraphs for policymakers.</Tbc>
-        <h2>Data &amp; methods</h2>
-        <Tbc block label="Data & methods · TBC">Authors to add one paragraph.</Tbc>
+        {p.summary ? <p>{p.summary}</p> : <p class="mute">{p.externalUrl ? <>Read the abstract <a href={p.externalUrl} target="_blank" rel="noopener">at the publisher ↗</a>.</> : 'Summary coming soon.'}</p>}
+        {p.whyItMatters && <><h2>Why it matters</h2><p>{p.whyItMatters}</p></>}
+        {p.methods && <><h2>Data &amp; methods</h2><p>{p.methods}</p></>}
         {p.note && <p class="note mute">{p.note}</p>}
         {project && (
           <p class="mute">Part of the project <a href={url.project(project.id)}>{project.data.title}</a>.</p>
         )}
       </div>
       <aside class="aside" aria-label="About this publication">
-        <div class="box-sand">
-          <h2 class="label">Key findings</h2>
-          {findings.length ? (
+        {findings.length > 0 && (
+          <div class="box-sand">
+            <h2 class="label">Key findings</h2>
             <ol class="findings">{findings.map((f) => <li>{f}</li>)}</ol>
-          ) : (
-            <ol class="findings">{[1, 2, 3].map(() => <li><Tbc /></li>)}</ol>
-          )}
-        </div>
+          </div>
+        )}
         <div class="box-paper" id="cite" data-pagefind-ignore>
           <h2 class="label">Cite</h2>
           <p class="mt-8"><a href="#cite" data-open="cite" aria-haspopup="dialog">APA · Harvard · BibTeX</a></p>

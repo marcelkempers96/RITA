@@ -1,13 +1,23 @@
 ---
 import LegalPage from '../components/legal/LegalPage.astro';
 import { INBOX } from '../lib/site';
-const tbc = (t = 'TBC') => `<span class="tbc">${t}</span>`;
 const sections = [
-  { id: 'about', title: 'About these terms', html: `<p>These terms cover your use of this website, run by RITA, the Research Institute for Transitions in Africa. Legal entity and governing law: ${tbc()}</p>` },
-  { id: 'licence', title: 'Content licence', html: `<p>RITA’s own text is licensed under <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a> unless stated otherwise. ${tbc('To confirm')}</p>` },
-  { id: 'third-party', title: 'Third-party publications', html: `<p>Publications by other publishers are linked or shown under the publisher’s terms. ${tbc('To confirm')}</p>` },
-  { id: 'contributions', title: 'Contributions', html: `<p>Terms for pieces submitted through <a href="/submit">Publish with RITA</a>: ${tbc()}</p>` },
+  { id: 'about', title: 'These terms', html: `<p>By using this website you agree to these terms. The site is run by RITA, the Research Institute for Transitions in Africa.</p>` },
+  { id: 'licence', title: 'Using our work', html: `<p>RITA’s own text, charts and data are published under <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a> unless marked otherwise. Share it, quote it, build on it. Credit RITA and the authors, and link back.</p>
+    <p>Photos, logos and the RITA name are not covered by this licence. Ask us first.</p>` },
+  { id: 'third-party', title: 'Other publishers', html: `<p>Many of our team’s publications appear in journals and reports owned by other publishers. We link to them. Their terms apply.</p>` },
+  { id: 'contributions', title: 'Contributing', html: `<p>When you submit a piece through <a href="/submit">Publish with RITA</a>:</p><ul>
+    <li>you keep the copyright;</li>
+    <li>you give RITA the right to edit, publish, translate and share it, on this site and elsewhere;</li>
+    <li>once published, it is licensed under CC BY 4.0;</li>
+    <li>you confirm it is your own work, does not break anyone’s rights, and declares any conflict of interest;</li>
+    <li>you approve the final edit before it goes live.</li></ul>
+    <p>We may decline any piece. Views are the authors’ own, not RITA’s.</p>` },
+  { id: 'no-advice', title: 'No advice', html: `<p>Our research informs decisions. It is not financial, legal or investment advice. We check our work carefully but cannot guarantee it is free of error.</p>` },
+  { id: 'links', title: 'Links', html: `<p>We link to other sites we do not control. We are not responsible for their content.</p>` },
+  { id: 'liability', title: 'Liability', html: `<p>We provide this site as it is. To the extent the law allows, RITA is not liable for losses from using it.</p>` },
+  { id: 'changes', title: 'Changes', html: `<p>We may update these terms. The date at the top shows the latest version.</p>` },
   { id: 'contact', title: 'Contact', html: `<p><a href="mailto:${INBOX.general}">${INBOX.general}</a></p>` },
 ];
 ---
-<LegalPage title="Terms of use" description="Terms for using the RITA website and its content." sections={sections} />
+<LegalPage title="Terms of use" description="How you may use RITA’s website and work, and the terms for contributors." sections={sections} />

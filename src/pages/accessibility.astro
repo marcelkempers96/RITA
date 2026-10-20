@@ -2,12 +2,15 @@
 import LegalPage from '../components/legal/LegalPage.astro';
 import { INBOX } from '../lib/site';
 const sections = [
-  { id: 'commitment', title: 'Our commitment', html: `<p>We want everyone to be able to use this website, whatever device or assistive technology they use.</p>` },
-  { id: 'standard', title: 'Standard', html: `<p>We aim to meet WCAG 2.2 AA. We test with keyboard only, screen readers (NVDA, VoiceOver), 400% zoom and contrast checks.</p>` },
-  { id: 'known-issues', title: 'Known issues', html: `<p><span class="tbc">List TBC</span></p>` },
-  { id: 'feedback', title: 'Feedback', html: `<p>Tell us about a problem: <a href="mailto:${INBOX.access}">${INBOX.access}</a>. We reply within 5 working days.</p>` },
+  { id: 'commitment', title: 'Our commitment', html: `<p>Evidence is only useful if people can reach it. This site should work for everyone, on any device, with any assistive technology.</p>` },
+  { id: 'standard', title: 'Standard', html: `<p>We aim to meet WCAG 2.2 AA. The site works with keyboard only, screen readers, and zoom up to 400%. Text and controls meet contrast requirements. Every page works without JavaScript, except search suggestions and form checks.</p>` },
+  { id: 'testing', title: 'How we test', html: `<p>Automated checks (axe, Lighthouse) on every release, plus manual testing with keyboard, NVDA and VoiceOver.</p>` },
+  { id: 'known-issues', title: 'Known issues', html: `<ul>
+    <li>Publications hosted by other publishers, including many PDFs, may not meet the same standard.</li>
+    <li>Policy Insights are being moved from LinkedIn. Until then, some issues show a title only.</li></ul>` },
+  { id: 'feedback', title: 'Tell us', html: `<p>Something not working? Email <a href="mailto:${INBOX.access}">${INBOX.access}</a>. We reply within 5 working days and can send content in another format.</p>` },
 ];
 ---
-<LegalPage title="Accessibility statement" kicker="Accessibility" description="RITA aims to meet WCAG 2.2 AA: how we test, known issues and how to tell us about a problem." sections={sections} numbered={false} draftNotice={false}>
+<LegalPage title="Accessibility statement" kicker="Accessibility" description="How RITA makes its website work for everyone, known issues and how to tell us about a problem." sections={sections} numbered={false}>
   <p class="mt-48"><a class="link-arrow" href="/sitemap">Sitemap →</a></p>
 </LegalPage>

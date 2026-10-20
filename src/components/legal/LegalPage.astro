@@ -14,12 +14,12 @@ interface Props {
   draftNotice?: boolean;
   kicker?: string;
 }
-const { title, description, updated, sections, numbered = true, draftNotice = true, kicker = 'Legal' } = Astro.props;
+const { title, description, updated = "2026-10-20", sections, numbered = true, draftNotice = false, kicker = 'Legal' } = Astro.props;
 const n = (i: number) => (numbered ? `${i + 1}. ` : '');
 const updatedText = updated ? new Date(updated).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) : '';
 ---
 <Base title={title} description={description}>
-  <span hidden data-pagefind-filter="type">Pages</span>
+  <span hidden data-pagefind-filter="type">Page</span>
   <section class="wrap">
     <Crumbs items={[[title]]} />
     <div class="page-head">

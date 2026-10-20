@@ -3,13 +3,28 @@ import Base from '../../layouts/Base.astro';
 import Crumbs from '../../components/Crumbs.astro';
 import Photo from '../../components/Photo.astro';
 import PersonCard from '../../components/PersonCard.astro';
-import Tbc from '../../components/Tbc.astro';
 import InterestForm from '../../components/about/InterestForm.astro';
 import { load } from '../../lib/content';
 
 const d = await load();
 const fellows = d.people.filter((p) => p.data.group === 'fellow');
-const steps = ['Register interest', 'Apply when the call opens', 'Interview', 'Start'];
+const steps = [
+  ['Register interest', 'Tell us who you are and what you work on. Takes five minutes.'],
+  ['Apply', 'When the call opens, send a two-page proposal and your CV.'],
+  ['Interview', 'A short conversation with the programme leads.'],
+  ['Start', 'Join your cohort, agree your outputs, get to work.'],
+];
+const faq = [
+  ['Who can apply?', 'African researchers with a PhD in economics or a related field, awarded in the last ten years. Final-year PhD candidates can apply too.'],
+  ['Can I apply from outside Africa?', 'Yes. Diaspora researchers are welcome. Your work must be about Africa.'],
+  ['Is the fellowship remote?', 'Yes. RITA is a network, not a building. You stay at your own institution. We work together online and meet in person when we can.'],
+  ['Do I have to leave my job?', 'No. The fellowship runs alongside your current position.'],
+  ['What languages can I work in?', 'English and French. We publish in English and can help with editing.'],
+  ['What do fellows produce?', 'At least one research paper, two Policy Insights and a policy brief over two years. Most fellows co-author with a programme lead.'],
+  ['Who owns my work?', 'You do. RITA publishes openly wherever rights allow, with you as author.'],
+  ['How are fellows chosen?', 'On the quality and policy relevance of the proposal, fit with our four programmes, and track record for career stage. We aim for a cohort balanced across regions and genders.'],
+  ['Is there an application fee?', 'No.'],
+];
 ---
 <Base title="RITA Fellowship" description="Two years with RITA for early- and mid-career African researchers working on industrial transformation.">
   <span hidden data-pagefind-filter="type">Page</span>
@@ -35,17 +50,17 @@ const steps = ['Register interest', 'Apply when the call opens', 'Interview', 'S
         <li class="wbox">
           <p class="label"><span class="sq c-IND" aria-hidden="true"></span>Who</p>
           <h3 class="h3 mt-16">African researchers within 10 years of their PhD</h3>
-          <p class="mt-16"><Tbc label="Eligibility TBC" /></p>
+          <p class="mt-16 mute">Working on industrialisation, minerals, energy, firms or work. Based in Africa or the diaspora.</p>
         </li>
         <li class="wbox">
           <p class="label"><span class="sq c-IND" aria-hidden="true"></span>What</p>
           <h3 class="h3 mt-16">Stipend, mentoring by programme leads, publication support</h3>
-          <p class="mt-16"><Tbc label="Package TBC" /></p>
+          <p class="mt-16 mute">Two years. A research stipend, a programme lead as mentor, editing and a platform for your work.</p>
         </li>
         <li class="wbox">
           <p class="label"><span class="sq c-IND" aria-hidden="true"></span>When</p>
-          <h3 class="h3 mt-16">Call opens <Tbc /></h3>
-          <p class="mt-16 mute">Register interest now and we’ll tell you when it opens.</p>
+          <h3 class="h3 mt-16">First call: announced soon</h3>
+          <p class="mt-16 mute">Register interest now. You will hear first when the call opens.</p>
         </li>
       </ul>
     </div>
@@ -56,7 +71,7 @@ const steps = ['Register interest', 'Apply when the call opens', 'Interview', 'S
       <h2 class="h2 mb-32">How it works</h2>
       <ol class="grid g4 nolist steps">
         {steps.map((s, i) => (
-          <li><span class="mono mute">0{i + 1}</span><span class="h3 step-title">{s}</span></li>
+          <li><span class="mono mute">0{i + 1}</span><span class="h3 step-title">{s[0]}</span><span class="mute small">{s[1]}</span></li>
         ))}
       </ol>
     </div>
@@ -72,7 +87,7 @@ const steps = ['Register interest', 'Apply when the call opens', 'Interview', 'S
         <ul class="grid g4 nolist">{fellows.map((p) => <li><PersonCard person={p} /></li>)}</ul>
       ) : (
         <>
-          <p class="mute mb-32">No fellows listed yet. <Tbc label="First cohort TBC" /></p>
+          <p class="mute mb-32">The first cohort will be listed here.</p>
           <ul class="grid g4 nolist" aria-hidden="true">{Array.from({ length: 4 }).map(() => <li><PersonCard placeholder="Fellow" /></li>)}</ul>
         </>
       )}
@@ -83,18 +98,12 @@ const steps = ['Register interest', 'Apply when the call opens', 'Interview', 'S
     <div class="wrap">
       <h2 id="faq-title" class="h2 mb-32">FAQ</h2>
       <div class="acc">
-        <details>
-          <summary>Can I apply from outside Africa?</summary>
-          <div class="acc-body"><Tbc label="Answer TBC" /></div>
-        </details>
-        <details>
-          <summary>Is the fellowship remote?</summary>
-          <div class="acc-body"><Tbc label="Answer TBC" /></div>
-        </details>
-        <details>
-          <summary>What languages can I work in?</summary>
-          <div class="acc-body"><p>English and French. <Tbc label="Confirm" /></p></div>
-        </details>
+        {faq.map(([q, a]) => (
+          <details>
+            <summary>{q}</summary>
+            <div class="acc-body"><p>{a}</p></div>
+          </details>
+        ))}
       </div>
     </div>
   </section>

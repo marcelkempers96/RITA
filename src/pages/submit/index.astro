@@ -15,6 +15,16 @@ const steps = [
   ['03', 'Edits', 'Comments and revisions in your dashboard.'],
   ['04', 'Publish', 'Scheduled, then shared in the newsletter and on social.'],
 ];
+const guidelines = [
+  ['Lead with the point', 'Your argument goes in the first two sentences. Then the evidence. Then what should change.'],
+  ['Write for the person who decides', 'A minister, a CEO, a DFI officer. Plain English, short sentences, no jargon. Explain any acronym once.'],
+  ['Show the evidence', 'Every claim needs a source. Link to it. Use numbers when they matter, and say where they come from.'],
+  ['Keep it African', 'Start from African firms, workers and states. Use examples from the continent.'],
+  ['Respect the length', 'Policy Insight 600–900 words. Blog or op-ed 800–1,200. Policy brief 4 pages. We cut what runs over.'],
+  ['Your own work', 'Original, not published elsewhere, or you hold the right to republish it. Declare any conflict of interest.'],
+  ['Images', 'Only images you own or may use, each with a credit and a one-line description for screen readers.'],
+  ['Editing', 'We edit for clarity, length and house style. You approve the final version before it goes live.'],
+];
 ---
 <Base title="Publish with RITA" description="RITA researchers, fellows and invited contributors can submit Policy Insights, blogs, op-eds and papers for editing and publication.">
   <span hidden data-pagefind-filter="type">Page</span>
@@ -66,11 +76,12 @@ const steps = [
 
   <section class="section ruled" id="guidelines">
     <div class="wrap with-aside">
-      <div class="stack">
-        <h2 class="h3">Guidelines</h2>
-        <p class="body">Plain English, evidence-led, no jargon. One clear argument per piece. Cite sources with links. Lead with the policy point.</p>
-        <h2 class="h3" style="--stack:32px">Images &amp; rights</h2>
-        <p class="body">Only use images you own or have permission to use, with a credit and alt text for each.</p>
+      <div>
+        <h2 class="h2">Guidelines</h2>
+        <p class="lead mt-16">One idea. Evidence behind it. A decision it should change.</p>
+        <dl class="rules mt-32">
+          {guidelines.map(([t, d]) => (<div><dt class="h3">{t}</dt><dd class="body">{d}</dd></div>))}
+        </dl>
       </div>
       <aside class="box-sand" aria-label="Questions">
         <p class="label">Questions?</p>
@@ -87,6 +98,11 @@ const steps = [
   .hero :global(.hero-photo) { min-height: 320px; }
   .fmt { padding: 24px; }
   .step { border-top: 3px solid var(--malachite); padding-top: 24px; }
+  .rules { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 40px; margin: 0; }
+  .rules div { border-top: 1px solid var(--line); padding-top: 16px; }
+  .rules dt { font-size: 19px; }
+  .rules dd { margin: 8px 0 0; color: var(--mute-2); font-size: 16px; }
+  @media (max-width: 599px) { .rules { grid-template-columns: 1fr; } }
   @media (max-width: 899px) {
     .hero { grid-template-columns: 1fr; }
     .hero-text { padding: 40px var(--pad); justify-content: flex-start; }

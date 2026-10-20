@@ -4,5 +4,6 @@
   "location": "Remote",
   "deadline": "Rolling",
   "summary": "Pitch or submit a Policy Insight: one idea in 600–900 words on Africa’s green industrialisation.",
-  "applyUrl": "/submit"
+  "applyUrl": "/submit",
+  "reportsTo": "Editor, Policy Insights"
 }

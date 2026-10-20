@@ -3,16 +3,38 @@ import LegalPage from '../components/legal/LegalPage.astro';
 import { INBOX } from '../lib/site';
 const tbc = (t = 'TBC') => `<span class="tbc">${t}</span>`;
 const sections = [
-  { id: 'who-we-are', title: 'Who we are', html: `<p>RITA, the Research Institute for Transitions in Africa. Legal entity, registration number and address: ${tbc('legal entity, registration, address TBC')}</p>` },
-  { id: 'data-we-collect', title: 'Data we collect', html: `<ul>
-    <li>Form submissions (contact, register interest, fellowship).</li>
-    <li>Newsletter subscriptions.</li>
-    <li>Event registrations.</li>
-    <li>Contributor accounts and submissions.</li>
-    <li>Analytics, only with your consent.</li></ul>` },
-  { id: 'how-we-use-it', title: 'How we use it', html: `<p>We use this data to answer your enquiry, send the newsletters you chose, run the events you register for, review and publish contributions, and, with your consent, understand how the site is used. CVs sent through the register-interest form are stored privately and deleted after 12 months.</p><p>Lawful bases, retention periods and processors: ${tbc()}</p>` },
-  { id: 'your-rights', title: 'Your rights', html: `<p>Under POPIA (South Africa) and GDPR (EU) you can ask to access, correct or delete your personal data, and object to how we use it. ${tbc('Full wording TBC')}</p>` },
+  { id: 'who-we-are', title: 'Who we are', html: `<p>RITA, the Research Institute for Transitions in Africa, decides why and how your data is used on this site. Legal entity, registration number and address: ${tbc('legal entity, registration, address TBC')}</p>` },
+  { id: 'data-we-collect', title: 'What we collect', html: `<ul>
+    <li><strong>Contact form:</strong> name, email, organisation and your message.</li>
+    <li><strong>Newsletter:</strong> email, first name (optional) and the lists you chose.</li>
+    <li><strong>Event registration:</strong> name, email, organisation, country, role and any accessibility needs.</li>
+    <li><strong>Fellowship and register interest:</strong> name, email, country, career stage, CV and note.</li>
+    <li><strong>Submissions:</strong> your name, co-authors, text, files and images.</li>
+    <li><strong>Analytics:</strong> pages visited, referrer and device type, without cookies and only with your consent. No personal profile is built.</li></ul>
+    <p>We do not buy data, sell data or use it for advertising.</p>` },
+  { id: 'why', title: 'Why we use it', html: `<ul>
+    <li>To answer you: our legitimate interest in replying to enquiries.</li>
+    <li>To send newsletters: your consent. Unsubscribe in one click.</li>
+    <li>To run events and review applications or submissions: the steps you asked us to take.</li>
+    <li>To understand how the site is used: your consent.</li></ul>` },
+  { id: 'how-long', title: 'How long we keep it', html: `<ul>
+    <li>Enquiries: two years.</li>
+    <li>Newsletter: until you unsubscribe.</li>
+    <li>Event registrations: 12 months after the event.</li>
+    <li>CVs and applications: 12 months, then deleted.</li>
+    <li>Published contributions: as long as they are online. Unpublished drafts: deleted after 24 months without activity.</li></ul>` },
+  { id: 'sharing', title: 'Who we share it with', html: `<p>Only the services that run the site for us, under contract and only for that purpose: website hosting, email delivery, form handling and privacy-friendly analytics. Some of these providers store data outside your country. Where they do, we use providers that apply safeguards recognised under POPIA and GDPR.</p>` },
+  { id: 'your-rights', title: 'Your rights', html: `<p>Under POPIA (South Africa) and GDPR (EU) you can:</p><ul>
+    <li>see the data we hold about you;</li>
+    <li>correct it;</li>
+    <li>have it deleted;</li>
+    <li>object to or restrict how we use it;</li>
+    <li>take it with you;</li>
+    <li>withdraw consent at any time.</li></ul>
+    <p>Email us and we will reply within one month. If you are not satisfied, you can complain to the <a href="https://inforegulator.org.za" rel="noopener">Information Regulator</a> (South Africa) or your national data protection authority (EU).</p>` },
+  { id: 'security', title: 'Security', html: `<p>The site runs over HTTPS. Files you upload are stored privately and only the people who need them can see them.</p>` },
+  { id: 'changes', title: 'Changes', html: `<p>If we change this policy we update the date at the top of this page.</p>` },
   { id: 'contact', title: 'Contact', html: `<p><a href="mailto:${INBOX.privacy}">${INBOX.privacy}</a></p>` },
 ];
 ---
-<LegalPage title="Privacy policy" description="How RITA collects and uses personal data, and your rights under POPIA and GDPR." sections={sections} />
+<LegalPage title="Privacy policy" description="What personal data RITA collects, why, for how long, and your rights under POPIA and GDPR." sections={sections} />
