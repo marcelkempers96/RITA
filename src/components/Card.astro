@@ -6,7 +6,7 @@ const { href, title, code, label, meta, shot, image, alt, external = false, desc
 const H = `h${headingLevel}` as 'h2' | 'h3';
 ---
 <a class="card" href={href} {...(external ? { target: '_blank', rel: 'noopener', 'data-track': 'publisher-click' } : {})}>
-  {(shot || image) && <div class:list={['card-bar', code ? `c-${code}` : 'c-none']}><Photo shot={shot} src={image} alt={alt} code={code} sizes="(min-width: 900px) 33vw, 100vw" /></div>}
+  {(shot || image) && <div class:list={['card-bar', code ? `c-${code}` : 'c-none']}><Photo shot={shot} src={image} alt={alt} code={code} seed={href} sizes="(min-width: 900px) 33vw, 100vw" /></div>}
   <ProgLabel code={code} parts={label} />
   <H class:list={['card-title', { ext: external }]}>{title}</H>
   {desc && <p class="mute small">{desc}</p>}

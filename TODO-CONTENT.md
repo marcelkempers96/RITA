@@ -9,7 +9,7 @@ Every item here renders on the site as a visible yellow **TBC** marker, or as a 
 4. **Author order** for every publication except the World Bank report (it drives the citations).
 5. **Policy Insights texts.** Approval to migrate Nos. 1–45 from LinkedIn, then the bodies and the publication date of each issue.
 6. **Portraits and bios.** Gideon and Elvis (4:5 portraits, 60- and 150-word bios, ORCID, Google Scholar, LinkedIn, email).
-7. **Photography** (about 24 shots, ASSETS-CHECKLIST §4).
+7. **Photo credits and licences.** 25 photos supplied by the team are now on the site (`src/assets/photos/`, listed in `scripts/photos.json`). Add the photographer `credit` (shown on the image) and `licence` for each, and confirm the right to use them, especially photos with visible brands (Coca-Cola, Kioo, KVOLT, MSC). Portraits of Gideon and Elvis and a photo of the founders together are still needed.
 8. **Partner logo permissions.** Names show as text until `logoPermission.granted` is set.
 9. **Key findings (3 bullets)** for the 8 flagship publications.
 10. **Launch event** date, time and moderator.

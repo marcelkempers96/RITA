@@ -77,7 +77,13 @@ Rules the content follows:
 
 ### Photography
 
-Every photo slot renders a ▣ placeholder captioned with the shot needed (see `ASSETS-CHECKLIST.md §4`). To use a real image, pass `src`, `alt` and `credit` to `<Photo>` (or set the entry's image field), and put the files in `public/uploads/`.
+Photos live in `src/assets/photos/` and are listed in `scripts/photos.json` with alt text, credit and licence. Each photo can:
+- fill specific placeholder slots (`shots`, e.g. "Port / logistics" on the home page);
+- belong to one or more programme `pools` (`IND`, `MIN`, `EN`, `INN`).
+
+Cards and article headers without their own photo pick one from their programme's pool, seeded by the item's URL, and never repeat a photo already shown on the same page. Astro turns each file into responsive AVIF/WebP at four widths, and the credit is overlaid bottom-left.
+
+To add a photo, put the file in `src/assets/photos/`, add an entry to `scripts/photos.json` and rebuild. Slots with no photo show the ▣ placeholder. Portraits never fall back to stock photos.
 
 ## Forms
 

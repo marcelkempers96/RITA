@@ -5,15 +5,17 @@
 // Pass `src` + `alt` (+ `credit`) to override with a specific image; alt text is required for real images.
 import { Picture } from 'astro:assets';
 import { resolvePhoto } from '../lib/photos';
-interface Props { shot?: string; src?: string; alt?: string; credit?: string; ratio?: string; class?: string; top?: boolean; eager?: boolean; kind?: string; code?: string; sizes?: string }
-const { shot = 'Photo', src, alt = '', credit, ratio = '4 / 3', class: cls, top = false, eager = false, kind = 'Photo', code, sizes = '(min-width: 900px) 50vw, 100vw' } = Astro.props;
+interface Props { shot?: string; src?: string; alt?: string; credit?: string; ratio?: string; class?: string; top?: boolean; eager?: boolean; kind?: string; code?: string; seed?: string; sizes?: string }
+const { shot = 'Photo', src, alt = '', credit, ratio = '4 / 3', class: cls, top = false, eager = false, kind = 'Photo', code, seed, sizes = '(min-width: 900px) 50vw, 100vw' } = Astro.props;
 // Portraits never fall back to stock photography.
-const photo = !src && kind !== 'Portrait' ? resolvePhoto(shot, code) : undefined;
+const locals = Astro.locals as { usedPhotos?: Set<string> };
+locals.usedPhotos ??= new Set();
+const photo = !src && kind !== 'Portrait' ? resolvePhoto(shot, code, seed ?? Astro.url.pathname, locals.usedPhotos) : undefined;
 ---
 <div class:list={['ph', cls, { 'ph-top': top, 'ph-real': src || photo }]} style={`--ar:${ratio}`}>
   {photo ? (
     <>
-      <Picture src={photo.image} alt={photo.alt} formats={['avif', 'webp']} widths={[480, 960, 1600]} sizes={sizes}
+      <Picture src={photo.image} alt={photo.alt} formats={['avif', 'webp']} widths={[480, 800, 1280, 1600]} sizes={sizes} quality={60}
         loading={eager ? 'eager' : 'lazy'} fetchpriority={eager ? 'high' : undefined} decoding="async" />
       {photo.credit && <span class="ph-cap credit">{photo.credit}</span>}
     </>

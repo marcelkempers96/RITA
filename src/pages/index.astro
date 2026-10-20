@@ -20,7 +20,7 @@ const latest = [
   { date: insight.data.date ?? `${insight.data.year}-10`, href: url.insight(insight.id), external: false, title: insight.data.title,
     code: insight.data.programme, label: ['Policy Insight', `No. ${insight.data.number}`], meta: `${fullName('Ndubuisi')} · ${insight.data.year}`, shot: 'Policymakers' },
   { date: String(pub.data.year), href: url.publication(pub.id), external: false, title: pub.data.title,
-    code: pub.data.programmes[0], label: [TYPE_LABEL[pub.data.type], pub.data.publisher.replace(/\s[\d(].*$/, '')], meta: `${authorLine(pub.data.authors)} · ${pub.data.year}`, shot: 'Solar assembly' },
+    code: pub.data.programmes[0], label: [TYPE_LABEL[pub.data.type], pub.data.publisher.replace(/\s[\d(].*$/, '')], meta: `${authorLine(pub.data.authors)} · ${pub.data.year}`, shot: 'Topical image' },
 ];
 const recentInsights = d.insights.slice(0, 4);
 const leads = d.people.filter((p) => p.data.group === 'lead');
