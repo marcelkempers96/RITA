@@ -66,7 +66,7 @@ const publications = defineCollection({
   loader: json('publications'),
   schema: z.object({
     ...base,
-    type: z.enum(['journal', 'report', 'working-paper', 'policy-paper', 'book-chapter', 'background-paper']),
+    type: z.enum(['journal', 'report', 'working-paper', 'policy-paper', 'book-chapter', 'background-paper', 'thesis']),
     programmes: z.array(programmeCode).default([]),
     authors: z.array(z.string()),
     authorOrderConfirmed: z.boolean().default(false),

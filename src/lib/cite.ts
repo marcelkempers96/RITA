@@ -31,7 +31,7 @@ export function cite(c: CiteInput) {
   const apa = `${apaAuthors(c.authors)} (${yr(c.year)}). ${c.title}. ${c.outlet}.${l ? ` ${l}` : ''}`;
   const harvard = `${harvardAuthors(c.authors)} (${yr(c.year)}) '${c.title}', ${c.outlet}.${l ? ` Available at: ${l}.` : ''}`;
   const key = `${(c.authors[0] ?? 'rita').toLowerCase().replace(/[^a-z]/g, '')}${c.year ?? ''}${c.title.split(/\s+/)[0].toLowerCase().replace(/[^a-z]/g, '')}`;
-  const entry = c.type === 'journal' ? 'article' : c.type === 'book-chapter' ? 'incollection' : c.type === 'working-paper' ? 'techreport' : 'misc';
+  const entry = c.type === 'journal' ? 'article' : c.type === 'book-chapter' ? 'incollection' : c.type === 'working-paper' ? 'techreport' : c.type === 'thesis' ? 'mastersthesis' : 'misc';
   const fields = [
     ['title', `{${c.title}}`],
     ['author', `{${c.authors.join(' and ')}}`],

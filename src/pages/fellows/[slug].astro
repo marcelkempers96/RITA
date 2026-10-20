@@ -55,7 +55,7 @@ const ld = {
       <Photo shot="Natural light" kind="Portrait" ratio="4 / 5" src={p.portrait} alt={`Portrait of ${p.name}`} eager />
     </div>
     <div class="intro">
-      <p class="label mute">{groupLabel[p.group] ?? p.role}<span class="sep">·</span>{p.base}</p>
+      <p class="label mute">{p.group === 'staff' ? p.role : groupLabel[p.group] ?? p.role}{p.base && <><span class="sep">·</span>{p.base}</>}</p>
       <h1 class="h1 mt-16">{p.name}</h1>
       <p class="body bio mt-24">{p.bio} {p.bioTbc && <Tbc label="Bio to confirm" />}</p>
       <ul class="nolist chips mt-24" aria-label="Focus">

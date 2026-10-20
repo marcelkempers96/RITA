@@ -9,7 +9,7 @@ const groupLabel: Record<string, string> = { lead: 'Programme lead', fellow: 'Fe
 {person ? (
   <a class:list={['person', `c-${person.data.programmes[0] ?? 'INN'}`]} href={`/fellows/${person.id}`}>
     <Photo shot={person.data.name} kind="Portrait" ratio="4 / 5" src={person.data.portrait} alt={`Portrait of ${person.data.name}`} />
-    <span class="label mute">{groupLabel[person.data.group] ?? person.data.role}<span class="sep">·</span>{person.data.base}</span>
+    <span class="label mute">{person.data.group === 'staff' ? person.data.role : groupLabel[person.data.group] ?? person.data.role}{person.data.base && <><span class="sep">·</span>{person.data.base}</>}</span>
     <H class="person-name">{person.data.name}</H>
     <span class="mute small">{person.data.focus}</span>
   </a>

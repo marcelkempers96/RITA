@@ -5,7 +5,6 @@ import { getCollection } from 'astro:content';
 import Base from '../../../layouts/Base.astro';
 import Crumbs from '../../../components/Crumbs.astro';
 import Photo from '../../../components/Photo.astro';
-import Tbc from '../../../components/Tbc.astro';
 import PersonCard from '../../../components/PersonCard.astro';
 import SearchMeta from '../../../components/research/SearchMeta.astro';
 import { load, url, PROGRAMMES, TYPE_LABEL, fullName, type Code } from '../../../lib/content';
@@ -53,7 +52,7 @@ const facts: [string, string | undefined][] = [
   <section class="ruled facts-band">
     <div class="wrap">
       <dl class="facts">
-        {facts.map(([k, v]) => <div class:list={['fact', { wide: k === 'Partners' }]}><dt>{k}</dt><dd>{v ?? <Tbc />}</dd></div>)}
+        {facts.map(([k, v]) => <div class:list={['fact', { wide: k === 'Partners' }]}><dt>{k}</dt><dd>{v ?? '—'}</dd></div>)}
       </dl>
     </div>
   </section>
@@ -62,9 +61,8 @@ const facts: [string, string | undefined][] = [
     <div class="wrap with-aside">
       <div class="prose">
         <h2>About the project</h2>
-        {p.description ? <p>{p.description}</p> : <Tbc block label="About the project · TBC">Description from the project team.</Tbc>}
-        <h2>RITA’s role</h2>
-        {p.ritaRole ? <p>{p.ritaRole}</p> : <Tbc block label="RITA’s role · TBC">To be confirmed by the project team.</Tbc>}
+        {(p.description ?? p.summary).split(/\n\n+/).map((para) => <p>{para}</p>)}
+        {p.ritaRole && <><h2>Our team’s role</h2><p>{p.ritaRole}</p></>}
       </div>
       <aside class="box-sand" aria-labelledby="outputs-title">
         <h2 id="outputs-title" class="label">Outputs</h2>

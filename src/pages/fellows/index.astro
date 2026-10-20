@@ -13,6 +13,7 @@ const groups = [
   { key: 'fellows', group: 'fellow', title: 'Fellows' },
   { key: 'associates', group: 'associate', title: 'Associates' },
   { key: 'alumni', group: 'alumni', title: 'Alumni' },
+  { key: 'team', group: 'staff', title: 'Team' },
 ].map((g) => ({ ...g, people: d.people.filter((p) => p.data.group === g.group) }));
 const leads = groups[0].people;
 ---

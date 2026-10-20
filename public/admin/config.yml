@@ -36,7 +36,7 @@ collections:
       - label: Type
         name: type
         widget: select
-        options: [journal, report, working-paper, policy-paper, book-chapter, background-paper]
+        options: [journal, report, working-paper, policy-paper, book-chapter, background-paper, thesis]
       - { label: Programmes, name: programmes, multiple: true, required: false, widget: select, options: [{ label: "01 Green industrialisation & policy", value: IND }, { label: "02 Transition minerals & value chains", value: MIN }, { label: "03 Energy & industry", value: EN }, { label: "04 Innovation, firms & work", value: INN }] }
       - { label: Authors (surnames, in order), name: authors, widget: list, field: { label: Surname, name: name, widget: string } }
       - { label: Author order confirmed, name: authorOrderConfirmed, widget: boolean, default: false, required: false }

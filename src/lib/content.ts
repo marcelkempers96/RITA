@@ -24,6 +24,7 @@ export const TYPE_LABEL: Record<string, string> = {
   'working-paper': 'Working paper',
   'policy-paper': 'Policy paper',
   'book-chapter': 'Book chapter',
+  thesis: 'Thesis',
   'background-paper': 'Background paper',
   'policy-brief': 'Policy brief',
   'op-ed': 'Op-ed',
@@ -36,18 +37,18 @@ export const TYPE_LABEL: Record<string, string> = {
 export const TYPE_CHIPS: { key: string; label: string; types: string[] }[] = [
   { key: 'journal', label: 'Journal', types: ['journal'] },
   { key: 'report', label: 'Report', types: ['report', 'background-paper', 'book-chapter'] },
-  { key: 'working-paper', label: 'Working paper', types: ['working-paper', 'policy-paper'] },
+  { key: 'working-paper', label: 'Working paper', types: ['working-paper', 'policy-paper', 'thesis'] },
   { key: 'policy-brief', label: 'Policy brief', types: ['policy-brief', 'rita-brief'] },
   { key: 'op-ed', label: 'Op-ed', types: ['op-ed', 'research-blog'] },
 ];
 
 const FULL: Record<string, string> = {
-  Ndubuisi: 'Gideon Ndubuisi', Avenyo: 'Elvis Korku Avenyo', Owusu: 'Solomon Owusu', Kassa: 'Woubet Kassa',
+  Ndubuisi: 'Gideon Ndubuisi', Avenyo: 'Elvis Korku Avenyo', Kempers: 'Marcel Kempers', Owusu: 'Solomon Owusu', Kassa: 'Woubet Kassa',
   Mensah: 'Emmanuel B. Mensah', Urom: 'Christian Urom', Konte: 'Maty Konte', Tregenna: 'Fiona Tregenna',
   Andreoni: 'Antonio Andreoni', Chisoro: 'Shingie Chisoro', Bell: 'Jason Bell', Nyamwena: 'Julius Nyamwena',
   Tang: 'Keyi Tang', Fu: 'Xiaolan Fu', 'Kraemer-Mbula': 'Erika Kraemer-Mbula',
 };
-export const PERSON_BY_SURNAME: Record<string, string> = { Ndubuisi: 'gideon-ndubuisi', Avenyo: 'elvis-korku-avenyo' };
+export const PERSON_BY_SURNAME: Record<string, string> = { Ndubuisi: 'gideon-ndubuisi', Avenyo: 'elvis-korku-avenyo', Kempers: 'marcel-kempers' };
 
 export const fullName = (surname: string) => FULL[surname] ?? surname;
 export function initialsName(surname: string) {
