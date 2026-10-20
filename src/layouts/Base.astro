@@ -65,7 +65,7 @@ const ld = [org, ...(jsonLd ? ([] as Record<string, unknown>[]).concat(jsonLd) :
     <a class="skip-link" href="#main">Skip to content</a>
     <Header dark={dark} />
     {progress && <div class="progress" aria-hidden="true"><span data-progress></span></div>}
-    <main id="main" tabindex="-1" data-pagefind-body>
+    <main id="main" tabindex="-1" data-pagefind-body={noindex ? undefined : ''}>
       <slot />
     </main>
     {!noNewsletter && <NewsletterBand />}

@@ -15,7 +15,7 @@ const formatLine = (e: (typeof d.events)[number]) =>
   [FORMAT_LABEL[e.data.format], e.data.venue, eventTime(e.data)].filter(Boolean).join(' · ');
 ---
 <Base title="Events" description="Launches, webinars and policy dialogues.">
-  <span hidden data-pagefind-filter="type">Pages</span>
+  <span hidden data-pagefind-filter="type">Page</span>
   <PageHead title="Events" crumbs={[['Insights', '/insights'], ['Events']]} lead="Launches, webinars and policy dialogues." />
   <InsightsTabs current="events" />
 

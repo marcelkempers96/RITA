@@ -26,7 +26,7 @@ const authors = b.authors.length ? b.authors : ['RITA'];
 <Base title={b.title} description={`RITA Policy Brief No. ${no}: ${b.title}.`} ogType="article"
   jsonLd={{ '@context': 'https://schema.org', '@type': 'Report', name: b.title, reportNumber: `RITA Policy Brief ${no}`,
     publisher: { '@type': 'ResearchOrganization', name: 'Research Institute for Transitions in Africa' }, ...(b.date ? { datePublished: b.date } : {}) }}>
-  <span hidden data-pagefind-filter="type">Insights</span>
+  <span hidden data-pagefind-filter="type">Insight</span>
   <section class="wrap">
     <Crumbs items={[['Policy', '/policy'], ['Briefs', '/policy/briefs'], [`No. ${no}`]]} />
     <div class="page-head" data-pagefind-meta="type:Policy brief">

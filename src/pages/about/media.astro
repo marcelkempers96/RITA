@@ -13,7 +13,7 @@ const news = d.opeds.filter((o) => o.data.kind !== 'policy-brief');
 const experts = d.people.filter((p) => p.data.expertise.length);
 ---
 <Base title="Media" description="Press enquiries, RITA in the news, press kit and experts for comment.">
-  <span hidden data-pagefind-filter="type">Pages</span>
+  <span hidden data-pagefind-filter="type">Page</span>
   <PageHead title="Media" crumbs={[['About', '/about'], ['Media']]}>
     <p class="lead">Press enquiries: <a href={`mailto:${INBOX.media}`}>{INBOX.media}</a></p>
   </PageHead>

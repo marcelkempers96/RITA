@@ -39,7 +39,7 @@ const start = eventStart(e), end = eventEnd(e);
     location: e.format === 'online' ? { '@type': 'VirtualLocation', url: pageUrl } : { '@type': 'Place', name: e.venue ?? 'TBC' },
     organizer: { '@type': 'ResearchOrganization', name: 'Research Institute for Transitions in Africa' },
     performer: speakers.map((s) => ({ '@type': 'Person', name: s.data.name })) }}>
-  <span hidden data-pagefind-filter="type">Insights</span>
+  <span hidden data-pagefind-filter="type">Insight</span>
   <section class="wrap">
     <Crumbs items={[['Insights', '/insights'], ['Events', '/insights/events'], [e.title]]} />
     <div class="head">

@@ -37,7 +37,7 @@ const canonical = new URL(url.insight(insight.id), Astro.site).toString();
     author: { '@type': 'Person', name: author?.data.name ?? 'Gideon Ndubuisi', url: author ? new URL(url.person(author.id), Astro.site).toString() : undefined },
     publisher: { '@type': 'ResearchOrganization', name: 'Research Institute for Transitions in Africa' },
     isPartOf: { '@type': 'CreativeWorkSeries', name: 'RITA Policy Insights' }, ...(i.date ? { datePublished: i.date } : {}), ...(readTime ? { wordCount: words } : {}) }}>
-  <span hidden data-pagefind-filter="type">Insights</span>
+  <span hidden data-pagefind-filter="type">Insight</span>
   <article>
     <header class="wrap">
       <Crumbs items={[['Insights', '/insights'], ['Policy Insights', '/insights'], [`No. ${i.number}`]]} />
