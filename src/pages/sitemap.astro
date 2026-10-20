@@ -58,7 +58,7 @@ const sections = [...main, ...(more.length ? [group('More', '/', more)] : []), g
 const count = (n: Node): number => 1 + n.children.reduce((s, c) => s + count(c), 0);
 ---
 <Base title="Sitemap" description="Every page on the RITA website.">
-  <span hidden data-pagefind-filter="type">Pages</span>
+  <span hidden data-pagefind-filter="type">Page</span>
   <section class="wrap">
     <Crumbs items={[['Sitemap']]} />
     <div class="page-head">

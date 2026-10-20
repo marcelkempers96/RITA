@@ -41,6 +41,8 @@ button, input, select, textarea { font: inherit; color: inherit; border-radius: 
 .skip-link { position: absolute; left: 16px; top: -100px; z-index: 1000; background: var(--sun); color: var(--ink); padding: 12px 18px; font-weight: 600; text-decoration: none; }
 .skip-link:focus { top: 12px; }
 [hidden] { display: none !important; }
+/* Elements only useful with JS: hidden from first paint when JS is off, shown immediately (no layout shift) when on. */
+html:not(.js) [data-js-only] { display: none !important; }
 
 /* Type */
 .display { font-size: var(--fs-display); line-height: 1.04; letter-spacing: -0.03em; font-weight: 600; }
@@ -69,7 +71,7 @@ button, input, select, textarea { font: inherit; color: inherit; border-radius: 
 
 /* Layout */
 .wrap { max-width: calc(var(--max) + 2 * var(--pad)); margin: 0 auto; padding: 0 var(--pad); }
-.section { padding: var(--section-y) 0; }
+.section { padding-block: var(--section-y); }
 .section + .section.ruled, .ruled { border-top: 1px solid var(--line); }
 .bg-paper { background: var(--paper); }
 .bg-sand { background: var(--sand); }
@@ -169,7 +171,7 @@ button, input, select, textarea { font: inherit; color: inherit; border-radius: 
 .ptile.c-INN:hover { outline-color: var(--sun); }
 .ptile .sq { background: currentColor; }
 .ptile-title { font-size: 22px; line-height: 1.2; font-weight: 600; }
-.ptile-desc { font-size: var(--fs-small); line-height: 1.55; opacity: .92; }
+.ptile-desc { font-size: var(--fs-small); line-height: 1.55; }
 
 /* People */
 .person { display: flex; flex-direction: column; gap: 6px; text-decoration: none; color: inherit; }
@@ -206,7 +208,7 @@ button, input, select, textarea { font: inherit; color: inherit; border-radius: 
 .crumbs ol { list-style: none; padding: 0; margin: 0; display: flex; gap: 8px; flex-wrap: wrap; }
 .crumbs li + li::before { content: '/'; margin-right: 8px; }
 .crumbs a { text-decoration: none; }
-.bg-ink .crumbs { color: var(--on-dark-mute); }
+.bg-ink .crumbs, .hero-dark .crumbs { color: var(--on-dark-mute); }
 
 /* Page head */
 .page-head { padding: 56px 0 48px; }
@@ -216,7 +218,7 @@ button, input, select, textarea { font: inherit; color: inherit; border-radius: 
 .hero-dark .lead { color: var(--on-dark-mute); }
 .hero-prog { background: var(--c); color: var(--white); }
 .hero-prog.c-EN { color: var(--ink); }
-.hero-prog .lead { color: inherit; opacity: .9; }
+.hero-prog .lead { color: inherit; }
 
 /* Forms */
 .form { display: grid; gap: 22px; }
@@ -282,3 +284,6 @@ fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 10px; }
 .center { text-align: center; }
 .hide-mobile { } @media (max-width: 899px) { .hide-mobile { display: none !important; } }
 .show-mobile { display: none !important; } @media (max-width: 899px) { .show-mobile { display: revert !important; } }
+
+/* Contrast: --mute fails 4.5:1 on sand, so secondary text on sand uses --mute-2. */
+.bg-sand .mute, .box-sand .mute, .bg-sand .card-meta, .box-sand .card-meta, .bg-sand .hint, .box-sand .hint { color: var(--mute-2); }

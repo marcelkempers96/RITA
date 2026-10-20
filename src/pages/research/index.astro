@@ -28,7 +28,7 @@ const outletShort = (o: string) => o.replace(/^([A-Z][A-Z-]+),.*$/, '$1').replac
     </form>
   </PageHead>
 
-  <section class="chipbar ruled" data-js-only hidden>
+  <section class="chipbar ruled" data-js-only>
     <div class="wrap between">
       <div class="chips" role="group" aria-label="Publication type">
         <button type="button" class="chip" data-type-chip="" aria-pressed="true">All</button>
@@ -40,7 +40,7 @@ const outletShort = (o: string) => o.replace(/^([A-Z][A-Z-]+),.*$/, '$1').replac
 
   <section class="ruled">
     <div class="wrap with-sidebar lib">
-      <aside aria-label="Filters" data-js-only hidden>
+      <aside aria-label="Filters" data-js-only>
         <details class="filter-panel" data-filter-panel>
         <summary class="btn btn-secondary btn-sm">Filters</summary>
         <div class="filters">
@@ -64,7 +64,7 @@ const outletShort = (o: string) => o.replace(/^([A-Z][A-Z-]+),.*$/, '$1').replac
       <div class="results">
         <div class="between results-head">
           <p class="label mute" role="status" aria-live="polite"><span data-count>{items.length}</span> results</p>
-          <div class="sort" data-js-only hidden>
+          <div class="sort" data-js-only>
             <label for="lib-sort" class="label mute">Sort:</label>
             <select id="lib-sort" class="sort-select" data-sort>
               <option value="newest">Newest</option>
@@ -108,6 +108,9 @@ const outletShort = (o: string) => o.replace(/^([A-Z][A-Z-]+),.*$/, '$1').replac
 </Base>
 
 <style>
+  /* Before the script runs, show what the default view will be (first 12, no archive) to avoid layout shift. */
+  :global(html.js) [data-list]:not(.ready) > li[data-archive] { display: none; }
+  :global(html.js) [data-list]:not(.ready) > li:nth-child(n + 13 of :not([data-archive])) { display: none; }
   .lib-search { margin-top: 32px; max-width: 600px; }
   .lib-search .input { border: 2px solid var(--ink); min-height: 54px; font-size: 17px; }
   .chipbar { padding: 20px 0; }
@@ -150,7 +153,6 @@ const outletShort = (o: string) => o.replace(/^([A-Z][A-Z-]+),.*$/, '$1').replac
   const empty = document.querySelector<HTMLElement>('[data-empty]')!;
   const pager = document.querySelector<HTMLElement>('[data-pager]')!;
 
-  document.querySelectorAll<HTMLElement>('[data-js-only]').forEach((el) => (el.hidden = false));
   // Filters are always open on desktop; on mobile they collapse behind a "Filters" button.
   const panel = document.querySelector<HTMLDetailsElement>('[data-filter-panel]')!;
   const mq = window.matchMedia('(min-width: 900px)');
@@ -215,6 +217,7 @@ const outletShort = (o: string) => o.replace(/^([A-Z][A-Z-]+),.*$/, '$1').replac
     const page = Math.min(s.page, pages);
     const shown = new Set(hits.slice((page - 1) * PER_PAGE, page * PER_PAGE));
     rows.forEach((r) => (r.hidden = !shown.has(r)));
+    list.classList.add('ready');
     hits.forEach((r) => list.appendChild(r)); // re-order DOM to the sort order
     counts.forEach((c) => (c.textContent = String(hits.length)));
     empty.hidden = hits.length > 0;

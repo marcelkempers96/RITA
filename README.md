@@ -36,7 +36,7 @@ src/
   content/            one JSON file per entry: publications, insights, opeds, briefs, projects,
                       people, programmes, partners, events, jobs
   content.config.ts   content model (zod schemas, BUILD-SPEC §5)
-  pages/              one file per route (see "Pages" below)
+  pages/              one file per route (full list at /sitemap)
   layouts/Base.astro  <head>, SEO, JSON-LD, header, newsletter band, footer, cookie banner
   components/         shared UI: Header, Footer, Card, ListRow, ProgrammeTiles, PersonCard, Photo, Tbc…
   lib/content.ts      content helpers: programme lookup, author formatting, URLs, library index
