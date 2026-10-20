@@ -1,0 +1,16 @@
+---
+import Crumbs from './Crumbs.astro';
+interface Props { title: string; kicker?: string; lead?: string; crumbs?: [string, string?][]; variant?: 'light' | 'dark' | 'paper'; display?: boolean }
+const { title, kicker, lead, crumbs, variant = 'light', display = false } = Astro.props;
+---
+<section class:list={[{ 'hero-dark': variant === 'dark', 'bg-paper': variant === 'paper' }]}>
+  <div class="wrap">
+    {crumbs && <Crumbs items={crumbs} />}
+    <div class="page-head">
+      {kicker && <p class="label" set:html={kicker} />}
+      <h1 class={display ? 'display' : 'h1'}>{title}</h1>
+      {lead && <p class="lead">{lead}</p>}
+      <slot />
+    </div>
+  </div>
+</section>

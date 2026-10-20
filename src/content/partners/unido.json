@@ -1,0 +1,11 @@
+{
+  "title": "UNIDO",
+  "name": "UNIDO",
+  "kind": "commissioner",
+  "relationship": "IDR 2026 background; industrial diagnostic; policy brief",
+  "trackRecord": true,
+  "order": 2,
+  "logoPermission": {
+    "granted": false
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "title": "TU Delft",
+  "name": "TU Delft",
+  "kind": "academic",
+  "relationship": "Affiliation / research partner",
+  "trackRecord": false,
+  "order": 14,
+  "logoPermission": {
+    "granted": false
+  }
+}

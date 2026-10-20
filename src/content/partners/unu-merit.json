@@ -1,0 +1,11 @@
+{
+  "title": "UNU-MERIT",
+  "name": "UNU-MERIT",
+  "kind": "academic",
+  "relationship": "Affiliation / research partner",
+  "trackRecord": false,
+  "order": 15,
+  "logoPermission": {
+    "granted": false
+  }
+}

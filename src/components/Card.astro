@@ -1,0 +1,15 @@
+---
+import Photo from './Photo.astro';
+import ProgLabel from './ProgLabel.astro';
+interface Props { href: string; title: string; code?: string; label: (string | undefined | null | false)[]; meta?: string; shot?: string; image?: string; alt?: string; external?: boolean; desc?: string; headingLevel?: 2 | 3 }
+const { href, title, code, label, meta, shot, image, alt, external = false, desc, headingLevel = 3 } = Astro.props;
+const H = `h${headingLevel}` as 'h2' | 'h3';
+---
+<a class="card" href={href} {...(external ? { target: '_blank', rel: 'noopener', 'data-track': 'publisher-click' } : {})}>
+  {(shot || image) && <div class:list={['card-bar', code ? `c-${code}` : 'c-none']}><Photo shot={shot} src={image} alt={alt} /></div>}
+  <ProgLabel code={code} parts={label} />
+  <H class:list={['card-title', { ext: external }]}>{title}</H>
+  {desc && <p class="mute small">{desc}</p>}
+  {meta && <p class="card-meta">{meta}</p>}
+  {external && <span class="sr-only">(opens in a new tab)</span>}
+</a>

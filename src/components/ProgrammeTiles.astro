@@ -1,0 +1,18 @@
+---
+import type { CollectionEntry } from 'astro:content';
+interface Props { programmes: CollectionEntry<'programmes'>[]; headingLevel?: 2 | 3 }
+const { programmes, headingLevel = 3 } = Astro.props;
+const H = `h${headingLevel}` as 'h2' | 'h3';
+---
+<ul class="grid g4 nolist">
+  {programmes.map((p) => (
+    <li>
+      <a class:list={['ptile', `c-${p.data.code}`]} href={`/research/${p.id}`}>
+        <span class="label"><span class="sq" aria-hidden="true"></span>{p.data.number}</span>
+        <H class="ptile-title">{p.data.title}</H>
+        <span class="ptile-desc">{p.data.short}</span>
+      </a>
+    </li>
+  ))}
+</ul>
+<style>li { display: flex; } .ptile { flex: 1; }</style>

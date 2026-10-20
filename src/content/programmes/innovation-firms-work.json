@@ -1,0 +1,20 @@
+{
+  "code": "INN",
+  "number": "04",
+  "colour": "ink",
+  "title": "Innovation, firms & work",
+  "short": "Capabilities, digital tech, informality, jobs.",
+  "intro": "How African firms, formal and informal, learn, innovate, adopt digital technology and create good jobs.",
+  "keyQuestions": [
+    "How do firms build technological capabilities?",
+    "When do value chains and digital technologies create jobs rather than destroy them?",
+    "What role does the informal economy play in industrial learning?"
+  ],
+  "featured": [
+    "global-value-chains-and-the-innovativeness-of-firms-in-africa",
+    "determinants-of-digital-technologies-adoption-in-south-african",
+    "the-employment-impact-of-product-innovations-in-sub-saharan-africa"
+  ],
+  "lead": "elvis-korku-avenyo",
+  "photo": "Workshop, maker space or informal enterprise"
+}

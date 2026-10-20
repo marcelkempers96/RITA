@@ -1,0 +1,89 @@
+---
+import { NAV } from '../lib/site';
+interface Props { dark?: boolean }
+const { dark = false } = Astro.props;
+const path = Astro.url.pathname;
+const isActive = (href: string) => path === href || path.startsWith(href + '/') || (href === '/research' && path.startsWith('/research'));
+---
+<header class:list={['site-header', { dark }]} data-header>
+  <div class="wrap bar">
+    <a href="/" class="logo" aria-label="RITA home">
+      <img src={dark ? '/brand/rita-logo-white.svg' : '/brand/rita-logo-black.svg'} alt="RITA" width="84" height="28" />
+    </a>
+    <nav class="nav hide-mobile" aria-label="Main">
+      <ul class="nolist">
+        {NAV.map((n) => (
+          <li><a href={n.href} aria-current={isActive(n.href) ? 'page' : undefined}>{n.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+    <div class="tools">
+      <a href="/search" class="tool hide-mobile" data-open="search" aria-haspopup="dialog"><span aria-hidden="true">⌕</span> Search</a>
+      <span class="tool lang hide-mobile" aria-label="Language">
+        <a href="/" lang="en" aria-current="true">EN</a> | <span lang="fr" title="Français : bientôt disponible" aria-disabled="true">FR</span>
+      </span>
+      <a href="/subscribe" class="btn btn-sm subscribe hide-mobile" data-open="newsletter" aria-haspopup="dialog">Subscribe</a>
+      <a href="/search" class="icon-btn show-mobile" data-open="search" aria-label="Search">⌕</a>
+      <button type="button" class="icon-btn menu-btn show-mobile" data-open="menu" aria-expanded="false" aria-controls="mobile-menu">☰ Menu</button>
+    </div>
+  </div>
+</header>
+
+<div id="mobile-menu" class="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu" hidden data-overlay="menu">
+  <div class="wrap mm-bar">
+    <a href="/" aria-label="RITA home"><img src="/brand/rita-logo-white.svg" alt="RITA" width="66" height="22" /></a>
+    <button type="button" class="icon-btn" data-close aria-label="Close menu">✕ Close</button>
+  </div>
+  <nav class="wrap mm-nav" aria-label="Mobile">
+    {NAV.map((n) => (
+      <details>
+        <summary>{n.label}</summary>
+        <ul class="nolist">
+          {n.children.map((c) => <li><a href={c.href}>{c.label}</a></li>)}
+        </ul>
+      </details>
+    ))}
+    <div class="mm-foot">
+      <a href="/subscribe" class="btn btn-light" data-open="newsletter">Subscribe</a>
+      <a href="/search" class="btn btn-secondary" data-open="search">Search</a>
+      <p class="label">EN | <span title="Français : bientôt disponible">FR (soon)</span></p>
+    </div>
+  </nav>
+</div>
+
+<style>
+  .site-header { position: sticky; top: 0; z-index: 50; background: var(--white); border-bottom: 1px solid transparent; height: var(--header-h); }
+  .site-header.scrolled { border-bottom-color: var(--line); }
+  .site-header.dark { background: var(--ink); color: var(--white); }
+  .site-header.dark.scrolled { border-bottom-color: #33322f; }
+  .bar { height: 100%; display: flex; align-items: center; gap: 32px; }
+  .logo img { height: 28px; width: auto; }
+  @media (max-width: 899px) { .logo img { height: 22px; } }
+  .nav { margin-left: auto; margin-right: auto; }
+  .nav ul { display: flex; gap: 36px; }
+  .nav a { text-decoration: none; font-size: 16px; padding: 6px 0; border-bottom: 2px solid transparent; }
+  .nav a[aria-current='page'] { border-bottom-color: currentColor; }
+  .dark .nav a[aria-current='page'] { border-bottom-color: var(--sun); }
+  .dark .nav a:hover, .dark .tool a:hover, .dark .tool:hover { color: var(--sun); }
+  .tools { display: flex; align-items: center; gap: 22px; margin-left: auto; }
+  @media (min-width: 900px) { .tools { margin-left: 0; } }
+  .tool { font: 500 13px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; text-decoration: none; }
+  .lang a { text-decoration: none; }
+  .lang [aria-disabled] { opacity: .5; }
+  .dark .subscribe { background: var(--white); color: var(--ink); border-color: var(--white); }
+  .dark .subscribe:hover { background: var(--laterite); color: var(--white); border-color: var(--laterite); }
+  .icon-btn { background: none; border: 0; font: 500 15px/1 var(--sans); padding: 10px 4px; cursor: pointer; text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
+  .mobile-menu { position: fixed; inset: 0; z-index: 300; background: var(--ink); color: var(--white); overflow-y: auto; }
+  .mm-bar { height: 64px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #33322f; }
+  .mm-bar .icon-btn { color: var(--white); }
+  .mm-nav details { border-bottom: 1px solid #33322f; }
+  .mm-nav summary { list-style: none; cursor: pointer; font-size: 26px; font-weight: 600; padding: 18px 0; display: flex; justify-content: space-between; }
+  .mm-nav summary::-webkit-details-marker { display: none; }
+  .mm-nav summary::after { content: '+'; font-weight: 400; }
+  .mm-nav details[open] summary::after { content: '–'; }
+  .mm-nav ul { padding-bottom: 16px; display: grid; gap: 4px; }
+  .mm-nav ul a { display: block; padding: 10px 0; text-decoration: none; color: var(--on-dark-mute); font-size: 17px; }
+  .mm-nav ul a:hover { color: var(--sun); }
+  .mm-foot { display: grid; gap: 12px; padding: 32px 0 48px; }
+  .mm-foot .label { color: var(--on-dark-mute); margin-top: 8px; }
+</style>

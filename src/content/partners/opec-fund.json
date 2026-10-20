@@ -1,0 +1,11 @@
+{
+  "title": "OPEC Fund",
+  "name": "OPEC Fund",
+  "kind": "media",
+  "relationship": "Op-ed published (OPEC Fund Quarterly)",
+  "trackRecord": false,
+  "order": 12,
+  "logoPermission": {
+    "granted": false
+  }
+}

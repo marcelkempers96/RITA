@@ -1,0 +1,52 @@
+---
+import { SITE, FOOTER, LEGAL } from '../lib/site';
+const social = [
+  ['LinkedIn', SITE.social.linkedin], ['X', SITE.social.x], ['YouTube', SITE.social.youtube], ['RSS', '/rss.xml'],
+] as const;
+---
+<footer class="site-footer bg-paper">
+  <div class="wrap">
+    <div class="top">
+      <div class="brand">
+        <a href="/" aria-label="RITA home"><img src="/brand/rita-logo-black.svg" alt="RITA" width="108" height="36" /></a>
+        <p class="mute">{SITE.fullName}<br />{SITE.motto}</p>
+      </div>
+      {FOOTER.map((col) => (
+        <nav aria-label={col.title}>
+          <h2 class="label mute">{col.title}</h2>
+          <ul class="nolist">
+            {col.links.map(([href, label]) => <li><a href={href}>{label}</a></li>)}
+          </ul>
+        </nav>
+      ))}
+    </div>
+    <div class="legal">
+      <p>© {SITE.year} RITA · Registered no. <span class="tbc">TBC</span></p>
+      <ul class="nolist inline" aria-label="Legal">
+        {LEGAL.map(([href, label]) => <li><a href={href}>{label}</a></li>)}
+        <li><a href="/cookies#settings" data-open="cookies">Cookie settings</a></li>
+      </ul>
+      <ul class="nolist inline" aria-label="Social">
+        {social.map(([label, href]) => (
+          <li>{href ? <a href={href} rel="me noopener">{label}</a> : <span title="Handle to be confirmed">{label}</span>}</li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer { padding: 64px 0 40px; }
+  .top { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 32px; padding-bottom: 40px; border-bottom: 1px solid var(--line); }
+  .brand img { height: 36px; width: auto; margin-bottom: 20px; }
+  .brand p { font-size: 15px; line-height: 1.5; }
+  nav h2 { margin-bottom: 14px; }
+  nav ul { display: grid; gap: 8px; }
+  nav a { text-decoration: none; font-size: 16px; }
+  .legal { display: flex; justify-content: space-between; gap: 16px 32px; flex-wrap: wrap; padding-top: 28px; font: 400 13px/1.6 var(--mono); color: var(--mute); }
+  .inline { display: flex; flex-wrap: wrap; gap: 4px 0; }
+  .inline li + li::before { content: '·'; margin: 0 10px; }
+  .legal a { text-decoration: none; }
+  .legal a:hover { text-decoration: underline; }
+  @media (max-width: 899px) { .top { grid-template-columns: 1fr 1fr; } .brand { grid-column: 1 / -1; } }
+</style>

@@ -1,0 +1,92 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import NewsletterBand from '../components/NewsletterBand.astro';
+import Overlays from '../components/Overlays.astro';
+import CookieBanner from '../components/CookieBanner.astro';
+import { SITE } from '../lib/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  /** dark header variant, used over the ink heroes on Policy and Insights */
+  dark?: boolean;
+  /** hide the ink newsletter band above the footer */
+  noNewsletter?: boolean;
+  /** reading-progress bar for articles */
+  progress?: boolean;
+  noindex?: boolean;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  ogType?: string;
+}
+const { title, description = SITE.description, image = '/og-default.png', dark = false, noNewsletter = false, progress = false, noindex = false, jsonLd, ogType = 'website' } = Astro.props;
+const fullTitle = title ? `${title} · RITA` : SITE.title;
+const canonical = new URL(Astro.url.pathname.replace(/\/?$/, '/').replace(/^\/$/, '/'), Astro.site);
+const ogImage = new URL(image, Astro.site);
+const org = {
+  '@context': 'https://schema.org', '@type': 'ResearchOrganization', name: SITE.fullName, alternateName: SITE.name,
+  url: Astro.site?.toString(), logo: new URL('/brand/rita-logo-black.svg', Astro.site).toString(), slogan: SITE.motto,
+};
+const ld = [org, ...(jsonLd ? ([] as Record<string, unknown>[]).concat(jsonLd) : [])];
+---
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="theme-color" content="#111110" />
+    <link rel="alternate" type="application/rss+xml" title="RITA Policy Insights" href="/rss.xml" />
+    <link rel="alternate" type="application/rss+xml" title="RITA Research" href="/research/rss.xml" />
+    <link rel="alternate" hreflang="en" href={canonical} />
+    <meta property="og:site_name" content={SITE.title} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={title ?? SITE.title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="en_GB" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title ?? SITE.title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <script type="application/ld+json" set:html={JSON.stringify(ld.length === 1 ? ld[0] : ld)} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <Header dark={dark} />
+    {progress && <div class="progress" aria-hidden="true"><span data-progress></span></div>}
+    <main id="main" tabindex="-1" data-pagefind-body>
+      <slot />
+    </main>
+    {!noNewsletter && <NewsletterBand />}
+    <Footer />
+    <Overlays />
+    <CookieBanner />
+    <a href="#main" class="to-top" data-to-top hidden aria-label="Back to top">↑</a>
+    <script>
+      import '../scripts/site';
+      import '../scripts/forms';
+    </script>
+  </body>
+</html>
+
+<style>
+  .progress { position: sticky; top: var(--header-h); z-index: 49; height: 3px; }
+  .progress span { display: block; height: 3px; width: 0; background: var(--sun); }
+  main:focus { outline: none; }
+  .to-top {
+    position: fixed; right: 20px; bottom: 20px; z-index: 40; width: 48px; height: 48px; display: grid; place-items: center;
+    background: var(--ink); color: var(--white); text-decoration: none; font-size: 20px;
+  }
+  .to-top:hover { background: var(--laterite); color: var(--white); }
+</style>

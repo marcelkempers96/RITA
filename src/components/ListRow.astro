@@ -1,0 +1,11 @@
+---
+// List row: 150px type label · title · meta · year (BUILD-SPEC §3).
+interface Props { href: string; type: string; code?: string; title: string; meta?: string; year?: string | number | null; external?: boolean; attrs?: Record<string, string> }
+const { href, type, code, title, meta, year, external = false, attrs = {} } = Astro.props;
+---
+<a class="lrow" href={href} {...(external ? { target: '_blank', rel: 'noopener', 'data-track': 'publisher-click' } : {})} {...attrs}>
+  <span class="label"><span class:list={['sq', code ? `c-${code}` : 'c-none']} aria-hidden="true"></span>{type}</span>
+  <span class:list={['lrow-title', { ext: external }]}>{title}{external && <span class="sr-only"> (opens in a new tab)</span>}</span>
+  <span class="lrow-meta">{meta}</span>
+  <span class="lrow-year">{year ?? ''}</span>
+</a>

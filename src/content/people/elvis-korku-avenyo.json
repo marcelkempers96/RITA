@@ -1,0 +1,38 @@
+{
+  "title": "Elvis Korku Avenyo",
+  "name": "Elvis Korku Avenyo",
+  "group": "lead",
+  "role": "Programme lead",
+  "base": "Johannesburg",
+  "authorKey": "Avenyo",
+  "focus": "Innovation, industrial development, firms and labour markets",
+  "bio": "Associate Professor of Development Economics at the SARChI Chair in Industrial Development, University of Johannesburg. His work spans innovation, technology adoption, industrial development, labour markets and firm behaviour, including the informal economy. He was previously a Senior Researcher at CCRED and a Research Officer at Oxford’s Technology and Management Centre for Development (TMCD). PhD, UNU-MERIT / Maastricht University.",
+  "programmes": [
+    "EN",
+    "INN"
+  ],
+  "focusTags": [
+    "Innovation",
+    "Industrial development",
+    "Digital technologies",
+    "Labour markets",
+    "Informality"
+  ],
+  "links": {
+    "site": "https://sites.google.com/view/elvis-korku-avenyo"
+  },
+  "awards": [
+    "2025 Middleton Award (South African Journal of Economics)",
+    "Overall Best Conference Paper, African Economic Conference 2022 (Mauritius)",
+    "Africa Oxford Initiative travel grant (CSAE 2019)",
+    "OpenAIR Queen Elizabeth Scholar",
+    "UJ Global Excellence and Stature award"
+  ],
+  "expertise": [
+    "Electricity crises",
+    "Manufacturing",
+    "Digital technologies",
+    "Informal economy"
+  ],
+  "consentToList": true
+}

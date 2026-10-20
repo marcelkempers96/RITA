@@ -1,0 +1,11 @@
+{
+  "title": "University of Nairobi",
+  "name": "University of Nairobi",
+  "kind": "academic",
+  "relationship": "Affiliation / research partner",
+  "trackRecord": false,
+  "order": 18,
+  "logoPermission": {
+    "granted": false
+  }
+}

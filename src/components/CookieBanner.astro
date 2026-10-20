@@ -1,0 +1,29 @@
+---
+// Cookie consent (BUILD-SPEC §3). Analytics stay off until consent; the choice is stored for 12 months.
+---
+<div class="cookie" role="region" aria-label="Cookie consent" hidden data-cookie-banner data-pagefind-ignore>
+  <div class="wrap inner">
+    <p>We use essential cookies to run this site and, with your consent, analytics cookies to understand how it is used. <a href="/cookies">Cookie policy</a></p>
+    <div class="row">
+      <button type="button" class="btn btn-sm btn-secondary" data-cookie="settings" aria-expanded="false" aria-controls="cookie-settings">Settings</button>
+      <button type="button" class="btn btn-sm btn-secondary" data-cookie="reject">Reject</button>
+      <button type="button" class="btn btn-sm" data-cookie="accept">Accept all</button>
+    </div>
+  </div>
+  <div id="cookie-settings" class="wrap settings" hidden>
+    <fieldset>
+      <legend class="label">Cookie settings</legend>
+      <label class="check"><input type="checkbox" checked disabled /> <span><strong>Essential</strong>: session and consent. Always on.</span></label>
+      <label class="check"><input type="checkbox" data-cookie-analytics /> <span><strong>Analytics</strong>: privacy-friendly visit statistics (Plausible). Off until you agree.</span></label>
+    </fieldset>
+    <button type="button" class="btn btn-sm mt-16" data-cookie="save">Save choices</button>
+  </div>
+</div>
+
+<style>
+  .cookie { position: fixed; left: 0; right: 0; bottom: 0; z-index: 150; background: var(--white); border-top: 2px solid var(--ink); padding: 18px 0; box-shadow: 0 -10px 40px rgba(0,0,0,.08); }
+  .inner { display: flex; gap: 24px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+  .inner p { max-width: 720px; font-size: 15px; }
+  .settings { padding-top: 16px; margin-top: 16px; border-top: 1px solid var(--line); }
+  .settings fieldset { gap: 12px; }
+</style>

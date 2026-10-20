@@ -1,0 +1,20 @@
+{
+  "code": "EN",
+  "number": "03",
+  "colour": "sun",
+  "title": "Energy & industry",
+  "short": "Electricity and firms, solar PV, EVs, hydrogen.",
+  "intro": "How electricity reliability, renewable energy and new energy technologies shape what African firms can make, and where green industries can take root.",
+  "keyQuestions": [
+    "What do electricity crises cost firms in jobs, investment and exports?",
+    "Can Africa manufacture solar PV, batteries and EVs competitively?",
+    "Is green hydrogen a strategy or a distraction?"
+  ],
+  "featured": [
+    "jobs-investments-and-exporting-the-real-effects-of-electricity-crises",
+    "dancing-on-the-grid-electricity-crises-manufacturing-energy",
+    "solar-photovoltaic-manufacturing-in-africa-opportunity-or-mirage"
+  ],
+  "lead": "elvis-korku-avenyo",
+  "photo": "Power station, grid or solar farm"
+}

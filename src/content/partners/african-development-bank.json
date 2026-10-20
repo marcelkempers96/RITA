@@ -1,0 +1,11 @@
+{
+  "title": "African Development Bank",
+  "name": "African Development Bank",
+  "kind": "commissioner",
+  "relationship": "AEO 2024 contribution",
+  "trackRecord": true,
+  "order": 7,
+  "logoPermission": {
+    "granted": false
+  }
+}

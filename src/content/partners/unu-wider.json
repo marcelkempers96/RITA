@@ -1,0 +1,11 @@
+{
+  "title": "UNU-WIDER",
+  "name": "UNU-WIDER",
+  "kind": "commissioner",
+  "relationship": "SA-TIED research",
+  "trackRecord": true,
+  "order": 3,
+  "logoPermission": {
+    "granted": false
+  }
+}

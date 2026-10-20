@@ -1,0 +1,11 @@
+{
+  "title": "DANIDA",
+  "name": "DANIDA",
+  "kind": "funder",
+  "relationship": "ABS project funder",
+  "trackRecord": true,
+  "order": 8,
+  "logoPermission": {
+    "granted": false
+  }
+}

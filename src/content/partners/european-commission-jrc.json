@@ -1,0 +1,11 @@
+{
+  "title": "European Commission (JRC)",
+  "name": "European Commission (JRC)",
+  "kind": "commissioner",
+  "relationship": "Contribution",
+  "trackRecord": true,
+  "order": 10,
+  "logoPermission": {
+    "granted": false
+  }
+}

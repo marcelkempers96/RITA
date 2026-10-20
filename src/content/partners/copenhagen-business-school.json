@@ -1,0 +1,11 @@
+{
+  "title": "Copenhagen Business School",
+  "name": "Copenhagen Business School",
+  "kind": "academic",
+  "relationship": "Affiliation / research partner",
+  "trackRecord": false,
+  "order": 16,
+  "logoPermission": {
+    "granted": false
+  }
+}

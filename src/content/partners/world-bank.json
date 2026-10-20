@@ -1,0 +1,11 @@
+{
+  "title": "World Bank",
+  "name": "World Bank",
+  "kind": "commissioner",
+  "relationship": "Commissioned minerals report 2025",
+  "trackRecord": true,
+  "order": 0,
+  "logoPermission": {
+    "granted": false
+  }
+}

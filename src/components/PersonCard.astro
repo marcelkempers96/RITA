@@ -1,0 +1,23 @@
+---
+import Photo from './Photo.astro';
+import type { CollectionEntry } from 'astro:content';
+interface Props { person?: CollectionEntry<'people'>; placeholder?: string; headingLevel?: 2 | 3 }
+const { person, placeholder = 'Fellow', headingLevel = 3 } = Astro.props;
+const H = `h${headingLevel}` as 'h2' | 'h3';
+const groupLabel: Record<string, string> = { lead: 'Programme lead', fellow: 'Fellow', associate: 'Associate', alumni: 'Alumni', staff: 'Staff' };
+---
+{person ? (
+  <a class:list={['person', `c-${person.data.programmes[0] ?? 'INN'}`]} href={`/fellows/${person.id}`}>
+    <Photo shot={person.data.name} kind="Portrait" ratio="4 / 5" src={person.data.portrait} alt={`Portrait of ${person.data.name}`} />
+    <span class="label mute">{groupLabel[person.data.group] ?? person.data.role}<span class="sep">·</span>{person.data.base}</span>
+    <H class="person-name">{person.data.name}</H>
+    <span class="mute small">{person.data.focus}</span>
+  </a>
+) : (
+  <div class="person person-empty" aria-label={`${placeholder} to be announced`}>
+    <div class="ph" style="--ar:4 / 5"></div>
+    <span class="label mute">{placeholder}<span class="sep">·</span>TBC</span>
+    <H class="person-name">{placeholder} name</H>
+    <span class="mute small">Research focus</span>
+  </div>
+)}

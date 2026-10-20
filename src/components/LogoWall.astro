@@ -1,0 +1,20 @@
+---
+// Greyscale logos in equal boxes; until a logo is approved (logoPermission.granted) show the name as text.
+import type { CollectionEntry } from 'astro:content';
+interface Props { partners: CollectionEntry<'partners'>[]; showRelationship?: boolean }
+const { partners, showRelationship = false } = Astro.props;
+---
+<ul class="grid g6 nolist">
+  {partners.map((p) => (
+    <li class="logo-box" title={p.data.relationship}>
+      {p.data.logo && p.data.logoPermission.granted
+        ? <img src={p.data.logo} alt={p.data.name} class="logo" loading="lazy" />
+        : <span>{p.data.name}{showRelationship && <span class="rel mute">{p.data.relationship}</span>}</span>}
+    </li>
+  ))}
+</ul>
+<style>
+  .logo { max-height: 44px; width: auto; filter: grayscale(1); opacity: .8; }
+  .logo-box:hover .logo { filter: none; opacity: 1; }
+  .rel { display: block; font-size: 13px; font-weight: 400; margin-top: 6px; }
+</style>

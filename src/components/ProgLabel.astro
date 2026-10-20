@@ -1,0 +1,10 @@
+---
+// Mono label with the programme colour square: "■ JOURNAL · ENERGY ECONOMICS"
+interface Props { code?: string; parts: (string | undefined | null | false)[]; class?: string }
+const { code, parts, class: cls } = Astro.props;
+const shown = parts.filter(Boolean) as string[];
+---
+<p class:list={['label', cls]}>
+  <span class:list={['sq', code ? `c-${code}` : 'c-none']} aria-hidden="true"></span>
+  {shown.map((p, i) => <>{i > 0 && <span class="sep" aria-hidden="true">·</span>}<span>{p}</span></>)}
+</p>

@@ -1,0 +1,11 @@
+{
+  "title": "Oxford TMCD",
+  "name": "Oxford TMCD",
+  "kind": "academic",
+  "relationship": "Affiliation / research partner",
+  "trackRecord": false,
+  "order": 20,
+  "logoPermission": {
+    "granted": false
+  }
+}

@@ -1,0 +1,10 @@
+---
+// Visible placeholder for content that is still to come from the team. Every use is listed in TODO-CONTENT.md.
+interface Props { label?: string; block?: boolean }
+const { label = 'TBC', block = false } = Astro.props;
+---
+{block ? (
+  <div class="tbc-block"><strong>{label}</strong><slot /></div>
+) : (
+  <span class="tbc">{label}</span>
+)}

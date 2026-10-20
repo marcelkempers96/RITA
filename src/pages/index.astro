@@ -1,0 +1,144 @@
+---
+import Base from '../layouts/Base.astro';
+import Photo from '../components/Photo.astro';
+import Card from '../components/Card.astro';
+import ProgrammeTiles from '../components/ProgrammeTiles.astro';
+import PersonCard from '../components/PersonCard.astro';
+import LogoWall from '../components/LogoWall.astro';
+import { load, url, authorLine, monthYear, TYPE_LABEL, fullName, type Code } from '../lib/content';
+
+const d = await load();
+const featured = d.publications.find((p) => p.data.featured)!;
+
+// Latest: the 3 newest items of any type (newest publication, Policy Insight and op-ed, newest first).
+const pub = d.publications.find((p) => !p.data.featured && p.data.year === Math.max(...d.publications.map((x) => x.data.year ?? 0)))!;
+const insight = d.insights[0];
+const oped = d.opeds[0];
+const latest = [
+  { date: oped.data.date, href: oped.data.outletUrl ?? '/insights/op-eds', external: Boolean(oped.data.outletUrl), title: oped.data.title,
+    code: oped.data.programme, label: [TYPE_LABEL[oped.data.kind], oped.data.outlet], meta: `${authorLine(oped.data.authors)} · ${monthYear(oped.data.date)}`, shot: 'Factory floor' },
+  { date: insight.data.date ?? `${insight.data.year}-10`, href: url.insight(insight.id), external: false, title: insight.data.title,
+    code: insight.data.programme, label: ['Policy Insight', `No. ${insight.data.number}`], meta: `${fullName('Ndubuisi')} · ${insight.data.year}`, shot: 'Policymakers' },
+  { date: String(pub.data.year), href: url.publication(pub.id), external: false, title: pub.data.title,
+    code: pub.data.programmes[0], label: [TYPE_LABEL[pub.data.type], pub.data.publisher.replace(/\s[\d(].*$/, '')], meta: `${authorLine(pub.data.authors)} · ${pub.data.year}`, shot: 'Solar assembly' },
+];
+const recentInsights = d.insights.slice(0, 4);
+const leads = d.people.filter((p) => p.data.group === 'lead');
+const fellows = d.people.filter((p) => p.data.group === 'fellow').slice(0, 2);
+const track = d.partners.filter((p) => p.data.trackRecord);
+---
+<Base>
+  <section class="hero">
+    <div class="hero-text">
+      <div class="hero-inner">
+        <p class="label mute">Research Institute for Transitions in Africa</p>
+        <h1 class="display mt-24">Evidence for Africa’s next economy</h1>
+        <p class="lead mt-24">We study how African economies can industrialise through the green transition: minerals, energy, firms and the policies that connect them.</p>
+        <div class="row mt-32">
+          <a class="btn" href="/research">Explore research</a>
+          <a class="btn btn-secondary" href="/insights">Read Policy Insights</a>
+        </div>
+      </div>
+    </div>
+    <a class="hero-feature" href={url.publication(featured.id)}>
+      <Photo shot="Mineral processing plant" ratio="auto" class="hero-photo" top eager />
+      <div class="feature-box bg-ink">
+        <p class="label feature-label">Featured report <span class="sep">·</span> World Bank <span class="sep">·</span> {featured.data.year}</p>
+        <h2 class="h3 feature-title">{featured.data.title}</h2>
+        <p class="feature-meta">{authorLine(featured.data.authors)}</p>
+      </div>
+    </a>
+  </section>
+
+  <section class="section ruled">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 class="h2">Latest</h2>
+        <a class="link-arrow" href="/research">All research →</a>
+      </div>
+      <ul class="grid g3 nolist">
+        {latest.map((l) => <li><Card {...l} code={l.code as Code | undefined} /></li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section ruled">
+    <div class="wrap">
+      <h2 class="h2 mb-32">Programmes</h2>
+      <ProgrammeTiles programmes={d.programmes} />
+    </div>
+  </section>
+
+  <section class="split ruled">
+    <Photo shot="Port / logistics" ratio="auto" class="split-photo" />
+    <div class="split-text">
+      <p class="label mute">Policy Insights <span class="sep">·</span> weekly</p>
+      <h2 class="h2 mt-16">One idea a week on Africa’s green industrialisation</h2>
+      <ul class="nolist issues mt-24">
+        {recentInsights.map((i) => (
+          <li><a href={url.insight(i.id)}><span class="mono">No. {i.data.number}</span> {i.data.title}</a></li>
+        ))}
+      </ul>
+      <a class="btn btn-secondary mt-32" href="/insights">All Policy Insights →</a>
+    </div>
+  </section>
+
+  <section class="section bg-sand">
+    <div class="wrap">
+      <figure class="q">
+        <blockquote class="quote">“Green projects will not transform African economies. Value chains will.”</blockquote>
+        <figcaption class="label mt-24"><a href={url.insight(d.insights.find((i) => i.data.number === 29)!.id)}>Policy Insights No. 29</a> <span class="sep">·</span> Gideon Ndubuisi</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 class="h2">Fellows &amp; programme leads</h2>
+        <a class="link-arrow" href="/fellows">All fellows →</a>
+      </div>
+      <ul class="grid g4 nolist">
+        {leads.map((p) => <li><PersonCard person={p} /></li>)}
+        {fellows.map((p) => <li><PersonCard person={p} /></li>)}
+        {Array.from({ length: Math.max(0, 4 - leads.length - fellows.length) }).map(() => <li><PersonCard placeholder="Fellow" /></li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section ruled">
+    <div class="wrap">
+      <h2 class="label mute mb-24">Our team’s work has been commissioned or published by</h2>
+      <LogoWall partners={track} />
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 640px; border-bottom: 1px solid var(--line); }
+  .hero-text { display: flex; align-items: center; justify-content: flex-end; padding: 72px 64px; }
+  .hero-inner { max-width: 512px; width: 100%; }
+  .hero-feature { display: flex; flex-direction: column; text-decoration: none; color: var(--white); }
+  .hero-feature :global(.hero-photo) { flex: 1; min-height: 320px; }
+  .feature-box { padding: 32px; }
+  .feature-label { color: var(--sun); }
+  .feature-title { margin-top: 12px; font-size: 26px; line-height: 1.2; }
+  .hero-feature:hover .feature-title { color: var(--sun); }
+  .feature-meta { margin-top: 12px; color: var(--on-dark-mute); font-size: 15px; }
+  .split { display: grid; grid-template-columns: 1fr 1fr; }
+  .split :global(.split-photo) { min-height: 520px; }
+  .split-text { padding: 72px 64px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; max-width: 640px; }
+  .issues { display: grid; gap: 10px; color: var(--mute-2); font-size: 17px; line-height: 1.5; }
+  .issues a { text-decoration: none; }
+  .issues a:hover { text-decoration: underline; }
+  .issues .mono { font-size: 14px; color: var(--mute); margin-right: 6px; }
+  .q { margin: 0; max-width: 1100px; padding: 24px 0; }
+  .q a { text-decoration: none; }
+  @media (max-width: 899px) {
+    .hero, .split { grid-template-columns: 1fr; }
+    .hero-text { padding: 40px var(--pad); justify-content: flex-start; }
+    .hero-feature :global(.hero-photo) { min-height: 240px; }
+    .split :global(.split-photo) { min-height: 240px; }
+    .split-text { padding: 48px var(--pad); }
+  }
+</style>

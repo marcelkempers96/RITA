@@ -1,0 +1,65 @@
+---
+// Search overlay + newsletter modal. Both: focus trap, Esc closes, focus returns to the trigger, aria-modal.
+// Without JavaScript their triggers are plain links to /search and /subscribe.
+---
+<div class="search-ov" role="dialog" aria-modal="true" aria-labelledby="search-ov-title" hidden data-overlay="search" data-pagefind-ignore>
+  <div class="wrap">
+    <div class="between top">
+      <h2 id="search-ov-title" class="label">Search RITA</h2>
+      <button type="button" class="close" data-close aria-label="Close search">✕ Close</button>
+    </div>
+    <form action="/search" method="get" role="search">
+      <label for="search-ov-q" class="sr-only">Search RITA</label>
+      <input id="search-ov-q" name="q" type="search" class="q" placeholder="Search RITA" autocomplete="off" data-suggest-input aria-controls="search-ov-results" />
+    </form>
+    <p class="hint-line">Type at least 3 characters. Press Enter to see all results.</p>
+    <ul id="search-ov-results" class="nolist results" aria-live="polite" data-suggest-results></ul>
+  </div>
+</div>
+
+<div class="modal" role="dialog" aria-modal="true" aria-labelledby="nl-modal-title" hidden data-overlay="newsletter" data-pagefind-ignore>
+  <div class="modal-panel">
+    <button type="button" class="modal-close" data-close aria-label="Close">✕</button>
+    <p class="label mute">Newsletter</p>
+    <h2 id="nl-modal-title" class="h2 mt-8">Stay informed</h2>
+    <p class="mute mt-8">Policy Insights every week, RITA news monthly.</p>
+    <form class="form mt-24" action="/subscribe" method="get" novalidate data-form="newsletter" data-success-title="Check your inbox" data-success-text="We’ve sent a confirmation link. Click it to start your subscription.">
+      <div data-error-summary hidden></div>
+      <div class="field">
+        <label for="nlm-email">Email address<span class="req">*</span></label>
+        <input id="nlm-email" class="input" type="email" name="email" autocomplete="email" inputmode="email" required data-label="email address" />
+      </div>
+      <div class="field">
+        <label for="nlm-first">First name</label>
+        <input id="nlm-first" class="input" type="text" name="firstName" autocomplete="given-name" />
+      </div>
+      <fieldset class="field">
+        <legend>Lists</legend>
+        <label class="check"><input type="checkbox" name="lists" value="policy-insights" checked /> Policy Insights (weekly)</label>
+        <label class="check"><input type="checkbox" name="lists" value="news" /> RITA News (monthly)</label>
+        <label class="check"><input type="checkbox" name="lists" value="events" /> Events &amp; launches</label>
+      </fieldset>
+      <div class="hp" aria-hidden="true"><label>Leave this empty <input type="text" name="website" tabindex="-1" autocomplete="off" /></label></div>
+      <div class="field">
+        <label class="check"><input type="checkbox" name="consent" required data-label="consent" data-message="Tick the box to continue" /> <span>I agree to receive emails from RITA. <a href="/privacy">Privacy policy</a>.<span class="req">*</span></span></label>
+      </div>
+      <button class="btn" type="submit">Subscribe</button>
+    </form>
+  </div>
+</div>
+
+<style>
+  .search-ov { position: fixed; inset: 0 0 auto 0; z-index: 250; background: var(--ink); color: var(--white); padding: 24px 0 48px; max-height: 100vh; overflow-y: auto; box-shadow: 0 30px 80px rgba(0,0,0,.35); }
+  .top { margin-bottom: 20px; }
+  .top .label { color: var(--sun); }
+  .close { background: none; border: 0; color: var(--white); cursor: pointer; font: 500 15px var(--sans); min-height: 44px; }
+  .q { width: 100%; background: transparent; border: 0; border-bottom: 2px solid var(--white); color: var(--white); font: 600 clamp(26px, 4vw, 40px)/1.2 var(--sans); padding: 10px 0; }
+  .q::placeholder { color: #8a877f; }
+  .q:focus-visible { outline: none; border-bottom-color: var(--sun); }
+  .hint-line { color: var(--on-dark-mute); font-size: 14px; margin-top: 12px; }
+  .results { margin-top: 24px; display: grid; }
+  .results :global(a) { display: grid; gap: 4px; padding: 14px 0; border-top: 1px solid #33322f; text-decoration: none; }
+  .results :global(a:hover .r-title), .results :global(a:focus .r-title) { color: var(--sun); }
+  .results :global(.r-title) { font-size: 18px; font-weight: 500; }
+  .results :global(.r-meta) { font: 500 12px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--on-dark-mute); }
+</style>

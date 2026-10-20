@@ -1,0 +1,17 @@
+---
+// Photo slot. Until real photography arrives (ASSETS-CHECKLIST §4) it renders a ▣ placeholder captioned with the
+// shot needed. Pass `src` + `alt` (+ `credit`) to show a real image; alt text is required for real images.
+interface Props { shot?: string; src?: string; alt?: string; credit?: string; ratio?: string; class?: string; top?: boolean; eager?: boolean; kind?: string }
+const { shot = 'Photo', src, alt = '', credit, ratio = '4 / 3', class: cls, top = false, eager = false, kind = 'Photo' } = Astro.props;
+---
+<div class:list={['ph', cls, { 'ph-top': top }]} style={`--ar:${ratio}`}>
+  {src ? (
+    <>
+      <img src={src} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async" />
+      {credit && <span class="ph-cap credit">{credit}</span>}
+    </>
+  ) : (
+    <span class="ph-cap" aria-hidden="true">▣ {kind} · {shot}</span>
+  )}
+</div>
+<style>.credit { font-size: 12px; text-transform: none; letter-spacing: 0; }</style>

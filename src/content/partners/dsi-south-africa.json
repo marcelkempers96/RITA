@@ -1,0 +1,11 @@
+{
+  "title": "DSI South Africa",
+  "name": "DSI South Africa",
+  "kind": "funder",
+  "relationship": "STI research grant",
+  "trackRecord": false,
+  "order": 9,
+  "logoPermission": {
+    "granted": false
+  }
+}

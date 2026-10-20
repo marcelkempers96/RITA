@@ -1,0 +1,25 @@
+---
+// Citation modal: APA / Harvard / BibTeX tabs + Copy. Without JS the citations render inline (open <details>).
+import { cite, type CiteInput } from '../lib/cite';
+interface Props { item: CiteInput }
+const { item } = Astro.props;
+const c = cite(item);
+const formats = [['apa', 'APA', c.apa], ['harvard', 'Harvard', c.harvard], ['bibtex', 'BibTeX', c.bibtex]] as const;
+---
+<div class="modal" role="dialog" aria-modal="true" aria-labelledby="cite-title" hidden data-overlay="cite" data-pagefind-ignore>
+  <div class="modal-panel">
+    <button type="button" class="modal-close" data-close aria-label="Close">✕</button>
+    <h2 id="cite-title" class="h3">Cite this</h2>
+    <div class="tabs mt-16" role="tablist" aria-label="Citation format">
+      {formats.map(([k, label], i) => (
+        <button type="button" role="tab" id={`cite-tab-${k}`} aria-controls={`cite-panel-${k}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>{label}</button>
+      ))}
+    </div>
+    {formats.map(([k, , text], i) => (
+      <div role="tabpanel" id={`cite-panel-${k}`} aria-labelledby={`cite-tab-${k}`} hidden={i !== 0} class="mt-16">
+        <pre class="cite-text" id={`cite-${k}`}>{text}</pre>
+        <button type="button" class="btn btn-sm mt-16" data-copy={`cite-${k}`}>Copy</button>
+      </div>
+    ))}
+  </div>
+</div>

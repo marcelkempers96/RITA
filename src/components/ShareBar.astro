@@ -1,0 +1,16 @@
+---
+interface Props { title: string }
+const { title } = Astro.props;
+const u = encodeURIComponent(new URL(Astro.url.pathname, Astro.site).toString());
+const t = encodeURIComponent(title);
+---
+<div class="share" data-pagefind-ignore>
+  <p class="label mute">Share</p>
+  <ul class="nolist row">
+    <li><a href={`https://www.linkedin.com/sharing/share-offsite/?url=${u}`} target="_blank" rel="noopener">LinkedIn<span class="sr-only"> (opens in a new tab)</span></a></li>
+    <li><a href={`https://x.com/intent/post?url=${u}&text=${t}`} target="_blank" rel="noopener">X<span class="sr-only"> (opens in a new tab)</span></a></li>
+    <li><a href={`mailto:?subject=${t}&body=${u}`}>Email</a></li>
+    <li><button type="button" class="btn-link" data-copy="url">Copy link</button></li>
+  </ul>
+</div>
+<style>.share ul { gap: 16px; margin-top: 10px; font-size: 15px; }</style>

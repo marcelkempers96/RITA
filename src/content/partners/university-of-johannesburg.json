@@ -1,0 +1,11 @@
+{
+  "title": "University of Johannesburg",
+  "name": "University of Johannesburg",
+  "kind": "academic",
+  "relationship": "Affiliation / research partner",
+  "trackRecord": false,
+  "order": 13,
+  "logoPermission": {
+    "granted": false
+  }
+}

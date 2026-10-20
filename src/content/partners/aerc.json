@@ -1,0 +1,11 @@
+{
+  "title": "AERC",
+  "name": "AERC",
+  "kind": "funder",
+  "relationship": "GVC & digital tech grants, policy briefs",
+  "trackRecord": true,
+  "order": 6,
+  "logoPermission": {
+    "granted": false
+  }
+}
