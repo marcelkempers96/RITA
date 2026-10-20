@@ -1,0 +1,359 @@
+# Decap CMS configuration. Mirrors src/content.config.ts: keep the two in sync when fields change.
+# Each entry is one JSON file in src/content/<collection>/; saving commits to the repository and
+# the host rebuilds the site.
+
+backend:
+  name: git-gateway # Netlify Identity + Git Gateway
+  branch: main
+# Alternative without Netlify (needs an OAuth app, see https://decapcms.org/docs/github-backend/):
+# backend:
+#   name: github
+#   repo: marcelkempers96/RITA
+#   branch: main
+
+# Editorial workflow: drafts → in review → ready, as pull requests.
+publish_mode: editorial_workflow
+media_folder: public/uploads
+public_folder: /uploads
+site_url: https://rita.africa
+locale: en
+
+# Every collection ends with the shared SEO/status fields (BUILD-SPEC §5).
+
+collections:
+  - name: publications
+    label: Publications
+    label_singular: Publication
+    folder: src/content/publications
+    format: json
+    extension: json
+    create: true
+    slug: "{{slug}}"
+    summary: "{{title}} ({{year}})"
+    sortable_fields: [title, year]
+    fields:
+      - { label: Title, name: title, widget: string }
+      - label: Type
+        name: type
+        widget: select
+        options: [journal, report, working-paper, policy-paper, book-chapter, background-paper]
+      - { label: Programmes, name: programmes, multiple: true, required: false, widget: select, options: [{ label: "01 Green industrialisation & policy", value: IND }, { label: "02 Transition minerals & value chains", value: MIN }, { label: "03 Energy & industry", value: EN }, { label: "04 Innovation, firms & work", value: INN }] }
+      - { label: Authors (surnames, in order), name: authors, widget: list, field: { label: Surname, name: name, widget: string } }
+      - { label: Author order confirmed, name: authorOrderConfirmed, widget: boolean, default: false, required: false }
+      - { label: Publisher / journal (with volume, issue), name: publisher, widget: string }
+      - { label: Year, name: year, widget: number, value_type: int, required: false }
+      - { label: DOI, name: doi, widget: string, required: false, hint: "Without https://doi.org/" }
+      - { label: Publisher link, name: externalUrl, widget: string, required: false }
+      - { label: PDF (only with the publisher's permission), name: pdf, widget: file, required: false }
+      - { label: Summary (In brief), name: summary, widget: text, required: false }
+      - { label: Key findings (3), name: keyFindings, widget: list, max: 3, required: false, field: { label: Finding, name: finding, widget: string } }
+      - label: Regions
+        name: regions
+        widget: select
+        multiple: true
+        required: false
+        options: [Southern Africa, West Africa, East Africa, North Africa, Africa-wide, Global]
+      - { label: Hero image, name: heroImage, widget: image, required: false }
+      - { label: Project (slug), name: project, widget: relation, collection: projects, value_field: "{{slug}}", search_fields: [title], display_fields: [title], required: false }
+      - { label: Featured on home page, name: featured, widget: boolean, default: false, required: false }
+      - { label: Archive (hide from default library view), name: archive, widget: boolean, default: false, required: false }
+      - { label: Award, name: award, widget: string, required: false }
+      - { label: Note, name: note, widget: text, required: false }
+      - { label: SEO title, name: seoTitle, widget: string, required: false }
+      - { label: SEO description, name: seoDescription, widget: text, required: false }
+      - { label: Social image, name: socialImage, widget: image, required: false }
+      - { label: Published at, name: publishedAt, widget: datetime, required: false, date_format: YYYY-MM-DD, time_format: false, format: YYYY-MM-DD }
+      - { label: Updated at, name: updatedAt, widget: datetime, required: false, date_format: YYYY-MM-DD, time_format: false, format: YYYY-MM-DD }
+      - { label: Status, name: status, widget: select, options: [published, draft], default: published, required: false }
+
+  - name: insights
+    label: Policy Insights
+    label_singular: Policy Insight
+    folder: src/content/insights
+    format: json
+    extension: json
+    create: true
+    slug: "no-{{number}}-{{slug}}"
+    summary: "No. {{number}}: {{title}}"
+    sortable_fields: [number, title]
+    fields:
+      - { label: Number, name: number, widget: number, value_type: int }
+      - { label: Title, name: title, widget: string }
+      - { label: Series, name: series, widget: string, required: false }
+      - { label: Part, name: part, widget: number, value_type: int, required: false }
+      - { label: Of (parts in series), name: of, widget: number, value_type: int, required: false }
+      - { label: Authors, name: authors, widget: relation, collection: people, value_field: "{{slug}}", search_fields: [name], display_fields: [name], multiple: true }
+      - { label: Programme, name: programme, widget: select, options: [{ label: "01 Green industrialisation & policy", value: IND }, { label: "02 Transition minerals & value chains", value: MIN }, { label: "03 Energy & industry", value: EN }, { label: "04 Innovation, firms & work", value: INN }] }
+      - label: Topics
+        name: topics
+        widget: select
+        multiple: true
+        required: false
+        options: [Industrial policy, Minerals, Green hydrogen, Learning economy, EVs, Finance, Ground-up industrialisation]
+      - { label: Year, name: year, widget: number, value_type: int }
+      - { label: Date, name: date, widget: datetime, required: false, date_format: YYYY-MM-DD, time_format: false, format: YYYY-MM-DD }
+      - { label: Body, name: body, widget: markdown, required: false, hint: "Migrated from LinkedIn with the author's approval." }
+      - { label: Original post (LinkedIn), name: originalUrl, widget: string, required: false }
+      - { label: Hero image, name: heroImage, widget: image, required: false }
+      - { label: Pull quote, name: pullQuote, widget: text, required: false }
+      - { label: SEO title, name: seoTitle, widget: string, required: false }
+      - { label: SEO description, name: seoDescription, widget: text, required: false }
+      - { label: Social image, name: socialImage, widget: image, required: false }
+      - { label: Published at, name: publishedAt, widget: datetime, required: false, date_format: YYYY-MM-DD, time_format: false, format: YYYY-MM-DD }
+      - { label: Updated at, name: updatedAt, widget: datetime, required: false, date_format: YYYY-MM-DD, time_format: false, format: YYYY-MM-DD }
+      - { label: Status, name: status, widget: select, options: [published, draft], default: published, required: false }
+
+  - name: opeds
+    label: Op-eds, blogs & external briefs
+    label_singular: Op-ed / blog / brief
+    folder: src/content/opeds
+    format: json
+    extension: json
+    create: true
+    slug: "{{slug}}"
+    summary: "{{outlet}} · {{date}}: {{title}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Kind, name: kind, widget: select, options: [op-ed, research-blog, policy-brief] }
+      - { label: Outlet, name: outlet, widget: string }
+      - { label: Outlet link, name: outletUrl, widget: string, required: false }
+      - { label: Date (YYYY-MM), name: date, widget: string, pattern: ['^\d{4}-\d{2}$', 'Use YYYY-MM'] }
+      - { label: Authors (surnames), name: authors, widget: list, field: { label: Surname, name: name, widget: string } }
+      - { label: Programme, name: programme, required: false, widget: select, options: [{ label: "01 Green industrialisation & policy", value: IND }, { label: "02 Transition minerals & value chains", value: MIN }, { label: "03 Energy & industry", value: EN }, { label: "04 Innovation, firms & work", value: INN }] }
+      - { label: Summary, name: summary, widget: text, required: false }
+      - { label: Image, name: image, widget: image, required: false }
+      - { label: Note, name: note, widget: text, required: false }
+      - { label: SEO title, name: seoTitle, widget: string, required: false }
+      - { label: SEO description, name: seoDescription, widget: text, required: false }
+      - { label: Social image, name: socialImage, widget: image, required: false }
+      - { label: Published at, name: publishedAt, widget: datetime, required: false, date_format: YYYY-MM-DD, time_format: false, format: YYYY-MM-DD }
+      - { label: Updated at, name: updatedAt, widget: datetime, required: false, date_format: YYYY-MM-DD, time_format: false, format: YYYY-MM-DD }
+      - { label: Status, name: status, widget: select, options: [published, draft], default: published, required: false }
+
+  - name: briefs
+    label: RITA policy briefs
+    label_singular: Policy brief
+    folder: src/content/briefs
+    format: json
+    extension: json
+    create: true
+    slug: "{{slug}}"
+    summary: "No. {{number}}: {{title}}"
+    fields:
+      - { label: Number, name: number, widget: number, value_type: int }
+      - { label: Title, name: title, widget: string }
+      - { label: Programme, name: programme, widget: select, options: [{ label: "01 Green industrialisation & policy", value: IND }, { label: "02 Transition minerals & value chains", value: MIN }, { label: "03 Energy & industry", value: EN }, { label: "04 Innovation, firms & work", value: INN }] }
+      - { label: Authors (surnames), name: authors, widget: list, required: false, field: { label: Surname, name: name, widget: string } }
+      - { label: Date, name: date, widget: datetime, required: false, date_format: YYYY-MM-DD, time_format: false, format: YYYY-MM-DD }
+      - label: Recommendations
+        name: recommendations
+        widget: list
+        required: false
+        max: 3
+        fields:
+          - { label: Recommendation (one line), name: text, widget: string }
+          - { label: Why, name: why, widget: text }
+      - { label: The issue, name: issue, widget: markdown, required: false }
+      - { label: What the evidence shows, name: evidence, widget: markdown, required: false }
+      - { label: PDF (4 pages), name: pdf, widget: file, required: false }
+      - { label: Based on (publication slugs, or opeds:slug), name: basedOn, widget: list, required: false, field: { label: Reference, name: ref, widget: string } }
+      - { label: SEO title, name: seoTitle, widget: string, required: false }
+      - { label: SEO description, name: seoDescription, widget: text, required: false }
+      - { label: Social image, name: socialImage, widget: image, required: false }
+      - { label: Published at, name: publishedAt, widget: datetime, required: false, date_format: YYYY-MM-DD, time_format: false, format: YYYY-MM-DD }
+      - { label: Updated at, name: updatedAt, widget: datetime, required: false, date_format: YYYY-MM-DD, time_format: false, format: YYYY-MM-DD }
+      - { label: Status, name: status, widget: select, options: [published, draft], default: published, required: false }
+
+  - name: projects
+    label: Projects
+    label_singular: Project
+    folder: src/content/projects
+    format: json
+    extension: json
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Status, name: projectStatus, widget: select, options: [ongoing, completed] }
+      - { label: Start year, name: startYear, widget: number, value_type: int, required: false }
+      - { label: End year, name: endYear, widget: number, value_type: int, required: false }
+      - { label: Period (display), name: period, widget: string, required: false }
+      - { label: Funder, name: funder, widget: string }
+      - { label: Partners, name: partners, widget: list, required: false, field: { label: Partner, name: name, widget: string } }
+      - { label: Team (RITA people), name: team, widget: relation, collection: people, value_field: "{{slug}}", search_fields: [name], display_fields: [name], multiple: true, required: false }
+      - { label: External team (surnames), name: externalTeam, widget: list, required: false, field: { label: Name, name: name, widget: string } }
+      - { label: Programme, name: programme, required: false, widget: select, options: [{ label: "01 Green industrialisation & policy", value: IND }, { label: "02 Transition minerals & value chains", value: MIN }, { label: "03 Energy & industry", value: EN }, { label: "04 Innovation, firms & work", value: INN }] }
+      - { label: Summary, name: summary, widget: text }
+      - { label: Description, name: description, widget: markdown, required: false }
+      - { label: RITA's role, name: ritaRole, widget: string, required: false }
+      - { label: Outputs (publication slugs), name: outputs, widget: list, required: false, field: { label: Slug, name: slug, widget: string } }
+      - { label: Work from before RITA was established, name: preRita, widget: boolean, default: true, required: false }
+      - { label: Budget, name: budget, widget: string, required: false }
+      - { label: Photo (shot description or image path), name: photo, widget: string, required: false }
+      - { label: SEO title, name: seoTitle, widget: string, required: false }
+      - { label: SEO description, name: seoDescription, widget: text, required: false }
+      - { label: Social image, name: socialImage, widget: image, required: false }
+      - { label: Published at, name: publishedAt, widget: datetime, required: false, date_format: YYYY-MM-DD, time_format: false, format: YYYY-MM-DD }
+      - { label: Updated at, name: updatedAt, widget: datetime, required: false, date_format: YYYY-MM-DD, time_format: false, format: YYYY-MM-DD }
+      - { label: Status, name: status, widget: select, options: [published, draft], default: published, required: false }
+
+  - name: people
+    label: People
+    label_singular: Person
+    folder: src/content/people
+    format: json
+    extension: json
+    create: true
+    slug: "{{slug}}"
+    identifier_field: name
+    summary: "{{name}} ({{group}})"
+    fields:
+      - { label: Name, name: name, widget: string }
+      - { label: Title (same as name), name: title, widget: string }
+      - { label: Group, name: group, widget: select, options: [lead, fellow, associate, alumni, staff] }
+      - { label: Role, name: role, widget: string }
+      - { label: Base, name: base, widget: string }
+      - { label: Focus (one line), name: focus, widget: string }
+      - { label: Bio (≤120 words), name: bio, widget: text }
+      - { label: Bio awaiting confirmation, name: bioTbc, widget: boolean, default: false, required: false }
+      - { label: Portrait (4:5, with signed photo release), name: portrait, widget: image, required: false }
+      - { label: Programmes, name: programmes, multiple: true, required: false, widget: select, options: [{ label: "01 Green industrialisation & policy", value: IND }, { label: "02 Transition minerals & value chains", value: MIN }, { label: "03 Energy & industry", value: EN }, { label: "04 Innovation, firms & work", value: INN }] }
+      - { label: Focus tags, name: focusTags, widget: list, required: false, field: { label: Tag, name: tag, widget: string } }
+      - label: Links
+        name: links
+        widget: object
+        required: false
+        fields:
+          - { label: Email, name: email, widget: string, required: false }
+          - { label: LinkedIn, name: linkedin, widget: string, required: false }
+          - { label: Google Scholar, name: scholar, widget: string, required: false }
+          - { label: ORCID, name: orcid, widget: string, required: false }
+          - { label: Personal site, name: site, widget: string, required: false }
+      - { label: Awards, name: awards, widget: list, required: false, field: { label: Award, name: award, widget: string } }
+      - { label: Expert for comment on, name: expertise, widget: list, required: false, field: { label: Topic, name: topic, widget: string } }
+      - { label: Author key (surname used in author lists), name: authorKey, widget: string }
+      - { label: Written consent to be listed, name: consentToList, widget: boolean, default: false }
+      - { label: SEO title, name: seoTitle, widget: string, required: false }
+      - { label: SEO description, name: seoDescription, widget: text, required: false }
+      - { label: Social image, name: socialImage, widget: image, required: false }
+      - { label: Published at, name: publishedAt, widget: datetime, required: false, date_format: YYYY-MM-DD, time_format: false, format: YYYY-MM-DD }
+      - { label: Updated at, name: updatedAt, widget: datetime, required: false, date_format: YYYY-MM-DD, time_format: false, format: YYYY-MM-DD }
+      - { label: Status, name: status, widget: select, options: [published, draft], default: published, required: false }
+
+  - name: programmes
+    label: Programmes
+    label_singular: Programme
+    folder: src/content/programmes
+    format: json
+    extension: json
+    create: false
+    delete: false
+    slug: "{{slug}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Code, name: code, widget: select, options: [IND, MIN, EN, INN] }
+      - { label: Number, name: number, widget: string }
+      - { label: Colour, name: colour, widget: select, options: [malachite, laterite, sun, ink] }
+      - { label: Short description, name: short, widget: string }
+      - { label: Intro, name: intro, widget: text }
+      - { label: Key questions (3), name: keyQuestions, widget: list, min: 3, max: 3, field: { label: Question, name: q, widget: string } }
+      - { label: Featured (3 publication slugs), name: featured, widget: relation, collection: publications, value_field: "{{slug}}", search_fields: [title], display_fields: [title], multiple: true, max: 3 }
+      - { label: Lead, name: lead, widget: relation, collection: people, value_field: "{{slug}}", search_fields: [name], display_fields: [name] }
+      - { label: Hero photo (shot description), name: photo, widget: string }
+      - { label: SEO title, name: seoTitle, widget: string, required: false }
+      - { label: SEO description, name: seoDescription, widget: text, required: false }
+      - { label: Social image, name: socialImage, widget: image, required: false }
+      - { label: Published at, name: publishedAt, widget: datetime, required: false, date_format: YYYY-MM-DD, time_format: false, format: YYYY-MM-DD }
+      - { label: Updated at, name: updatedAt, widget: datetime, required: false, date_format: YYYY-MM-DD, time_format: false, format: YYYY-MM-DD }
+      - { label: Status, name: status, widget: select, options: [published, draft], default: published, required: false }
+
+  - name: partners
+    label: Partners & funders
+    label_singular: Partner
+    folder: src/content/partners
+    format: json
+    extension: json
+    create: true
+    slug: "{{slug}}"
+    identifier_field: name
+    fields:
+      - { label: Name, name: name, widget: string }
+      - { label: Title (same as name), name: title, widget: string }
+      - { label: Kind, name: kind, widget: select, options: [funder, commissioner, academic, network, media] }
+      - { label: Relationship, name: relationship, widget: string }
+      - { label: Website, name: url, widget: string, required: false }
+      - { label: Logo (SVG preferred), name: logo, widget: image, required: false }
+      - label: Logo permission
+        name: logoPermission
+        widget: object
+        hint: The logo shows only when permission is granted. Log the date and contact.
+        fields:
+          - { label: Granted, name: granted, widget: boolean, default: false }
+          - { label: Date, name: date, widget: datetime, required: false, date_format: YYYY-MM-DD, time_format: false, format: YYYY-MM-DD }
+          - { label: Contact, name: contact, widget: string, required: false }
+      - { label: Show in "track record" strip, name: trackRecord, widget: boolean, default: false, required: false }
+      - { label: Order, name: order, widget: number, value_type: int, default: 99, required: false }
+      - { label: SEO title, name: seoTitle, widget: string, required: false }
+      - { label: SEO description, name: seoDescription, widget: text, required: false }
+      - { label: Social image, name: socialImage, widget: image, required: false }
+      - { label: Published at, name: publishedAt, widget: datetime, required: false, date_format: YYYY-MM-DD, time_format: false, format: YYYY-MM-DD }
+      - { label: Updated at, name: updatedAt, widget: datetime, required: false, date_format: YYYY-MM-DD, time_format: false, format: YYYY-MM-DD }
+      - { label: Status, name: status, widget: select, options: [published, draft], default: published, required: false }
+
+  - name: events
+    label: Events
+    label_singular: Event
+    folder: src/content/events
+    format: json
+    extension: json
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Event type, name: eventType, widget: string, hint: "e.g. Launch, Webinar, Policy dialogue" }
+      - { label: Start (date and time), name: datetime, widget: datetime, required: false, hint: "Leave empty while the date is TBC" }
+      - { label: Timezone (IANA), name: timezone, widget: string, default: Africa/Johannesburg }
+      - { label: Duration (minutes), name: durationMinutes, widget: number, value_type: int, default: 60 }
+      - { label: Format, name: format, widget: select, options: [online, in-person, hybrid] }
+      - { label: Venue, name: venue, widget: string, required: false }
+      - { label: Language, name: language, widget: string, default: English }
+      - { label: Speakers (RITA people), name: speakers, widget: relation, collection: people, value_field: "{{slug}}", search_fields: [name], display_fields: [name], multiple: true, required: false }
+      - { label: Speakers still to confirm, name: speakersTbc, widget: list, required: false, field: { label: Role, name: role, widget: string } }
+      - { label: About, name: about, widget: text }
+      - { label: Capacity, name: capacity, widget: number, value_type: int, required: false }
+      - { label: Registration open, name: registrationOpen, widget: boolean, default: true }
+      - { label: Recording link, name: recordingUrl, widget: string, required: false }
+      - { label: Slides link, name: slidesUrl, widget: string, required: false }
+      - { label: Programme, name: programme, required: false, widget: select, options: [{ label: "01 Green industrialisation & policy", value: IND }, { label: "02 Transition minerals & value chains", value: MIN }, { label: "03 Energy & industry", value: EN }, { label: "04 Innovation, firms & work", value: INN }] }
+      - { label: SEO title, name: seoTitle, widget: string, required: false }
+      - { label: SEO description, name: seoDescription, widget: text, required: false }
+      - { label: Social image, name: socialImage, widget: image, required: false }
+      - { label: Published at, name: publishedAt, widget: datetime, required: false, date_format: YYYY-MM-DD, time_format: false, format: YYYY-MM-DD }
+      - { label: Updated at, name: updatedAt, widget: datetime, required: false, date_format: YYYY-MM-DD, time_format: false, format: YYYY-MM-DD }
+      - { label: Status, name: status, widget: select, options: [published, draft], default: published, required: false }
+
+  - name: jobs
+    label: Opportunities
+    label_singular: Opportunity
+    folder: src/content/jobs
+    format: json
+    extension: json
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Type, name: jobType, widget: string }
+      - { label: Location, name: location, widget: string }
+      - { label: Deadline, name: deadline, widget: string, hint: "A date, or Rolling" }
+      - { label: Programme, name: programme, required: false, widget: select, options: [{ label: "01 Green industrialisation & policy", value: IND }, { label: "02 Transition minerals & value chains", value: MIN }, { label: "03 Energy & industry", value: EN }, { label: "04 Innovation, firms & work", value: INN }] }
+      - { label: Reports to, name: reportsTo, widget: string, required: false }
+      - { label: Summary, name: summary, widget: text }
+      - { label: Body, name: body, widget: markdown, required: false }
+      - { label: Apply link, name: applyUrl, widget: string, required: false }
+      - { label: Apply email, name: applyEmail, widget: string, required: false }
+      - { label: SEO title, name: seoTitle, widget: string, required: false }
+      - { label: SEO description, name: seoDescription, widget: text, required: false }
+      - { label: Social image, name: socialImage, widget: image, required: false }
+      - { label: Published at, name: publishedAt, widget: datetime, required: false, date_format: YYYY-MM-DD, time_format: false, format: YYYY-MM-DD }
+      - { label: Updated at, name: updatedAt, widget: datetime, required: false, date_format: YYYY-MM-DD, time_format: false, format: YYYY-MM-DD }
+      - { label: Status, name: status, widget: select, options: [published, draft], default: published, required: false }

@@ -1,0 +1,13 @@
+---
+import LegalPage from '../components/legal/LegalPage.astro';
+import { INBOX } from '../lib/site';
+const tbc = (t = 'TBC') => `<span class="tbc">${t}</span>`;
+const sections = [
+  { id: 'about', title: 'About these terms', html: `<p>These terms cover your use of this website, run by RITA, the Research Institute for Transitions in Africa. Legal entity and governing law: ${tbc()}</p>` },
+  { id: 'licence', title: 'Content licence', html: `<p>RITA’s own text is licensed under <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0</a> unless stated otherwise. ${tbc('To confirm')}</p>` },
+  { id: 'third-party', title: 'Third-party publications', html: `<p>Publications by other publishers are linked or shown under the publisher’s terms. ${tbc('To confirm')}</p>` },
+  { id: 'contributions', title: 'Contributions', html: `<p>Terms for pieces submitted through <a href="/submit">Publish with RITA</a>: ${tbc()}</p>` },
+  { id: 'contact', title: 'Contact', html: `<p><a href="mailto:${INBOX.general}">${INBOX.general}</a></p>` },
+];
+---
+<LegalPage title="Terms of use" description="Terms for using the RITA website and its content." sections={sections} />

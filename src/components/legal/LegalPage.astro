@@ -1,0 +1,69 @@
+---
+// One template for Privacy, Cookies, Terms and Accessibility (wireframes 29–30):
+// H1, last-updated date, sticky table of contents, numbered sections.
+import Base from '../../layouts/Base.astro';
+import Crumbs from '../Crumbs.astro';
+
+export interface Section { id: string; title: string; html: string }
+interface Props {
+  title: string;
+  description: string;
+  updated?: string; // ISO date; undefined renders a TBC marker
+  sections: Section[];
+  numbered?: boolean;
+  draftNotice?: boolean;
+  kicker?: string;
+}
+const { title, description, updated, sections, numbered = true, draftNotice = true, kicker = 'Legal' } = Astro.props;
+const n = (i: number) => (numbered ? `${i + 1}. ` : '');
+const updatedText = updated ? new Date(updated).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) : '';
+---
+<Base title={title} description={description}>
+  <span hidden data-pagefind-filter="type">Pages</span>
+  <section class="wrap">
+    <Crumbs items={[[title]]} />
+    <div class="page-head">
+      <p class="label mute">{kicker}</p>
+      <h1 class="h1">{title}</h1>
+      <p class="lead">Last updated: {updated ? <time datetime={updated}>{updatedText}</time> : <span class="tbc">date TBC</span>}</p>
+      {draftNotice && (
+        <div class="tbc-block mt-24 notice">
+          <strong>Draft: to be reviewed by a lawyer (POPIA + GDPR)</strong>
+          This page sets out the structure agreed for launch. Specific legal wording, the legal entity and contact details are still to be confirmed.
+        </div>
+      )}
+    </div>
+  </section>
+  <section class="ruled">
+    <div class="wrap with-sidebar legal">
+      <nav class="toc" aria-labelledby="toc-title">
+        <div class="sticky">
+          <h2 id="toc-title" class="label mute">On this page</h2>
+          <ol class="nolist">
+            {sections.map((s, i) => <li><a href={`#${s.id}`}>{n(i)}{s.title}</a></li>)}
+          </ol>
+        </div>
+      </nav>
+      <div class="sections">
+        {sections.map((s, i) => (
+          <section id={s.id} aria-labelledby={`${s.id}-h`} class="sec">
+            <h2 id={`${s.id}-h`} class="h3">{n(i)}{s.title}</h2>
+            <div class="prose mt-16" set:html={s.html} />
+          </section>
+        ))}
+        <slot />
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .notice { max-width: 760px; }
+  .legal { padding-top: 56px; padding-bottom: var(--section-y); }
+  .toc ol { display: grid; gap: 10px; margin-top: 14px; font-size: 16px; }
+  .toc a { text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  .sec + .sec { margin-top: 40px; }
+  .sec { scroll-margin-top: calc(var(--header-h) + 24px); }
+  @media (max-width: 899px) { .toc .sticky { position: static; } }
+</style>

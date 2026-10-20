@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /submit/dashboard
+Disallow: /submit/new
+
+Sitemap: https://rita.africa/sitemap-index.xml
