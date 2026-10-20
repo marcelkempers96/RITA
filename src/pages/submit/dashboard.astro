@@ -1,0 +1,146 @@
+---
+// 24 My submissions. Statuses come from the back-end; in demo mode they come from this browser's localStorage.
+import Base from '../../layouts/Base.astro';
+import Crumbs from '../../components/Crumbs.astro';
+import Tbc from '../../components/Tbc.astro';
+import { STATUS_LABEL } from '../../lib/api/submissions';
+
+const filters = [['all', 'All'], ...Object.entries(STATUS_LABEL)] as [string, string][];
+---
+<Base title="My submissions" noindex noNewsletter>
+  <div data-pagefind-ignore>
+    <section class="wrap">
+      <Crumbs items={[['Contribute', '/submit'], ['My submissions']]} />
+      <div class="page-head">
+        <h1 class="h1">My submissions</h1>
+        <p class="lead" data-signed-in>Signed in as <Tbc label="Name TBC" />.</p>
+        <p class="mute small mt-8" data-demo-note>Demo mode: sign-in and storage are a separate back-end build, so this list shows submissions saved in this browser only.</p>
+        <a class="btn mt-24" href="/submit/new">New submission +</a>
+      </div>
+    </section>
+
+    <section class="confirm bg-paper" data-confirm hidden tabindex="-1" role="status" aria-labelledby="confirm-title">
+      <div class="wrap center">
+        <h2 id="confirm-title" class="h2 ok">✓ Submitted for review.</h2>
+        <p class="lead mt-16">Thanks. An editor will respond within 5 working days. We’ve emailed you a copy. You can track it here.</p>
+      </div>
+    </section>
+
+    <section class="ruled">
+      <div class="wrap">
+        <div class="chips filters" role="group" aria-label="Filter by status" data-filters hidden>
+          {filters.map(([k, l], i) => (
+            <button type="button" class="chip" data-filter={k} aria-pressed={i === 0 ? 'true' : 'false'}>{l} <span data-count={k}></span></button>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <noscript><p class="tbc-block">Your submissions list needs JavaScript.</p></noscript>
+        <div class="table-wrap">
+          <table class="table" data-table hidden>
+            <caption class="sr-only">Your submissions</caption>
+            <thead><tr><th scope="col">Title</th><th scope="col">Format</th><th scope="col">Status</th><th scope="col">Updated</th><th scope="col"><span class="sr-only">Action</span></th></tr></thead>
+            <tbody data-rows></tbody>
+          </table>
+        </div>
+        <div class="empty" data-empty hidden>
+          <p class="h3">No submissions yet.</p>
+          <p class="mute mt-8">Start a Policy Insight, blog, op-ed, policy brief or working paper.</p>
+          <a class="btn btn-secondary mt-24" href="/submit/new">New submission +</a>
+        </div>
+        <p class="mute small mt-24" data-filter-empty hidden>No submissions with this status. <button type="button" class="btn-link" data-filter-reset>Show all</button></p>
+      </div>
+    </section>
+  </div>
+</Base>
+
+<script>
+  import { listSubmissions, STATUS_LABEL, FORMAT_LABEL, DEMO_MODE, type Submission } from '../../lib/api/submissions';
+  import { escapeHtml } from '../../scripts/site';
+
+  const q = <T extends HTMLElement>(s: string) => document.querySelector<T>(s)!;
+  const table = q<HTMLTableElement>('[data-table]');
+  const rows = q<HTMLElement>('[data-rows]');
+  const filters = q<HTMLElement>('[data-filters]');
+  let all: Submission[] = [];
+  let active = 'all';
+
+  if (!DEMO_MODE) q('[data-demo-note]').hidden = true;
+
+  function updated(iso: string) {
+    const d = new Date(iso);
+    const days = Math.floor((Date.now() - d.getTime()) / 86400000);
+    if (days < 1 && new Date().toDateString() === d.toDateString()) return 'Today';
+    if (days < 7) return `${Math.max(1, days)} day${days === 1 ? '' : 's'} ago`;
+    return d.toLocaleDateString('en-GB', { month: 'short', year: 'numeric' });
+  }
+  function action(s: Submission) {
+    if (s.status === 'draft') return ['Continue', '/submit/new'];
+    if (s.status === 'changes_requested') return ['Edit', '/submit/new'];
+    return ['View', null];
+  }
+
+  function render() {
+    const shown = active === 'all' ? all : all.filter((s) => s.status === active);
+    rows.innerHTML = shown.map((s) => {
+      const [label, href] = action(s);
+      const title = escapeHtml(s.title || 'Untitled draft');
+      return `<tr>
+        <td><strong>${title}</strong></td>
+        <td>${FORMAT_LABEL[s.format] ?? ''}</td>
+        <td><span class="status status-${s.status}">${STATUS_LABEL[s.status]}</span></td>
+        <td class="mono small">${s.status === 'draft' ? 'Autosaved' : updated(s.updatedAt)}</td>
+        <td class="act">${href ? `<a href="${href}">${label}<span class="sr-only">: ${title}</span></a>` : `<span class="mute" title="Viewing is available once the back-end is connected">${label}</span>`}</td>
+      </tr>`;
+    }).join('');
+    table.hidden = shown.length === 0;
+    q('[data-filter-empty]').hidden = !(all.length && !shown.length);
+    q('[data-empty]').hidden = all.length > 0;
+    filters.hidden = all.length === 0;
+    filters.querySelectorAll<HTMLButtonElement>('[data-filter]').forEach((b) => {
+      const k = b.dataset.filter!;
+      const n = k === 'all' ? all.length : all.filter((s) => s.status === k).length;
+      b.querySelector('[data-count]')!.textContent = `(${n})`;
+      b.hidden = k !== 'all' && n === 0;
+      b.setAttribute('aria-pressed', String(k === active));
+    });
+  }
+
+  filters.addEventListener('click', (e) => {
+    const b = (e.target as HTMLElement).closest<HTMLButtonElement>('[data-filter]');
+    if (!b) return;
+    active = b.dataset.filter!;
+    render();
+  });
+  q('[data-filter-reset]').addEventListener('click', () => { active = 'all'; render(); });
+
+  listSubmissions().then((list) => {
+    all = list;
+    render();
+    const submitted = new URLSearchParams(location.search).get('submitted');
+    if (submitted && list.some((s) => s.id === submitted)) {
+      const c = q<HTMLElement>('[data-confirm]');
+      c.hidden = false;
+      c.focus();
+    }
+  }).catch(() => {
+    q('[data-empty]').hidden = false;
+    q('[data-empty]').innerHTML = '<div class="form-error-banner" role="alert">Something went wrong loading your submissions. Try again shortly.</div>';
+  });
+</script>
+
+<style>
+  .page-head .lead { margin-top: 16px; }
+  .confirm { padding: 56px 0; }
+  .confirm .ok { color: var(--malachite); }
+  .confirm .lead { max-width: 560px; margin-left: auto; margin-right: auto; }
+  .confirm:focus { outline: none; }
+  .filters { padding: 20px 0; }
+  .table-wrap { overflow-x: auto; }
+  .table :global(td) { font-size: 16px; }
+  .table :global(.act) { text-align: right; white-space: nowrap; }
+  .empty { padding: 32px 0; }
+</style>

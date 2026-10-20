@@ -1,0 +1,21 @@
+---
+import LegalPage from '../components/legal/LegalPage.astro';
+import { INBOX } from '../lib/site';
+const tbc = (t = 'TBC') => `<span class="tbc">${t}</span>`;
+const sections = [
+  { id: 'what-we-use', title: 'What we use', html: `<p>We use essential cookies to run this site and, with your consent, analytics cookies to understand how it is used.</p>` },
+  { id: 'essential', title: 'Essential cookies', html: `<p>Session and consent. These are always on.</p>` },
+  { id: 'analytics', title: 'Analytics', html: `<p>Plausible, a privacy-friendly analytics service. Off until you consent. ${tbc('Cookie names and durations TBC')}</p>` },
+  { id: 'your-choice', title: 'Your choice', html: `<p>We store your choice for 12 months. You can change it at any time below, or with “Cookie settings” in the footer.</p>` },
+  { id: 'contact', title: 'Contact', html: `<p><a href="mailto:${INBOX.privacy}">${INBOX.privacy}</a></p>` },
+];
+---
+<LegalPage title="Cookie policy" description="Which cookies RITA uses and how to change your choice." sections={sections}>
+  <section id="settings" class="settings box-sand" aria-labelledby="settings-h">
+    <h2 id="settings-h" class="h3">Cookie settings</h2>
+    <p class="mt-8">Essential cookies are always on. Analytics stay off until you agree.</p>
+    <a href="/cookies#settings" class="btn mt-16" data-open="cookies">Change cookie settings</a>
+  </section>
+</LegalPage>
+
+<style>.settings { margin-top: 48px; scroll-margin-top: calc(var(--header-h) + 24px); }</style>

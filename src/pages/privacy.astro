@@ -1,0 +1,18 @@
+---
+import LegalPage from '../components/legal/LegalPage.astro';
+import { INBOX } from '../lib/site';
+const tbc = (t = 'TBC') => `<span class="tbc">${t}</span>`;
+const sections = [
+  { id: 'who-we-are', title: 'Who we are', html: `<p>RITA, the Research Institute for Transitions in Africa. Legal entity, registration number and address: ${tbc('legal entity, registration, address TBC')}</p>` },
+  { id: 'data-we-collect', title: 'Data we collect', html: `<ul>
+    <li>Form submissions (contact, register interest, fellowship).</li>
+    <li>Newsletter subscriptions.</li>
+    <li>Event registrations.</li>
+    <li>Contributor accounts and submissions.</li>
+    <li>Analytics, only with your consent.</li></ul>` },
+  { id: 'how-we-use-it', title: 'How we use it', html: `<p>We use this data to answer your enquiry, send the newsletters you chose, run the events you register for, review and publish contributions, and, with your consent, understand how the site is used. CVs sent through the register-interest form are stored privately and deleted after 12 months.</p><p>Lawful bases, retention periods and processors: ${tbc()}</p>` },
+  { id: 'your-rights', title: 'Your rights', html: `<p>Under POPIA (South Africa) and GDPR (EU) you can ask to access, correct or delete your personal data, and object to how we use it. ${tbc('Full wording TBC')}</p>` },
+  { id: 'contact', title: 'Contact', html: `<p><a href="mailto:${INBOX.privacy}">${INBOX.privacy}</a></p>` },
+];
+---
+<LegalPage title="Privacy policy" description="How RITA collects and uses personal data, and your rights under POPIA and GDPR." sections={sections} />

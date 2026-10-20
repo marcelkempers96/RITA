@@ -1,0 +1,95 @@
+---
+import Base from '../../layouts/Base.astro';
+import Photo from '../../components/Photo.astro';
+import { INBOX } from '../../lib/site';
+
+const formats = [
+  { code: 'IND', label: 'Policy Insight', title: 'One idea in 600–900 words', desc: 'Weekly series.' },
+  { code: 'INN', label: 'Blog / op-ed', title: '800–1,200 words', desc: 'Commentary; we can also help place it in the press.' },
+  { code: 'MIN', label: 'Policy brief', title: '4 pages', desc: 'Recommendations for decision-makers.' },
+  { code: 'EN', label: 'Working paper', title: 'PDF upload', desc: 'RITA Working Paper Series.' },
+];
+const steps = [
+  ['01', 'Submit', 'Write in the editor or upload a Word file.'],
+  ['02', 'Editorial review', 'Response within 5 working days.'],
+  ['03', 'Edits', 'Comments and revisions in your dashboard.'],
+  ['04', 'Publish', 'Scheduled, then shared in the newsletter and on social.'],
+];
+---
+<Base title="Publish with RITA" description="RITA researchers, fellows and invited contributors can submit Policy Insights, blogs, op-eds and papers for editing and publication.">
+  <span hidden data-pagefind-filter="type">Pages</span>
+  <section class="hero">
+    <div class="hero-text">
+      <div class="hero-inner">
+        <p class="label mute">Contribute</p>
+        <h1 class="display mt-24">Publish with RITA</h1>
+        <p class="lead mt-24">RITA researchers, fellows and invited contributors can submit Policy Insights, blogs, op-eds and papers for editing and publication.</p>
+        <div class="row mt-32">
+          <a class="btn" href="/submit/new">Start a submission</a>
+          <a class="btn btn-secondary" href="#guidelines">Read guidelines</a>
+          <a class="btn btn-secondary" href="/submit/dashboard">My submissions</a>
+        </div>
+      </div>
+    </div>
+    <Photo shot="Writing / workshop" ratio="auto" class="hero-photo" eager />
+  </section>
+
+  <section class="section ruled">
+    <div class="wrap">
+      <h2 class="h2 mb-32">What you can submit</h2>
+      <ul class="grid g4 nolist">
+        {formats.map((f) => (
+          <li class="fmt bg-paper">
+            <p class="label"><span class:list={['sq', `c-${f.code}`]} aria-hidden="true"></span>{f.label}</p>
+            <h3 class="h3 mt-16">{f.title}</h3>
+            <p class="mute mt-16">{f.desc}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section ruled">
+    <div class="wrap">
+      <h2 class="h2 mb-32">How it works</h2>
+      <ol class="grid g4 nolist">
+        {steps.map(([n, t, d]) => (
+          <li class="step">
+            <p class="label mute">{n}</p>
+            <h3 class="h3 mt-16">{t}</h3>
+            <p class="mute mt-8">{d}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section ruled" id="guidelines">
+    <div class="wrap with-aside">
+      <div class="stack">
+        <h2 class="h3">Guidelines</h2>
+        <p class="body">Plain English, evidence-led, no jargon. One clear argument per piece. Cite sources with links. Lead with the policy point.</p>
+        <h2 class="h3" style="--stack:32px">Images &amp; rights</h2>
+        <p class="body">Only use images you own or have permission to use, with a credit and alt text for each.</p>
+      </div>
+      <aside class="box-sand" aria-label="Questions">
+        <p class="label">Questions?</p>
+        <p class="mt-8"><a href={`mailto:${INBOX.editor}`}>{INBOX.editor}</a></p>
+      </aside>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 520px; }
+  .hero-text { display: flex; align-items: center; justify-content: flex-end; padding: 72px 64px; }
+  .hero-inner { max-width: 512px; width: 100%; }
+  .hero :global(.hero-photo) { min-height: 320px; }
+  .fmt { padding: 24px; }
+  .step { border-top: 3px solid var(--malachite); padding-top: 24px; }
+  @media (max-width: 899px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-text { padding: 40px var(--pad); justify-content: flex-start; }
+    .hero :global(.hero-photo) { min-height: 220px; }
+  }
+</style>

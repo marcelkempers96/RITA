@@ -1,0 +1,131 @@
+---
+// 30 HTML sitemap, generated from the page files plus CMS entries, so new pages appear automatically.
+import Base from '../layouts/Base.astro';
+import Crumbs from '../components/Crumbs.astro';
+import { load, url } from '../lib/content';
+
+interface Node { href: string; label: string; children: Node[] }
+
+const files = Object.keys(import.meta.glob('/src/pages/**/*.astro'));
+const routeOf = (f: string) => f.replace('/src/pages', '').replace(/\.astro$/, '').replace(/\/index$/, '') || '/';
+const staticRoutes = files.map(routeOf).filter((r) => !r.includes('[') && !/^\/(404|500)$/.test(r));
+const hasDynamic = (dir: string) => files.some((f) => f.startsWith(`/src/pages${dir}/[`));
+
+const LABELS: Record<string, string> = {
+  '/': 'Home', '/research': 'Research', '/research/projects': 'Projects', '/policy': 'Policy', '/policy/briefs': 'Policy briefs',
+  '/insights': 'Insights', '/insights/op-eds': 'Op-eds', '/insights/events': 'Events', '/insights/newsletter': 'Newsletter archive',
+  '/fellows': 'Fellows & people', '/fellows/fellowship': 'RITA Fellowship', '/about': 'About', '/about/partners': 'Partners & funders',
+  '/about/opportunities': 'Opportunities', '/about/media': 'Media', '/contact': 'Contact', '/submit': 'Contribute',
+  '/submit/new': 'New submission', '/submit/dashboard': 'My submissions', '/subscribe': 'Newsletter', '/subscribe/confirm': 'Subscription confirmed',
+  '/search': 'Search', '/privacy': 'Privacy policy', '/cookies': 'Cookie policy', '/terms': 'Terms of use',
+  '/accessibility': 'Accessibility statement', '/sitemap': 'Sitemap',
+};
+const labelFor = (r: string) => LABELS[r] ?? r.split('/').pop()!.replace(/-/g, ' ').replace(/^./, (c) => c.toUpperCase());
+
+const d = await load();
+const dynamic: Record<string, Node[]> = {};
+const add = (parent: string, dir: string, nodes: Node[]) => { if (hasDynamic(dir) && nodes.length) dynamic[parent] = [...(dynamic[parent] ?? []), ...nodes]; };
+const leaf = (href: string, label: string): Node => ({ href, label, children: [] });
+const group = (label: string, href: string, children: Node[]): Node => ({ href, label, children });
+
+add('/research', '/research', d.programmes.map((p) => leaf(`/research/${p.id}`, `${p.data.number} ${p.data.title}`)));
+if (hasDynamic('/research/publications')) dynamic['/research'] = [...(dynamic['/research'] ?? []), group('Publications', '/research', d.publications.map((p) => leaf(url.publication(p.id), p.data.title)))];
+add('/research/projects', '/research/projects', d.projects.map((p) => leaf(url.project(p.id), p.data.title)));
+add('/policy/briefs', '/policy/briefs', d.briefs.map((b) => leaf(url.brief(b.id), `No. ${b.data.number} ${b.data.title}`)));
+add('/insights', '/insights', d.insights.map((i) => leaf(url.insight(i.id), `No. ${i.data.number} ${i.data.title}`)));
+add('/insights/events', '/insights/events', d.events.map((e) => leaf(url.event(e.id), e.data.title)));
+add('/fellows', '/fellows', d.people.map((p) => leaf(url.person(p.id), p.data.name)));
+add('/about/opportunities', '/about/opportunities', d.jobs.map((j) => leaf(url.job(j.id), j.data.title)));
+
+// Build the tree: each static route nests under its closest static ancestor.
+const nodes = new Map<string, Node>(staticRoutes.sort().map((r) => [r, leaf(r, labelFor(r))]));
+const roots: Node[] = [];
+for (const [r, node] of nodes) {
+  if (r === '/') continue;
+  let parent = r.slice(0, r.lastIndexOf('/')) || '/';
+  while (parent !== '/' && !nodes.has(parent)) parent = parent.slice(0, parent.lastIndexOf('/')) || '/';
+  if (parent === '/') roots.push(node); else nodes.get(parent)!.children.push(node);
+}
+for (const [r, kids] of Object.entries(dynamic)) nodes.get(r)?.children.push(...kids);
+
+// Order sections like the main navigation; everything else goes under "More".
+const ORDER = ['/research', '/policy', '/insights', '/fellows', '/about', '/submit', '/contact', '/subscribe', '/search'];
+const LEGAL = ['/privacy', '/cookies', '/terms', '/accessibility', '/sitemap'];
+const main = ORDER.map((r) => roots.find((n) => n.href === r)).filter(Boolean) as Node[];
+const legal = LEGAL.map((r) => roots.find((n) => n.href === r)).filter(Boolean) as Node[];
+const more = roots.filter((n) => !ORDER.includes(n.href) && !LEGAL.includes(n.href));
+const sections = [...main, ...(more.length ? [group('More', '/', more)] : []), group('Legal', '/privacy', legal)];
+const count = (n: Node): number => 1 + n.children.reduce((s, c) => s + count(c), 0);
+---
+<Base title="Sitemap" description="Every page on the RITA website.">
+  <span hidden data-pagefind-filter="type">Pages</span>
+  <section class="wrap">
+    <Crumbs items={[['Sitemap']]} />
+    <div class="page-head">
+      <p class="label mute">Accessibility</p>
+      <h1 class="h1">Sitemap</h1>
+      <p class="lead">Every page on this site. Also available as <a href="/sitemap-index.xml">XML for search engines</a>.</p>
+    </div>
+  </section>
+  <section class="ruled section">
+    <div class="wrap">
+      <ul class="nolist tree">
+        <li class="top"><a href="/" class="h3">Home</a></li>
+        {sections.map((s) => (
+          <li class="top">
+            <a href={s.href} class="h3">{s.label}</a>
+            {s.children.length > 0 && (
+              <ul class="nolist sub">
+                {s.children.map((c) => (
+                  <li>
+                    <a href={c.href}>{c.label}</a>
+                    {c.children.length > 0 && (
+                      c.children.length > 12 ? (
+                        <details>
+                          <summary>{c.children.reduce((s2, x) => s2 + count(x), 0)} pages</summary>
+                          <ul class="nolist deep">
+                            {c.children.map((g) => (
+                              <li>
+                                <a href={g.href}>{g.label}</a>
+                                {g.children.length > 0 && <ul class="nolist deep">{g.children.map((x) => <li><a href={x.href}>{x.label}</a></li>)}</ul>}
+                              </li>
+                            ))}
+                          </ul>
+                        </details>
+                      ) : (
+                        <ul class="nolist deep">
+                          {c.children.map((g) => (
+                            <li>
+                              <a href={g.href}>{g.label}</a>
+                              {g.children.length > 0 && (
+                                <details>
+                                  <summary>{g.children.length} pages</summary>
+                                  <ul class="nolist deep">{g.children.map((x) => <li><a href={x.href}>{x.label}</a></li>)}</ul>
+                                </details>
+                              )}
+                            </li>
+                          ))}
+                        </ul>
+                      )
+                    )}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .tree { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 40px 24px; }
+  .top { border-top: 3px solid var(--ink); padding-top: 20px; }
+  .top > a { text-decoration: none; display: inline-block; margin-bottom: 12px; }
+  .sub { display: grid; gap: 8px; font-size: 16px; }
+  .deep { display: grid; gap: 6px; margin: 8px 0 4px 14px; padding-left: 12px; border-left: 1px solid var(--line); font-size: 15px; color: var(--mute-2); }
+  details { margin: 6px 0 0 14px; }
+  summary { cursor: pointer; font: 500 13px/1.6 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--mute); }
+  a { text-underline-offset: 3px; }
+</style>
