@@ -1,6 +1,8 @@
 // Global progressive enhancement: sticky header, overlays (menu, search, newsletter), cookie consent,
 // reading progress, back-to-top, copy-link and tabs. Everything here is optional: pages work without it.
 
+import { BASE, stripBase } from '../lib/base';
+
 const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]), select, textarea, [tabindex]:not([tabindex="-1"])';
 
 // Header: white background + bottom border after 40px of scroll.
@@ -82,8 +84,9 @@ let timer: number | undefined;
 export async function getPagefind() {
   if (pagefind !== undefined) return pagefind;
   try {
-    const path = '/pagefind/pagefind.js';
+    const path = `${BASE}/pagefind/pagefind.js`;
     pagefind = await import(/* @vite-ignore */ path);
+    await pagefind.options?.({ baseUrl: `${BASE}/` });
     await pagefind.init?.();
   } catch {
     pagefind = null; // dev server: index exists only after `npm run build`
@@ -146,7 +149,7 @@ banner?.addEventListener('click', (e) => {
 const consent = readConsent();
 if (!consent) showCookieBanner();
 else if (consent.analytics) loadAnalytics();
-if (location.hash === '#settings' && location.pathname.startsWith('/cookies')) showCookieBanner(true);
+if (location.hash === '#settings' && stripBase(location.pathname).startsWith('/cookies')) showCookieBanner(true);
 
 function loadAnalytics() {
   const domain = import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN;

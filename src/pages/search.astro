@@ -82,6 +82,7 @@ const TABS = [['', 'All'], ['Publication', 'Publications'], ['Insight', 'Insight
 
 <script>
   import { getPagefind, escapeHtml } from '../scripts/site';
+  import { BASE } from '../lib/base';
   const PER_PAGE = 10;
   const input = document.getElementById('q') as HTMLInputElement;
   const tabsEl = document.querySelector<HTMLElement>('[data-tabs]')!;
@@ -106,7 +107,7 @@ const TABS = [['', 'All'], ['Publication', 'Publications'], ['Insight', 'Insight
     if (state.q) p.set('q', state.q);
     if (state.type) p.set('type', state.type);
     if (state.page > 1) p.set('page', String(state.page));
-    history[push ? 'pushState' : 'replaceState'](null, '', `/search${p.toString() ? `?${p}` : ''}`);
+    history[push ? 'pushState' : 'replaceState'](null, '', `${BASE}/search${p.toString() ? `?${p}` : ''}`);
   }
 
   async function search() {

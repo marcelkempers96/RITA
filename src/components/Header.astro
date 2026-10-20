@@ -2,7 +2,8 @@
 import { NAV } from '../lib/site';
 interface Props { dark?: boolean }
 const { dark = false } = Astro.props;
-const path = Astro.url.pathname;
+import { stripBase } from '../lib/base';
+const path = stripBase(Astro.url.pathname);
 const isActive = (href: string) => path === href || path.startsWith(href + '/') || (href === '/research' && path.startsWith('/research'));
 ---
 <header class:list={['site-header', { dark }]} data-header>

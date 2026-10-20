@@ -25,6 +25,7 @@ Copy `.env.example` to `.env`. Every variable is optional.
 | Variable | Purpose |
 |---|---|
 | `SITE_URL` | Canonical origin for sitemap, RSS, canonical and Open Graph URLs. Default `https://rita.africa`. |
+| `BASE_PATH` | Serve the site from a subpath, e.g. `/RITA` for GitHub Pages. Leave unset at a domain root. |
 | `PUBLIC_FORMS_ENDPOINT` | Base URL of the form back-end. Each form posts `multipart/form-data` to `${PUBLIC_FORMS_ENDPOINT}/<form>` (`contact`, `newsletter`, `event`, `interest`, `fellowship`). **When unset, forms run in demo mode**: they validate and show the success state but send nothing. Use `fail@example.com` as the email to preview the server-error state. |
 | `PUBLIC_SUBMISSIONS_API` | Base URL of the contributor API (`POST /api/submissions`, see `src/lib/api/submissions.ts`). When unset, submissions are stored in the browser's localStorage. |
 | `PUBLIC_PLAUSIBLE_DOMAIN` | Enables Plausible analytics, loaded only after the visitor accepts analytics cookies. |
@@ -86,11 +87,17 @@ The back-end (to build separately) should, for each form: validate again on the 
 
 ## Deploy
 
-**Netlify:** connect the repo. `netlify.toml` sets the build command (`npm run build`), the publish directory (`dist`) and cache headers.
+The same code builds for a domain root (Vercel, Netlify, rita.africa) or a subpath (GitHub Pages). `BASE_PATH` switches between the two.
 
-**Vercel:** import the repo. `vercel.json` sets the same.
+**Vercel (recommended for the live site):** in Vercel, *Add New → Project → Import* `marcelkempers96/RITA`. The framework is detected as Astro, and `vercel.json` already sets the build command and output directory. Add `SITE_URL` (for example `https://rita.africa`, or the `*.vercel.app` URL until the domain exists). Every push then deploys, and branches get preview URLs.
 
-Set `SITE_URL` to the live domain. After the first deploy, submit `https://<domain>/sitemap-index.xml` to Google Search Console and Bing Webmaster Tools.
+**GitHub Pages (`https://marcelkempers96.github.io/RITA/`):** `.github/workflows/deploy-pages.yml` builds with `BASE_PATH=/RITA` and deploys on every push to `main` or `claude/sweet-cray-9ebjun`. One-time setup: *Settings → Pages → Build and deployment → Source: GitHub Actions*. Contact, newsletter and event forms need a back-end that GitHub Pages can't host, so they stay in demo mode there.
+
+**Netlify:** connect the repo. `netlify.toml` sets the build command and the publish directory.
+
+To build for a subpath locally: `BASE_PATH=/RITA SITE_URL=https://marcelkempers96.github.io npm run build`. After the Astro build, `scripts/rebase.mjs` adds the base path to root-relative links in the built HTML, RSS, robots.txt and manifest. It does nothing when `BASE_PATH` is unset.
+
+After the first production deploy, submit `https://<domain>/sitemap-index.xml` to Google Search Console and Bing Webmaster Tools.
 
 ## Accessibility and performance
 

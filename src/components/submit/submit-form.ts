@@ -3,6 +3,7 @@
 import { validateForm, validateField, wordCount, fieldsOf } from '../../scripts/forms';
 import { saveDraft, submitForReview, FORMAT_LABEL, WORD_LIMITS, type Submission, type SubmissionFormat } from '../../lib/api/submissions';
 import { escapeHtml } from '../../scripts/site';
+import { BASE } from '../../lib/base';
 
 const form = document.querySelector<HTMLFormElement>('[data-submission-form]');
 if (form) init(form);
@@ -306,7 +307,7 @@ function init(form: HTMLFormElement) {
       if (image.files?.[0]) files.set('image', image.files[0]);
       const s = await submitForReview(collect(), files);
       try { localStorage.removeItem(AUTOSAVE_KEY); localStorage.removeItem(ID_KEY); } catch { /* ignore */ }
-      location.href = `/submit/dashboard?submitted=${encodeURIComponent(s.id)}`;
+      location.href = `${BASE}/submit/dashboard?submitted=${encodeURIComponent(s.id)}`;
     } catch {
       const banner = document.createElement('div');
       banner.className = 'form-error-banner';

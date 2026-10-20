@@ -60,6 +60,7 @@ const filters = [['all', 'All'], ...Object.entries(STATUS_LABEL)] as [string, st
 <script>
   import { listSubmissions, STATUS_LABEL, FORMAT_LABEL, DEMO_MODE, type Submission } from '../../lib/api/submissions';
   import { escapeHtml } from '../../scripts/site';
+  import { BASE } from '../../lib/base';
 
   const q = <T extends HTMLElement>(s: string) => document.querySelector<T>(s)!;
   const table = q<HTMLTableElement>('[data-table]');
@@ -78,8 +79,8 @@ const filters = [['all', 'All'], ...Object.entries(STATUS_LABEL)] as [string, st
     return d.toLocaleDateString('en-GB', { month: 'short', year: 'numeric' });
   }
   function action(s: Submission) {
-    if (s.status === 'draft') return ['Continue', '/submit/new'];
-    if (s.status === 'changes_requested') return ['Edit', '/submit/new'];
+    if (s.status === 'draft') return ['Continue', `${BASE}/submit/new`];
+    if (s.status === 'changes_requested') return ['Edit', `${BASE}/submit/new`];
     return ['View', null];
   }
 
