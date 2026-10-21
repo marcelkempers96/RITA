@@ -42,7 +42,7 @@ The site needs two **public** values:
 Set them on each host:
 
 - **Vercel**: Project → Settings → Environment Variables (Production and Preview), then redeploy.
-- **GitHub Pages**: repo → Settings → Secrets and variables → Actions → **Variables** tab → New repository variable (both names).
+- **Already set** for production builds in `.env.production` (public values, committed). Override on a host only if the project changes.
 - **Local**: copy `.env.example` to `.env` and fill them in.
 
 ## 4. Make yourself admin

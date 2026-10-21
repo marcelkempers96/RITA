@@ -19,8 +19,8 @@ const base = {
 // Content source. When PUBLIC_SUPABASE_URL and PUBLIC_SUPABASE_PUBLISHABLE_KEY are set at build time, published
 // rows of public.content are the source of truth (edited in /studio). Otherwise, or if Supabase has no rows for a
 // collection, the JSON files in src/content/<collection>/ are used, so the site always builds.
-const SB_URL = (process.env.PUBLIC_SUPABASE_URL ?? import.meta.env.PUBLIC_SUPABASE_URL ?? '').replace(/\/$/, '');
-const SB_KEY = process.env.PUBLIC_SUPABASE_PUBLISHABLE_KEY ?? import.meta.env.PUBLIC_SUPABASE_PUBLISHABLE_KEY ?? '';
+const SB_URL = (process.env.PUBLIC_SUPABASE_URL || import.meta.env.PUBLIC_SUPABASE_URL || '').replace(/\/$/, '');
+const SB_KEY = process.env.PUBLIC_SUPABASE_PUBLISHABLE_KEY || import.meta.env.PUBLIC_SUPABASE_PUBLISHABLE_KEY || '';
 
 const json = (dir: string): Loader => {
   const files = glob({ pattern: '**/*.json', base: `./src/content/${dir}` });

@@ -33,9 +33,7 @@ jobs:
         env:
           SITE_URL: https://marcelkempers96.github.io
           BASE_PATH: /RITA
-          # Content comes from Supabase when these are set (repo Settings → Secrets and variables → Actions → Variables).
-          PUBLIC_SUPABASE_URL: ${{ vars.PUBLIC_SUPABASE_URL }}
-          PUBLIC_SUPABASE_PUBLISHABLE_KEY: ${{ vars.PUBLIC_SUPABASE_PUBLISHABLE_KEY }}
+          # Supabase settings come from .env.production (public values).
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
