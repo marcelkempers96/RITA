@@ -36,6 +36,10 @@ begin
   on conflict (id) do nothing;
   return new;
 end $$;
+-- Accounts created before this schema existed get a profile too.
+insert into public.profiles (id, email, full_name)
+select u.id, u.email, coalesce(u.raw_user_meta_data ->> 'full_name', split_part(u.email, '@', 1)) from auth.users u
+on conflict (id) do nothing;
 drop trigger if exists on_auth_user_created on auth.users;
 create trigger on_auth_user_created after insert on auth.users for each row execute function public.handle_new_user();
 
@@ -62,7 +66,8 @@ create trigger profiles_touch before update on public.profiles for each row exec
 create or replace function public.guard_profile_update() returns trigger
 language plpgsql security definer set search_path = public as $$
 begin
-  if not public.is_admin() then
+  -- auth.uid() is null in the SQL Editor and for service jobs: those are trusted.
+  if auth.uid() is not null and not public.is_admin() then
     new.role := old.role; new.person_slug := old.person_slug; new.author_key := old.author_key; new.email := old.email;
   end if;
   return new;
@@ -108,7 +113,7 @@ create trigger content_touch before insert or update on public.content for each 
 create or replace function public.guard_content_update() returns trigger
 language plpgsql security definer set search_path = public as $$
 begin
-  if not public.is_staff() then
+  if auth.uid() is not null and not public.is_staff() then
     new.owners := old.owners; new.collection := old.collection; new.slug := old.slug; new.status := old.status;
   end if;
   return new;
@@ -197,7 +202,7 @@ create or replace function public.guard_submission_update() returns trigger
 language plpgsql security definer set search_path = public as $$
 begin
   new.updated_at = now();
-  if not public.is_staff() then
+  if auth.uid() is not null and not public.is_staff() then
     -- authors may only move their piece between draft and submitted
     if new.status not in ('draft', 'submitted') then new.status := old.status; end if;
     new.assigned_to := old.assigned_to; new.published_ref := old.published_ref; new.author_id := old.author_id;
