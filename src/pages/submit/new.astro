@@ -32,7 +32,18 @@ const formats = [
       </ol>
     </div>
 
-    <div class="wrap"><div class="box-sand mb-24" data-signin-gate hidden role="note"><strong>You need an account to submit.</strong> Your draft is kept in this browser. <a href="/studio/?next=/submit/new">Sign in or create an account →</a></div></div>
+    <section class="wrap gate" data-signin-gate hidden aria-labelledby="gate-title">
+      <div class="gate-box">
+        <p class="label mute">Contribute</p>
+        <h2 id="gate-title" class="h2 mt-8">Create an account to contribute</h2>
+        <p class="lead mt-16">A free RITA account lets you submit Policy Insights, blogs and papers, save drafts and follow each piece from review to publication.</p>
+        <div class="row mt-32">
+          <a class="btn" href="/studio/?mode=signup&next=/submit/new">Create an account</a>
+          <a class="btn btn-secondary" href="/studio/?next=/submit/new">I have an account: sign in</a>
+        </div>
+        <p class="small mute mt-24">Questions first? Read the <a href="/submit#guidelines">guidelines</a>.</p>
+      </div>
+    </section>
     <form id="submission" class="wrap sform" method="post" enctype="multipart/form-data"
       action={api ? `${api.replace(/\/$/, '')}/api/submissions` : '#'} novalidate data-submission-form>
       <noscript>
@@ -205,10 +216,17 @@ const formats = [
 <script>
   import '../../components/submit/submit-form';
   import { needsSignIn } from '../../lib/api/submissions';
-  needsSignIn().then((gate) => { const el = document.querySelector<HTMLElement>('[data-signin-gate]'); if (el) el.hidden = !gate; });
+  // Contributing needs an account: without one, show the sign-up screen instead of the form.
+  needsSignIn().then((gate) => {
+    if (!gate) return;
+    document.querySelector<HTMLElement>('[data-signin-gate]')!.hidden = false;
+    document.querySelectorAll<HTMLElement>('#submission, [data-stepper]').forEach((el) => (el.hidden = true));
+  });
 </script>
 
 <style>
+  .gate { padding: 24px var(--pad) 96px; }
+  .gate-box { max-width: 640px; padding: 40px; background: var(--paper); }
   .stepper { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; padding: 48px 0 40px; border-bottom: 1px solid var(--line); }
   .stepper a { display: grid; gap: 8px; padding-top: 18px; border-top: 3px solid var(--line); text-decoration: none; color: var(--mute); }
   .stepper .step-name { font-size: 22px; font-weight: 600; }

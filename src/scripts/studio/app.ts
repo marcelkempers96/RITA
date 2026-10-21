@@ -481,10 +481,15 @@ async function loadProfile() {
 
 let recovering = false;
 async function route() {
-  if (!session) { loginView(recovering ? 'newpass' : 'signin'); return; }
+  const params = new URLSearchParams(location.search);
+  // Remember where to go after sign-in, including after the confirmation email round trip.
+  const nextParam = params.get('next');
+  if (nextParam?.startsWith('/')) try { localStorage.setItem('rita-next', nextParam); } catch { /* ignore */ }
+  if (!session) { loginView(recovering ? 'newpass' : params.get('mode') === 'signup' ? 'signup' : 'signin'); return; }
   if (recovering) { loginView('newpass'); recovering = false; return; }
   if (!me) await loadProfile();
-  const next = new URLSearchParams(location.search).get('next');
+  let next: string | null = null;
+  try { next = localStorage.getItem('rita-next'); localStorage.removeItem('rita-next'); } catch { /* ignore */ }
   if (next && next.startsWith('/')) { location.href = `${BASE}${next}`; return; }
   const [, a, b, c] = (location.hash.split('?')[0] || '#/').split('/');
   root.setAttribute('aria-busy', 'true');
