@@ -1,21 +1,23 @@
 ---
-// Key dates as a vertical timeline. Past dates are greyed and the next date is highlighted;
-// a small script recomputes this in the visitor's browser so it stays right between rebuilds.
+// Key dates as a ruled list, in the same style as the site's list rows: date on the left, milestone on the right.
+// Past dates are muted and the next one is marked; a small script recomputes this in the visitor's browser.
 import { KEY_DATES } from '../../data/conference';
 interface Props { compact?: boolean }
 const { compact = false } = Astro.props;
-const fmt = (iso: string) => new Date(`${iso}T12:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' });
-const items = compact ? KEY_DATES.filter((d) => d.milestone || ['2026-12-01', '2027-05-15', '2027-07-31'].includes(d.date)) : KEY_DATES;
+const d = (iso: string) => new Date(`${iso}T12:00:00Z`);
+const day = (iso: string) => d(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', timeZone: 'UTC' });
+const year = (iso: string) => d(iso).getUTCFullYear();
+const items = compact ? KEY_DATES.filter((k) => k.milestone || ['2026-12-01', '2027-05-15', '2027-07-31'].includes(k.date)) : KEY_DATES;
 ---
-<ol class="tl nolist" data-timeline>
-  {items.map((d) => (
-    <li class:list={['tl-item', { milestone: d.milestone }]} data-date={d.date}>
-      <time class="tl-date mono" datetime={d.date}>{fmt(d.date)}</time>
-      <span class="tl-dot" aria-hidden="true"></span>
-      <div class="tl-body">
-        <p class="tl-label">{d.label}<span class="tl-next label" hidden>Next</span></p>
-        {!compact && <p class="tl-detail">{d.detail}</p>}
+<ol class:list={['kd', 'nolist', { compact }]} data-timeline>
+  {items.map((k) => (
+    <li class:list={['kd-row', { milestone: k.milestone }]} data-date={k.date}>
+      <time class="kd-date" datetime={k.date}><span class="kd-day">{day(k.date)}</span><span class="kd-year mono">{year(k.date)}</span></time>
+      <div class="kd-body">
+        <p class="kd-label">{k.label}</p>
+        {!compact && <p class="kd-detail">{k.detail}</p>}
       </div>
+      <span class="kd-next label" hidden>Next</span>
     </li>
   ))}
 </ol>
@@ -27,35 +29,36 @@ const items = compact ? KEY_DATES.filter((d) => d.milestone || ['2026-12-01', '2
     tl.querySelectorAll<HTMLElement>('[data-date]').forEach((li) => {
       const past = li.dataset.date! < today;
       li.classList.toggle('past', past);
-      if (!past && !marked) { li.classList.add('next'); li.querySelector<HTMLElement>('.tl-next')!.hidden = false; marked = true; }
+      if (!past && !marked) { li.classList.add('next'); li.querySelector<HTMLElement>('.kd-next')!.hidden = false; marked = true; }
     });
   });
 </script>
 
 <style>
-  .tl { position: relative; }
-  .tl-item { display: grid; grid-template-columns: 150px 20px minmax(0, 1fr); gap: 0 20px; position: relative; padding-bottom: 28px; }
-  .tl-item::before { content: ''; position: absolute; left: 179px; top: 14px; bottom: -6px; width: 1px; background: var(--line); }
-  .tl-item:last-child::before { display: none; }
-  .tl-date { font-size: 14px; font-weight: 500; color: var(--mute-2); padding-top: 3px; text-align: right; }
-  .tl-dot { width: 12px; height: 12px; margin: 6px 4px 0; background: var(--white); border: 2px solid var(--ink); position: relative; z-index: 1; }
-  .milestone .tl-dot { background: var(--ink); width: 16px; height: 16px; margin: 4px 2px 0; }
-  .tl-label { font-weight: 600; font-size: 18px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
-  .milestone .tl-label { font-size: 21px; }
-  .tl-detail { color: var(--mute); font-size: 15px; margin-top: 4px; max-width: 520px; }
-  .tl-next { background: var(--sun); color: var(--ink); padding: 3px 8px; font-size: 11px; }
-  .past .tl-label, .past .tl-date { color: var(--mute); }
-  .past .tl-dot { border-color: var(--line); background: var(--line); }
-  .next .tl-dot { background: var(--sun); border-color: var(--ink); }
-  :global(.bg-ink) .tl-date, :global(.bg-ink) .tl-detail { color: var(--on-dark-mute); }
-  :global(.bg-ink) .tl-dot { background: var(--ink); border-color: var(--white); }
-  :global(.bg-ink) .milestone .tl-dot { background: var(--white); }
-  :global(.bg-ink) .tl-item::before { background: #3a3936; }
+  .kd { border-bottom: 1px solid var(--line); }
+  .kd-row { display: grid; grid-template-columns: 140px minmax(0, 1fr) auto; gap: 24px; align-items: baseline; padding: 20px 0; border-top: 1px solid var(--line); }
+  .kd-date { display: flex; flex-direction: column; gap: 2px; }
+  .kd-day { font-size: 24px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; }
+  .kd-year { font-size: 13px; color: var(--mute); }
+  .kd-label { font-size: 18px; font-weight: 500; line-height: 1.35; }
+  .kd-detail { color: var(--mute); font-size: 15px; margin-top: 4px; max-width: 560px; }
+  .kd-next { color: var(--mute-2); font-size: 12px; }
+  .milestone { background: var(--sand); padding-left: 20px; padding-right: 20px; margin: 0 -20px; }
+  .milestone .kd-label { font-weight: 600; font-size: 20px; }
+  .milestone .kd-detail { color: var(--mute-2); }
+  .next { border-top: 3px solid var(--sun); }
+  .past .kd-day, .past .kd-label { color: var(--mute); }
+  .compact .kd-row { padding: 14px 0; grid-template-columns: 110px minmax(0, 1fr) auto; }
+  .compact .kd-day { font-size: 20px; }
+  .compact .milestone { padding-left: 16px; padding-right: 16px; margin: 0 -16px; }
+  :global(.bg-ink) .kd, :global(.bg-ink) .kd-row { border-color: #3a3936; }
+  :global(.bg-ink) .kd-year, :global(.bg-ink) .kd-next { color: var(--on-dark-mute); }
+  :global(.bg-ink) .milestone { background: #1f1e1c; }
+  :global(.bg-ink) .past .kd-day, :global(.bg-ink) .past .kd-label { color: #8a877f; }
   @media (max-width: 599px) {
-    .tl-item { grid-template-columns: 20px minmax(0, 1fr); gap: 2px 14px; }
-    .tl-date { grid-column: 2; grid-row: 1; text-align: left; }
-    .tl-dot { grid-column: 1; grid-row: 1 / span 2; }
-    .tl-body { grid-column: 2; }
-    .tl-item::before { left: 9px; }
+    .kd-row { grid-template-columns: 92px minmax(0, 1fr); gap: 16px; }
+    .kd-day { font-size: 19px; }
+    .kd-next { grid-column: 2; }
+    .milestone { padding-left: 12px; padding-right: 12px; margin: 0 -12px; }
   }
 </style>
