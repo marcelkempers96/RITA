@@ -46,6 +46,7 @@ export const NAV = [
   ] },
   { href: '/insights', label: 'Insights', children: [
     { href: '/insights', label: 'Policy Insights' },
+    { href: '/conference', label: 'Conference 2027' },
     { href: '/insights/op-eds', label: 'Op-eds' },
     { href: '/insights/events', label: 'Events' },
     { href: '/insights/newsletter', label: 'Newsletter archive' },
@@ -66,7 +67,7 @@ export const NAV = [
 export const FOOTER = [
   { title: 'Work', links: [['/research', 'Research'], ['/policy', 'Policy'], ['/insights', 'Insights'], ['/research/projects', 'Projects']] },
   { title: 'Institute', links: [['/fellows', 'Fellows'], ['/about', 'About'], ['/about/opportunities', 'Opportunities'], ['/about/media', 'Media']] },
-  { title: 'Contribute', links: [['/submit', 'Submit an article'], ['/contact', 'Contact us'], ['/subscribe', 'Newsletter']] },
+  { title: 'Contribute', links: [['/conference', 'Conference 2027'], ['/submit', 'Submit an article'], ['/contact', 'Contact us'], ['/subscribe', 'Newsletter']] },
 ] as const;
 
 export const LEGAL = [

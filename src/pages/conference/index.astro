@@ -1,0 +1,251 @@
+---
+// RITA Conference 2027: overview. The full call is at /conference/call-for-abstracts.
+import Base from '../../layouts/Base.astro';
+import Photo from '../../components/Photo.astro';
+import Timeline from '../../components/conference/Timeline.astro';
+import { CONF, TRACKS, FORMATS, FEES, FAQ } from '../../data/conference';
+
+const jsonLd = {
+  '@context': 'https://schema.org', '@type': 'Event', name: `${CONF.name}: ${CONF.theme}`,
+  startDate: CONF.start, endDate: CONF.end, eventAttendanceMode: 'https://schema.org/MixedEventAttendanceMode',
+  location: { '@type': 'Place', name: CONF.city, address: CONF.city },
+  organizer: { '@type': 'ResearchOrganization', name: 'RITA, Research Institute for Transitions in Africa' },
+  description: `${CONF.edition}. Call for abstracts closes ${CONF.deadlineText}.`,
+};
+---
+<Base title={`${CONF.name}: ${CONF.theme}`} description={`${CONF.edition}. ${CONF.dates}, ${CONF.city}. Call for abstracts open until ${CONF.deadlineText}.`} dark jsonLd={jsonLd}>
+  <span hidden data-pagefind-filter="type">Page</span>
+
+  <section class="hero bg-ink">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="label sun">{CONF.short} <span class="sep">·</span> Call for abstracts open</p>
+        <h1 class="display mt-24">{CONF.theme}</h1>
+        <p class="lead mt-24">{CONF.edition}. Two days of research and policy on how African economies can industrialise through the green transition.</p>
+        <dl class="facts mt-48">
+          <div class="fact"><dt>When</dt><dd>{CONF.dates}</dd></div>
+          <div class="fact"><dt>Where</dt><dd>{CONF.city}</dd></div>
+          <div class="fact"><dt>Abstracts close</dt><dd>31 March 2027</dd></div>
+        </dl>
+        <div class="row mt-48">
+          <a class="btn" href="/conference/submit">Submit an abstract</a>
+          <a class="btn btn-secondary" href="/conference/call-for-abstracts">Read the full call</a>
+        </div>
+      </div>
+      <Photo shot="Event or audience" ratio="4 / 5" class="hero-photo" eager />
+    </div>
+  </section>
+
+  <nav class="subnav ruled" aria-label="On this page">
+    <div class="wrap row">
+      <a href="#about">About</a><a href="#dates">Key dates</a><a href="#tracks">Tracks</a><a href="#formats">Formats</a>
+      <a href="#registration">Registration</a><a href="#venue">Venue</a><a href="#faq">FAQ</a>
+      <a class="btn btn-sm" href="/conference/submit">Submit</a>
+    </div>
+  </nav>
+
+  <section class="section" id="about">
+    <div class="wrap with-aside">
+      <div>
+        <p class="label mute">About the conference</p>
+        <h2 class="h2 mt-16">The green transition will reshape Africa’s economies. The question is who makes what.</h2>
+        <div class="prose mt-24">
+          <p>Africa holds many of the minerals, much of the sun and most of the young workers the green transition needs. That does not guarantee factories, jobs or structural change. Too often, raw materials leave and finished goods return.</p>
+          <p>{CONF.short} brings together researchers, policymakers, development finance institutions and firms to ask what it takes to industrialise through the transition: the states, the finance, the value chains, the energy, the firms and the workers.</p>
+          <p>We want rigorous evidence that a decision-maker can use. Firm-level studies, country cases, comparative work, new data and sharp policy analysis are all welcome.</p>
+        </div>
+      </div>
+      <aside class="box-sand">
+        <p class="label">At a glance</p>
+        <ul class="nolist glance mt-16">
+          <li><strong>9 tracks</strong> across RITA’s four programmes</li>
+          <li><strong>4 formats</strong>: papers, panels, roundtables, posters</li>
+          <li><strong>Free</strong> to submit</li>
+          <li><strong>Travel support</strong> for Africa-based early-career researchers</li>
+          <li><strong>Publication track</strong> and a Best Paper Award</li>
+          <li><strong>English and French</strong> welcome</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section bg-paper" id="dates">
+    <div class="wrap with-aside">
+      <div>
+        <p class="label mute">Timeline</p>
+        <h2 class="h2 mt-16">Key dates</h2>
+        <div class="mt-32"><Timeline /></div>
+      </div>
+      <aside class="deadline box-ink">
+        <p class="label sun">Deadline</p>
+        <p class="big mt-16">31 March 2027</p>
+        <p class="on-dark mt-8">23:59 South Africa time (UTC+2). Late abstracts are not reviewed.</p>
+        <p class="on-dark mt-24" data-countdown hidden><span data-days></span> days left</p>
+        <a class="btn btn-light mt-24" href="/conference/submit">Submit an abstract</a>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section" id="tracks">
+    <div class="wrap">
+      <div class="section-head">
+        <div><p class="label mute">Call for abstracts</p><h2 class="h2 mt-16">Nine tracks</h2></div>
+        <a class="link-arrow" href="/conference/call-for-abstracts#tracks">Tracks in full →</a>
+      </div>
+      <ol class="grid g3 nolist tracks">
+        {TRACKS.map((t) => (
+          <li class:list={['track', `c-${t.code}`]}>
+            <p class="label"><span class="sq" aria-hidden="true"></span>Track {t.n}</p>
+            <h3 class="h3 mt-16">{t.title}</h3>
+            <p class="mute mt-8">{t.summary}</p>
+          </li>
+        ))}
+      </ol>
+      <p class="mute mt-32">Work that fits none of these? Submit it to the open track if it speaks to Africa’s industrial and green transition.</p>
+    </div>
+  </section>
+
+  <section class="section ruled" id="formats">
+    <div class="wrap">
+      <p class="label mute">How to take part</p>
+      <h2 class="h2 mt-16 mb-32">Four formats</h2>
+      <ol class="grid g4 nolist">
+        {FORMATS.map((f, i) => (
+          <li class="fmt">
+            <p class="mono mute">0{i + 1}</p>
+            <h3 class="h3 mt-8">{f.title}</h3>
+            <p class="label mute mt-8">{f.length}</p>
+            <p class="mt-16 small">{f.detail}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section bg-ink cta">
+    <div class="wrap between">
+      <div>
+        <h2 class="h2">Your evidence belongs in this room.</h2>
+        <p class="on-dark mt-8">Submit a 300–500 word abstract by 31 March 2027. It takes about 20 minutes.</p>
+      </div>
+      <div class="row">
+        <a class="btn btn-light" href="/conference/submit">Submit an abstract</a>
+        <a class="btn btn-secondary" href="/conference/call-for-abstracts#guidelines">Abstract guidelines</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="registration">
+    <div class="wrap with-aside">
+      <div>
+        <p class="label mute">Registration</p>
+        <h2 class="h2 mt-16">Registration and fees</h2>
+        <p class="body mt-16 mute-2">Submitting is free. Registration opens with the decisions on 15 May 2027, and fees are announced then. At least one author of each accepted abstract registers by 30 June 2027.</p>
+        <table class="table mt-32">
+          <thead><tr><th>Category</th><th>Fee</th><th>Note</th></tr></thead>
+          <tbody>{FEES.map(([c, f, n]) => <tr><td>{c}</td><td>{f}</td><td class="mute">{n}</td></tr>)}</tbody>
+        </table>
+      </div>
+      <aside class="box-sand">
+        <p class="label">Travel support</p>
+        <p class="mt-16">RITA is raising funds for a limited number of travel grants for Africa-based PhD candidates and early-career researchers (within seven years of their PhD). Tick the box when you submit and add a two-line motivation.</p>
+        <p class="small mute mt-16">Decisions by 31 May 2027.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="split ruled" id="venue">
+    <Photo shot="Industrial park" ratio="auto" class="split-photo" />
+    <div class="split-text">
+      <p class="label mute">Venue</p>
+      <h2 class="h2 mt-16">Johannesburg, South Africa</h2>
+      <p class="body mt-16 mute-2">Africa’s largest industrial economy, at the centre of the debates on electricity, minerals and manufacturing. The venue and accommodation options are announced with the programme.</p>
+      <ul class="nolist mt-24 venue-list">
+        <li><strong>Getting there:</strong> O. R. Tambo International Airport (JNB), with direct flights across Africa.</li>
+        <li><strong>Visas:</strong> invitation letters for accepted presenters on request. Apply early.</li>
+        <li><strong>Online:</strong> keynotes and selected sessions are streamed free.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section ruled" id="people">
+    <div class="wrap">
+      <p class="label mute">Organisers</p>
+      <h2 class="h2 mt-16 mb-32">Committee</h2>
+      <div class="grid g3">
+        <div class="box">
+          <p class="label mute">Conference chairs</p>
+          <p class="h3 mt-16"><a href="/fellows/gideon-ndubuisi">Gideon Ndubuisi</a></p>
+          <p class="h3 mt-8"><a href="/fellows/elvis-korku-avenyo">Elvis Korku Avenyo</a></p>
+        </div>
+        <div class="box">
+          <p class="label mute">Scientific committee</p>
+          <p class="mt-16">Announced in January 2027.</p>
+        </div>
+        <div class="box">
+          <p class="label mute">Organising team</p>
+          <p class="mt-16"><a href="/fellows/marcel-kempers">Marcel Kempers</a>, coordination</p>
+          <p class="mt-8"><a href={`mailto:${CONF.email}`}>{CONF.email}</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-paper" id="faq">
+    <div class="wrap with-aside">
+      <div>
+        <p class="label mute">Questions</p>
+        <h2 class="h2 mt-16 mb-32">FAQ</h2>
+        <div class="acc">
+          {FAQ.map(([q, a]) => <details><summary>{q}</summary><div class="acc-body"><p>{a}</p></div></details>)}
+        </div>
+      </div>
+      <aside class="box">
+        <p class="label mute">Contact</p>
+        <p class="mt-16">Questions about the call, the programme or travel:</p>
+        <p class="mt-8"><a href={`mailto:${CONF.email}`}>{CONF.email}</a></p>
+        <p class="mt-24 label mute">{CONF.hashtag}</p>
+      </aside>
+    </div>
+  </section>
+</Base>
+
+<script>
+  const deadline = new Date('2027-03-31T23:59:00+02:00').getTime();
+  const days = Math.ceil((deadline - Date.now()) / 86400000);
+  const box = document.querySelector<HTMLElement>('[data-countdown]');
+  if (box && days > 0) { box.hidden = false; box.querySelector('[data-days]')!.textContent = String(days); }
+</script>
+
+<style>
+  .hero { padding: 64px 0 80px; }
+  .hero-grid { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 64px; align-items: center; }
+  .hero .lead { color: var(--on-dark-mute); max-width: 640px; }
+  .hero :global(.hero-photo) { width: 100%; }
+  .sun { color: var(--sun); }
+  .on-dark { color: var(--on-dark-mute); }
+  .subnav { position: sticky; top: var(--header-h); z-index: 30; background: var(--white); border-bottom: 1px solid var(--line); }
+  .subnav .row { gap: 28px; padding: 14px var(--pad); overflow-x: auto; flex-wrap: nowrap; }
+  .subnav a:not(.btn) { text-decoration: none; font-weight: 500; white-space: nowrap; }
+  .subnav .btn { margin-left: auto; }
+  .glance { display: grid; gap: 12px; }
+  .glance li { border-top: 1px solid rgba(17, 17, 16, .12); padding-top: 12px; }
+  .deadline { position: sticky; top: calc(var(--header-h) + 80px); }
+  .deadline .big { font-size: 40px; font-weight: 600; line-height: 1.05; letter-spacing: -0.02em; }
+  .track { padding: 28px; background: var(--paper); border-top: 4px solid var(--c); }
+  .track .sq { background: var(--c); }
+  .fmt { border-top: 3px solid var(--ink); padding-top: 20px; }
+  .cta { padding: 56px 0; }
+  .split { display: grid; grid-template-columns: 1fr 1fr; }
+  .split :global(.split-photo) { min-height: 480px; }
+  .split-text { padding: 72px 64px; max-width: 640px; }
+  .venue-list { display: grid; gap: 12px; }
+  .box { padding: 28px; border: 1px solid var(--line); }
+  [id] { scroll-margin-top: calc(var(--header-h) + 70px); }
+  @media (max-width: 899px) {
+    .hero-grid, .split { grid-template-columns: 1fr; }
+    .hero :global(.hero-photo) { max-height: 360px; }
+    .split-text { padding: 48px var(--pad); }
+    .deadline { position: static; }
+  }
+</style>

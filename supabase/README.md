@@ -15,6 +15,7 @@ In Supabase → **SQL Editor**:
 
 1. Open `supabase/schema.sql`, paste it all, press **Run**.
 2. Open `supabase/seed.sql`, paste it all, press **Run**. This loads all current site content (215 items).
+3. Open `supabase/conference.sql`, paste it all, press **Run**. This adds abstracts and reviews for the RITA 2027 conference.
 
 Both files are safe to run again. Re-running the seed updates content back to the version in the repo, so don't re-run it after people start editing in the Studio.
 

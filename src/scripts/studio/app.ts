@@ -44,6 +44,7 @@ function shell(inner: string, active = '') {
       <nav class="tabs mt-16" aria-label="Studio">
         ${tab('#/', 'Overview', 'home')}
         ${tab('#/submissions', staff() ? 'Submissions' : 'My submissions', 'submissions')}
+        ${staff() ? tab('#/abstracts', 'Abstracts 2027', 'abstracts') : ''}
         ${me?.role !== 'contributor' ? tab('#/content/publications', 'Content', 'content') : ''}
         ${admin() ? tab('#/users', 'Users', 'users') : ''}
       </nav>
@@ -417,6 +418,109 @@ function publicUrl(collection: string, slug: string) {
   return path[collection] ? `${BASE}${path[collection]}${slug}` : null;
 }
 
+// ── Conference abstracts (staff) ─────────────────────────────────────────────
+const ABS_STATUS: Record<string, string> = { submitted: 'Submitted', under_review: 'Under review', accepted: 'Accepted', accepted_poster: 'Accepted as poster', declined: 'Declined', withdrawn: 'Withdrawn' };
+const CRIT = ['relevance', 'rigour', 'contribution', 'policy', 'clarity'] as const;
+const avg = (rs: any[]) => {
+  const vals = rs.flatMap((r) => CRIT.map((c) => r[c]).filter((v) => typeof v === 'number'));
+  return vals.length ? (vals.reduce((a, b) => a + b, 0) / vals.length).toFixed(1) : '—';
+};
+
+async function abstractsView() {
+  if (!staff()) { location.hash = '#/'; return; }
+  const sb = supabase();
+  const params = new URLSearchParams(location.hash.split('?')[1] ?? '');
+  const filter = params.get('status') ?? 'all';
+  const track = params.get('track') ?? '';
+  let q = sb.from('abstracts').select('id,title,track,format,presenting_author,country,career_stage,travel_support,status,created_at').order('created_at', { ascending: false });
+  if (filter !== 'all') q = q.eq('status', filter);
+  if (track) q = q.eq('track', track);
+  const [{ data, error }, { data: reviews }] = await Promise.all([q, sb.from('abstract_reviews').select('*')]);
+  const rows = data ?? [];
+  const byAbs = (id: string) => (reviews ?? []).filter((r: any) => r.abstract_id === id);
+  const csv = () => {
+    const head = ['title', 'track', 'format', 'presenting_author', 'country', 'career_stage', 'travel_support', 'status', 'reviews', 'average'];
+    const lines = rows.map((r: any) => [r.title, r.track, r.format, r.presenting_author, r.country, r.career_stage, r.travel_support, r.status, byAbs(r.id).length, avg(byAbs(r.id))]
+      .map((v) => `"${String(v ?? '').replace(/"/g, '""')}"`).join(','));
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([[head.join(','), ...lines].join('\n')], { type: 'text/csv' }));
+    a.download = 'rita-2027-abstracts.csv'; a.click();
+  };
+  shell(`
+    <div class="between"><h1 class="h1">Abstracts · RITA 2027</h1><button class="btn btn-secondary btn-sm" data-csv>Download CSV</button></div>
+    <p class="mute mt-8">${rows.length} shown · ${rows.filter((r: any) => r.travel_support).length} asking for travel support</p>
+    <div class="chips mt-24">${[['all', 'All'], ...Object.entries(ABS_STATUS)].map(([k, l]) => `<a class="chip ${k === filter ? 'is-on' : ''}" href="#/abstracts?status=${k}${track ? `&track=${track}` : ''}">${l}</a>`).join('')}</div>
+    <div class="chips mt-8">${['', '01', '02', '03', '04', '05', '06', '07', '08', '09', 'open'].map((t) => `<a class="chip ${t === track ? 'is-on' : ''}" href="#/abstracts?status=${filter}${t ? `&track=${t}` : ''}">${t ? `Track ${t}` : 'All tracks'}</a>`).join('')}</div>
+    ${error ? `<div class="form-error-banner mt-16">${esc(error.message)} (Has supabase/conference.sql been run?)</div>` : rows.length ? `
+    <table class="table mt-24"><thead><tr><th>Title</th><th>Track</th><th>Format</th><th>Presenter</th><th>Reviews</th><th>Avg</th><th>Status</th></tr></thead><tbody>
+      ${rows.map((r: any) => `<tr><td><a href="#/abstracts/${r.id}">${esc(r.title)}</a>${r.travel_support ? ' <span class="status">Travel</span>' : ''}</td><td>${esc(r.track)}</td><td>${esc(r.format)}</td>
+        <td>${esc(r.presenting_author)}<br><span class="small mute">${esc(r.country)} · ${esc(r.career_stage)}</span></td><td>${byAbs(r.id).length}</td><td class="mono">${avg(byAbs(r.id))}</td>
+        <td><span class="status">${ABS_STATUS[r.status] ?? r.status}</span></td></tr>`).join('')}
+    </tbody></table>` : '<p class="mute mt-24">No abstracts yet.</p>'}`, 'abstracts');
+  root.querySelector('[data-csv]')?.addEventListener('click', csv);
+}
+
+async function abstractView(id: string) {
+  const sb = supabase();
+  const { data: a } = await sb.from('abstracts').select('*').eq('id', id).maybeSingle();
+  if (!a) { shell('<p class="form-error-banner">Abstract not found.</p>', 'abstracts'); return; }
+  const { data: reviews } = await sb.from('abstract_reviews').select('*').eq('abstract_id', id).order('created_at');
+  const mine = (reviews ?? []).find((r: any) => r.reviewer_id === me!.id) ?? {};
+  const { data: names } = await sb.from('profile_names').select('id,full_name').in('id', (reviews ?? []).map((r: any) => r.reviewer_id));
+  const who = (uid: string) => (names ?? []).find((n: any) => n.id === uid)?.full_name ?? 'Reviewer';
+  const words = (a.abstract ?? '').trim().split(/\s+/).length;
+  shell(`
+    <p><a href="#/abstracts" class="link-arrow">← Abstracts</a></p>
+    <p class="label mute mt-24">Track ${esc(a.track)} · ${esc(a.format)} · ${esc(a.language)} · ${words} words</p>
+    <h1 class="h1 mt-8">${esc(a.title)}</h1>
+    <p class="mute mt-16">${(a.authors ?? []).map((p: any) => esc([p.name, p.affiliation, p.country].filter(Boolean).join(', '))).join(' · ')}</p>
+    <p class="small mt-8">Presenting: <strong>${esc(a.presenting_author)}</strong> · ${esc(a.email)} · ${esc(a.country)} · ${esc(a.career_stage)}</p>
+    <div class="with-aside mt-32">
+      <div>
+        <div class="prose sub-body">${esc(a.abstract)}</div>
+        <p class="small mt-16">Keywords: ${esc((a.keywords ?? []).join(', '))}${a.jel ? ` · JEL: ${esc(a.jel)}` : ''}</p>
+        ${a.rationale ? `<h2 class="h3 mt-32">Rationale</h2><div class="prose sub-body">${esc(a.rationale)}</div>` : ''}
+        ${a.contributions ? `<h2 class="h3 mt-32">Contributions and speakers</h2><div class="prose sub-body">${esc(a.contributions)}</div>` : ''}
+        ${a.travel_support ? `<div class="box-sand mt-32"><p class="label">Travel support requested</p><p class="mt-8">${esc(a.travel_motivation)}</p></div>` : ''}
+        ${a.online_request ? '<p class="mt-16"><span class="status">May need to present online</span></p>' : ''}
+        <h2 class="h3 mt-48">Reviews (${(reviews ?? []).length}) · average ${avg(reviews ?? [])}</h2>
+        <table class="table mt-16"><thead><tr><th>Reviewer</th>${CRIT.map((c) => `<th>${c}</th>`).join('')}<th>Recommendation</th></tr></thead><tbody>
+          ${(reviews ?? []).map((r: any) => `<tr><td>${esc(who(r.reviewer_id))}${r.note ? `<br><span class="small mute">${esc(r.note)}</span>` : ''}</td>${CRIT.map((c) => `<td class="mono">${r[c] ?? '—'}</td>`).join('')}<td>${esc(r.recommendation ?? '')}</td></tr>`).join('') || '<tr><td colspan="7" class="mute">No reviews yet.</td></tr>'}
+        </tbody></table>
+      </div>
+      <aside class="stack">
+        <form class="box-sand" data-review>
+          <h2 class="label">Your review (1–5)</h2>
+          ${CRIT.map((c) => `<div class="field mt-8"><label for="r-${c}">${c[0].toUpperCase() + c.slice(1)}</label><select id="r-${c}" class="select" name="${c}"><option value="">—</option>${[1, 2, 3, 4, 5].map((n) => `<option ${mine[c] === n ? 'selected' : ''}>${n}</option>`).join('')}</select></div>`).join('')}
+          <div class="field mt-8"><label for="r-rec">Recommendation</label><select id="r-rec" class="select" name="recommendation"><option value="">—</option>${['accept', 'accept_poster', 'decline'].map((v) => `<option value="${v}" ${mine.recommendation === v ? 'selected' : ''}>${ABS_STATUS[v === 'accept' ? 'accepted' : v === 'accept_poster' ? 'accepted_poster' : 'declined']}</option>`).join('')}</select></div>
+          <div class="field mt-8"><label for="r-note">Note for the committee</label><textarea id="r-note" class="textarea" name="note" rows="3">${esc(mine.note)}</textarea></div>
+          <button class="btn btn-sm mt-16">Save review</button>
+        </form>
+        <form class="box-sand" data-decision>
+          <h2 class="label">Decision</h2>
+          <select class="select mt-8" name="status" aria-label="Status">${Object.entries(ABS_STATUS).map(([k, l]) => `<option value="${k}" ${k === a.status ? 'selected' : ''}>${l}</option>`).join('')}</select>
+          <div class="field mt-8"><label for="d-note">Message to the author</label><p class="hint">Shown with the decision.</p><textarea id="d-note" class="textarea" name="decision_note" rows="4">${esc(a.decision_note)}</textarea></div>
+          <button class="btn btn-sm mt-16">Save decision</button>
+        </form>
+      </aside>
+    </div>`, 'abstracts');
+  root.querySelector<HTMLFormElement>('[data-review]')!.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const f = new FormData(e.currentTarget as HTMLFormElement);
+    const num = (k: string) => (f.get(k) ? Number(f.get(k)) : null);
+    const row = { abstract_id: id, reviewer_id: me!.id, relevance: num('relevance'), rigour: num('rigour'), contribution: num('contribution'), policy: num('policy'), clarity: num('clarity'),
+      recommendation: String(f.get('recommendation') || '') || null, note: String(f.get('note') || '') || null };
+    const { error } = await sb.from('abstract_reviews').upsert(row, { onConflict: 'abstract_id,reviewer_id' });
+    error ? flash(error.message, 'error') : (flash('Review saved.'), abstractView(id));
+  });
+  root.querySelector<HTMLFormElement>('[data-decision]')!.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const f = new FormData(e.currentTarget as HTMLFormElement);
+    const { error } = await sb.from('abstracts').update({ status: f.get('status'), decision_note: String(f.get('decision_note') || '') || null }).eq('id', id);
+    error ? flash(error.message, 'error') : flash('Decision saved. The author sees it on the submission page.');
+  });
+}
+
 // ── Users (admin) ────────────────────────────────────────────────────────────
 async function usersView() {
   if (!admin()) { location.hash = '#/'; return; }
@@ -499,6 +603,8 @@ async function route() {
     else if (a === 'content') await contentView(b || 'publications');
     else if (a === 'edit' && b && c) await editView(b, decodeURIComponent(c));
     else if (a === 'new' && b && staff()) await editView(b, null);
+    else if (a === 'abstracts' && b) await abstractView(b);
+    else if (a === 'abstracts') await abstractsView();
     else if (a === 'users') await usersView();
     else if (a === 'account') accountView();
     else await homeView();

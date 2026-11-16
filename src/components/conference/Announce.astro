@@ -1,0 +1,25 @@
+---
+// Site-wide announcement bar for the RITA 2027 call. Hidden after the deadline (at build time and in the browser).
+import { CONF } from '../../data/conference';
+const open = new Date() < new Date(`${CONF.deadline}T23:59:00+02:00`);
+---
+{open && (
+  <div class="announce" data-announce data-pagefind-ignore>
+    <a href="/conference" class="wrap">
+      <span class="label tag-sun">{CONF.short}</span>
+      <span>Call for abstracts open<span class="theme">: <strong>{CONF.theme}</strong></span>. Deadline 31 March 2027.</span>
+      <span class="go" aria-hidden="true">→</span>
+    </a>
+  </div>
+)}
+<script>
+  if (Date.now() > new Date('2027-03-31T23:59:00+02:00').getTime()) document.querySelector<HTMLElement>('[data-announce]')?.remove();
+</script>
+<style>
+  .announce { background: var(--ink); color: var(--white); font-size: 14px; }
+  .announce a { display: flex; align-items: center; gap: 14px; padding-top: 9px; padding-bottom: 9px; text-decoration: none; color: inherit; }
+  .announce a:hover strong, .announce a:hover .go { color: var(--sun); }
+  .tag-sun { background: var(--sun); color: var(--ink); padding: 2px 8px; font-size: 11px; flex: none; }
+  .go { margin-left: auto; }
+  @media (max-width: 599px) { .announce .theme { display: none; } }
+</style>

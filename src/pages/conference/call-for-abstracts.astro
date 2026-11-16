@@ -1,0 +1,198 @@
+---
+// RITA Conference 2027: the full call for abstracts.
+import Base from '../../layouts/Base.astro';
+import Crumbs from '../../components/Crumbs.astro';
+import Timeline from '../../components/conference/Timeline.astro';
+import { CONF, TRACKS, FORMATS, ABSTRACT_RULES, CRITERIA } from '../../data/conference';
+
+const toc = [
+  ['call', 'The call'], ['tracks', 'Tracks'], ['formats', 'Formats'], ['guidelines', 'Abstract guidelines'],
+  ['review', 'Review and selection'], ['accepted', 'After acceptance'], ['publication', 'Publication and awards'],
+  ['support', 'Travel support'], ['conduct', 'Inclusion and conduct'], ['submit', 'How to submit'], ['dates', 'Key dates'],
+];
+const steps = [
+  ['Create a RITA account', 'Free, takes a minute. Confirm your email.'],
+  ['Fill in the form', 'Track, format, title, authors, abstract and keywords.'],
+  ['Submit by 31 March', 'You can edit until the deadline. You get a confirmation email.'],
+  ['Hear back by 15 May', 'With the decision and reviewer comments.'],
+];
+---
+<Base title={`Call for abstracts · ${CONF.name}`} description={`${CONF.name}, ${CONF.theme}. Call for abstracts: nine tracks, four formats. Deadline ${CONF.deadlineText}.`}>
+  <span hidden data-pagefind-filter="type">Page</span>
+  <section class="wrap">
+    <Crumbs items={[['Conference 2027', '/conference'], ['Call for abstracts']]} />
+    <div class="page-head head">
+      <p class="label mute">{CONF.short} <span class="sep">·</span> {CONF.dates} <span class="sep">·</span> {CONF.city}</p>
+      <h1 class="h1 mt-16">Call for abstracts</h1>
+      <p class="lead">{CONF.theme}. We invite research and policy work on how African economies can industrialise through the green transition.</p>
+      <div class="deadline-strip mt-32">
+        <p><span class="label">Deadline</span> <strong>{CONF.deadlineText}</strong></p>
+        <a class="btn" href="/conference/submit">Submit an abstract</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="ruled">
+    <div class="wrap with-sidebar body">
+      <nav class="toc" aria-labelledby="toc-title">
+        <div class="sticky">
+          <h2 id="toc-title" class="label mute">Contents</h2>
+          <ol class="nolist">{toc.map(([id, t], i) => <li><a href={`#${id}`}><span class="mono">{String(i + 1).padStart(2, '0')}</span> {t}</a></li>)}</ol>
+          <a class="btn btn-sm mt-24" href="/conference/submit">Submit</a>
+        </div>
+      </nav>
+
+      <div class="sections">
+        <section id="call" class="sec">
+          <h2 class="h2"><span class="num">01</span>The call</h2>
+          <div class="prose mt-24">
+            <p>The green transition will decide which countries make the next generation of goods, and which only supply the inputs. For Africa, it is a window: transition minerals, abundant renewable energy, a young workforce and a continental market. Windows close.</p>
+            <p>{CONF.short} asks what it takes to industrialise through the transition. We want work on the states, finance, value chains, energy systems, firms and workers that turn resources into production, jobs and structural change, and on the policies that connect them.</p>
+            <p>We welcome empirical, theoretical and policy research from economics, political economy, development studies, geography, engineering and business. Africa-wide, country and firm-level studies are all in scope, as is comparative work that speaks to Africa.</p>
+            <p><strong>We especially encourage submissions from Africa-based researchers, early-career researchers and women.</strong></p>
+          </div>
+        </section>
+
+        <section id="tracks" class="sec">
+          <h2 class="h2"><span class="num">02</span>Tracks</h2>
+          <p class="mute mt-16">Choose one track when you submit. The committee may move your abstract to a better-fitting session.</p>
+          <ol class="nolist tracks mt-32">
+            {TRACKS.map((t) => (
+              <li class:list={['track', `c-${t.code}`]}>
+                <p class="label"><span class="sq" aria-hidden="true"></span>Track {t.n}</p>
+                <h3 class="h3 mt-8">{t.title}</h3>
+                <p class="mt-8">{t.summary}</p>
+                <ul class="qs mt-16">{t.questions.map((q) => <li>{q}</li>)}</ul>
+              </li>
+            ))}
+            <li class="track c-none">
+              <p class="label"><span class="sq" aria-hidden="true"></span>Open track</p>
+              <h3 class="h3 mt-8">Everything else on Africa’s industrial and green transition</h3>
+              <p class="mt-8">Strong work that does not fit one track.</p>
+            </li>
+          </ol>
+        </section>
+
+        <section id="formats" class="sec">
+          <h2 class="h2"><span class="num">03</span>Formats</h2>
+          <table class="table mt-24">
+            <thead><tr><th>Format</th><th>Time</th><th>What to submit</th></tr></thead>
+            <tbody>{FORMATS.map((f) => <tr><td><strong>{f.title}</strong></td><td class="mono small">{f.length}</td><td>{f.detail}</td></tr>)}</tbody>
+          </table>
+          <p class="mt-16 small mute">Panels and roundtables: submit one proposal with a 300-word rationale and a 150–300 word abstract for each contribution, plus the names of all speakers, who must have agreed to take part.</p>
+        </section>
+
+        <section id="guidelines" class="sec">
+          <h2 class="h2"><span class="num">04</span>Abstract guidelines</h2>
+          <dl class="rules mt-24">{ABSTRACT_RULES.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}</dl>
+          <div class="box-sand mt-32">
+            <p class="label">Template</p>
+            <dl class="template mt-16">
+              <div><dt>Question</dt><dd>What problem does the paper address, and why now? (1–2 sentences)</dd></div>
+              <div><dt>Data and method</dt><dd>What evidence, from where and when, analysed how? (2–3 sentences)</dd></div>
+              <div><dt>Findings</dt><dd>What did you find? Use numbers. For work in progress, what do you expect and when will results be ready? (2–4 sentences)</dd></div>
+              <div><dt>Why it matters</dt><dd>What should a decision-maker do differently? (1–2 sentences)</dd></div>
+            </dl>
+          </div>
+        </section>
+
+        <section id="review" class="sec">
+          <h2 class="h2"><span class="num">05</span>Review and selection</h2>
+          <div class="prose mt-24">
+            <p>The scientific committee reviews every abstract. Each gets at least two independent reviews, scored on five criteria. Reviewers see the abstract without the authors’ names. Chairs declare conflicts of interest and do not review work they co-authored.</p>
+          </div>
+          <table class="table mt-24">
+            <thead><tr><th>Criterion</th><th>What we look for</th></tr></thead>
+            <tbody>{CRITERIA.map(([k, v]) => <tr><td><strong>{k}</strong></td><td>{v}</td></tr>)}</tbody>
+          </table>
+          <p class="mt-16">Decisions are <strong>accept</strong>, <strong>accept as poster</strong> or <strong>decline</strong>, with short comments. We aim for a programme balanced across tracks, regions, career stages and genders.</p>
+        </section>
+
+        <section id="accepted" class="sec">
+          <h2 class="h2"><span class="num">06</span>After acceptance</h2>
+          <ul class="checks mt-24">
+            <li><strong>Register</strong> at least one author by 30 June 2027, or the paper leaves the programme.</li>
+            <li><strong>Full paper</strong> by 31 July 2027 if you want the Best Paper Award or the publication track. Otherwise optional.</li>
+            <li><strong>Papers:</strong> 15 minutes, then 5 minutes from a discussant and 5 for questions. Slides in 16:9.</li>
+            <li><strong>Discussants:</strong> every paper presenter may be asked to discuss one other paper in their session.</li>
+            <li><strong>Posters:</strong> A0 portrait, printed by you. A 5-minute lightning talk opens each poster session.</li>
+            <li><strong>Policy summary:</strong> one paragraph for decision-makers, published with the programme.</li>
+          </ul>
+        </section>
+
+        <section id="publication" class="sec">
+          <h2 class="h2"><span class="num">07</span>Publication and awards</h2>
+          <div class="grid g2 mt-24">
+            <div class="box">
+              <p class="label mute">Publication track</p>
+              <p class="mt-16">Selected full papers are invited to the <strong>RITA Working Paper Series</strong> and considered for a planned special issue with a peer-reviewed journal (details announced in 2027). Strong papers can also become a <a href="/insights">Policy Insight</a> or <a href="/policy/briefs">policy brief</a> with RITA’s editors.</p>
+            </div>
+            <div class="box">
+              <p class="label mute">Best Paper Award</p>
+              <p class="mt-16">For the best paper by an early-career researcher (PhD candidate or within seven years of the PhD). Judged on the full paper. Announced at the closing session.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="support" class="sec">
+          <h2 class="h2"><span class="num">08</span>Travel support</h2>
+          <div class="prose mt-24">
+            <p>RITA is raising funds for a limited number of travel grants. They are for <strong>Africa-based PhD candidates and early-career researchers</strong> presenting an accepted paper or poster. Grants cover some or all of travel, accommodation and registration.</p>
+            <p>Apply when you submit: tick the travel support box and explain in two lines why you need it. Decisions by 31 May 2027. A grant depends on acceptance and on available funds.</p>
+          </div>
+        </section>
+
+        <section id="conduct" class="sec">
+          <h2 class="h2"><span class="num">09</span>Inclusion and conduct</h2>
+          <div class="prose mt-24">
+            <p>{CONF.short} is a place for honest argument and respect. We do not tolerate harassment or discrimination of any kind, in person or online. Tell the organisers if something happens: <a href={`mailto:${CONF.email}`}>{CONF.email}</a>.</p>
+            <p>Tell us about access needs when you register. Sessions are recorded only with speakers’ consent.</p>
+          </div>
+        </section>
+
+        <section id="submit" class="sec">
+          <h2 class="h2"><span class="num">10</span>How to submit</h2>
+          <ol class="grid g2 nolist steps mt-24">
+            {steps.map(([t, d], i) => <li><span class="mono mute">0{i + 1}</span><h3 class="h3 mt-8">{t}</h3><p class="mute mt-8">{d}</p></li>)}
+          </ol>
+          <div class="row mt-32">
+            <a class="btn" href="/conference/submit">Submit an abstract</a>
+            <a class="btn btn-secondary" href={`mailto:${CONF.email}`}>Ask a question</a>
+          </div>
+        </section>
+
+        <section id="dates" class="sec">
+          <h2 class="h2"><span class="num">11</span>Key dates</h2>
+          <div class="mt-32"><Timeline /></div>
+        </section>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .head { max-width: 900px; }
+  .deadline-strip { display: flex; justify-content: space-between; align-items: center; gap: 16px 24px; flex-wrap: wrap; padding: 20px 24px; background: var(--sand); }
+  .deadline-strip .label { margin-right: 12px; }
+  .body { padding-top: 56px; padding-bottom: var(--section-y); }
+  .toc ol { display: grid; gap: 10px; margin-top: 14px; font-size: 16px; }
+  .toc a { text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  .toc .mono { font-size: 13px; color: var(--mute); margin-right: 6px; }
+  .sec { scroll-margin-top: calc(var(--header-h) + 24px); max-width: 860px; }
+  .sec + .sec { margin-top: 72px; padding-top: 56px; border-top: 1px solid var(--line); }
+  .num { font: 500 15px var(--mono); color: var(--mute); margin-right: 16px; vertical-align: middle; }
+  .tracks { display: grid; gap: 16px; }
+  .track { padding: 24px 28px; background: var(--paper); border-left: 4px solid var(--c); }
+  .track .sq { background: var(--c); }
+  .qs { margin: 0; padding-left: 20px; color: var(--mute-2); display: grid; gap: 4px; }
+  .rules, .template { display: grid; gap: 0; margin: 0; }
+  .rules div, .template div { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 24px; padding: 14px 0; border-top: 1px solid var(--line); }
+  .template div { border-color: rgba(17, 17, 16, .12); }
+  .rules dt, .template dt { font-weight: 600; }
+  .rules dd, .template dd { margin: 0; color: var(--mute-2); }
+  .checks { display: grid; gap: 12px; padding-left: 20px; margin: 0; }
+  .box { padding: 24px; border: 1px solid var(--line); }
+  .steps li { border-top: 3px solid var(--malachite); padding-top: 18px; }
+  @media (max-width: 599px) { .rules div, .template div { grid-template-columns: 1fr; gap: 4px; } }
+</style>

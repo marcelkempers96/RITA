@@ -5,6 +5,8 @@ import Card from '../components/Card.astro';
 import ProgrammeTiles from '../components/ProgrammeTiles.astro';
 import PersonCard from '../components/PersonCard.astro';
 import LogoWall from '../components/LogoWall.astro';
+import Timeline from '../components/conference/Timeline.astro';
+import { CONF } from '../data/conference';
 import { load, url, authorLine, monthYear, TYPE_LABEL, fullName, type Code } from '../lib/content';
 
 const d = await load();
@@ -63,6 +65,21 @@ const track = d.partners.filter((p) => p.data.trackRecord);
     </div>
   </section>
 
+  <section class="section bg-ink conf" aria-labelledby="conf-title">
+    <div class="wrap conf-grid">
+      <div>
+        <p class="label conf-kicker">{CONF.short} <span class="sep">·</span> {CONF.dates} <span class="sep">·</span> {CONF.city}</p>
+        <h2 id="conf-title" class="h1 mt-16">{CONF.theme}</h2>
+        <p class="lead conf-lead mt-16">Call for abstracts for the first RITA Conference. Nine tracks, four formats, free to submit. Travel support for Africa-based early-career researchers.</p>
+        <div class="row mt-32">
+          <a class="btn" href="/conference/submit">Submit an abstract</a>
+          <a class="btn btn-secondary" href="/conference/call-for-abstracts">Read the call</a>
+        </div>
+      </div>
+      <div><Timeline compact /></div>
+    </div>
+  </section>
+
   <section class="section ruled">
     <div class="wrap">
       <h2 class="h2 mb-32">Programmes</h2>
@@ -116,6 +133,10 @@ const track = d.partners.filter((p) => p.data.trackRecord);
 </Base>
 
 <style>
+  .conf-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 64px; align-items: center; }
+  .conf-kicker { color: var(--sun); }
+  .conf-lead { color: var(--on-dark-mute); }
+  @media (max-width: 899px) { .conf-grid { grid-template-columns: 1fr; gap: 40px; } }
   .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 640px; border-bottom: 1px solid var(--line); }
   .hero-text { display: flex; align-items: center; justify-content: flex-end; padding: 72px 64px; }
   .hero-inner { max-width: 512px; width: 100%; }

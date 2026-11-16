@@ -1,0 +1,283 @@
+---
+// RITA Conference 2027: abstract submission (Supabase, account required).
+import Base from '../../layouts/Base.astro';
+import Crumbs from '../../components/Crumbs.astro';
+import { CONF, TRACKS } from '../../data/conference';
+---
+<Base title={`Submit an abstract · ${CONF.name}`} description={`Submit an abstract to ${CONF.name}. Deadline ${CONF.deadlineText}.`} noindex noNewsletter>
+  <div data-pagefind-ignore>
+    <section class="wrap">
+      <Crumbs items={[['Conference 2027', '/conference'], ['Submit an abstract']]} />
+      <div class="page-head">
+        <p class="label mute">{CONF.short} <span class="sep">·</span> Deadline {CONF.deadlineText}</p>
+        <h1 class="h1 mt-16">Submit an abstract</h1>
+        <p class="lead">300–500 words. About 20 minutes. You can edit until the deadline. Read the <a href="/conference/call-for-abstracts#guidelines">guidelines</a> first.</p>
+      </div>
+    </section>
+
+    <section class="wrap" data-state="loading"><p class="mute">Loading…</p></section>
+
+    <section class="wrap" data-state="gate" hidden>
+      <div class="gate">
+        <h2 class="h2">Create an account to submit</h2>
+        <p class="lead mt-16">A free RITA account keeps your abstract safe, lets you edit it until 31 March, and is where you receive the decision.</p>
+        <div class="row mt-32">
+          <a class="btn" href="/studio/?mode=signup&next=/conference/submit">Create an account</a>
+          <a class="btn btn-secondary" href="/studio/?next=/conference/submit">I have an account: sign in</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap" data-state="closed" hidden>
+      <div class="gate"><h2 class="h2">The call is closed</h2><p class="lead mt-16">Abstracts closed on 31 March 2027. Decisions are sent by 15 May 2027.</p></div>
+    </section>
+
+    <section class="wrap" data-state="offline" hidden>
+      <div class="tbc-block"><strong>Submissions open soon</strong>The submission system is being connected. Questions: <a href={`mailto:${CONF.email}`}>{CONF.email}</a>.</div>
+    </section>
+
+    <section class="wrap" data-state="mine" hidden>
+      <div class="mine">
+        <h2 class="h3">Your abstracts</h2>
+        <table class="table mt-16"><thead><tr><th>Title</th><th>Track</th><th>Status</th><th></th></tr></thead><tbody data-mine-rows></tbody></table>
+      </div>
+    </section>
+
+    <section class="wrap" data-state="done" hidden tabindex="-1">
+      <div class="form-success"><h2>Abstract received.</h2><p>Thank you. You can edit it here until 31 March 2027. Decisions are sent by 15 May 2027.</p></div>
+    </section>
+
+    <form class="wrap form sub-form" data-state="form" hidden novalidate data-abstract-form>
+      <div data-error-summary hidden></div>
+      <input type="hidden" name="id" />
+
+      <fieldset class="group">
+        <legend class="h3">1 · Track and format</legend>
+        <div class="field">
+          <label for="a-track">Track<span class="req">*</span></label>
+          <select id="a-track" class="select" name="track" required data-label="track">
+            <option value="">Choose a track</option>
+            {TRACKS.map((t) => <option value={t.n}>{t.n} · {t.title}</option>)}
+            <option value="open">Open track</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="a-format">Format<span class="req">*</span></label>
+          <select id="a-format" class="select" name="format" required data-label="format">
+            <option value="paper">Paper</option>
+            <option value="poster">Poster and lightning talk</option>
+            <option value="panel">Organised panel (closes 15 February)</option>
+            <option value="roundtable">Policy roundtable</option>
+          </select>
+        </div>
+      </fieldset>
+
+      <fieldset class="group">
+        <legend class="h3">2 · Abstract</legend>
+        <div class="field">
+          <label for="a-title">Title<span class="req">*</span></label>
+          <p class="hint">Up to 20 words.</p>
+          <input id="a-title" class="input" name="title" required data-label="title" data-max-words="20" />
+        </div>
+        <div class="field">
+          <label for="a-abstract">Abstract<span class="req">*</span></label>
+          <p class="hint">300–500 words: the question, data and method, findings, why it matters. Plain text.</p>
+          <textarea id="a-abstract" class="textarea" name="abstract" rows="16" required data-label="abstract" data-max-words="500"></textarea>
+          <p class="hint mono" aria-live="polite"><span data-words>0</span> / 300–500 words</p>
+        </div>
+        <div class="field panel-only" hidden>
+          <label for="a-rationale">Panel or roundtable rationale<span class="req">*</span></label>
+          <p class="hint">About 300 words: the question and why these speakers.</p>
+          <textarea id="a-rationale" class="textarea" name="rationale" rows="6" data-label="rationale"></textarea>
+        </div>
+        <div class="field panel-only" hidden>
+          <label for="a-contrib">Contributions and speakers<span class="req">*</span></label>
+          <p class="hint">One per line: speaker, affiliation, title and a short abstract. Chair and discussant at the end.</p>
+          <textarea id="a-contrib" class="textarea" name="contributions" rows="8" data-label="contributions"></textarea>
+        </div>
+        <div class="grid g2">
+          <div class="field">
+            <label for="a-keywords">Keywords<span class="req">*</span></label>
+            <p class="hint">Three to five, separated by commas.</p>
+            <input id="a-keywords" class="input" name="keywords" required data-label="keywords" />
+          </div>
+          <div class="field">
+            <label for="a-jel">JEL codes</label>
+            <p class="hint">Optional, up to three, e.g. O14, L60, Q42.</p>
+            <input id="a-jel" class="input" name="jel" />
+          </div>
+        </div>
+        <div class="field">
+          <label for="a-lang">Language of presentation</label>
+          <select id="a-lang" class="select" name="language"><option value="en">English</option><option value="fr">French</option></select>
+        </div>
+      </fieldset>
+
+      <fieldset class="group">
+        <legend class="h3">3 · Authors</legend>
+        <div class="field">
+          <label for="a-authors">All authors<span class="req">*</span></label>
+          <p class="hint">One per line: Name; Affiliation; Country. In the order they should appear.</p>
+          <textarea id="a-authors" class="textarea" name="authors" rows="4" required data-label="authors" placeholder="Amina Diallo; University of Dakar; Senegal"></textarea>
+        </div>
+        <div class="grid g2">
+          <div class="field">
+            <label for="a-presenter">Presenting author<span class="req">*</span></label>
+            <input id="a-presenter" class="input" name="presenting_author" required data-label="presenting author" autocomplete="name" />
+          </div>
+          <div class="field">
+            <label for="a-email">Contact email<span class="req">*</span></label>
+            <input id="a-email" class="input" type="email" name="email" required data-label="email address" autocomplete="email" inputmode="email" />
+          </div>
+          <div class="field">
+            <label for="a-country">Presenter’s country of residence<span class="req">*</span></label>
+            <input id="a-country" class="input" name="country" required data-label="country" autocomplete="country-name" />
+          </div>
+          <div class="field">
+            <label for="a-stage">Presenter’s career stage<span class="req">*</span></label>
+            <select id="a-stage" class="select" name="career_stage" required data-label="career stage">
+              <option value="">Choose one</option>
+              <option>PhD candidate</option><option>Early career (within 7 years of PhD)</option><option>Mid or senior career</option>
+              <option>Policy or practice</option><option>Other</option>
+            </select>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="group">
+        <legend class="h3">4 · Participation</legend>
+        <label class="check"><input type="checkbox" name="online_request" /> <span>I may need to present online (for example because of visa delays).</span></label>
+        <label class="check"><input type="checkbox" name="travel_support" data-travel /> <span>I am an Africa-based PhD candidate or early-career researcher and would like to apply for travel support.</span></label>
+        <div class="field travel-only" hidden>
+          <label for="a-travel">Why do you need support?</label>
+          <p class="hint">Two lines are enough.</p>
+          <textarea id="a-travel" class="textarea" name="travel_motivation" rows="3" data-label="travel motivation"></textarea>
+        </div>
+      </fieldset>
+
+      <fieldset class="group">
+        <legend class="h3">5 · Declarations</legend>
+        <label class="check"><input type="checkbox" name="original" required data-label="originality" data-message="Confirm the work is original" /> <span>This work is unpublished, or published in the last 12 months and not presented at a major conference.<span class="req">*</span></span></label>
+        <label class="check"><input type="checkbox" name="consent" required data-label="consent" data-message="Confirm all authors agree" /> <span>All authors agree to this submission, and one of us will register and present if accepted.<span class="req">*</span></span></label>
+        <label class="check"><input type="checkbox" name="privacy" required data-label="privacy" data-message="Tick the box to continue" /> <span>I agree to RITA processing these details to run the conference. <a href="/privacy">Privacy policy</a>.<span class="req">*</span></span></label>
+      </fieldset>
+
+      <div class="row">
+        <button class="btn" type="submit" data-submit>Submit abstract</button>
+        <a class="btn btn-secondary" href="/conference/call-for-abstracts">Back to the call</a>
+      </div>
+    </form>
+  </div>
+</Base>
+
+<script>
+  import { SUPABASE_ENABLED, supabase } from '../../lib/supabase';
+  import { BASE } from '../../lib/base';
+  import { wordCount } from '../../scripts/forms';
+
+  const $ = <T extends HTMLElement>(s: string) => document.querySelector<T>(s)!;
+  const show = (...states: string[]) => document.querySelectorAll<HTMLElement>('[data-state]').forEach((el) => (el.hidden = !states.includes(el.dataset.state!)));
+  const form = $<HTMLFormElement>('[data-abstract-form]');
+  const esc = (s: unknown) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
+  const STATUS: Record<string, string> = { submitted: 'Submitted', under_review: 'Under review', accepted: 'Accepted', accepted_poster: 'Accepted as poster', declined: 'Declined', withdrawn: 'Withdrawn' };
+  const open = Date.now() < new Date('2027-03-31T23:59:00+02:00').getTime();
+  let mine: any[] = [];
+
+  // Live word count and conditional fields
+  const abs = form.elements.namedItem('abstract') as HTMLTextAreaElement;
+  const counter = $('[data-words]');
+  const count = () => { const n = wordCount(abs.value); counter.textContent = String(n); counter.parentElement!.style.color = n && (n < 300 || n > 500) ? 'var(--laterite)' : ''; };
+  abs.addEventListener('input', count);
+  const fmt = form.elements.namedItem('format') as HTMLSelectElement;
+  const syncFormat = () => {
+    const panel = fmt.value === 'panel' || fmt.value === 'roundtable';
+    form.querySelectorAll<HTMLElement>('.panel-only').forEach((el) => {
+      el.hidden = !panel;
+      el.querySelector<HTMLTextAreaElement>('textarea')!.required = panel;
+    });
+  };
+  fmt.addEventListener('change', syncFormat);
+  const travel = form.querySelector<HTMLInputElement>('[data-travel]')!;
+  travel.addEventListener('change', () => (form.querySelector<HTMLElement>('.travel-only')!.hidden = !travel.checked));
+
+  function fill(a: any) {
+    const set = (n: string, v: unknown) => { const el = form.elements.namedItem(n) as HTMLInputElement | null; if (!el) return; if (el.type === 'checkbox') el.checked = Boolean(v); else el.value = String(v ?? ''); };
+    set('id', a.id); set('track', a.track); set('format', a.format); set('title', a.title); set('abstract', a.abstract);
+    set('keywords', (a.keywords ?? []).join(', ')); set('jel', a.jel); set('language', a.language);
+    set('authors', (a.authors ?? []).map((p: any) => [p.name, p.affiliation, p.country].filter(Boolean).join('; ')).join('\n'));
+    set('presenting_author', a.presenting_author); set('email', a.email); set('country', a.country); set('career_stage', a.career_stage);
+    set('rationale', a.rationale); set('contributions', a.contributions); set('online_request', a.online_request);
+    set('travel_support', a.travel_support); set('travel_motivation', a.travel_motivation);
+    set('original', a.declarations?.original); set('consent', a.declarations?.consent); set('privacy', a.declarations?.privacy);
+    syncFormat(); count(); travel.dispatchEvent(new Event('change'));
+    form.hidden = false; form.scrollIntoView({ behavior: 'smooth' });
+    $('[data-submit]').textContent = 'Save changes';
+  }
+
+  function renderMine() {
+    if (!mine.length) return;
+    $('[data-state="mine"]').hidden = false;
+    $('[data-mine-rows]').innerHTML = mine.map((a) => `<tr><td><strong>${esc(a.title)}</strong></td><td>${esc(a.track)}</td>
+      <td><span class="status">${STATUS[a.status] ?? a.status}</span>${a.decision_note ? `<br><span class="small mute">${esc(a.decision_note)}</span>` : ''}</td>
+      <td>${open && a.status === 'submitted' ? `<button type="button" class="btn-link" data-edit="${a.id}">Edit</button>` : ''}</td></tr>`).join('');
+    document.querySelectorAll<HTMLButtonElement>('[data-edit]').forEach((b) => b.addEventListener('click', () => fill(mine.find((a) => a.id === b.dataset.edit))));
+  }
+
+  async function init() {
+    if (!SUPABASE_ENABLED) { show('offline'); return; }
+    const sb = supabase();
+    const { data: { session } } = await sb.auth.getSession();
+    if (!session) { show('gate'); return; }
+    const { data } = await sb.from('my_abstracts').select('*').order('created_at', { ascending: false });
+    mine = data ?? [];
+    show(...(open ? ['form', 'mine'] : ['closed', 'mine']));
+    renderMine();
+    if (!(form.elements.namedItem('email') as HTMLInputElement).value) (form.elements.namedItem('email') as HTMLInputElement).value = session.user.email ?? '';
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const ok = (window as any).ritaForms.validateForm(form);
+    const n = wordCount(abs.value);
+    if (!ok) return;
+    if (n < 300 || n > 500) { abs.setAttribute('aria-invalid', 'true'); abs.focus(); alert(`Your abstract has ${n} words. It needs 300–500.`); return; }
+    const f = new FormData(form);
+    const str = (k: string) => String(f.get(k) ?? '').trim();
+    const row = {
+      track: str('track'), format: str('format'), title: str('title'), abstract: str('abstract'),
+      keywords: str('keywords').split(',').map((k) => k.trim()).filter(Boolean).slice(0, 5), jel: str('jel') || null, language: str('language'),
+      authors: str('authors').split('\n').map((l) => l.trim()).filter(Boolean).map((l) => { const [name, affiliation, country] = l.split(';').map((x) => x.trim()); return { name, affiliation, country }; }),
+      presenting_author: str('presenting_author'), email: str('email'), country: str('country'), career_stage: str('career_stage'),
+      rationale: str('rationale') || null, contributions: str('contributions') || null,
+      online_request: f.has('online_request'), travel_support: f.has('travel_support'), travel_motivation: str('travel_motivation') || null,
+      declarations: { original: f.has('original'), consent: f.has('consent'), privacy: f.has('privacy') },
+    };
+    const btn = $<HTMLButtonElement>('[data-submit]'); const label = btn.textContent; btn.disabled = true; btn.textContent = 'Sending…';
+    const sb = supabase(); const id = str('id');
+    const { error } = id ? await sb.from('abstracts').update(row).eq('id', id) : await sb.from('abstracts').insert(row);
+    btn.disabled = false; btn.textContent = label;
+    if (error) {
+      form.querySelector('.form-error-banner')?.remove();
+      const b = document.createElement('div'); b.className = 'form-error-banner'; b.setAttribute('role', 'alert');
+      b.textContent = `Your abstract was not sent: ${error.message}. Your text is still here. Try again or email conference@rita.africa.`;
+      form.prepend(b); b.scrollIntoView({ behavior: 'smooth' }); return;
+    }
+    form.reset(); (form.elements.namedItem('id') as HTMLInputElement).value = ''; count();
+    await init();
+    show('done', 'mine', ...(open ? ['form'] : []));
+    $('[data-state="done"]').focus();
+    btn.textContent = 'Submit abstract';
+  });
+
+  void BASE;
+  init();
+</script>
+
+<style>
+  .gate { max-width: 680px; padding: 40px; background: var(--paper); margin-bottom: 96px; }
+  .sub-form { max-width: 860px; padding-bottom: 96px; }
+  .group { border-top: 1px solid var(--line); padding-top: 28px; margin-top: 16px; gap: 18px; }
+  .group legend { padding: 0; margin-bottom: 8px; }
+  .mine { max-width: 860px; margin-bottom: 40px; }
+  [data-state='done'] { max-width: 860px; margin-bottom: 32px; }
+</style>
