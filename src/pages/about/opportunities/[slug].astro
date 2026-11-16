@@ -15,8 +15,12 @@ const j = job.data;
 const prog = j.programme ? PROGRAMMES[j.programme as Code].name : undefined;
 const applyHref = j.applyUrl ?? (j.applyEmail ? `mailto:${j.applyEmail}` : `mailto:${INBOX.jobs}`);
 const internal = applyHref.startsWith('/');
-const applyLabel = applyHref === '/submit' ? 'Start a submission' : 'Apply';
-const ld = j.jobType === 'Call for contributions' ? undefined : {
+const isCall = j.jobType.startsWith('Call');
+const isConference = applyHref.startsWith('/conference');
+const applyLabel = applyHref === '/submit' ? 'Start a submission' : isConference ? 'Submit an abstract' : 'Apply';
+const guide = isConference ? '/conference/call-for-abstracts' : '/submit#guidelines';
+const contact = isConference ? 'conference@rita.africa' : INBOX.editor;
+const ld = isCall ? undefined : {
   '@context': 'https://schema.org', '@type': 'JobPosting', title: j.title, description: j.summary,
   hiringOrganization: { '@type': 'ResearchOrganization', name: 'Research Institute for Transitions in Africa' },
   jobLocationType: j.location === 'Remote' ? 'TELECOMMUTE' : undefined,
@@ -55,17 +59,17 @@ const ld = j.jobType === 'Call for contributions' ? undefined : {
   <section class="section ruled">
     <div class="wrap with-aside">
       <div class="prose">
-        <h2>The role</h2>
+        <h2>{isCall ? 'The call' : 'The role'}</h2>
         {j.body ? <div set:html={j.body} /> : <p>{j.summary}</p>}
-        <h2>How to apply</h2>
+        <h2>{isCall ? 'How to take part' : 'How to apply'}</h2>
         {internal
-          ? <p>Read the <a href="/submit">submission guidelines</a>, then <a href={applyHref}>start a submission</a>. Questions: <a href={`mailto:${INBOX.editor}`}>{INBOX.editor}</a>.</p>
+          ? <p>Read the <a href={guide}>{isConference ? 'full call' : 'submission guidelines'}</a>, then <a href={applyHref}>{applyLabel.toLowerCase()}</a>. Questions: <a href={`mailto:${contact}`}>{contact}</a>.</p>
           : <p>Apply via <a href={applyHref}>{applyHref.replace('mailto:', '')}</a>.</p>}
       </div>
       <aside class="box-sand sticky">
-        <p class="label">Apply</p>
+        <p class="label">{isCall ? (isConference ? 'Deadline ' + j.deadline : 'Open all year') : 'Apply'}</p>
         {internal
-          ? <p class="mt-16">Submit through the contributor area, or email <a href={`mailto:${INBOX.editor}`}>{INBOX.editor}</a>.</p>
+          ? <p class="mt-16">{isConference ? 'Submit with a free RITA account.' : 'Submit through the contributor area.'} Questions: <a href={`mailto:${contact}`}>{contact}</a>.</p>
           : <p class="mt-16">Apply via the link or email <a href={`mailto:${INBOX.jobs}`}>{INBOX.jobs}</a>.</p>}
         <a class="btn mt-24" href={applyHref}>{applyLabel}</a>
       </aside>

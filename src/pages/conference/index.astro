@@ -19,8 +19,8 @@ const jsonLd = {
   <section class="hero bg-ink">
     <div class="wrap hero-grid">
       <div>
-        <p class="label sun">{CONF.short} <span class="sep">·</span> Call for abstracts open</p>
-        <h1 class="display mt-24">{CONF.theme}</h1>
+        <p class="pre">{CONF.name} · Call for abstracts open</p>
+        <h1 class="display mt-16">{CONF.theme}</h1>
         <p class="lead mt-24">{CONF.edition}. Two days of research and policy on how African economies can industrialise through the green transition.</p>
         <dl class="facts mt-48">
           <div class="fact"><dt>When</dt><dd>{CONF.dates}</dd></div>
@@ -47,8 +47,7 @@ const jsonLd = {
   <section class="section" id="about">
     <div class="wrap with-aside">
       <div>
-        <p class="label mute">About the conference</p>
-        <h2 class="h2 mt-16">The green transition will reshape Africa’s economies. The question is who makes what.</h2>
+        <h2 class="h2">The green transition will reshape Africa’s economies. The question is who makes what.</h2>
         <div class="prose mt-24">
           <p>Africa holds many of the minerals, much of the sun and most of the young workers the green transition needs. That does not guarantee factories, jobs or structural change. Too often, raw materials leave and finished goods return.</p>
           <p>{CONF.short} brings together researchers, policymakers, development finance institutions and firms to ask what it takes to industrialise through the transition: the states, the finance, the value chains, the energy, the firms and the workers.</p>
@@ -72,8 +71,7 @@ const jsonLd = {
   <section class="section bg-paper" id="dates">
     <div class="wrap with-aside">
       <div>
-        <p class="label mute">Timeline</p>
-        <h2 class="h2 mt-16">Key dates</h2>
+        <h2 class="h2">Key dates</h2>
         <div class="mt-32"><Timeline /></div>
       </div>
       <aside class="deadline box-ink">
@@ -89,7 +87,7 @@ const jsonLd = {
   <section class="section" id="tracks">
     <div class="wrap">
       <div class="section-head">
-        <div><p class="label mute">Call for abstracts</p><h2 class="h2 mt-16">Nine tracks</h2></div>
+        <h2 class="h2">Nine tracks</h2>
         <a class="link-arrow" href="/conference/call-for-abstracts#tracks">Tracks in full →</a>
       </div>
       <ol class="grid g3 nolist tracks">
@@ -107,8 +105,7 @@ const jsonLd = {
 
   <section class="section ruled" id="formats">
     <div class="wrap">
-      <p class="label mute">How to take part</p>
-      <h2 class="h2 mt-16 mb-32">Four formats</h2>
+      <h2 class="h2 mb-32">Four formats</h2>
       <ol class="grid g4 nolist">
         {FORMATS.map((f, i) => (
           <li class="fmt">
@@ -138,8 +135,7 @@ const jsonLd = {
   <section class="section" id="registration">
     <div class="wrap with-aside">
       <div>
-        <p class="label mute">Registration</p>
-        <h2 class="h2 mt-16">Registration and fees</h2>
+        <h2 class="h2">Registration and fees</h2>
         <p class="body mt-16 mute-2">Submitting is free. Registration opens with the decisions on 15 May 2027, and fees are announced then. At least one author of each accepted abstract registers by 30 June 2027.</p>
         <table class="table mt-32">
           <thead><tr><th>Category</th><th>Fee</th><th>Note</th></tr></thead>
@@ -157,8 +153,7 @@ const jsonLd = {
   <section class="split ruled" id="venue">
     <Photo shot="Industrial park" ratio="auto" class="split-photo" />
     <div class="split-text">
-      <p class="label mute">Venue</p>
-      <h2 class="h2 mt-16">Johannesburg, South Africa</h2>
+      <h2 class="h2">Johannesburg, South Africa</h2>
       <p class="body mt-16 mute-2">Africa’s largest industrial economy, at the centre of the debates on electricity, minerals and manufacturing. The venue and accommodation options are announced with the programme.</p>
       <ul class="nolist mt-24 venue-list">
         <li><strong>Getting there:</strong> O. R. Tambo International Airport (JNB), with direct flights across Africa.</li>
@@ -170,8 +165,7 @@ const jsonLd = {
 
   <section class="section ruled" id="people">
     <div class="wrap">
-      <p class="label mute">Organisers</p>
-      <h2 class="h2 mt-16 mb-32">Committee</h2>
+      <h2 class="h2 mb-32">Committee</h2>
       <div class="grid g3">
         <div class="box">
           <p class="label mute">Conference chairs</p>
@@ -194,8 +188,7 @@ const jsonLd = {
   <section class="section bg-paper" id="faq">
     <div class="wrap with-aside">
       <div>
-        <p class="label mute">Questions</p>
-        <h2 class="h2 mt-16 mb-32">FAQ</h2>
+        <h2 class="h2 mb-32">FAQ</h2>
         <div class="acc">
           {FAQ.map(([q, a]) => <details><summary>{q}</summary><div class="acc-body"><p>{a}</p></div></details>)}
         </div>
@@ -223,6 +216,7 @@ const jsonLd = {
   .hero .lead { color: var(--on-dark-mute); max-width: 640px; }
   .hero :global(.hero-photo) { width: 100%; }
   .sun { color: var(--sun); }
+  .pre { color: var(--sun); font-size: 17px; font-weight: 500; }
   .on-dark { color: var(--on-dark-mute); }
   .subnav { position: sticky; top: var(--header-h); z-index: 30; background: var(--white); border-bottom: 1px solid var(--line); }
   .subnav .row { gap: 28px; padding: 14px var(--pad); overflow-x: auto; flex-wrap: nowrap; }

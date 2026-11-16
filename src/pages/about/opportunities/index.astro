@@ -15,11 +15,11 @@ const d = await load();
 
   <section class="section">
     <div class="wrap">
-      <h2 class="h2 mb-32">Open positions</h2>
+      <h2 class="h2 mb-32">Open calls and positions</h2>
       {d.jobs.length ? (
         <div class="list">
           {d.jobs.map((j) => (
-            <ListRow href={url.job(j.id)} type={j.data.jobType} code={j.data.programme} title={j.data.title} meta={j.data.location} year={j.data.deadline} />
+            <ListRow href={url.job(j.id)} type={j.data.jobType} code={j.data.programme} title={j.data.title} meta={`${j.data.location} · ${j.data.deadline}`} year={null} />
           ))}
         </div>
       ) : <p class="mute">No open positions right now. Register interest below.</p>}

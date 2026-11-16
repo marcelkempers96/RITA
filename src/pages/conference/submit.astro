@@ -2,18 +2,95 @@
 // RITA Conference 2027: abstract submission (Supabase, account required).
 import Base from '../../layouts/Base.astro';
 import Crumbs from '../../components/Crumbs.astro';
-import { CONF, TRACKS } from '../../data/conference';
+import { CONF, TRACKS, FORMATS, ABSTRACT_RULES } from '../../data/conference';
+const codes = ['IND', 'MIN', 'EN', 'INN'];
+const steps = [
+  ['Create an account', 'Free. Confirm your email and you are in.'],
+  ['Write your abstract', '300–500 words, a track and a format. About 20 minutes.'],
+  ['Edit until 31 March', 'Your abstract stays editable until the call closes.'],
+  ['Hear back by 15 May', 'A decision with reviewer comments, here and by email.'],
+];
 ---
-<Base title={`Submit an abstract · ${CONF.name}`} description={`Submit an abstract to ${CONF.name}. Deadline ${CONF.deadlineText}.`} noindex noNewsletter>
+<Base title={`Submit an abstract · ${CONF.name}`} description={`Submit an abstract to ${CONF.name}. Deadline ${CONF.deadlineText}.`} noNewsletter>
   <div data-pagefind-ignore>
     <section class="wrap">
       <Crumbs items={[['Conference 2027', '/conference'], ['Submit an abstract']]} />
       <div class="page-head">
-        <p class="label mute">{CONF.short} <span class="sep">·</span> Deadline {CONF.deadlineText}</p>
+        <p class="row tags">
+          <span class="tag open">Open</span>
+          <span class="tag">Call for abstracts</span>
+          <span class="tag">{CONF.short}</span>
+        </p>
         <h1 class="h1 mt-16">Submit an abstract</h1>
-        <p class="lead">300–500 words. About 20 minutes. You can edit until the deadline. Read the <a href="/conference/call-for-abstracts#guidelines">guidelines</a> first.</p>
+        <p class="lead">Present your research at {CONF.name}, {CONF.dates} in Johannesburg. One abstract, one track, one clear finding.</p>
+        <div class="row mt-32">
+          <a class="btn" href="#form">Start your abstract</a>
+          <a class="btn btn-secondary" href="/conference/call-for-abstracts">Read the full call</a>
+        </div>
+        <p class="small mute mt-24">Writing a Policy Insight or blog for the website? <a href="/submit">Publish with RITA</a> instead.</p>
       </div>
     </section>
+
+    <section class="ruled factsband">
+      <div class="wrap">
+        <dl class="facts">
+          <div class="fact"><dt>Type</dt><dd>Call for abstracts</dd></div>
+          <div class="fact"><dt>Where</dt><dd>Johannesburg and online</dd></div>
+          <div class="fact"><dt>Deadline</dt><dd>31 March 2027</dd></div>
+          <div class="fact"><dt>Decisions</dt><dd>15 May 2027</dd></div>
+          <div class="fact"><dt>Tracks</dt><dd>Nine, across all programmes</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="section ruled">
+      <div class="wrap">
+        <h2 class="h2 mb-32">What you can submit</h2>
+        <ul class="grid g4 nolist">
+          {FORMATS.map((f, i) => (
+            <li class="fmt bg-paper">
+              <p class="label"><span class:list={['sq', `c-${codes[i]}`]} aria-hidden="true"></span>{f.title}</p>
+              <h3 class="h3 mt-16">{f.length}</h3>
+              <p class="mute mt-16">{f.detail}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="section ruled">
+      <div class="wrap">
+        <h2 class="h2 mb-32">How it works</h2>
+        <ol class="grid g4 nolist">
+          {steps.map(([t, d], i) => (
+            <li class="step">
+              <p class="label mute">0{i + 1}</p>
+              <h3 class="h3 mt-16">{t}</h3>
+              <p class="mute mt-8">{d}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <section class="section ruled" id="guidelines">
+      <div class="wrap with-aside">
+        <div>
+          <h2 class="h2">Guidelines</h2>
+          <p class="lead mt-16">A question, the evidence, the finding, and why it matters for policy.</p>
+          <dl class="rules mt-32">
+            {ABSTRACT_RULES.map(([t, d]) => (<div><dt class="h3">{t}</dt><dd class="body">{d}</dd></div>))}
+          </dl>
+        </div>
+        <aside class="box-sand" aria-label="Questions">
+          <p class="label">Questions?</p>
+          <p class="mt-8"><a href={`mailto:${CONF.email}`}>{CONF.email}</a></p>
+          <p class="mt-16 small"><a href="/conference/call-for-abstracts#review">How abstracts are reviewed →</a></p>
+        </aside>
+      </div>
+    </section>
+
+    <div id="form" class="form-anchor ruled"><div class="wrap"><h2 class="h2 form-title">Your abstract</h2></div></div>
 
     <section class="wrap" data-state="loading"><p class="mute">Loading…</p></section>
 
@@ -274,6 +351,18 @@ import { CONF, TRACKS } from '../../data/conference';
 </script>
 
 <style>
+  .tag.open { background: var(--malachite); border-color: var(--malachite); color: var(--white); }
+  .page-head .lead { margin-top: 16px; }
+  .factsband { padding: 32px 0; }
+  .fmt { padding: 24px; }
+  .step { border-top: 3px solid var(--malachite); padding-top: 24px; }
+  .rules { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 40px; margin: 0; }
+  .rules div { border-top: 1px solid var(--line); padding-top: 16px; }
+  .rules dt { font-size: 19px; }
+  .rules dd { margin: 8px 0 0; color: var(--mute-2); font-size: 16px; }
+  .form-anchor { padding-top: var(--section-y); scroll-margin-top: var(--header-h); }
+  .form-title { margin-bottom: 24px; }
+  @media (max-width: 599px) { .rules { grid-template-columns: 1fr; } }
   .gate { max-width: 680px; padding: 40px; background: var(--paper); margin-bottom: 96px; }
   .sub-form { max-width: 860px; padding-bottom: 96px; }
   .group { border-top: 1px solid var(--line); padding-top: 28px; margin-top: 16px; gap: 18px; }
