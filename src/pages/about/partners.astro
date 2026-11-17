@@ -2,7 +2,6 @@
 import Base from '../../layouts/Base.astro';
 import PageHead from '../../components/PageHead.astro';
 import LogoWall from '../../components/LogoWall.astro';
-import Tbc from '../../components/Tbc.astro';
 import SubNav from '../../components/about/SubNav.astro';
 import DownloadTile from '../../components/about/DownloadTile.astro';
 import { load } from '../../lib/content';
@@ -37,7 +36,7 @@ const academic = d.partners.filter((p) => p.data.kind === 'academic');
         <h2 class="h2">Our independence</h2>
         <p class="body mt-24">RITA decides its research questions, methods and conclusions. Funders do not review findings before publication. We disclose every funder of every project, and authors declare conflicts of interest.</p>
         <h2 class="h3 mt-48">How we are funded</h2>
-        <div class="mt-16"><Tbc block label="Annual breakdown TBC">Not yet published.</Tbc></div>
+        <p class="body mt-16 mute-2">Published with our first annual report, project by project.</p>
       </div>
       <aside aria-labelledby="dl-title">
         <h2 id="dl-title" class="label mute mb-16">Downloads</h2>

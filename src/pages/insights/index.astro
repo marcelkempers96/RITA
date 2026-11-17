@@ -56,7 +56,7 @@ const seriesLabel = (s?: string, part?: number, of?: number) => (s ? `${s}${part
               <span class:list={['label', 'num', `c-${i.data.programme}`]}><span class="sq" aria-hidden="true"></span>No. {i.data.number}</span>
               <span class="lrow-title">{i.data.title}</span>
               <span class="lrow-meta">{seriesLabel(i.data.series, i.data.part, i.data.of)}</span>
-              <span class="lrow-year">{i.data.year}</span>
+              <span class="lrow-year">{i.data.date ? new Date(i.data.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }) : i.data.year}</span>
             </a>
           </li>
         ))}

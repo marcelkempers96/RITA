@@ -1,7 +1,6 @@
 ---
 import Base from '../../../layouts/Base.astro';
 import Crumbs from '../../../components/Crumbs.astro';
-import Tbc from '../../../components/Tbc.astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
 import { PROGRAMMES, type Code } from '../../../lib/content';
 import { INBOX } from '../../../lib/site';
@@ -50,7 +49,7 @@ const ld = isCall ? undefined : {
         <div class="fact"><dt>Type</dt><dd>{j.jobType}</dd></div>
         <div class="fact"><dt>Location</dt><dd>{j.location}</dd></div>
         <div class="fact"><dt>Deadline</dt><dd>{j.deadline}</dd></div>
-        <div class="fact"><dt>Reports to</dt><dd>{j.reportsTo ?? <Tbc />}</dd></div>
+        <div class="fact"><dt>Reports to</dt><dd>{j.reportsTo ?? '—'}</dd></div>
         <div class="fact"><dt>Programme</dt><dd>{prog ?? 'All programmes'}</dd></div>
       </dl>
     </div>

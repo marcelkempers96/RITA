@@ -3,7 +3,6 @@
 // Without JavaScript all four steps show as one long form.
 import Base from '../../layouts/Base.astro';
 import Crumbs from '../../components/Crumbs.astro';
-import Tbc from '../../components/Tbc.astro';
 import { PROGRAMMES, CODES } from '../../lib/content';
 
 const api = import.meta.env.PUBLIC_SUBMISSIONS_API as string | undefined;
@@ -47,7 +46,7 @@ const formats = [
     <form id="submission" class="wrap sform" method="post" enctype="multipart/form-data"
       action={api ? `${api.replace(/\/$/, '')}/api/submissions` : '#'} novalidate data-submission-form>
       <noscript>
-        <div class="tbc-block mt-32"><strong>JavaScript is off</strong>All steps are shown on one page. Saving drafts and the preview need JavaScript.</div>
+        <div class="box-sand mt-32"><strong>JavaScript is off.</strong> All steps are shown on one page. Saving drafts and the preview need JavaScript.</div>
       </noscript>
       <div data-error-summary hidden></div>
       <p class="autosave mute small" data-autosave-status aria-live="polite"></p>
@@ -94,7 +93,7 @@ const formats = [
             <div class="field">
               <label for="author">Author</label>
               <input id="author" name="author" class="input" type="text" autocomplete="name" />
-              <p class="hint">Filled in from your account once sign-in is connected. <Tbc /></p>
+              <p class="hint">As it should appear when published.</p>
             </div>
             <div class="field">
               <label for="coauthor-input">Co-authors</label>

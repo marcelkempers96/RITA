@@ -1,7 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
 import PageHead from '../components/PageHead.astro';
-import Tbc from '../components/Tbc.astro';
 import { INBOX, SITE } from '../lib/site';
 
 // Enquiry type routes to the matching inbox on the back-end (CONTACT_ROUTES in src/lib/api/forms.ts).
@@ -70,10 +69,9 @@ const social = [['LinkedIn', SITE.social.linkedin], ['X', SITE.social.x], ['YouT
           <div><dt class="label mute">Bases</dt><dd>{SITE.bases.join(' · ')}</dd></div>
           <div><dt class="label mute">Follow</dt><dd>
             {social.map(([l, h], i) => <>{i > 0 && ' · '}{h ? <a href={h} rel="me noopener">{l}</a> : <span>{l}</span>}</>)}
-            {social.every(([, h]) => !h) && <> <Tbc label="Handles TBC" /></>}
+            
           </dd></div>
         </dl>
-        <p class="mt-24"><Tbc label="Domain TBC" /></p>
       </aside>
     </div>
   </section>

@@ -3,7 +3,6 @@ import Base from '../../layouts/Base.astro';
 import Crumbs from '../../components/Crumbs.astro';
 import Photo from '../../components/Photo.astro';
 import ListRow from '../../components/ListRow.astro';
-import Tbc from '../../components/Tbc.astro';
 import { getCollection } from 'astro:content';
 import { load, url, TYPE_LABEL, PROGRAMMES, monthYear, type Code, type Person } from '../../lib/content';
 
@@ -57,7 +56,7 @@ const ld = {
     <div class="intro">
       <p class="label mute">{p.group === 'staff' ? p.role : groupLabel[p.group] ?? p.role}{p.base && <><span class="sep">·</span>{p.base}</>}</p>
       <h1 class="h1 mt-16">{p.name}</h1>
-      <p class="body bio mt-24">{p.bio} {p.bioTbc && <Tbc label="Bio to confirm" />}</p>
+      <p class="body bio mt-24">{p.bio}</p>
       <ul class="nolist chips mt-24" aria-label="Focus">
         {p.focusTags.map((t) => <li class="chip static">{t}</li>)}
       </ul>
@@ -65,7 +64,6 @@ const ld = {
         {links.filter(([, h]) => h).map(([label, href]) => (
           <li><a href={href} {...(href!.startsWith('http') ? { target: '_blank', rel: 'noopener me' } : {})} class:list={{ ext: href!.startsWith('http') }}>{label}</a></li>
         ))}
-        {missing.length > 0 && <li><Tbc label={`${missing.join(' · ')} TBC`} /></li>}
       </ul>
     </div>
   </section>

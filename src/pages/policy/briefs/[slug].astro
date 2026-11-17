@@ -2,7 +2,6 @@
 import type { GetStaticPaths } from 'astro';
 import Base from '../../../layouts/Base.astro';
 import Crumbs from '../../../components/Crumbs.astro';
-import Tbc from '../../../components/Tbc.astro';
 import ShareBar from '../../../components/ShareBar.astro';
 import CiteModal from '../../../components/CiteModal.astro';
 import { load, resolveRef, PROGRAMMES, url, type Brief, type Code } from '../../../lib/content';
@@ -37,7 +36,7 @@ const authors = b.authors.length ? b.authors : ['RITA'];
       </p>
       <h1 class="h1 mt-16">{b.title}</h1>
       <p class="lead mt-16">
-        {b.authors.length ? b.authors.join(' · ') : <Tbc label="Authors TBC" />} · RITA Policy Brief · {year ?? <Tbc label="Date TBC" />}
+        {b.authors.length ? b.authors.join(' · ') : 'RITA'} · RITA Policy Brief{year ? ` · ${year}` : ''}
       </p>
       <div class="row mt-32">
         {b.pdf
@@ -71,7 +70,7 @@ const authors = b.authors.length ? b.authors : ['RITA'];
           {[1, 2, 3].map((i) => (
             <li class="rec">
               <span class="mono mute">0{i}</span>
-              <p class="h3 mt-8"><Tbc label="Recommendation TBC" /></p>
+              <p class="h3 mt-8 mute">In preparation</p>
               <p class="mute mt-8">One sentence why: authors to write.</p>
             </li>
           ))}
@@ -84,9 +83,9 @@ const authors = b.authors.length ? b.authors : ['RITA'];
     <div class="wrap with-aside">
       <div class="prose">
         <h2>The issue</h2>
-        {b.issue ? <p>{b.issue}</p> : <Tbc block label="Authors to add">This brief is being written by the authors, adapted from the research listed under “Based on”.</Tbc>}
+        {b.issue ? <p>{b.issue}</p> : <p class="mute">In preparation.</p>}
         <h2>What the evidence shows</h2>
-        {b.evidence ? <p>{b.evidence}</p> : <Tbc block label="Authors to add">Key evidence from the underlying research.</Tbc>}
+        {b.evidence ? <p>{b.evidence}</p> : <p class="mute">In preparation.</p>}
       </div>
       <aside class="stack" style="--stack:24px" aria-label="About this brief">
         <div class="box-paper">

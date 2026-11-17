@@ -3,7 +3,7 @@ import type { GetStaticPaths } from 'astro';
 import Base from '../../layouts/Base.astro';
 import Crumbs from '../../components/Crumbs.astro';
 import Photo from '../../components/Photo.astro';
-import Tbc from '../../components/Tbc.astro';
+import { renderBody, wordsIn } from '../../lib/richtext';
 import ShareBar from '../../components/ShareBar.astro';
 import Card from '../../components/Card.astro';
 import { load, url, PROGRAMMES, type Insight, type Code } from '../../lib/content';
@@ -18,9 +18,10 @@ const d = await load();
 const i = insight.data;
 const code = i.programme as Code;
 const author = d.people.find((p) => p.id === i.authors[0]);
-// Body is plain text with blank lines between paragraphs until the LinkedIn texts are migrated.
-const paragraphs = (i.body ?? '').split(/\n\s*\n/).map((p) => p.trim()).filter(Boolean);
-const words = paragraphs.join(' ').split(/\s+/).filter(Boolean).length;
+// Body: plain text from the original LinkedIn post (see src/lib/richtext.ts for the format).
+const issueHref = (n: number) => { const x = d.insights.find((y) => y.data.number === n); return x ? url.insight(x.id) : undefined; };
+const bodyHtml = i.body ? renderBody(i.body, issueHref) : '';
+const words = i.body ? wordsIn(i.body) : 0;
 const readTime = words ? Math.max(1, Math.round(words / 220)) : 0;
 const series = i.series ? d.insights.filter((x) => x.data.series === i.series).sort((a, b) => a.data.number - b.data.number) : [];
 const prev = d.insights.find((x) => x.data.number === i.number - 1);
@@ -49,7 +50,7 @@ const canonical = new URL(url.insight(insight.id), Astro.site).toString();
         </p>
         <h1 class="h1 mt-16 title">{i.title}</h1>
         <p class="lead mt-16">
-          {i.byline ? i.byline : author ? <a href={url.person(author.id)}>{author.data.name}</a> : 'Gideon Ndubuisi'} · {i.date ?? i.year}{readTime ? ` · ${readTime} min read` : ''}
+          {i.byline ? i.byline : author ? <a href={url.person(author.id)}>{author.data.name}</a> : 'Gideon Ndubuisi'} · {i.date ? new Date(i.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) : i.year}{readTime ? ` · ${readTime} min read` : ''}
         </p>
       </div>
     </header>
@@ -58,11 +59,11 @@ const canonical = new URL(url.insight(insight.id), Astro.site).toString();
 
     <div class="wrap with-aside body-wrap">
       <div class="prose">
-        {paragraphs.length ? paragraphs.map((p) => <p>{p}</p>) : (
-          <Tbc block label="Full text to be migrated">
-            The full text of this issue is to be migrated from LinkedIn with Gideon’s approval.
-            {i.originalUrl && <> Until then, read it from the <a href={i.originalUrl} target="_blank" rel="noopener">Policy Insights index on Gideon Ndubuisi’s site<span class="sr-only"> (opens in a new tab)</span></a> ↗.</>}
-          </Tbc>
+        {bodyHtml ? <Fragment set:html={bodyHtml} /> : (
+          <p>This issue was first published on LinkedIn. <a href={i.originalUrl ?? 'https://www.linkedin.com/in/gideon-ndubuisi-phd-0421017b/'} target="_blank" rel="noopener">Read it on Gideon Ndubuisi’s LinkedIn<span class="sr-only"> (opens in a new tab)</span></a> ↗</p>
+        )}
+        {bodyHtml && i.originalUrl?.includes('linkedin.com') && (
+          <p class="small mute origin">First published on <a href={i.originalUrl} target="_blank" rel="noopener">LinkedIn<span class="sr-only"> (opens in a new tab)</span></a>{i.date && <>, {new Date(i.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}</>}.</p>
         )}
         {i.pullQuote && <blockquote>{i.pullQuote}</blockquote>}
         <div class="end-cta">
@@ -116,6 +117,7 @@ const canonical = new URL(url.insight(insight.id), Astro.site).toString();
 </Base>
 
 <style>
+  .origin { margin-top: 32px; }
   .title { max-width: 900px; }
   .tag-prog { background: var(--c); color: var(--white); border-color: var(--c); }
   .tag-prog.c-EN { color: var(--ink); }

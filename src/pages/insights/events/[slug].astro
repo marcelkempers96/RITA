@@ -4,7 +4,6 @@ import type { CollectionEntry } from 'astro:content';
 import Base from '../../../layouts/Base.astro';
 import Crumbs from '../../../components/Crumbs.astro';
 import Photo from '../../../components/Photo.astro';
-import Tbc from '../../../components/Tbc.astro';
 import ShareBar from '../../../components/ShareBar.astro';
 import { load, url } from '../../../lib/content';
 import { eventDate, eventTime, isPast, googleCalendarUrl, eventStart, eventEnd, FORMAT_LABEL } from '../../../components/insights/eventTime';
@@ -65,9 +64,9 @@ const start = eventStart(e), end = eventEnd(e);
   <section class="facts-band">
     <div class="wrap">
       <dl class="facts">
-        <div class="fact"><dt>Date</dt><dd>{eventDate(e) ?? <Tbc label="Date TBC" />}</dd></div>
-        <div class="fact"><dt>Time</dt><dd>{eventTime(e) ?? <Tbc label="Time TBC" />}<span class="mute small block">{e.durationMinutes} min</span></dd></div>
-        <div class="fact"><dt>Where</dt><dd>{where ?? <Tbc label="Venue TBC" />}</dd></div>
+        <div class="fact"><dt>Date</dt><dd>{eventDate(e) ?? 'To be announced'}</dd></div>
+        <div class="fact"><dt>Time</dt><dd>{eventTime(e) ?? 'To be announced'}<span class="mute small block">{e.durationMinutes} min</span></dd></div>
+        <div class="fact"><dt>Where</dt><dd>{where ?? 'Online'}</dd></div>
         <div class="fact"><dt>Language</dt><dd>{e.language}</dd></div>
       </dl>
     </div>
@@ -84,7 +83,7 @@ const start = eventStart(e), end = eventEnd(e);
           <h2 class="label">Speakers</h2>
           <ul class="nolist speakers">
             {speakers.map((s) => <li><a href={url.person(s.id)}>{s.data.name}</a>{affiliation[s.id] && ` — ${affiliation[s.id]}`}</li>)}
-            {e.speakersTbc.map((s) => <li>{s} — <Tbc /></li>)}
+            {e.speakersTbc.map((s) => <li>{s} <span class="mute">· to be announced</span></li>)}
           </ul>
         </div>
         <div class="box-paper"><ShareBar title={e.title} /></div>

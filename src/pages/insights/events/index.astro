@@ -32,7 +32,7 @@ const formatLine = (e: (typeof d.events)[number]) =>
       <section class="split">
         <Photo shot="Event" ratio="auto" class="split-photo" />
         <div class="split-text">
-          <p class="label mute">{eventDay(featured.data) ? `${eventDate(featured.data)}` : <span class="tbc">Date TBC</span>} <span class="sep">·</span> {FORMAT_LABEL[featured.data.format]}</p>
+          <p class="label mute">{eventDay(featured.data) ? `${eventDate(featured.data)}` : <span>Date to be announced</span>} <span class="sep">·</span> {FORMAT_LABEL[featured.data.format]}</p>
           <h2 class="h1 mt-16"><a href={url.event(featured.id)}>{featured.data.title}</a></h2>
           <p class="lead mt-16">{featured.data.about}</p>
           {featured.data.registrationOpen && <a class="btn btn-secondary mt-32" href={`${url.event(featured.id)}#register`}>Register →</a>}
